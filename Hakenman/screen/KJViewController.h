@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "const.h"
 
 @interface KJViewController : UIViewController
 

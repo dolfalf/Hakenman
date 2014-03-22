@@ -29,6 +29,7 @@
 		3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FD118B8AB740095C418 /* hakenModel.xcdatamodeld */; };
 		3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
 		3B46A02F18B8B72E0095C418 /* SiteInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B46A02E18B8B72E0095C418 /* SiteInfo.m */; };
+		3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; };
 		3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1C18DD4521000E4FF3 /* DBManager.m */; };
 		3B9CEA2018DD458F000E4FF3 /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
 		3B9CEA2318DD6542000E4FF3 /* TimeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2218DD6542000E4FF3 /* TimeCard.m */; };
@@ -37,7 +38,6 @@
 		3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3C318DD737C0062B07A /* Setting.storyboard */; };
 		3BC0E3CA18DD74D80062B07A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3C918DD74D80062B07A /* SettingViewController.m */; };
 		3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3CC18DD75310062B07A /* KJViewController.m */; };
-		3BC0E3D318DD75CF0062B07A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3D118DD75CF0062B07A /* Main.storyboard */; };
 		3BC0E3DD18DD75FD0062B07A /* TimeCardDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3D718DD75FD0062B07A /* TimeCardDayCell.m */; };
 		3BC0E3DE18DD75FD0062B07A /* TimeCardDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3D818DD75FD0062B07A /* TimeCardDayCell.xib */; };
 		3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3DC18DD75FD0062B07A /* TopViewController.m */; };
@@ -89,6 +89,11 @@
 		3B469FE718B8B0420095C418 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3B46A02D18B8B72E0095C418 /* SiteInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteInfo.h; sourceTree = "<group>"; };
 		3B46A02E18B8B72E0095C418 /* SiteInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteInfo.m; sourceTree = "<group>"; };
+		3B8FA71618DDEFB900A1182E /* const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
+		3B8FA71718DDF0D100A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3B8FA71818DDF0D200A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3B8FA71E18DDF17D00A1182E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3B8FA72018DDF18100A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3B9CEA1B18DD4521000E4FF3 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		3B9CEA1C18DD4521000E4FF3 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		3B9CEA1E18DD458F000E4FF3 /* TimeCardDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCardDao.h; sourceTree = "<group>"; };
@@ -104,7 +109,6 @@
 		3BC0E3C918DD74D80062B07A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		3BC0E3CB18DD75310062B07A /* KJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJViewController.h; sourceTree = "<group>"; };
 		3BC0E3CC18DD75310062B07A /* KJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJViewController.m; sourceTree = "<group>"; };
-		3BC0E3D218DD75CF0062B07A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Hakenman/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3BC0E3D618DD75FD0062B07A /* TimeCardDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCardDayCell.h; sourceTree = "<group>"; };
 		3BC0E3D718DD75FD0062B07A /* TimeCardDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCardDayCell.m; sourceTree = "<group>"; };
 		3BC0E3D818DD75FD0062B07A /* TimeCardDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeCardDayCell.xib; sourceTree = "<group>"; };
@@ -194,13 +198,13 @@
 		3B469FA118B89D3A0095C418 /* Hakenman */ = {
 			isa = PBXGroup;
 			children = (
+				3B469FAA18B89D3A0095C418 /* AppDelegate.h */,
+				3B469FAB18B89D3A0095C418 /* AppDelegate.m */,
+				3B8FA71618DDEFB900A1182E /* const.h */,
 				3B9CEA1A18DD44F9000E4FF3 /* dao */,
 				3B469FD018B8AB3E0095C418 /* model */,
 				3BC0E3B418DD72CE0062B07A /* screen */,
 				3B340F3818DD98CC008F6E1E /* utils */,
-				3B469FAA18B89D3A0095C418 /* AppDelegate.h */,
-				3B469FAB18B89D3A0095C418 /* AppDelegate.m */,
-				3BC0E3D118DD75CF0062B07A /* Main.storyboard */,
 				3B469FB318B89D3A0095C418 /* Images.xcassets */,
 				3B469FA218B89D3A0095C418 /* Supporting Files */,
 			);
@@ -214,6 +218,7 @@
 				3B469FA418B89D3A0095C418 /* InfoPlist.strings */,
 				3B469FA718B89D3A0095C418 /* main.m */,
 				3B469FA918B89D3A0095C418 /* Hakenman-Prefix.pch */,
+				3B8FA71D18DDF17D00A1182E /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -364,6 +369,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = kjcode;
 				TargetAttributes = {
+					3B469F9718B89D3A0095C418 = {
+						DevelopmentTeam = Y8RKPBJ3Y3;
+					};
 					3B469FB818B89D3A0095C418 = {
 						TestTargetID = 3B469F9718B89D3A0095C418;
 					};
@@ -376,6 +384,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 3B469F8F18B89D3A0095C418;
 			productRefGroup = 3B469F9918B89D3A0095C418 /* Products */;
@@ -394,11 +403,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B469FB418B89D3A0095C418 /* Images.xcassets in Resources */,
-				3BC0E3D318DD75CF0062B07A /* Main.storyboard in Resources */,
 				3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */,
 				3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */,
 				3BC0E3DE18DD75FD0062B07A /* TimeCardDayCell.xib in Resources */,
 				3B469FA618B89D3A0095C418 /* InfoPlist.strings in Resources */,
+				3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */,
 				3BC0E3E418DD778E0062B07A /* MainTopView.xib in Resources */,
 				3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */,
 			);
@@ -464,6 +473,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3B469FA518B89D3A0095C418 /* en */,
+				3B8FA71718DDF0D100A1182E /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -472,17 +482,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				3B469FC418B89D3A0095C418 /* en */,
+				3B8FA71818DDF0D200A1182E /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		3BC0E3D118DD75CF0062B07A /* Main.storyboard */ = {
+		3B8FA71D18DDF17D00A1182E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3BC0E3D218DD75CF0062B07A /* Base */,
+				3B8FA71E18DDF17D00A1182E /* en */,
+				3B8FA72018DDF18100A1182E /* ja */,
 			);
-			name = Main.storyboard;
-			path = ..;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -565,10 +576,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -578,10 +592,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

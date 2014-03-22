@@ -14,8 +14,7 @@
 
 @interface MainTopView() <UITableViewDataSource, UITableViewDelegate> {
     
-    IBOutlet UITableView *startWorkTableView;
-    IBOutlet UITableView *endWorkTableView;
+    IBOutlet UITableView *workTableView;
 }
 
 @property (nonatomic, strong) WorkStatusCell *workStatusCell;
@@ -137,62 +136,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    if ([tableView isEqual:startWorkTableView] == YES) {
+    if (indexPath.row == tableCellTypeCurrentStatus) {
+        WorkStatusCell *cell = [self tableView:tableView workStatusCellForRowAtIndexPath:indexPath];
         
-        if (indexPath.row == tableCellTypeCurrentStatus) {
-            WorkStatusCell *cell = [self tableView:tableView workStatusCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else if(indexPath.row == tableCellTypeTodoList) {
-            TodoListCell *cell = [self tableView:tableView todoListCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else if(indexPath.row == tableCellTypeMapView) {
-            MapViewCell *cell = [self tableView:tableView mapViewCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else if(indexPath.row == tableCellTypeWeekStatus) {
-            WeekWorkStatusCell *cell = [self tableView:tableView weekWorkStatusCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else {
-            //その他
-        }
+        return cell;
         
-    }else if ([tableView isEqual:endWorkTableView] == YES) {
+    }else if(indexPath.row == tableCellTypeTodoList) {
+        TodoListCell *cell = [self tableView:tableView todoListCellForRowAtIndexPath:indexPath];
         
-        if (indexPath.row == tableCellTypeCurrentStatus) {
-            WorkStatusCell *cell = [self tableView:tableView workStatusCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else if(indexPath.row == tableCellTypeTodoList) {
-            TodoListCell *cell = [self tableView:tableView todoListCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else if(indexPath.row == tableCellTypeMapView) {
-            MapViewCell *cell = [self tableView:tableView mapViewCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else if(indexPath.row == tableCellTypeWeekStatus) {
-            WeekWorkStatusCell *cell = [self tableView:tableView weekWorkStatusCellForRowAtIndexPath:indexPath];
-            
-            return cell;
-            
-        }else {
-            //その他
-        }
+        return cell;
+        
+    }else if(indexPath.row == tableCellTypeMapView) {
+        MapViewCell *cell = [self tableView:tableView mapViewCellForRowAtIndexPath:indexPath];
+        
+        return cell;
+        
+    }else if(indexPath.row == tableCellTypeWeekStatus) {
+        WeekWorkStatusCell *cell = [self tableView:tableView weekWorkStatusCellForRowAtIndexPath:indexPath];
+        
+        return cell;
+        
+    }else {
+        //その他
     }
-    
-    
-    
+
     //ここにくることはありえないのでnilにする
     return nil;
     

@@ -14,18 +14,32 @@
 #import "SettingViewController.h"
 #import "MenuViewController.h"
 
+typedef enum {
+    screenTypeShukin = 0,
+    screenTypeTaikin,
+    
+}screenType;
+
 const int kPageSize = 2;
+
+
+
 
 @interface TopViewController () {
     
     IBOutlet UIScrollView *scView;
     IBOutlet UIPageControl *pgControl;
     
-    MainTopView *_mainTopView;
+    MainTopView *_shukinTopView;
+    MainTopView *_taikinTopView;
     
 }
+
+@property (nonatomic, assign) screenType screen;
+
 - (IBAction)gotoMenuButtonTouched:(id)sender;
 - (IBAction)gotoSettingButtonTouched:(id)sender;
+
 @end
 
 @implementation TopViewController
@@ -76,7 +90,7 @@ const int kPageSize = 2;
     [super viewDidLayoutSubviews];
     
     // スクロールの範囲を設定
-    [scView setContentSize:CGSizeMake((kPageSize * [UIScreen mainScreen].bounds.size.width),
+    [scView setContentSize:CGSizeMake((_shukinTopView.frame.size.width + _taikinTopView.frame.size.width),
                                       [UIScreen mainScreen].bounds.size.height)];
     
     //page control
@@ -88,12 +102,30 @@ const int kPageSize = 2;
     [self.view layoutSubviews]; // <- これが重要！
 }
 
+#pragma mark - setter
+- (void)setScreen:(screenType)screen {
+
+    if (screen == screenTypeShukin) {
+        self.title = LOCALIZE(@"TopViewController_goWork_title");
+    }else if (screen == screenTypeTaikin) {
+        self.title = LOCALIZE(@"TopViewController_leaveWork_title");
+    }
+    
+    _screen = screen;
+}
+
 #pragma mark - private method
 - (void)initControl {
     
     //MainView initialize
-    MainTopView *mainTopView = [MainTopView createView];
-    [scView addSubview:mainTopView];
+    _shukinTopView = [MainTopView createView];
+    [scView addSubview:_shukinTopView];
+
+    _taikinTopView = [MainTopView createView];
+    _taikinTopView.frame = CGRectSetX(_taikinTopView.frame, _shukinTopView.frame.size.width);
+    
+    [scView addSubview:_taikinTopView];
+    
     
     //scrollView & pageControl initialize
     
@@ -117,7 +149,8 @@ const int kPageSize = 2;
     [pgControl addTarget:self
                     action:@selector(_pageControlTapped:)
           forControlEvents:UIControlEventValueChanged];
-    
+ 
+    self.title = LOCALIZE(@"TopViewController_goWork_title");
 }
 
 #pragma mark - IBAction
@@ -151,20 +184,30 @@ const int kPageSize = 2;
 
 #pragma mark - callback method
 - (void)_pageControlTapped:(id)sender {
+    
     CGRect frame = scView.frame;
     frame.origin.x = frame.size.width * pgControl.currentPage;
     [scView scrollRectToVisible:frame animated:YES];
+    
 }
 
 
 #pragma mark - UIScrollView delegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {
+    //横方向のみスクロールする
+    CGPoint origin = [scView contentOffset];
+    [scView setContentOffset:CGPointMake(origin.x, 0.0)];
+    
+    //page control
     CGFloat pageWidth = scView.frame.size.width;
     if ((NSInteger)fmod(scView.contentOffset.x , pageWidth) == 0) {
         // ページコントロールに現在のページを設定
         pgControl.currentPage = scView.contentOffset.x / pageWidth;
     }
+    
+    self.screen = pgControl.currentPage;
+    
 }
 
 

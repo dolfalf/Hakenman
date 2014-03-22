@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Hakenman
+
+  Created by Lee jaeeun on 2014/03/23.
+  Copyright (c) 2014年 kjcode. All rights reserved.
+*/
+
+"TopViewController_goWork_title" = "Work";
+"TopViewController_leaveWork_title" = "goto Home";
