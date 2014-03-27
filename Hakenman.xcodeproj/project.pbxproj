@@ -29,7 +29,10 @@
 		3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FD118B8AB740095C418 /* hakenModel.xcdatamodeld */; };
 		3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
 		3B46A02F18B8B72E0095C418 /* SiteInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B46A02E18B8B72E0095C418 /* SiteInfo.m */; };
+		3B81AE2A18E1CB63007AFD8E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B81AE2918E1CB63007AFD8E /* EventKit.framework */; };
+		3B81AE2D18E1CB95007AFD8E /* ReminderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B81AE2C18E1CB95007AFD8E /* ReminderManager.m */; };
 		3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; };
+		3B8FA72318DDF59400A1182E /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
 		3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1C18DD4521000E4FF3 /* DBManager.m */; };
 		3B9CEA2018DD458F000E4FF3 /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
 		3B9CEA2318DD6542000E4FF3 /* TimeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2218DD6542000E4FF3 /* TimeCard.m */; };
@@ -89,11 +92,16 @@
 		3B469FE718B8B0420095C418 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3B46A02D18B8B72E0095C418 /* SiteInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteInfo.h; sourceTree = "<group>"; };
 		3B46A02E18B8B72E0095C418 /* SiteInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteInfo.m; sourceTree = "<group>"; };
+		3B81AE2918E1CB63007AFD8E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		3B81AE2B18E1CB95007AFD8E /* ReminderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderManager.h; sourceTree = "<group>"; };
+		3B81AE2C18E1CB95007AFD8E /* ReminderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderManager.m; sourceTree = "<group>"; };
 		3B8FA71618DDEFB900A1182E /* const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
 		3B8FA71718DDF0D100A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3B8FA71818DDF0D200A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3B8FA71E18DDF17D00A1182E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3B8FA72018DDF18100A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3B8FA72118DDF59400A1182E /* NSUserDefaults+Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Setting.h"; sourceTree = "<group>"; };
+		3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Setting.m"; sourceTree = "<group>"; };
 		3B9CEA1B18DD4521000E4FF3 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		3B9CEA1C18DD4521000E4FF3 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		3B9CEA1E18DD458F000E4FF3 /* TimeCardDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCardDao.h; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B81AE2A18E1CB63007AFD8E /* EventKit.framework in Frameworks */,
 				3B340F3718DD8F31008F6E1E /* MapKit.framework in Frameworks */,
 				3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */,
 				3B469F9E18B89D3A0095C418 /* CoreGraphics.framework in Frameworks */,
@@ -149,6 +158,8 @@
 		3B340F3818DD98CC008F6E1E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				3B81AE2B18E1CB95007AFD8E /* ReminderManager.h */,
+				3B81AE2C18E1CB95007AFD8E /* ReminderManager.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -185,6 +196,7 @@
 		3B469F9A18B89D3A0095C418 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B81AE2918E1CB63007AFD8E /* EventKit.framework */,
 				3B340F3618DD8F31008F6E1E /* MapKit.framework */,
 				3B469FE718B8B0420095C418 /* CoreData.framework */,
 				3B469F9B18B89D3A0095C418 /* Foundation.framework */,
@@ -283,6 +295,8 @@
 		3BC0E3B618DD72CE0062B07A /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				3B8FA72118DDF59400A1182E /* NSUserDefaults+Setting.h */,
+				3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */,
 				3BC0E3C318DD737C0062B07A /* Setting.storyboard */,
 				3BC0E3C818DD74D80062B07A /* SettingViewController.h */,
 				3BC0E3C918DD74D80062B07A /* SettingViewController.m */,
@@ -366,7 +380,7 @@
 		3B469F9018B89D3A0095C418 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = kjcode;
 				TargetAttributes = {
 					3B469F9718B89D3A0095C418 = {
@@ -434,6 +448,7 @@
 				3BC0E3CA18DD74D80062B07A /* SettingViewController.m in Sources */,
 				3B340F3E18DD99FE008F6E1E /* MenuViewController.m in Sources */,
 				3BC0E3DD18DD75FD0062B07A /* TimeCardDayCell.m in Sources */,
+				3B81AE2D18E1CB95007AFD8E /* ReminderManager.m in Sources */,
 				3B9CEA2318DD6542000E4FF3 /* TimeCard.m in Sources */,
 				3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */,
 				3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */,
@@ -444,6 +459,7 @@
 				3B340F2F18DD8103008F6E1E /* TodoListCell.m in Sources */,
 				3BC0E3E718DD77A80062B07A /* MainTopView.m in Sources */,
 				3B340F3518DD822A008F6E1E /* WeekWorkStatusCell.m in Sources */,
+				3B8FA72318DDF59400A1182E /* NSUserDefaults+Setting.m in Sources */,
 				3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */,
 				3B9CEA2018DD458F000E4FF3 /* TimeCardDao.m in Sources */,
 				3B340F2C18DD7EC0008F6E1E /* WorkStatusCell.m in Sources */,
@@ -503,7 +519,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -542,7 +557,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -606,7 +620,6 @@
 		3B469FCE18B89D3A0095C418 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hakenman.app/Hakenman";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -629,7 +642,6 @@
 		3B469FCF18B89D3A0095C418 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hakenman.app/Hakenman";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

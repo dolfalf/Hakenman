@@ -58,6 +58,26 @@ const int kPageSize = 2;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor yellowColor]];
+    
+    
+    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
+    }
+    
+    
+//    navigationController.navigationBar.barTintColor = [UIColor greenColor];
+//    [[UINavigationBar appearance] setTintColor:[UIColor greenColor]];
+//    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
+    
+//    [UINavigationBar appearance].barTintColor = [UIColor blackColor];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        //viewControllerで制御することを伝える。iOS7 からできたメソッド
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
     
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 #if 0
@@ -100,6 +120,17 @@ const int kPageSize = 2;
                                  20);
     
     [self.view layoutSubviews]; // <- これが重要！
+}
+
+//オーバーライドしてスタイル指定
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    
+    return UIStatusBarStyleLightContent;
+}
+
+//オーバーライドして非表示かどうかを選択
+- (BOOL)prefersStatusBarHidden {
+    return NO;
 }
 
 #pragma mark - setter
@@ -206,7 +237,7 @@ const int kPageSize = 2;
         pgControl.currentPage = scView.contentOffset.x / pageWidth;
     }
     
-    self.screen = pgControl.currentPage;
+    self.screen = (int)pgControl.currentPage;
     
 }
 
