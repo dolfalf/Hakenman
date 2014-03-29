@@ -11,7 +11,7 @@
 typedef enum {
     tableCellTypeCurrentStatus = 0,
     tableCellTypeTodoList,
-    tableCellTypeMapView,
+    tableCellTypeGraphView,
     tableCellTypeWeekStatus,
     tableCellTypeMaxCount
     

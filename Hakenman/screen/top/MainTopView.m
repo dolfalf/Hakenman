@@ -9,7 +9,7 @@
 #import "MainTopView.h"
 #import "WorkStatusCell.h"
 #import "TodoListCell.h"
-#import "MapViewCell.h"
+#import "GraphTableViewCell.h"
 #import "WeekWorkStatusCell.h"
 
 @interface MainTopView() <UITableViewDataSource, UITableViewDelegate> {
@@ -19,12 +19,11 @@
 
 @property (nonatomic, strong) WorkStatusCell *workStatusCell;
 @property (nonatomic, strong) TodoListCell *todoListCell;
-@property (nonatomic, strong) MapViewCell *mapViewCell;
+@property (nonatomic, strong) GraphTableViewCell *graphTableViewCell;
 @property (nonatomic, strong) WeekWorkStatusCell *weekWorkStatusCell;
 
 - (WorkStatusCell *)tableView:(UITableView *)tableView workStatusCellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (TodoListCell *)tableView:(UITableView *)tableView todoListCellForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (MapViewCell *)tableView:(UITableView *)tableView mapViewCellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (WeekWorkStatusCell *)tableView:(UITableView *)tableView weekWorkStatusCellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -90,13 +89,13 @@
     return _todoListCell;
 }
 
-- (MapViewCell *)tableView:(UITableView *)tableView mapViewCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (GraphTableViewCell *)tableView:(UITableView *)tableView graphViewCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_mapViewCell == nil) {
-        _mapViewCell = (MapViewCell *)[self initTableCellView:tableCellTypeMapView];
+    if (_graphTableViewCell == nil) {
+        _graphTableViewCell = (GraphTableViewCell *)[self initTableCellView:tableCellTypeGraphView];
     }
     
-    return _mapViewCell;
+    return _graphTableViewCell;
 }
 
 - (WeekWorkStatusCell *)tableView:(UITableView *)tableView weekWorkStatusCellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,16 +111,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == tableCellTypeCurrentStatus) {
-        return 150.0f;
+        return 140.0f;
         
     }else if(indexPath.row == tableCellTypeTodoList) {
-        return 50.0f;
+        return 120.0f;
         
-    }else if(indexPath.row == tableCellTypeMapView) {
-        return 50.0f;
+    }else if(indexPath.row == tableCellTypeGraphView) {
+        return 130.0f;
         
     }else if(indexPath.row == tableCellTypeWeekStatus) {
-        return 200.0f;
+        return 130.0f;
         
     }
     
@@ -146,8 +145,8 @@
         
         return cell;
         
-    }else if(indexPath.row == tableCellTypeMapView) {
-        MapViewCell *cell = [self tableView:tableView mapViewCellForRowAtIndexPath:indexPath];
+    }else if(indexPath.row == tableCellTypeGraphView) {
+        GraphTableViewCell *cell = [self tableView:tableView graphViewCellForRowAtIndexPath:indexPath];
         
         return cell;
         
@@ -165,4 +164,12 @@
     
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    DLog(@"%d table cell selected.", indexPath.row);
+    
+}
 @end

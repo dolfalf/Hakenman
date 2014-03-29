@@ -151,6 +151,8 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     DLog(@"%@ table cell selected.", [_items objectAtIndex:indexPath.row]);
     
     switch (indexPath.row) {

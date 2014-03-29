@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B23F20818E6AA0C00518106 /* emoticon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F1FE18E6AA0C00518106 /* emoticon01.png */; };
+		3B23F20918E6AA0C00518106 /* emoticon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F1FF18E6AA0C00518106 /* emoticon02.png */; };
+		3B23F20A18E6AA0C00518106 /* emoticon03.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20018E6AA0C00518106 /* emoticon03.png */; };
+		3B23F20B18E6AA0C00518106 /* emoticon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20118E6AA0C00518106 /* emoticon04.png */; };
+		3B23F20C18E6AA0C00518106 /* emoticon05.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20218E6AA0C00518106 /* emoticon05.png */; };
+		3B23F20D18E6AA0C00518106 /* emoticon06.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20318E6AA0C00518106 /* emoticon06.png */; };
+		3B23F20E18E6AA0C00518106 /* emoticon07.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20418E6AA0C00518106 /* emoticon07.png */; };
+		3B23F20F18E6AA0C00518106 /* emoticon08.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20518E6AA0C00518106 /* emoticon08.png */; };
+		3B23F21018E6AA0C00518106 /* emoticon09.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20618E6AA0C00518106 /* emoticon09.png */; };
+		3B23F21118E6AA0C00518106 /* emoticon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B23F20718E6AA0C00518106 /* emoticon10.png */; };
+		3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B23F21318E6C48B00518106 /* LineGraphView.m */; };
 		3B340F2C18DD7EC0008F6E1E /* WorkStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B340F2B18DD7EC0008F6E1E /* WorkStatusCell.m */; };
 		3B340F2F18DD8103008F6E1E /* TodoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B340F2E18DD8103008F6E1E /* TodoListCell.m */; };
 		3B340F3518DD822A008F6E1E /* WeekWorkStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B340F3418DD822A008F6E1E /* WeekWorkStatusCell.m */; };
@@ -62,6 +73,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B23F1FE18E6AA0C00518106 /* emoticon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon01.png; sourceTree = "<group>"; };
+		3B23F1FF18E6AA0C00518106 /* emoticon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon02.png; sourceTree = "<group>"; };
+		3B23F20018E6AA0C00518106 /* emoticon03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon03.png; sourceTree = "<group>"; };
+		3B23F20118E6AA0C00518106 /* emoticon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon04.png; sourceTree = "<group>"; };
+		3B23F20218E6AA0C00518106 /* emoticon05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon05.png; sourceTree = "<group>"; };
+		3B23F20318E6AA0C00518106 /* emoticon06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon06.png; sourceTree = "<group>"; };
+		3B23F20418E6AA0C00518106 /* emoticon07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon07.png; sourceTree = "<group>"; };
+		3B23F20518E6AA0C00518106 /* emoticon08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon08.png; sourceTree = "<group>"; };
+		3B23F20618E6AA0C00518106 /* emoticon09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon09.png; sourceTree = "<group>"; };
+		3B23F20718E6AA0C00518106 /* emoticon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoticon10.png; sourceTree = "<group>"; };
+		3B23F21218E6C48B00518106 /* LineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphView.h; sourceTree = "<group>"; };
+		3B23F21318E6C48B00518106 /* LineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraphView.m; sourceTree = "<group>"; };
 		3B340F2A18DD7EC0008F6E1E /* WorkStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkStatusCell.h; sourceTree = "<group>"; };
 		3B340F2B18DD7EC0008F6E1E /* WorkStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkStatusCell.m; sourceTree = "<group>"; };
 		3B340F2D18DD8103008F6E1E /* TodoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoListCell.h; sourceTree = "<group>"; };
@@ -163,6 +186,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B23F1FD18E6AA0C00518106 /* tablecell_emoticon */ = {
+			isa = PBXGroup;
+			children = (
+				3B23F1FE18E6AA0C00518106 /* emoticon01.png */,
+				3B23F1FF18E6AA0C00518106 /* emoticon02.png */,
+				3B23F20018E6AA0C00518106 /* emoticon03.png */,
+				3B23F20118E6AA0C00518106 /* emoticon04.png */,
+				3B23F20218E6AA0C00518106 /* emoticon05.png */,
+				3B23F20318E6AA0C00518106 /* emoticon06.png */,
+				3B23F20418E6AA0C00518106 /* emoticon07.png */,
+				3B23F20518E6AA0C00518106 /* emoticon08.png */,
+				3B23F20618E6AA0C00518106 /* emoticon09.png */,
+				3B23F20718E6AA0C00518106 /* emoticon10.png */,
+			);
+			path = tablecell_emoticon;
+			sourceTree = "<group>";
+		};
 		3B340F3818DD98CC008F6E1E /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +323,7 @@
 		3B6AFEEE18E69DF800501C94 /* dummy */ = {
 			isa = PBXGroup;
 			children = (
+				3B23F1FD18E6AA0C00518106 /* tablecell_emoticon */,
 			);
 			path = dummy;
 			sourceTree = "<group>";
@@ -333,7 +374,6 @@
 		3BC0E3D418DD75FD0062B07A /* top */ = {
 			isa = PBXGroup;
 			children = (
-				3BC0E3D518DD75FD0062B07A /* customView */,
 				3B340F2A18DD7EC0008F6E1E /* WorkStatusCell.h */,
 				3B340F2B18DD7EC0008F6E1E /* WorkStatusCell.m */,
 				3B340F2D18DD8103008F6E1E /* TodoListCell.h */,
@@ -348,15 +388,10 @@
 				3BC0E3DB18DD75FD0062B07A /* TopViewController.h */,
 				3BC0E3DC18DD75FD0062B07A /* TopViewController.m */,
 				3BC0E3E118DD76460062B07A /* Top.storyboard */,
+				3B23F21218E6C48B00518106 /* LineGraphView.h */,
+				3B23F21318E6C48B00518106 /* LineGraphView.m */,
 			);
 			path = top;
-			sourceTree = "<group>";
-		};
-		3BC0E3D518DD75FD0062B07A /* customView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = customView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,13 +474,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B23F20E18E6AA0C00518106 /* emoticon07.png in Resources */,
+				3B23F20818E6AA0C00518106 /* emoticon01.png in Resources */,
 				3B469FB418B89D3A0095C418 /* Images.xcassets in Resources */,
 				3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */,
 				3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */,
 				3B469FA618B89D3A0095C418 /* InfoPlist.strings in Resources */,
 				3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */,
+				3B23F20A18E6AA0C00518106 /* emoticon03.png in Resources */,
+				3B23F21018E6AA0C00518106 /* emoticon09.png in Resources */,
 				3BC0E3E418DD778E0062B07A /* MainTopView.xib in Resources */,
+				3B23F20C18E6AA0C00518106 /* emoticon05.png in Resources */,
 				3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */,
+				3B23F20F18E6AA0C00518106 /* emoticon08.png in Resources */,
+				3B23F21118E6AA0C00518106 /* emoticon10.png in Resources */,
+				3B23F20B18E6AA0C00518106 /* emoticon04.png in Resources */,
+				3B23F20D18E6AA0C00518106 /* emoticon06.png in Resources */,
+				3B23F20918E6AA0C00518106 /* emoticon02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +518,7 @@
 				3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */,
 				3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */,
 				3B6AFEDB18E684B400501C94 /* FileData.m in Sources */,
+				3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */,
 				3B469FAC18B89D3A0095C418 /* AppDelegate.m in Sources */,
 				3B469FA818B89D3A0095C418 /* main.m in Sources */,
 				3B6AFEED18E69DB000501C94 /* GraphTableViewCell.m in Sources */,
