@@ -7,6 +7,7 @@
 //
 
 #import "ModelDao.h"
+#import "SiteInfo.h"
 
 @interface SiteInfoDao : ModelDao
 

@@ -46,7 +46,7 @@
     
     [self.fetchRequest setEntity:entity];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"work_start_time = %@", startTime];    //条件指定
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"start_time = %@", startTime];    //条件指定
     [self.fetchRequest setPredicate:pred];
     
     return [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];

@@ -58,26 +58,6 @@ const int kPageSize = 2;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-//    [self.navigationController.navigationBar setBarTintColor:[UIColor yellowColor]];
-    
-    
-    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
-        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-        self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
-    }
-    
-    
-//    navigationController.navigationBar.barTintColor = [UIColor greenColor];
-//    [[UINavigationBar appearance] setTintColor:[UIColor greenColor]];
-//    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
-    
-//    [UINavigationBar appearance].barTintColor = [UIColor blackColor];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        //viewControllerで制御することを伝える。iOS7 からできたメソッド
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
     
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 #if 0
@@ -94,8 +74,8 @@ const int kPageSize = 2;
     }
 #endif
     
-    NSLog(@"%@",[timeCardDao fetchModelWorkingDay:@(3)]);
-//    NSLog(@"%@",[timeCardDao fetchModel]);
+    DLog(@"%@",[timeCardDao fetchModelWorkingDay:@(3)]);
+//    DLog(@"%@",[timeCardDao fetchModel]);
     
 }
 
@@ -145,8 +125,22 @@ const int kPageSize = 2;
     _screen = screen;
 }
 
-#pragma mark - private method
+#pragma mark - override method
 - (void)initControl {
+    
+    //Navigationbar, statusbar initialize
+    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
+    }
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        //viewControllerで制御することを伝える。iOS7 からできたメソッド
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
     
     //MainView initialize
     _shukinTopView = [MainTopView createView];
@@ -186,8 +180,13 @@ const int kPageSize = 2;
 
 #pragma mark - IBAction
 - (IBAction)gotoMenuButtonTouched:(id)sender {
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Menu" bundle:nil];
+    
     UINavigationController *instantiateInitialViewController = [storyboard instantiateInitialViewController];
+    
+    //push Animation
+
     
     [self presentViewController:instantiateInitialViewController animated:YES completion:^{
         
@@ -197,6 +196,7 @@ const int kPageSize = 2;
         };
         
     }];
+
 }
 
 - (IBAction)gotoSettingButtonTouched:(id)sender {

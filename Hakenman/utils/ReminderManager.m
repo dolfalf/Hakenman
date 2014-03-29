@@ -79,7 +79,7 @@
     [reminder addAlarm:[EKAlarm alarmWithAbsoluteDate:[[NSCalendar currentCalendar] dateFromComponents:dateComponents]]];
     
     NSError *error;
-    if(![eventStore saveReminder:reminder commit:YES error:&error]) NSLog(@"%@", error);
+    if(![eventStore saveReminder:reminder commit:YES error:&error]) DLog(@"%@", error);
 
     
 }

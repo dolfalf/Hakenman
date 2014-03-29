@@ -8,7 +8,18 @@
 
 #import "MenuViewController.h"
 
-@interface MenuViewController ()
+enum {
+    menuTitleMonthWorkingTable,
+    menuTitleWorkTableList,
+    menuTitleSendDailyMail
+} menuTitle;
+
+@interface MenuViewController () <UITableViewDelegate, UITableViewDataSource> {
+    
+    IBOutlet UITableView *menuTableView;
+}
+
+@property (nonatomic, strong) NSArray *items;
 
 @end
 
@@ -35,6 +46,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - override method
+- (void)initControl {
+    
+    //メニューリスト生成
+    _items = @[LOCALIZE(@"MenuViewController_menulist_month_working_table_title")
+               ,LOCALIZE(@"MenuViewController_menulist_working_tablelist_title")
+               ,LOCALIZE(@"MenuViewController_menulist_send_daily_mail_title")];
+}
+
 #pragma mark - IBAction
 - (IBAction)close:(id)sender {
     
@@ -44,5 +64,78 @@
     
     self.completionHandler = nil;
 }
+
+#pragma mark - transition screen method
+- (void)goToMonthWorkingTable {
+    
+}
+
+- (void)goToWorkTableList {
+    
+}
+
+-(void)goToSendDailyMail {
+    
+}
+
+#pragma mark - UITableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 44.0f;
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return [_items count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    NSString *cellIdentifier = @"MenuTableViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    // セルが作成されていないか?
+    if (!cell) { // yes
+        // セルを作成
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    // セルにテキストを設定
+    // セルの内容はNSArray型の「items」にセットされているものとする
+    cell.textLabel.text = [_items objectAtIndex:indexPath.row];
+    
+    return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    DLog(@"%@ tableCell Selected.", [_items objectAtIndex:indexPath.row]);
+    
+    switch (indexPath.row) {
+        case menuTitleMonthWorkingTable:
+            //今月の勤務表
+            [self goToMonthWorkingTable];
+            break;
+            
+        case menuTitleWorkTableList:
+            //勤務表リスト
+            [self goToWorkTableList];
+            break;
+            
+        case menuTitleSendDailyMail:
+            //日報メール送信
+            [self goToSendDailyMail];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 @end

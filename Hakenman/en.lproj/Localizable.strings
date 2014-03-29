@@ -6,5 +6,18 @@
   Copyright (c) 2014年 kjcode. All rights reserved.
 */
 
+//TOP
 "TopViewController_goWork_title" = "Work";
 "TopViewController_leaveWork_title" = "goto Home";
+
+//MENU
+"MenuViewController_menulist_month_working_table_title"     = "Month workingtable";
+"MenuViewController_menulist_working_tablelist_title"       = "Workingtablelist";
+"MenuViewController_menulist_send_daily_mail_title"         = "Send daily mail";
+
+//SETTING
+"SettingViewController_menulist_working_space_title"                = "Working space";
+"SettingViewController_menulist_calc_time_unit_title"               = "Time calculation unit";
+"SettingViewController_menulist_default_work_time_title"            = "Defalut working time";
+"SettingViewController_menulist_work_table_display_option_title"    = "Work Talbe display option";
+"SettingViewController_menulist_daily_mail_content_title"           = "Daily email contents";

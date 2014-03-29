@@ -59,7 +59,7 @@
     NSError *error = nil;
     if (![_model.managedObjectContext save:&error]) {
         //error
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		DLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
 	}
     
@@ -77,7 +77,7 @@
     NSError *error = nil;
     if (![_model.managedObjectContext save:&error]) {
         //error
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		DLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
 	}
 }

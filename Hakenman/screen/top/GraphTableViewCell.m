@@ -1,14 +1,14 @@
 //
-//  MapViewCell.m
+//  GraphTableViewCell.m
 //  Hakenman
 //
-//  Created by Lee jaeeun on 2014/03/22.
+//  Created by Lee jaeeun on 2014/03/29.
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
-#import "MapViewCell.h"
+#import "GraphTableViewCell.h"
 
-@implementation MapViewCell
+@implementation GraphTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -17,6 +17,11 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

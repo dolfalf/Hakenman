@@ -6,5 +6,18 @@
   Copyright (c) 2014年 kjcode. All rights reserved.
 */
 
+//TOP
 "TopViewController_goWork_title" = "出勤";
 "TopViewController_leaveWork_title" = "退勤";
+
+//MENU
+"MenuViewController_menulist_month_working_table_title"     = "今月の勤務表";
+"MenuViewController_menulist_working_tablelist_title"       = "勤務表リスト";
+"MenuViewController_menulist_send_daily_mail_title"         = "日報送信";
+
+//SETTING
+"SettingViewController_menulist_working_space_title"                = "勤務場所";
+"SettingViewController_menulist_calc_time_unit_title"               = "勤務時間単位";
+"SettingViewController_menulist_default_work_time_title"            = "基本勤務時間";
+"SettingViewController_menulist_work_table_display_option_title"    = "勤務表表示";
+"SettingViewController_menulist_daily_mail_content_title"           = "日報文言登録";
