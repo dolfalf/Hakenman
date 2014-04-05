@@ -65,20 +65,20 @@
     CGPoint preLinePoint = CGPointMake(0, 0);
     
     for (int i = 0; i < pointCount; i++) {
-        float workTime = [_delegate lineGraphView:self pointIndex:i];
-        float y = self.frame.size.height/(24.0f * workTime);
+//        float workTime = [_delegate lineGraphView:self pointIndex:i];
+//        float y = self.frame.size.height/(24.0f * workTime);
         
-        if (preLinePoint.x == 0) {
-            preLinePoint = CGPointMake(x * i, y);
-        }
-        
-        [self drawLine:ctx
-                 color:[UIColor blackColor]
-                 width:2.0f
-            startPoint:CGPointMake(preLinePoint.x, preLinePoint.y)
-              endPoint:CGPointMake(x * i, y)];
-        
-        preLinePoint = CGPointMake(x * i, y);
+//        if (preLinePoint.x == 0) {
+//            preLinePoint = CGPointMake(x * i, y);
+//        }
+//        
+//        [self drawLine:ctx
+//                 color:[UIColor blackColor]
+//                 width:2.0f
+//            startPoint:CGPointMake(preLinePoint.x, preLinePoint.y)
+//              endPoint:CGPointMake(x * i, y)];
+//        
+//        preLinePoint = CGPointMake(x * i, y);
     }
 
     //Max, Minのテキスト描画
