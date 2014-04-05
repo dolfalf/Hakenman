@@ -8,6 +8,29 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LineGraphViewDelegate;
+
 @interface LineGraphView : UIView
+
+@property (nonatomic, assign) id <LineGraphViewDelegate>delegate;
+
+@property (nonatomic, assign) float minValue;
+@property (nonatomic, assign) NSString *minLabel;
+
+@property (nonatomic, assign) float maxValue;
+@property (nonatomic, assign) NSString *maxLabel;
+
+
+- (void)reloadLineGraphView;
+
+@end
+
+@protocol LineGraphViewDelegate <NSObject>
+
+@required
+- (NSInteger)linePointNumber;
+- (void)lineGraphView:(LineGraphView *)gview pointValue:(float)value;
+
+@optional
 
 @end

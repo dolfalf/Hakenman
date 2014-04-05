@@ -37,20 +37,67 @@
 {
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+    //背景線を描画
     
-    [self drawLine:ctx
-         color:[UIColor grayColor]
-         width:1.0f
-        startPoint:CGPointMake(10, 20)
-          endPoint:CGPointMake(100, 40)];
+    //２４時間の中、6時間ことにラインを引く
+    float lineH = self.frame.size.height/24.0f;
     
-    [self drawCircle:ctx
-           fillColor:[UIColor blackColor]
-         strokeColor:[UIColor grayColor]
-              radius:30.0f
-         CenterPoint:CGPointMake(250, 40)];
+    for (int i = 0; i< 24; i++) {
+        if (i%5 == 0) {
+            
+            if (lineH * i >= self.frame.size.height
+                || lineH * i == 0) {
+                continue;
+            }
+            
+        [self drawLine:ctx
+             color:[UIColor grayColor]
+             width:1.0f
+            startPoint:CGPointMake(20, lineH * i)
+              endPoint:CGPointMake(self.frame.size.width-20, lineH * i)];
+        }
+    }
     
-    [self drawText:ctx text:@"Graph TEST!!" size:13.0f point:CGPointMake(100, 100)];
+    //ライングラフ描画
+    int pointCount = [_delegate linePointNumber];
+    float x = (self.frame.size.width - (20*2))/30.f;
+    CGPoint preLinePoint = CGPointMake(0, 0);
+    
+    for (int i = 0; i < pointCount; i++) {
+        float workTime = [_delegate lineGraphView:self pointIndex:i];
+        float y = self.frame.size.height/(24.0f * workTime);
+        
+        if (preLinePoint.x == 0) {
+            preLinePoint = CGPointMake(x * i, y);
+        }
+        
+        [self drawLine:ctx
+                 color:[UIColor blackColor]
+                 width:2.0f
+            startPoint:CGPointMake(preLinePoint.x, preLinePoint.y)
+              endPoint:CGPointMake(x * i, y)];
+        
+        preLinePoint = CGPointMake(x * i, y);
+    }
+
+    //Max, Minのテキスト描画
+
+    
+    
+//    [self drawLine:ctx
+//         color:[UIColor grayColor]
+//         width:1.0f
+//        startPoint:CGPointMake(10, 20)
+//          endPoint:CGPointMake(100, 40)];
+//    
+//    [self drawCircle:ctx
+//           fillColor:[UIColor blackColor]
+//         strokeColor:[UIColor grayColor]
+//              radius:30.0f
+//         CenterPoint:CGPointMake(250, 40)];
+//    
+//    [self drawText:ctx text:@"Graph TEST!!" size:13.0f point:CGPointMake(100, 100)];
 }
 
 - (void)drawLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w startPoint:(CGPoint)sp endPoint:(CGPoint)ep {

@@ -24,10 +24,10 @@
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0G-NY-WAX" userLabel="View - bottomView">
-                                <rect key="frame" x="0.0" y="484" width="320" height="20"/>
+                                <rect key="frame" x="0.0" y="485" width="320" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-BS-5gC">
+                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-BS-5gC">
                                         <rect key="frame" x="0.0" y="-9" width="320" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </pageControl>
@@ -40,11 +40,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FzS-I4-yOu" firstAttribute="top" secondItem="U0G-NY-WAX" secondAttribute="bottom" id="Iol-FP-48F"/>
+                            <constraint firstItem="FzS-I4-yOu" firstAttribute="top" secondItem="U0G-NY-WAX" secondAttribute="bottom" constant="-1" id="Iol-FP-48F"/>
                             <constraint firstItem="0sX-50-TIH" firstAttribute="leading" secondItem="5bM-He-iUM" secondAttribute="leading" id="Q93-Tt-3Lf"/>
                             <constraint firstItem="0sX-50-TIH" firstAttribute="top" secondItem="heQ-Nx-lkb" secondAttribute="bottom" id="QEu-PB-2pa"/>
                             <constraint firstItem="U0G-NY-WAX" firstAttribute="leading" secondItem="5bM-He-iUM" secondAttribute="leading" id="Qkg-28-W67"/>
-                            <constraint firstItem="U0G-NY-WAX" firstAttribute="top" secondItem="0sX-50-TIH" secondAttribute="bottom" id="Vq5-Y2-rja"/>
+                            <constraint firstItem="U0G-NY-WAX" firstAttribute="top" secondItem="0sX-50-TIH" secondAttribute="bottom" constant="1" id="Vq5-Y2-rja"/>
                             <constraint firstAttribute="trailing" secondItem="U0G-NY-WAX" secondAttribute="trailing" id="dzh-9F-52K"/>
                             <constraint firstAttribute="trailing" secondItem="0sX-50-TIH" secondAttribute="trailing" id="pTC-G5-pTs"/>
                         </constraints>

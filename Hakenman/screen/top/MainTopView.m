@@ -14,9 +14,10 @@
 
 @interface MainTopView() <UITableViewDataSource, UITableViewDelegate> {
     
-    IBOutlet UITableView *workTableView;
+    
 }
 
+@property (nonatomic, weak) IBOutlet UITableView *workTableView;
 @property (nonatomic, strong) WorkStatusCell *workStatusCell;
 @property (nonatomic, strong) TodoListCell *todoListCell;
 @property (nonatomic, strong) GraphTableViewCell *graphTableViewCell;
@@ -32,7 +33,9 @@
 
 + (id)createView {
     NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"MainTopView" owner:nil options:nil];
-    return [views objectAtIndex:0];
+    MainTopView *v = [views objectAtIndex:0];
+    
+    return v;
 }
 
 - (id)initTableCellView:(tableCellType)cellType {

@@ -378,6 +378,8 @@
 				3B340F2B18DD7EC0008F6E1E /* WorkStatusCell.m */,
 				3B340F2D18DD8103008F6E1E /* TodoListCell.h */,
 				3B340F2E18DD8103008F6E1E /* TodoListCell.m */,
+				3B23F21218E6C48B00518106 /* LineGraphView.h */,
+				3B23F21318E6C48B00518106 /* LineGraphView.m */,
 				3B6AFEEB18E69DB000501C94 /* GraphTableViewCell.h */,
 				3B6AFEEC18E69DB000501C94 /* GraphTableViewCell.m */,
 				3B340F3318DD822A008F6E1E /* WeekWorkStatusCell.h */,
@@ -388,8 +390,6 @@
 				3BC0E3DB18DD75FD0062B07A /* TopViewController.h */,
 				3BC0E3DC18DD75FD0062B07A /* TopViewController.m */,
 				3BC0E3E118DD76460062B07A /* Top.storyboard */,
-				3B23F21218E6C48B00518106 /* LineGraphView.h */,
-				3B23F21318E6C48B00518106 /* LineGraphView.m */,
 			);
 			path = top;
 			sourceTree = "<group>";
