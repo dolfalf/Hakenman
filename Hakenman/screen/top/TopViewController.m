@@ -58,9 +58,9 @@ const int kPageSize = 2;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
-    TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 #if 0
+    TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
+
     for (int i=0; i < 10; i++) {
         
         TimeCard *model = [timeCardDao createModel];
@@ -72,11 +72,10 @@ const int kPageSize = 2;
         
         [timeCardDao insertModel];
     }
+
+//    DLog(@"%@",[timeCardDao fetchModelWorkingDay:@(3)]);
+    DLog(@"%@",[timeCardDao fetchModel]);
 #endif
-    
-    DLog(@"%@",[timeCardDao fetchModelWorkingDay:@(3)]);
-//    DLog(@"%@",[timeCardDao fetchModel]);
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,7 +125,7 @@ const int kPageSize = 2;
 }
 
 #pragma mark - override method
-- (void)initControl {
+- (void)initControls {
     
     //Navigationbar, statusbar initialize
     if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7

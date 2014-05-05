@@ -11,6 +11,11 @@
 @interface Util : NSObject
 
 //document
-- (NSString *)getDocumentPath;
++ (NSString *)getDocumentPath;
+
+//convert String
++ (NSString *)weekdayString:(int)weekday;
++ (NSString *)worktimeString:(NSDate *)dt;
++ (float)getWorkTime:(NSDate *)startTime endTime:(NSDate *)endTime;
 
 @end

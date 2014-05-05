@@ -11,7 +11,8 @@
 
 @interface TimeCardDao : ModelDao
 
-- (NSArray *)fetchModelWorkingDay:(NSNumber *)workingDay;
+- (NSArray *)fetchModelWorkMonth:(NSDate *)dt;
+
 - (NSArray *)fetchModelWorkStartTime:(NSDate *)startTime;
 
 @end

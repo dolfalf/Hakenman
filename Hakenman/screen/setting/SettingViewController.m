@@ -50,7 +50,7 @@ enum {
 }
 
 #pragma mark - override method
-- (void)initControl {
+- (void)initControls {
     
     //設定メニュー作成
     _items = @[LOCALIZE(@"SettingViewController_menulist_working_space_title")

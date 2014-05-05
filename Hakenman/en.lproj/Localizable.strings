@@ -6,6 +6,15 @@
   Copyright (c) 2014年 kjcode. All rights reserved.
 */
 
+//COMMON
+"Common_weekday_sunday" = "Sun";
+"Common_weekday_monday" = "Mon";
+"Common_weekday_tueday" = "Tue";
+"Common_weekday_wedday" = "Wed";
+"Common_weekday_thuday" = "Thu";
+"Common_weekday_friday" = "Fri";
+"Common_weekday_satday" = "Sat";
+
 //TOP
 "TopViewController_goWork_title" = "Work";
 "TopViewController_leaveWork_title" = "goto Home";
@@ -21,3 +30,15 @@
 "SettingViewController_menulist_default_work_time_title"            = "Defalut working time";
 "SettingViewController_menulist_work_table_display_option_title"    = "Work Talbe display option";
 "SettingViewController_menulist_daily_mail_content_title"           = "Daily email contents";
+
+//MONTH_WORK_TABLE
+"MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
+
+//MONTH_WORK_EDIT_TABLE
+"MonthWorkingTableEditViewController_edit_navi_title"       = "%04d. %02d. %02d";
+"MonthWorkingTableEditViewController_edit_navi_save_btn"    = "save";
+"MonthWorkingTableEditViewController_edit_start_time_cell"  = "Work start";
+"MonthWorkingTableEditViewController_edit_end_time_cell"    = "Work end";
+"MonthWorkingTableEditViewController_edit_rest_time_cell"   = "Rest Time";
+"MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "Working day";
+"MonthWorkingTableEditViewController_edit_placeholder"          = "no input";

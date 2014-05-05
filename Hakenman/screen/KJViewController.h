@@ -11,5 +11,5 @@
 
 @interface KJViewController : UIViewController
 
-- (void)initControl;
+- (void)initControls;
 @end

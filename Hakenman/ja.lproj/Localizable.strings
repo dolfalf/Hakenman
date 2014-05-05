@@ -6,6 +6,14 @@
   Copyright (c) 2014年 kjcode. All rights reserved.
 */
 
+"Common_weekday_sunday" = "日";
+"Common_weekday_monday" = "月";
+"Common_weekday_tueday" = "火";
+"Common_weekday_wedday" = "水";
+"Common_weekday_thuday" = "木";
+"Common_weekday_friday" = "金";
+"Common_weekday_satday" = "土";
+
 //TOP
 "TopViewController_goWork_title" = "出勤";
 "TopViewController_leaveWork_title" = "退勤";
@@ -21,3 +29,15 @@
 "SettingViewController_menulist_default_work_time_title"            = "基本勤務時間";
 "SettingViewController_menulist_work_table_display_option_title"    = "勤務表表示";
 "SettingViewController_menulist_daily_mail_content_title"           = "日報文言登録";
+
+//MONTH_WORK_TABLE
+"MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";
+
+//MONTH_WORK_EDIT_TABLE
+"MonthWorkingTableEditViewController_edit_navi_title"       = "%04d年%02d月%02d日";
+"MonthWorkingTableEditViewController_edit_navi_save_btn"    = "保存";
+"MonthWorkingTableEditViewController_edit_start_time_cell"  = "出勤時間";
+"MonthWorkingTableEditViewController_edit_end_time_cell"    = "退勤時間";
+"MonthWorkingTableEditViewController_edit_rest_time_cell"   = "休憩時間";
+"MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "営業日";
+"MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";

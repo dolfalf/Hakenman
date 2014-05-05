@@ -47,7 +47,7 @@ enum {
 }
 
 #pragma mark - override method
-- (void)initControl {
+- (void)initControls {
     
     //メニューリスト生成
     _items = @[LOCALIZE(@"MenuViewController_menulist_month_working_table_title")
@@ -65,17 +65,32 @@ enum {
     self.completionHandler = nil;
 }
 
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([[segue identifier] isEqual:@"goToMonthWorkingTable"]) {
+        //
+    }else if ([[segue identifier] isEqual:@"goToWorkTableList"]) {
+        //
+    }else if ([[segue identifier] isEqual:@"goToSendDailyMail"]) {
+        //
+    }
+}
+
 #pragma mark - transition screen method
 - (void)goToMonthWorkingTable {
+    DLog(@"%s", __FUNCTION__);
+    
+    [self performSegueWithIdentifier:@"goToMonthWorkingTable" sender:self];
     
 }
 
 - (void)goToWorkTableList {
-    
+    DLog(@"%s", __FUNCTION__);
 }
 
 -(void)goToSendDailyMail {
-    
+    DLog(@"%s", __FUNCTION__);
 }
 
 #pragma mark - UITableView Delegate

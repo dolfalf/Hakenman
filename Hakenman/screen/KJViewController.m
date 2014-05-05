@@ -28,7 +28,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self initControl];
+    [self initControls];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,7 +41,7 @@
  * @brief overrideしてください。
  * ViewDidLoadの時に呼ばれます。
  */
-- (void)initControl {
+- (void)initControls {
     
 }
 
