@@ -174,5 +174,8 @@
     
     DLog(@"%d table cell selected.", indexPath.row);
     
+    [_delegate mainTopView:self didSelectIndex:indexPath.row];
+    
 }
+
 @end

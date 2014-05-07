@@ -37,6 +37,7 @@
 		3B469FC718B89D3A0095C418 /* HakenmanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FC618B89D3A0095C418 /* HakenmanTests.m */; };
 		3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FD118B8AB740095C418 /* hakenModel.xcdatamodeld */; };
 		3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
+		3B589DB5191A6DED009476C3 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B589DB4191A6DED009476C3 /* EventManager.m */; };
 		3B65970E19174FAF0075AB24 /* MonthWorkingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65970D19174FAE0075AB24 /* MonthWorkingTableViewController.m */; };
 		3B659711191759F00075AB24 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
 		3B659717191767D30075AB24 /* LeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659716191767D30075AB24 /* LeftTableViewCell.m */; };
@@ -53,7 +54,6 @@
 		3B6AFEEA18E69C6300501C94 /* MailContentsDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6AFEE918E69C6300501C94 /* MailContentsDao.m */; };
 		3B6AFEED18E69DB000501C94 /* GraphTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6AFEEC18E69DB000501C94 /* GraphTableViewCell.m */; };
 		3B81AE2A18E1CB63007AFD8E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B81AE2918E1CB63007AFD8E /* EventKit.framework */; };
-		3B81AE2D18E1CB95007AFD8E /* ReminderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B81AE2C18E1CB95007AFD8E /* ReminderManager.m */; };
 		3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; };
 		3B8FA72318DDF59400A1182E /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
 		3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1C18DD4521000E4FF3 /* DBManager.m */; };
@@ -120,6 +120,8 @@
 		3B469FC618B89D3A0095C418 /* HakenmanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HakenmanTests.m; sourceTree = "<group>"; };
 		3B469FD218B8AB740095C418 /* hakenModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hakenModel.xcdatamodel; sourceTree = "<group>"; };
 		3B469FE718B8B0420095C418 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3B589DB3191A6DED009476C3 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
+		3B589DB4191A6DED009476C3 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		3B65970C19174FAE0075AB24 /* MonthWorkingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingTableViewController.h; sourceTree = "<group>"; };
 		3B65970D19174FAE0075AB24 /* MonthWorkingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingTableViewController.m; sourceTree = "<group>"; };
 		3B65970F191759F00075AB24 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
@@ -151,8 +153,6 @@
 		3B6AFEEB18E69DB000501C94 /* GraphTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphTableViewCell.h; sourceTree = "<group>"; };
 		3B6AFEEC18E69DB000501C94 /* GraphTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphTableViewCell.m; sourceTree = "<group>"; };
 		3B81AE2918E1CB63007AFD8E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
-		3B81AE2B18E1CB95007AFD8E /* ReminderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderManager.h; sourceTree = "<group>"; };
-		3B81AE2C18E1CB95007AFD8E /* ReminderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderManager.m; sourceTree = "<group>"; };
 		3B8FA71618DDEFB900A1182E /* const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
 		3B8FA71718DDF0D100A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3B8FA71818DDF0D200A1182E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -231,8 +231,8 @@
 				3B659710191759F00075AB24 /* NSDate+Helper.m */,
 				3B6AFEDC18E6857100501C94 /* Util.h */,
 				3B6AFEDD18E6857100501C94 /* Util.m */,
-				3B81AE2B18E1CB95007AFD8E /* ReminderManager.h */,
-				3B81AE2C18E1CB95007AFD8E /* ReminderManager.m */,
+				3B589DB3191A6DED009476C3 /* EventManager.h */,
+				3B589DB4191A6DED009476C3 /* EventManager.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -552,7 +552,6 @@
 				3B65972A191787EE0075AB24 /* TimeCard.m in Sources */,
 				3B340F3E18DD99FE008F6E1E /* MenuViewController.m in Sources */,
 				3B65970E19174FAF0075AB24 /* MonthWorkingTableViewController.m in Sources */,
-				3B81AE2D18E1CB95007AFD8E /* ReminderManager.m in Sources */,
 				3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */,
 				3B659724191780FA0075AB24 /* EditTimeTableViewCell.m in Sources */,
 				3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */,
@@ -564,6 +563,7 @@
 				3B469FA818B89D3A0095C418 /* main.m in Sources */,
 				3B659717191767D30075AB24 /* LeftTableViewCell.m in Sources */,
 				3B6AFEED18E69DB000501C94 /* GraphTableViewCell.m in Sources */,
+				3B589DB5191A6DED009476C3 /* EventManager.m in Sources */,
 				3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */,
 				3B340F2F18DD8103008F6E1E /* TodoListCell.m in Sources */,
 				3B6AFEE118E6874200501C94 /* FileDataDao.m in Sources */,

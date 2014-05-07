@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MainTopViewDelegate;
+
 typedef enum {
     tableCellTypeCurrentStatus = 0,
     tableCellTypeTodoList,
@@ -19,7 +21,17 @@ typedef enum {
 
 @interface MainTopView : UIView
 
-+ (id)createView;
+@property (nonatomic, assign) id<MainTopViewDelegate> delegate;
 
++ (id)createView;
 - (id)initTableCellView:(tableCellType)cellType;
+
 @end
+
+
+@protocol MainTopViewDelegate <NSObject>
+
+@optional
+- (void)mainTopView:(MainTopView *)topView didSelectIndex:(NSInteger)type;
+@end
+

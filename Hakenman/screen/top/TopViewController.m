@@ -25,7 +25,7 @@ const int kPageSize = 2;
 
 
 
-@interface TopViewController () {
+@interface TopViewController () <MainTopViewDelegate> {
     
     IBOutlet UIScrollView *scView;
     IBOutlet UIPageControl *pgControl;
@@ -143,9 +143,11 @@ const int kPageSize = 2;
     
     //MainView initialize
     _shukinTopView = [MainTopView createView];
+    _shukinTopView.delegate = self;
     [scView addSubview:_shukinTopView];
 
     _taikinTopView = [MainTopView createView];
+    _taikinTopView.delegate = self;
     _taikinTopView.frame = CGRectSetX(_taikinTopView.frame, _shukinTopView.frame.size.width);
     
     [scView addSubview:_taikinTopView];
@@ -240,5 +242,48 @@ const int kPageSize = 2;
     
 }
 
+#pragma mark - MainTopView deleagte methods
+- (void)mainTopView:(MainTopView *)topView didSelectIndex:(NSInteger)type {
+    
+    DLog(@"%s", __FUNCTION__);
+    
+    if ([topView isEqual:_shukinTopView] == YES) {
+        switch (type) {
+            case tableCellTypeCurrentStatus:
+                DLog(@"tableCellTypeCurrentStatus");
+                break;
+            case tableCellTypeTodoList:
+                DLog(@"tableCellTypeTodoList");
+                break;
+            case tableCellTypeGraphView:
+                DLog(@"tableCellTypeGraphView");
+                break;
+            case tableCellTypeWeekStatus:
+                DLog(@"tableCellTypeWeekStatus");
+                break;
+            default:
+                break;
+        }
+    }else if ([topView isEqual:_taikinTopView] == YES) {
+        switch (type) {
+            case tableCellTypeCurrentStatus:
+                DLog(@"tableCellTypeCurrentStatus");
+                break;
+            case tableCellTypeTodoList:
+                DLog(@"tableCellTypeTodoList");
+                break;
+            case tableCellTypeGraphView:
+                DLog(@"tableCellTypeGraphView");
+                break;
+            case tableCellTypeWeekStatus:
+                DLog(@"tableCellTypeWeekStatus");
+                break;
+            default:
+                break;
+        }
+    }
+    
+    
+}
 
 @end
