@@ -199,7 +199,7 @@
         <!--Month Working Table Edit View Controller-->
         <scene sceneID="wOJ-sb-9vM">
             <objects>
-                <viewController id="aGA-3q-UoR" customClass="MonthWorkingTableEditViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MonthWorkingTableEditViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aGA-3q-UoR" customClass="MonthWorkingTableEditViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0a3-qT-rV9"/>
                         <viewControllerLayoutGuide type="bottom" id="bKK-8E-vUk"/>
