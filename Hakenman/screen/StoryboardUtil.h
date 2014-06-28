@@ -11,5 +11,6 @@
 @interface StoryboardUtil : NSObject
 
 + (void)gotoMonthWorkingTableViewController:(id)owner completion:(void(^)(id))completion;
++ (void)gotoMonthWorkingTableEditViewController:(id)owner completion:(void(^)(id))completion;
 
 @end
