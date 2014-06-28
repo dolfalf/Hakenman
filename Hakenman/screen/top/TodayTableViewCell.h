@@ -16,5 +16,5 @@ typedef NS_ENUM(NSInteger, cellMessageType) {
 @interface TodayTableViewCell : UITableViewCell
 
 - (void)updateCell:(cellMessageType)messageType graphItems:(NSArray *)items;
-
+- (void)updateWorkTime;
 @end

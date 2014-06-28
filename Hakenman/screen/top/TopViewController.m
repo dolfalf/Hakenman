@@ -43,6 +43,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, weak) TodayTableViewCell *todayCell;
 @property (nonatomic, strong) UIActionSheet *writeActionSheet;
+@property (nonatomic, assign) NSTimer *loadTimer;
 
 - (IBAction)gotoMenuButtonTouched:(id)sender;
 - (IBAction)gotoSettingButtonTouched:(id)sender;
@@ -51,6 +52,13 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
 @implementation TopViewController
 
+#pragma setter
+- (void)setLoadTimer:(NSTimer *)newTimer {
+	[_loadTimer invalidate];
+	_loadTimer = newTimer;
+}
+
+#pragma mark - life cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -105,7 +113,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
 #endif
     
-    
     //初期化
     self.items = [self displayCellItems];
 }
@@ -144,6 +151,14 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     return NO;
 }
 
+#pragma mark - callback method
+- (void)updateWorkTime:(NSTimer *)tm {
+    
+    if (_todayCell != nil) {
+        [_todayCell updateWorkTime];
+    }
+}
+
 #pragma mark - override method
 - (void)initControls {
     
@@ -171,6 +186,12 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [_writeActionSheet addButtonWithTitle:LOCALIZE(@"Common_actionsheet_cancel")];
     _writeActionSheet.cancelButtonIndex = 2;
     
+    //Timer
+    self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:30.f
+                                                      target:self
+                                                    selector:@selector(updateWorkTime:)
+                                                    userInfo:nil
+                                                     repeats:YES];
 }
 
 #pragma mark - IBAction
@@ -210,7 +231,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
 - (IBAction)writeWorkSheetButtonTouched:(id)sender {
     
-    [_writeActionSheet showInView:self.view];
+    [_writeActionSheet showInView:self.navigationController.toolbar];
 }
 
 #pragma mark - private methods

@@ -20,6 +20,8 @@
 
 - (void)drawText:(CGContextRef)ctx text:(NSString *)t size:(float)s point:(CGPoint)p;
 
+- (void)drawRectOuterLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w rect:(CGRect)rt;
+
 @end
 
 @implementation LineGraphView
@@ -45,6 +47,11 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
     //背景線を描画
+    [self drawRectOuterLine:ctx
+                      color:[UIColor grayColor]
+                      width:1.0f
+                       rect:self.bounds];
+    
     
     //marginを設定
     float margin = 10.f;
@@ -154,6 +161,26 @@
     
     CGContextStrokePath(ctx);
 
+}
+
+- (void)drawRectOuterLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w rect:(CGRect)rt {
+    
+    CGContextSetStrokeColorWithColor(ctx, c.CGColor);
+    CGContextBeginPath(ctx);
+    
+    //pt1
+    CGContextMoveToPoint(ctx, rt.origin.x, rt.origin.y);
+    //pt2
+    CGContextAddLineToPoint(ctx, rt.size.width, rt.origin.y);
+    //pt3
+    CGContextAddLineToPoint(ctx, rt.size.width, rt.size.height);
+    //pt4
+    CGContextAddLineToPoint(ctx, rt.origin.x, rt.size.height);
+    //pt5
+    CGContextAddLineToPoint(ctx, rt.origin.x, rt.origin.y);
+    
+    CGContextStrokePath(ctx);
+    
 }
 
 - (void)drawCircle:(CGContextRef)ctx fillColor:(UIColor *)fc strokeColor:(UIColor *)sc radius:(float)r CenterPoint:(CGPoint)cp {

@@ -37,6 +37,7 @@
 		3B6CC8AF195D4A8D00F64041 /* TimeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CC8AE195D4A8D00F64041 /* TimeCard.m */; };
 		3B6CC8B2195D4A8D00F64041 /* TimeCardSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CC8B1195D4A8D00F64041 /* TimeCardSummary.m */; };
 		3B6CC8B8195D5D1200F64041 /* StoryboardUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CC8B7195D5D1200F64041 /* StoryboardUtil.m */; };
+		3B782548195EC69E003D408D /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B782547195EC69E003D408D /* UIColor+Helper.m */; };
 		3B81AE2A18E1CB63007AFD8E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B81AE2918E1CB63007AFD8E /* EventKit.framework */; };
 		3B8CB23F1942EDD900CD922E /* FileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB23E1942EDD900CD922E /* FileData.m */; };
 		3B8CB2421942EDD900CD922E /* MailContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB2411942EDD900CD922E /* MailContent.m */; };
@@ -118,6 +119,8 @@
 		3B6CC8B1195D4A8D00F64041 /* TimeCardSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCardSummary.m; sourceTree = "<group>"; };
 		3B6CC8B6195D5D1200F64041 /* StoryboardUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardUtil.h; sourceTree = "<group>"; };
 		3B6CC8B7195D5D1200F64041 /* StoryboardUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardUtil.m; sourceTree = "<group>"; };
+		3B782546195EC69E003D408D /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
+		3B782547195EC69E003D408D /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		3B81AE2918E1CB63007AFD8E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		3B8CB23D1942EDD900CD922E /* FileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileData.h; sourceTree = "<group>"; };
 		3B8CB23E1942EDD900CD922E /* FileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileData.m; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 			children = (
 				3B65970F191759F00075AB24 /* NSDate+Helper.h */,
 				3B659710191759F00075AB24 /* NSDate+Helper.m */,
+				3B782546195EC69E003D408D /* UIColor+Helper.h */,
+				3B782547195EC69E003D408D /* UIColor+Helper.m */,
 				3B6AFEDC18E6857100501C94 /* Util.h */,
 				3B6AFEDD18E6857100501C94 /* Util.m */,
 			);
@@ -513,6 +518,7 @@
 				3B8CB2521942EFDC00CD922E /* MonthTableViewCell.m in Sources */,
 				3B6CC8AF195D4A8D00F64041 /* TimeCard.m in Sources */,
 				3B8FA72318DDF59400A1182E /* NSUserDefaults+Setting.m in Sources */,
+				3B782548195EC69E003D408D /* UIColor+Helper.m in Sources */,
 				3B8CB2421942EDD900CD922E /* MailContent.m in Sources */,
 				3B6AFEEA18E69C6300501C94 /* MailContentsDao.m in Sources */,
 				3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */,

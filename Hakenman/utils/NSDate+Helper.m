@@ -171,4 +171,11 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)convHHmmString {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [formatter setDateFormat:@"HH:mm"];
+    return [formatter stringFromDate:self];
+}
+
 @end
