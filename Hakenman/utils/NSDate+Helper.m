@@ -139,6 +139,7 @@
     
     NSString *str = [NSString stringWithFormat:@"%@",yyyyMMdd];
     NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMdd"];
     DLog(@"%@",str);
     
@@ -158,6 +159,7 @@
 
 - (NSString *)yyyyMMString {
     NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMM"];
     return [formatter stringFromDate:self];
 }
