@@ -1,18 +1,18 @@
 //
-//  FileData.m
+//  MailContent.m
 //  Hakenman
 //
 //  Created by Lee jaeeun on 2014/06/07.
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
-#import "FileData.h"
+#import "MailContent.h"
 
 
-@implementation FileData
+@implementation MailContent
 
-@dynamic create_date;
-@dynamic file_path;
-@dynamic yyyymmdd;
+@dynamic contents;
+@dynamic mail_to;
+@dynamic title;
 
 @end

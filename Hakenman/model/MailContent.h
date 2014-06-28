@@ -1,8 +1,8 @@
 //
-//  MailContents.h
+//  MailContent.h
 //  Hakenman
 //
-//  Created by Lee jaeeun on 2014/03/29.
+//  Created by Lee jaeeun on 2014/06/07.
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
@@ -10,9 +10,10 @@
 #import <CoreData/CoreData.h>
 
 
-@interface MailContents : NSManagedObject
+@interface MailContent : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * contents;
+@property (nonatomic, retain) NSString * mail_to;
+@property (nonatomic, retain) NSString * title;
 
 @end

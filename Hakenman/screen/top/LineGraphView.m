@@ -8,7 +8,10 @@
 
 #import "LineGraphView.h"
 
-@interface LineGraphView()
+@interface LineGraphView() {
+    
+    CGPoint _preLinePoint;
+}
 
 - (void)drawLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w startPoint:(CGPoint)sp endPoint:(CGPoint)ep;
 
@@ -30,6 +33,9 @@
     return self;
 }
 
+- (void)reloadLineGraphView {
+    
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -61,43 +67,65 @@
     
     //ライングラフ描画
     int pointCount = [_delegate linePointNumber];
-    float x = (self.frame.size.width - (20*2))/30.f;
-    CGPoint preLinePoint = CGPointMake(0, 0);
+    float x = (self.frame.size.width - (20*2))/7.f;
     
+    CGPoint minPoint = CGPointMake(0, self.frame.size.height);
+    float minWorkTime = 24.f;
+    CGPoint maxPoint = CGPointMake(0, 0);
+    float maxWorkTime = 0.f;
+    
+    //TODO: 描画処理追加
     for (int i = 0; i < pointCount; i++) {
-//        float workTime = [_delegate lineGraphView:self pointIndex:i];
-//        float y = self.frame.size.height/(24.0f * workTime);
         
-//        if (preLinePoint.x == 0) {
-//            preLinePoint = CGPointMake(x * i, y);
-//        }
-//        
-//        [self drawLine:ctx
-//                 color:[UIColor blackColor]
-//                 width:2.0f
-//            startPoint:CGPointMake(preLinePoint.x, preLinePoint.y)
-//              endPoint:CGPointMake(x * i, y)];
-//        
-//        preLinePoint = CGPointMake(x * i, y);
+        float workTime = [_delegate lineGraphView:self PointIndex:i];
+        
+        float y = self.frame.size.height - ((self.frame.size.height * workTime) / 24.0f);
+        CGPoint linePoint = CGPointMake(x * (i+1), y);
+        
+        //draw circle
+        [self drawCircle:ctx color:[UIColor blackColor] radius:3 CenterPoint:linePoint];
+        
+        if (i == 0) {
+            _preLinePoint = linePoint;
+            continue;
+        }
+        
+        //draw line
+        [self drawLine:ctx
+                 color:[UIColor blackColor]
+                 width:2.0f
+            startPoint:_preLinePoint
+              endPoint:linePoint];
+        
+        
+        if (linePoint.y >= maxPoint.y) {
+            maxPoint = linePoint;
+            maxWorkTime = workTime;
+        }
+        
+        if (linePoint.y <= minPoint.y) {
+            minPoint = linePoint;
+            minWorkTime = workTime;
+        }
+        
+        _preLinePoint = CGPointMake(x * (i+1), y);
+        
+        
+        
+        DLog(@"startPoint[%@], endPoint[%@], workTime:[%f]",NSStringFromCGPoint(_preLinePoint), NSStringFromCGPoint(linePoint), workTime);
     }
 
     //Max, Minのテキスト描画
-
+    [self drawText:ctx
+              text:[NSString stringWithFormat:@"%2.1f",minWorkTime]
+              size:9.0f
+             point:CGPointMake(minPoint.x, minPoint.y - 15)];
     
-    
-//    [self drawLine:ctx
-//         color:[UIColor grayColor]
-//         width:1.0f
-//        startPoint:CGPointMake(10, 20)
-//          endPoint:CGPointMake(100, 40)];
-//    
-//    [self drawCircle:ctx
-//           fillColor:[UIColor blackColor]
-//         strokeColor:[UIColor grayColor]
-//              radius:30.0f
-//         CenterPoint:CGPointMake(250, 40)];
-//    
-//    [self drawText:ctx text:@"Graph TEST!!" size:13.0f point:CGPointMake(100, 100)];
+    [self drawText:ctx
+              text:[NSString
+                    stringWithFormat:@"%2.1f",maxWorkTime]
+              size:9.0f
+             point:CGPointMake(maxPoint.x, maxPoint.y - 15)];
 }
 
 - (void)drawLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w startPoint:(CGPoint)sp endPoint:(CGPoint)ep {

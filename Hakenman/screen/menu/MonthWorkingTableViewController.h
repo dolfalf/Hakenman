@@ -10,4 +10,6 @@
 
 @interface MonthWorkingTableViewController : KJViewController
 
+@property (nonatomic, strong) NSArray *items;
+
 @end

@@ -2,7 +2,7 @@
 //  FileData.h
 //  Hakenman
 //
-//  Created by Lee jaeeun on 2014/03/29.
+//  Created by Lee jaeeun on 2014/06/07.
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 
 @interface FileData : NSManagedObject
 
-@property (nonatomic, retain) NSString * file_path;
 @property (nonatomic, retain) NSDate * create_date;
-@property (nonatomic, retain) NSNumber * yyyymmdd;
+@property (nonatomic, retain) NSString * file_path;
+@property (nonatomic, retain) NSString * yyyymmdd;
 
 @end

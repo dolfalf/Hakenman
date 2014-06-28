@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "const.h"
+#import "StoryboardUtil.h"
 
 @interface KJViewController : UIViewController
 
 - (void)initControls;
+
++ (void)gotoMonthWorkingTableViewController:(KJViewController *)owner;
+
 @end

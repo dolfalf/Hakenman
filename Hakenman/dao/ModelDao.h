@@ -25,4 +25,5 @@
 - (void)deleteModel;
 - (NSArray *)fetchModel;
 
+- (void)deleteAllModel;
 @end

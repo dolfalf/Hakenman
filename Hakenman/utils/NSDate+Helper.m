@@ -135,14 +135,36 @@
     return [calendar dateFromComponents:ret_comps];
 }
 
-+ (NSDate *)convDate2String:(NSString *)yyyymmdd {
++ (NSDate *)convDate2ShortString:(NSString *)yyyyMMdd {
     
-    NSString *str = [NSString stringWithFormat:@"%@",yyyymmdd];
+    NSString *str = [NSString stringWithFormat:@"%@",yyyyMMdd];
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setDateFormat:@"yyyyMMdd"];
     DLog(@"%@",str);
     
     return [formatter dateFromString:str];
+}
+
++ (NSDate *)convDate2String:(NSString *)yyyyMMddHHmmss {
+    
+    NSString *str = [NSString stringWithFormat:@"%@",yyyyMMddHHmmss];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    DLog(@"%@",str);
+    
+    return [formatter dateFromString:str];
+}
+
+- (NSString *)yyyyMMString {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"yyyyMM"];
+    return [formatter stringFromDate:self];
+}
+
+- (NSString *)yyyyMMddHHmmssString {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    return [formatter stringFromDate:self];
 }
 
 @end

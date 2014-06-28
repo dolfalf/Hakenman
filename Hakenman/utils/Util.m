@@ -64,6 +64,53 @@
     return [NSString stringWithFormat:@"%2d:%2d",[dt getHour],[dt getMinuite]];
 }
 
++ (NSString *)weekStatusDayString:(NSDate *)dt {
+    
+    if (dt == nil) {
+        return @"";
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM/dd";
+    
+    NSString *formattedDateString = [dateFormatter stringFromDate:dt];
+    NSLog(@"%@", formattedDateString);
+    
+    return formattedDateString;
+    
+}
+
++ (NSString *)weekStatusTimeString:(NSDate *)dt {
+    
+    if (dt == nil) {
+        return @"";
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm";
+    
+    NSString *formattedDateString = [dateFormatter stringFromDate:dt];
+    NSLog(@"%@", formattedDateString);
+    
+    return formattedDateString;
+}
+
++ (NSString *)eventTimeString:(NSDate *)dt {
+    
+    if (dt == nil) {
+        return @"";
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    
+    NSString *formattedDateString = [dateFormatter stringFromDate:dt];
+    NSLog(@"%@", formattedDateString);
+    
+    return formattedDateString;
+    
+}
+
 + (float)getWorkTime:(NSDate *)startTime endTime:(NSDate *)endTime {
     
 	NSTimeInterval since = [endTime timeIntervalSinceDate:startTime];

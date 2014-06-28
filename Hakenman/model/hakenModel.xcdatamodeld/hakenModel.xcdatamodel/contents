@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="FileData" representedClassName="FileData" syncable="YES">
         <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="file_path" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="yyyymmdd" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="yyyymmdd" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="MailContents" representedClassName="MailContents" syncable="YES">
+    <entity name="MailContent" representedClassName="MailContent" syncable="YES">
         <attribute name="contents" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mail_to" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SiteInfo" representedClassName="SiteInfo" syncable="YES">
         <attribute name="end_work" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,25 +17,31 @@
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="site_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_work" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="site_info_time_card" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TimeCard" inverseName="time_card_site_info" inverseEntity="TimeCard" syncable="YES"/>
     </entity>
     <entity name="TimeCard" representedClassName="TimeCard" syncable="YES">
-        <attribute name="end_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="end_time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remarks" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rest_time" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="start_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="start_time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="t_day" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="t_month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="t_week" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="t_year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="t_yyyymmdd" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="working_day" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
-        <relationship name="time_card_site_info" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SiteInfo" inverseName="site_info_time_card" inverseEntity="SiteInfo" syncable="YES"/>
+        <attribute name="t_yyyymmdd" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="workday_flag" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="TimeCardSummary" representedClassName="TimeCardSummary" syncable="YES">
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary_type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="t_yyyymm" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="workdays" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="workTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
         <element name="FileData" positionX="0" positionY="63" width="128" height="88"/>
-        <element name="MailContents" positionX="27" positionY="99" width="128" height="75"/>
-        <element name="SiteInfo" positionX="0" positionY="0" width="128" height="148"/>
-        <element name="TimeCard" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="MailContent" positionX="27" positionY="99" width="128" height="88"/>
+        <element name="SiteInfo" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="TimeCard" positionX="0" positionY="0" width="128" height="193"/>
+        <element name="TimeCardSummary" positionX="18" positionY="72" width="128" height="118"/>
     </elements>
 </model>

@@ -27,4 +27,36 @@
     [userDefaults synchronize];
 }
 
++ (NSString *)workStartTime {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"WorkStartTimeKey" : @"09:00"}];
+    
+    return [userDefaults objectForKey:@"WorkStartTimeKey"];
+}
+
++ (void)setWorkStartTime:(NSString *)value {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:value forKey:@"WorkStartTimeKey"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSString *)workEndTime {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"WorkEndTimeKey" : @"17:50"}];
+    
+    return [userDefaults objectForKey:@"WorkEndTimeKey"];
+}
+
++ (void)setWorkEndTime:(NSString *)value {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:value forKey:@"WorkEndTimeKey"];
+    
+    [userDefaults synchronize];
+}
+
 @end

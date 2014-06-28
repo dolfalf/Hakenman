@@ -13,4 +13,10 @@
 + (NSInteger)timeKubun;
 + (void)setTimeKubun:(NSInteger)value;
 
++ (NSString *)workStartTime;
++ (void)setWorkStartTime:(NSString *)value;
+
++ (NSString *)workEndTime;
++ (void)setWorkEndTime:(NSString *)value;
+
 @end

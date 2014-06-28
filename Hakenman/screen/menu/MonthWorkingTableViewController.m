@@ -23,8 +23,8 @@
     
 }
 
-@property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) NSInteger selectedIndex;
+
 @end
 
 @implementation MonthWorkingTableViewController
@@ -45,6 +45,15 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    DLog(@"%s", __FUNCTION__);
+    
+    [rightTableView reloadData];
+    
+    [super viewWillAppear:animated];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -67,7 +76,7 @@
     //新しい今月カレンダーを作成
     //今月カレンダーをロードしテーブルを更新
     TimeCardDao *dao = [TimeCardDao new];
-    self.items = [dao fetchModelWorkMonth:sheetDate];
+    [dao insertModelWorkSheet:[NSDate date]];
     
 }
 
@@ -126,7 +135,7 @@
         }
         
         //cell update.
-        [cell updateCell:model.t_day week:model.t_week isWork:model.working_day];
+        [cell updateCell:model.t_day week:model.t_week isWork:model.workday_flag];
         
         return cell;
         

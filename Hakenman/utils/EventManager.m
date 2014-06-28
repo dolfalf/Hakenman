@@ -45,6 +45,15 @@ static EventManager *_sharedInstance;
     self = [super init];
     if (self) {
         _store = [[EKEventStore alloc] init];
+        
+        [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (granted) {
+                // code here for when the user allows your app to access the calendar
+                
+            } else {
+                // code here for when the user does NOT allow your app to access the calendar
+            }
+        }];
     }
     
     return self;
@@ -66,26 +75,31 @@ static EventManager *_sharedInstance;
     
     // 適切なカレンダーを取得
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    // 開始日コンポーネントの作成
-    NSDateComponents *oneWeekAgoComponents = [[NSDateComponents alloc] init]; oneWeekAgoComponents.day = -7;
-    NSDate *oneDayAgo = [calendar dateByAddingComponents:oneWeekAgoComponents
+//    // 開始日コンポーネントの作成
+    NSDateComponents *oneWeekAgoComponents = [[NSDateComponents alloc] init];
+    oneWeekAgoComponents.day = 7;
+    NSDate *weekLaer = [calendar dateByAddingComponents:oneWeekAgoComponents
                                                   toDate:[NSDate date]
                                                  options:0];
     // 終了日コンポーネントの作成
-    NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init]; oneYearFromNowComponents.year = 1;
-    NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
-                                                       toDate:[NSDate date]
-                                                      options:0];
-    
-    return [self fetchEventStartDate:oneDayAgo EndDate:oneYearFromNow];
+//    NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init];
+//    oneYearFromNowComponents.day = 7;
+//    NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
+//                                                       toDate:[NSDate date]
+//                                                      options:0];
+
+    return [self fetchEventStartDate:[NSDate date] EndDate:weekLaer];
     
 }
 
 - (NSArray *)fetchEventStartDate:(NSDate *)startDate EndDate:(NSDate *)endDate {
     
+    DLog(@"startDate[%@], endDate[%@]", startDate, endDate);
+    
+    
     // イベントストアのインスタンスメソッドで述語を生成
     NSPredicate *predicate = [_store predicateForEventsWithStartDate:startDate
-                                                             endDate:startDate
+                                                             endDate:endDate
                                                            calendars:nil];
     // 述語に合致するすべてのイベントをフェッチ
     return [_store eventsMatchingPredicate:predicate];

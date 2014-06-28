@@ -7,35 +7,36 @@
 //
 
 #import "TopViewController.h"
-#import "MainTopView.h"
 
 #import "TimeCardDao.h"
+#import "TimeCardSummaryDao.h"
 
 #import "SettingViewController.h"
 #import "MenuViewController.h"
 
-typedef enum {
-    screenTypeShukin = 0,
-    screenTypeTaikin,
+#import "TodayTableViewCell.h"
+#import "MonthTableViewCell.h"
+
+#import "NSDate+Helper.h"
+
+#import "MonthWorkingTableViewController.h"
+
+NS_ENUM(NSInteger, tableCellType) {
+    tableCellTypeToday = 0,
+    tableCellTypeMonth,
+};
+
+static NSString * const kTodayCellIdentifier = @"todayCellIdentifier";
+static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
+
+@interface TopViewController () {
     
-}screenType;
-
-const int kPageSize = 2;
-
-
-
-
-@interface TopViewController () <MainTopViewDelegate> {
-    
-    IBOutlet UIScrollView *scView;
-    IBOutlet UIPageControl *pgControl;
-    
-    MainTopView *_shukinTopView;
-    MainTopView *_taikinTopView;
+    IBOutlet UITableView *mainTableView;
     
 }
 
-@property (nonatomic, assign) screenType screen;
+@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, weak) TodayTableViewCell *todayCell;
 
 - (IBAction)gotoMenuButtonTouched:(id)sender;
 - (IBAction)gotoSettingButtonTouched:(id)sender;
@@ -58,24 +59,59 @@ const int kPageSize = 2;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-#if 0
+    //MARK: テストデータの生成
+#if 1
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 
-    for (int i=0; i < 10; i++) {
-        
-        TimeCard *model = [timeCardDao createModel];
-        
-        model.work_start_time = [NSDate date];
-        model.work_end_time = [NSDate date];
-        model.working_day = @(i);
-        model.bikou = @"あいうえお";
-        
-        [timeCardDao insertModel];
+    [timeCardDao deleteAllModel];
+    for (int j=3; j < 9; j++) {
+        for (int i=1; i < 30; i++) {
+            TimeCard *model = [timeCardDao createModel];
+            
+            model.start_time = [NSString stringWithFormat:@"20140%d%02d090000",j,i];
+            model.end_time = [NSString stringWithFormat:@"20140%d%02d1%d0000",j,i, rand()%9];
+            model.t_yyyymmdd = @([[model.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
+            model.workday_flag = @(1);
+            model.remarks = @"あいうえお";
+            
+            DLog(@"start_time:[%@], end_time:[%@]", model.start_time, model.end_time);
+            [timeCardDao insertModel];
+        }
     }
-
-//    DLog(@"%@",[timeCardDao fetchModelWorkingDay:@(3)]);
-    DLog(@"%@",[timeCardDao fetchModel]);
+    
+    TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
+    
+    [timeCardSummaryDao deleteAllModel];
+    
+    for (int j=3; j < 9; j++) {
+        TimeCardSummary *model = [timeCardSummaryDao createModel];
+        model.t_yyyymm = @([[NSString stringWithFormat:@"20140%d",j] intValue]);
+        
+        model.workTime = @160;
+        model.summary_type = @1;
+        model.workdays = @21;
+        model.remark = @"test data.";
+        
+        DLog(@"t_yyyymm:[%d]", [model.t_yyyymm intValue]);
+        
+        [timeCardSummaryDao insertModel];
+    }
+    
 #endif
+    
+    
+    //初期化
+    self.items = [self displayCellItems];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,16 +123,6 @@ const int kPageSize = 2;
 - (void)viewDidLayoutSubviews {
     
     [super viewDidLayoutSubviews];
-    
-    // スクロールの範囲を設定
-    [scView setContentSize:CGSizeMake((_shukinTopView.frame.size.width + _taikinTopView.frame.size.width),
-                                      [UIScreen mainScreen].bounds.size.height)];
-    
-    //page control
-    pgControl.frame = CGRectMake(pgControl.frame.origin.x ,
-                                 pgControl.frame.origin.y,
-                                 pgControl.frame.size.width,
-                                 20);
     
     [self.view layoutSubviews]; // <- これが重要！
 }
@@ -110,18 +136,6 @@ const int kPageSize = 2;
 //オーバーライドして非表示かどうかを選択
 - (BOOL)prefersStatusBarHidden {
     return NO;
-}
-
-#pragma mark - setter
-- (void)setScreen:(screenType)screen {
-
-    if (screen == screenTypeShukin) {
-        self.title = LOCALIZE(@"TopViewController_goWork_title");
-    }else if (screen == screenTypeTaikin) {
-        self.title = LOCALIZE(@"TopViewController_leaveWork_title");
-    }
-    
-    _screen = screen;
 }
 
 #pragma mark - override method
@@ -141,42 +155,8 @@ const int kPageSize = 2;
         [self setNeedsStatusBarAppearanceUpdate];
     }
     
-    //MainView initialize
-    _shukinTopView = [MainTopView createView];
-    _shukinTopView.delegate = self;
-    [scView addSubview:_shukinTopView];
-
-    _taikinTopView = [MainTopView createView];
-    _taikinTopView.delegate = self;
-    _taikinTopView.frame = CGRectSetX(_taikinTopView.frame, _shukinTopView.frame.size.width);
+//    self.title = LOCALIZE(@"TopViewController_goWork_title");
     
-    [scView addSubview:_taikinTopView];
-    
-    
-    //scrollView & pageControl initialize
-    
-    // 横スクロールのインジケータを非表示にする
-    scView.showsHorizontalScrollIndicator = NO;
-    
-    // ページングを有効にする
-    scView.pagingEnabled = YES;
-    
-    // ページコントロールのインスタンス化
-    // 背景色を設定
-    pgControl.backgroundColor = [UIColor clearColor];
-    
-    // ページ数を設定
-    pgControl.numberOfPages = kPageSize;
-    
-    // 現在のページを設定
-    pgControl.currentPage = 0;
-    
-    // ページコントロールをタップされたときに呼ばれるメソッドを設定
-    [pgControl addTarget:self
-                    action:@selector(_pageControlTapped:)
-          forControlEvents:UIControlEventValueChanged];
- 
-    self.title = LOCALIZE(@"TopViewController_goWork_title");
 }
 
 #pragma mark - IBAction
@@ -214,76 +194,121 @@ const int kPageSize = 2;
     }];
 }
 
-#pragma mark - callback method
-- (void)_pageControlTapped:(id)sender {
+#pragma mark - private methods
+- (NSArray *)displayCellItems {
     
-    CGRect frame = scView.frame;
-    frame.origin.x = frame.size.width * pgControl.currentPage;
-    [scView scrollRectToVisible:frame animated:YES];
+    NSMutableArray *arrays = [NSMutableArray new];
+    
+    //一番目は固定
+    [arrays addObject:@"first cell"];
+    
+    //サマリーからデータを持ってくる
+    TimeCardSummaryDao *summaryDao = [[TimeCardSummaryDao alloc] init];
+    
+    NSDate *today = [NSDate date];
+    NSDate *oneYearsAgo = (NSDate *)[today dateByAddingTimeInterval:(60*60*24*365 *-1)];
+    
+    DLog(@"oneYearsAgo[%@] today[%@]",oneYearsAgo, today);
+    
+    [arrays addObjectsFromArray:
+     [summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString] EndMonth:[today yyyyMMString] ascending:NO]];
+    
+    return arrays;
+    
+}
+#pragma mark - tableView private method
+- (TodayTableViewCell *)tableView:(UITableView *)tableView todayCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (_todayCell == nil) {
+        self.todayCell = (TodayTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kTodayCellIdentifier];
+    }
+
+    return _todayCell;
+}
+
+- (MonthTableViewCell *)tableView:(UITableView *)tableView monthCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MonthTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMonthCellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[MonthTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    }
+    
+    return cell;
+}
+
+#pragma mark - UITableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == tableCellTypeToday) {
+        return 140.0f;
+    }else {
+        return 80.0f;
+    }
+    
+    return 44.0f;
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return [_items count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == tableCellTypeToday) {
+        TodayTableViewCell *cell = [self tableView:tableView todayCellForRowAtIndexPath:indexPath];
+        
+        TimeCardDao *dao = [TimeCardDao new];
+        NSArray *weekTimeCards = [dao fetchModelLastWeek];
+        [cell updateCell:cellMessageTypeWorkEnd graphItems:weekTimeCards];
+        return cell;
+        
+    }else if(indexPath.row >= tableCellTypeMonth) {
+        MonthTableViewCell *cell = [self tableView:tableView monthCellForRowAtIndexPath:indexPath];
+        
+        //TODO: cell update.
+        [cell updateCell:[_items objectAtIndex:indexPath.row]];
+        
+        return cell;
+        
+    }else {
+        //その他
+    }
+    
+    //ここにくることはありえないのでnilにする
+    return nil;
     
 }
 
 
-#pragma mark - UIScrollView delegate methods
-- (void)scrollViewDidScroll:(UIScrollView *)_scrollView
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //横方向のみスクロールする
-    CGPoint origin = [scView contentOffset];
-    [scView setContentOffset:CGPointMake(origin.x, 0.0)];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //page control
-    CGFloat pageWidth = scView.frame.size.width;
-    if ((NSInteger)fmod(scView.contentOffset.x , pageWidth) == 0) {
-        // ページコントロールに現在のページを設定
-        pgControl.currentPage = scView.contentOffset.x / pageWidth;
+    DLog(@"%d table cell selected.", indexPath.row);
+    
+    if (indexPath.row == tableCellTypeToday) {
+        //
+    }else {
+        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+            //paramを渡す
+            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+            
+            //TODO:
+            TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
+//            NSString *dateString = [NSString stringWithFormat:@"%d", summaryModel.t_yyyymm];
+            
+            
+            TimeCardDao *timeCardDao = [TimeCardDao new];
+//            [timeCardDao fetchModelYear:summaryMode month:<#(NSInteger)#>
+            
+//            controller.timeCard = ;
+        }];
     }
-    
-    self.screen = (int)pgControl.currentPage;
     
 }
 
-#pragma mark - MainTopView deleagte methods
-- (void)mainTopView:(MainTopView *)topView didSelectIndex:(NSInteger)type {
-    
-    DLog(@"%s", __FUNCTION__);
-    
-    if ([topView isEqual:_shukinTopView] == YES) {
-        switch (type) {
-            case tableCellTypeCurrentStatus:
-                DLog(@"tableCellTypeCurrentStatus");
-                break;
-            case tableCellTypeTodoList:
-                DLog(@"tableCellTypeTodoList");
-                break;
-            case tableCellTypeGraphView:
-                DLog(@"tableCellTypeGraphView");
-                break;
-            case tableCellTypeWeekStatus:
-                DLog(@"tableCellTypeWeekStatus");
-                break;
-            default:
-                break;
-        }
-    }else if ([topView isEqual:_taikinTopView] == YES) {
-        switch (type) {
-            case tableCellTypeCurrentStatus:
-                DLog(@"tableCellTypeCurrentStatus");
-                break;
-            case tableCellTypeTodoList:
-                DLog(@"tableCellTypeTodoList");
-                break;
-            case tableCellTypeGraphView:
-                DLog(@"tableCellTypeGraphView");
-                break;
-            case tableCellTypeWeekStatus:
-                DLog(@"tableCellTypeWeekStatus");
-                break;
-            default:
-                break;
-        }
-    }
-    
-    
-}
 
 @end

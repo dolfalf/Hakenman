@@ -22,5 +22,10 @@
 - (NSDate *)getDayOfMonth:(NSInteger)day;
 - (NSDate *)getTimeOfMonth:(NSInteger)hour mimute:(NSInteger)min;
 
-+ (NSDate *)convDate2String:(NSString *)yyyymmdd;
++ (NSDate *)convDate2ShortString:(NSString *)yyyyMMdd;
++ (NSDate *)convDate2String:(NSString *)yyyyMMddHHmmss;
+
+- (NSString *)yyyyMMString;
+- (NSString *)yyyyMMddHHmmssString;
+
 @end

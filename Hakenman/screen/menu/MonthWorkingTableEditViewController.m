@@ -82,22 +82,22 @@ typedef enum {
         NSArray *st = [_startTimeTextField.text componentsSeparatedByString:@":"];
         
         if (_timeCard.start_time == nil) {
-            _timeCard.start_time = [NSDate convDate2String:_timeCard.t_yyyymmdd];
+//            _timeCard.start_time = [NSDate convDate2ShortString:_timeCard.t_yyyymmdd];
         }
         
-        _timeCard.start_time = [_timeCard.start_time getTimeOfMonth:[[st objectAtIndex:0] intValue]
-                                                             mimute:[[st objectAtIndex:1] intValue]];
+//        _timeCard.start_time = [_timeCard.start_time getTimeOfMonth:[[st objectAtIndex:0] intValue]
+//                                                             mimute:[[st objectAtIndex:1] intValue]];
     }
     
     if ([_endTimeTextField.text isEqualToString:@""] == NO) {
         NSArray *et = [_endTimeTextField.text componentsSeparatedByString:@":"];
         
         if (_timeCard.end_time == nil) {
-            _timeCard.end_time = [NSDate convDate2String:_timeCard.t_yyyymmdd];
+//            _timeCard.end_time = [NSDate convDate2ShortString:_timeCard.t_yyyymmdd];
         }
         
-        _timeCard.end_time = [_timeCard.end_time getTimeOfMonth:[[et objectAtIndex:0] intValue]
-                                                             mimute:[[et objectAtIndex:1] intValue]];
+//        _timeCard.end_time = [_timeCard.end_time getTimeOfMonth:[[et objectAtIndex:0] intValue]
+//                                                             mimute:[[et objectAtIndex:1] intValue]];
     }
     
     if ([_restTimeTextField.text isEqualToString:@""] == NO) {
@@ -195,7 +195,7 @@ typedef enum {
         }
         
         [_editworkDayCell updateCell:LOCALIZE(@"MonthWorkingTableEditViewController_edit_workday_switch_cell")
-                           isWorkday:_timeCard.working_day switchHandler:^(BOOL on) {
+                           isWorkday:_timeCard.workday_flag switchHandler:^(BOOL on) {
                                //TODO: スウィッチが変更された時の処理
                            }];
         

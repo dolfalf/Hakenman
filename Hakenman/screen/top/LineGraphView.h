@@ -12,7 +12,7 @@
 
 @interface LineGraphView : UIView
 
-@property (nonatomic, assign) id <LineGraphViewDelegate>delegate;
+@property (nonatomic, assign) IBOutlet id <LineGraphViewDelegate>delegate;
 
 @property (nonatomic, assign) float minValue;
 @property (nonatomic, assign) NSString *minLabel;
@@ -29,7 +29,7 @@
 
 @required
 - (NSInteger)linePointNumber;
-- (void)lineGraphView:(LineGraphView *)gview pointValue:(float)value;
+- (float)lineGraphView:(LineGraphView *)gview PointIndex:(NSInteger)index;
 
 @optional
 

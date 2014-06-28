@@ -98,4 +98,20 @@
     
 }
 
+- (void)deleteAllModel {
+    
+    for (NSManagedObject *model in [self fetchModel]) {
+        
+        [_managedObjectContext deleteObject:model];
+        [_managedObjectContext processPendingChanges];
+        
+        NSError *error = nil;
+        if (![model.managedObjectContext save:&error]) {
+            //error
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+
 @end

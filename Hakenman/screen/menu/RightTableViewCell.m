@@ -35,9 +35,9 @@
 
 - (void)updateCell:(TimeCard *)model {
     
-    startTimeLabel.text = [Util worktimeString:model.start_time];
-    endTimeLabel.text = [Util worktimeString:model.end_time];
-    workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",[Util getWorkTime:model.start_time endTime:model.end_time]];
+//    startTimeLabel.text = [Util worktimeString:model.start_time];
+//    endTimeLabel.text = [Util worktimeString:model.end_time];
+//    workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",[Util getWorkTime:model.start_time endTime:model.end_time]];
 //    worktotalLabel.text = [NSString stringWithFormat:@"%2.2f",tt];
     
 }
