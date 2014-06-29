@@ -1,10 +1,13 @@
 PODS:
+  - PBFlatUI (1.1.0)
   - RHTableViewProvider (0.0.1)
 
 DEPENDENCIES:
+  - PBFlatUI (~> 1.1.0)
   - RHTableViewProvider (~> 0.0)
 
 SPEC CHECKSUMS:
+  PBFlatUI: c5b83184df1ea5567c23cce0f2e36708e8e1638f
   RHTableViewProvider: c7657e07b174296d46a3c26b80eec8b62bcf3fa1
 
 COCOAPODS: 0.33.1

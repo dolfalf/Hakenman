@@ -39,6 +39,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 @interface TopViewController () <UIActionSheetDelegate> {
     
     IBOutlet UITableView *mainTableView;
+    
+    PBBarButtonIconButton *_menuBarButton;
+    PBBarButtonIconButton *_settingBarButton;
 }
 
 @property (nonatomic, strong) NSArray *items;
@@ -119,12 +122,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //Navigationbar, statusbar initialize
-    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
-        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
-        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-        [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    }
+    _menuBarButton.hidden =
+    _settingBarButton.hidden = NO;
     
     [super viewWillAppear:animated];
 }
@@ -132,6 +131,13 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    _menuBarButton.hidden =
+    _settingBarButton.hidden = YES;
+    
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,6 +169,29 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 #pragma mark - override method
 - (void)initControls {
     
+    //Navigationbar, statusbar initialize
+    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
+        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
+        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+        [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    }
+    
+    [PBFlatSettings sharedInstance].mainColor = [UIColor whiteColor];
+    _menuBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(5, 5, 35, 35)
+                                                                            andWithType:PBFlatIconMenu];
+    
+    [_menuBarButton addTarget:self action:@selector(gotoMenuButtonTouched:)
+            forControlEvents:UIControlEventTouchUpInside];
+    
+    _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
+                                                                               andWithType:PBFlatIconMore];
+    [_settingBarButton addTarget:self action:@selector(gotoSettingButtonTouched:)
+               forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.navigationController.navigationBar addSubview:_menuBarButton];
+    [self.navigationController.navigationBar addSubview:_settingBarButton];
+    
+    //title
     self.title = LOCALIZE(@"TopViewController_goWork_title");
     
     _writeActionSheet = [[UIActionSheet alloc] init];

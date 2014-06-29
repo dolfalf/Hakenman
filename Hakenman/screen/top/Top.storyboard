@@ -158,18 +158,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="MJa-my-xaW">
-                        <barButtonItem key="leftBarButtonItem" title="menu" id="a7R-Gn-1R7">
-                            <connections>
-                                <action selector="gotoMenuButtonTouched:" destination="0bd-ek-o8k" id="oTi-K2-MlP"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="setting" id="RkG-3A-GZ1">
-                            <connections>
-                                <action selector="gotoSettingButtonTouched:" destination="0bd-ek-o8k" id="E9Q-hx-qN5"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="MJa-my-xaW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QR4-za-9uo" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,7 +173,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="2SD-Fr-L1D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
