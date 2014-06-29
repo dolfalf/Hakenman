@@ -99,26 +99,12 @@
                 }else{
                     workFlag = [NSNumber numberWithBool:YES];
                 }
+                [mTempDictionary setObject:leftDates forKey:LEFT_DAY];
+                [mTempDictionary setObject:leftWeeks forKey:LEFT_WEEK];
+                [mTempDictionary setObject:workFlag forKey:LEFT_WORKFLAG];
                 DLog(@"day is - %@", leftDates);
-                
-//            for (int i = 1; i<=lastDay; i++) {
-//                _inputDates = [NSString stringWithFormat:@"%d", i];
-//                DLog(@"day is - %@", _inputDates);
-//                [mTempArr addObject:_inputDates];
-//            }
-//            _items = [mTempArr mutableCopy];
-//                [mTempArray setValue:leftDates forKey:LEFT_DAY];
-//                [mTempArray setValue:leftWeeks forKey:LEFT_WEEK];
-//                [mTempArray setValue:workFlag forKey:LEFT_WORKFLAG];
-
-                    [mTempDictionary setObject:leftDates forKey:LEFT_DAY];
-                    [mTempDictionary setObject:leftWeeks forKey:LEFT_WEEK];
-                    [mTempDictionary setObject:workFlag forKey:LEFT_WORKFLAG];
-                
-//                for (<#type *object#> in <#collection#>) {
-//                    <#statements#>
-//                }
-                    [mTempArray addObject:mTempDictionary];
+                [mTempArray addObject:mTempDictionary];
+                [mTempDictionary removeAllObjects];
             }
             _items = [mTempArray mutableCopy];
         
