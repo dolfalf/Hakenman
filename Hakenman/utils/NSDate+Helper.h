@@ -27,5 +27,5 @@
 
 - (NSString *)yyyyMMString;
 - (NSString *)yyyyMMddHHmmssString;
-
+- (NSString *)convHHmmString;
 @end

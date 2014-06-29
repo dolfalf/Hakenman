@@ -20,6 +20,8 @@
 
 - (void)drawText:(CGContextRef)ctx text:(NSString *)t size:(float)s point:(CGPoint)p;
 
+- (void)drawRectOuterLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w rect:(CGRect)rt;
+
 @end
 
 @implementation LineGraphView
@@ -45,42 +47,68 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
     //背景線を描画
+    [self drawRectOuterLine:ctx
+                      color:[UIColor grayColor]
+                      width:1.0f
+                       rect:self.bounds];
     
-    //２４時間の中、6時間ことにラインを引く
-    float lineH = self.frame.size.height/24.0f;
+    
+    //marginを設定
+    float margin = 10.f;
+    
+    //marginを引いたサイズから４等分をする
+    float lineH = (self.frame.size.height - margin)/24.0f;
     
     for (int i = 0; i< 24; i++) {
-        if (i%5 == 0) {
-            
-            if (lineH * i >= self.frame.size.height
-                || lineH * i == 0) {
-                continue;
-            }
-            
-        [self drawLine:ctx
-             color:[UIColor grayColor]
-             width:1.0f
-            startPoint:CGPointMake(20, lineH * i)
-              endPoint:CGPointMake(self.frame.size.width-20, lineH * i)];
+        
+        if (i%(24/4) > 0) {
+            continue;
         }
+        
+        float sep_line = lineH * i + margin;
+        
+        [self drawLine:ctx
+                 color:[UIColor lightGrayColor]
+                 width:1.0f
+            startPoint:CGPointMake(margin, sep_line)
+              endPoint:CGPointMake(self.frame.size.width - margin, sep_line)];
     }
     
     //ライングラフ描画
     int pointCount = [_delegate linePointNumber];
-    float x = (self.frame.size.width - (20*2))/7.f;
+    float x = (self.frame.size.width - (margin*2))/6.f;
     
-    CGPoint minPoint = CGPointMake(0, self.frame.size.height);
-    float minWorkTime = 24.f;
-    CGPoint maxPoint = CGPointMake(0, 0);
-    float maxWorkTime = 0.f;
+    //グラプ描画ポイント取得
+    NSMutableArray *linePoints = [NSMutableArray new];
+    float tmp_min_time, tmp_max_time = 0.f;
     
-    //TODO: 描画処理追加
     for (int i = 0; i < pointCount; i++) {
+        float work_time = [_delegate lineGraphView:self PointIndex:i];
         
-        float workTime = [_delegate lineGraphView:self PointIndex:i];
+        [linePoints addObject:@(work_time)];
         
-        float y = self.frame.size.height - ((self.frame.size.height * workTime) / 24.0f);
-        CGPoint linePoint = CGPointMake(x * (i+1), y);
+        //min, max
+        if (i==0) {
+            tmp_min_time = tmp_max_time = work_time;
+        }
+        
+        if (tmp_min_time > work_time) {
+            tmp_min_time = work_time;
+        }
+        if (tmp_max_time < work_time) {
+            tmp_max_time = work_time;
+        }
+        
+    }
+    
+    
+    for (int i = 0; i < [linePoints count]; i++) {
+        
+        float wt = [[linePoints objectAtIndex:i] floatValue];
+        float graph_height = self.frame.size.height - (margin*2);
+        float y = (graph_height - ((graph_height * wt) / tmp_max_time))+ margin;
+        
+        CGPoint linePoint = CGPointMake((i==0)?margin:(x*i), y);
         
         //draw circle
         [self drawCircle:ctx color:[UIColor blackColor] radius:3 CenterPoint:linePoint];
@@ -96,36 +124,32 @@
                  width:2.0f
             startPoint:_preLinePoint
               endPoint:linePoint];
+
+        _preLinePoint = CGPointMake(x*i, y);
         
         
-        if (linePoint.y >= maxPoint.y) {
-            maxPoint = linePoint;
-            maxWorkTime = workTime;
+        //Max, Minのテキスト描画
+        if (tmp_max_time == wt) {
+            [self drawText:ctx
+                      text:[NSString
+                            stringWithFormat:@"%2.1f",tmp_max_time]
+                      size:9.0f
+                     point:CGPointMake(_preLinePoint.x - 5.f,
+                                       _preLinePoint.y +5.f)];
         }
         
-        if (linePoint.y <= minPoint.y) {
-            minPoint = linePoint;
-            minWorkTime = workTime;
+        if (tmp_min_time == wt) {
+            [self drawText:ctx
+                      text:[NSString stringWithFormat:@"%2.1f",tmp_min_time]
+                      size:9.0f
+                     point:CGPointMake(_preLinePoint.x - 5.f,
+                                       _preLinePoint.y -15.f)];
         }
         
-        _preLinePoint = CGPointMake(x * (i+1), y);
-        
-        
-        
-        DLog(@"startPoint[%@], endPoint[%@], workTime:[%f]",NSStringFromCGPoint(_preLinePoint), NSStringFromCGPoint(linePoint), workTime);
+        DLog(@"startPoint[%@], endPoint[%@], workTime:[%f]",NSStringFromCGPoint(_preLinePoint), NSStringFromCGPoint(linePoint), wt);
     }
 
-    //Max, Minのテキスト描画
-    [self drawText:ctx
-              text:[NSString stringWithFormat:@"%2.1f",minWorkTime]
-              size:9.0f
-             point:CGPointMake(minPoint.x, minPoint.y - 15)];
     
-    [self drawText:ctx
-              text:[NSString
-                    stringWithFormat:@"%2.1f",maxWorkTime]
-              size:9.0f
-             point:CGPointMake(maxPoint.x, maxPoint.y - 15)];
 }
 
 - (void)drawLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w startPoint:(CGPoint)sp endPoint:(CGPoint)ep {
@@ -137,6 +161,26 @@
     
     CGContextStrokePath(ctx);
 
+}
+
+- (void)drawRectOuterLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w rect:(CGRect)rt {
+    
+    CGContextSetStrokeColorWithColor(ctx, c.CGColor);
+    CGContextBeginPath(ctx);
+    
+    //pt1
+    CGContextMoveToPoint(ctx, rt.origin.x, rt.origin.y);
+    //pt2
+    CGContextAddLineToPoint(ctx, rt.size.width, rt.origin.y);
+    //pt3
+    CGContextAddLineToPoint(ctx, rt.size.width, rt.size.height);
+    //pt4
+    CGContextAddLineToPoint(ctx, rt.origin.x, rt.size.height);
+    //pt5
+    CGContextAddLineToPoint(ctx, rt.origin.x, rt.origin.y);
+    
+    CGContextStrokePath(ctx);
+    
 }
 
 - (void)drawCircle:(CGContextRef)ctx fillColor:(UIColor *)fc strokeColor:(UIColor *)sc radius:(float)r CenterPoint:(CGPoint)cp {

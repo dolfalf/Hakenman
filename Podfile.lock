@@ -1,0 +1,10 @@
+PODS:
+  - RHTableViewProvider (0.0.1)
+
+DEPENDENCIES:
+  - RHTableViewProvider (~> 0.0)
+
+SPEC CHECKSUMS:
+  RHTableViewProvider: c7657e07b174296d46a3c26b80eec8b62bcf3fa1
+
+COCOAPODS: 0.33.1

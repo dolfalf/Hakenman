@@ -139,6 +139,7 @@
     
     NSString *str = [NSString stringWithFormat:@"%@",yyyyMMdd];
     NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMdd"];
     DLog(@"%@",str);
     
@@ -149,6 +150,7 @@
     
     NSString *str = [NSString stringWithFormat:@"%@",yyyyMMddHHmmss];
     NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMddHHmmss"];
     DLog(@"%@",str);
     
@@ -157,13 +159,22 @@
 
 - (NSString *)yyyyMMString {
     NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMM"];
     return [formatter stringFromDate:self];
 }
 
 - (NSString *)yyyyMMddHHmmssString {
     NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    return [formatter stringFromDate:self];
+}
+
+- (NSString *)convHHmmString {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [formatter setDateFormat:@"HH:mm"];
     return [formatter stringFromDate:self];
 }
 

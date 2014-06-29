@@ -10,6 +10,7 @@
 #import "LineGraphView.h"
 #import "NSUserDefaults+Setting.h"
 #import "NSDate+Helper.h"
+#import "UIColor+Helper.h"
 #import "TimeCard.h"
 
 @interface TodayTableViewCell() <LineGraphViewDelegate>
@@ -54,10 +55,21 @@
     yearLabel.text = [NSString stringWithFormat:@"%d",[today getYear]];
     monthLabel.text = [NSString stringWithFormat:@"%d",[today getMonth]];
     dayLabel.text = [NSString stringWithFormat:@"%d",[today getDay]];
-    messageLabel.text = [self p_displayMessage:messageType displayDate:today];
+    messageLabel.text = [[NSDate date] convHHmmString];
+//    messageLabel.text = [self p_displayMessage:messageType displayDate:today];
     
     self.graphItems = items;
     
+}
+
+- (void)updateWorkTime {
+    //基準時間より残った時間を計算する
+    
+    //計算する時間から色の値を求める
+    
+    messageLabel.textColor = [UIColor colorWithRed:0.502 green:0.0 blue:0.502 alpha:1.f];
+    //messageLabel.textColor = [UIColor colorWithHexString:@"" alpha:1.f];
+    messageLabel.text = [[NSDate date] convHHmmString];
 }
 
 #pragma private methods

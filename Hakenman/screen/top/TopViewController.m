@@ -26,17 +26,24 @@ NS_ENUM(NSInteger, tableCellType) {
     tableCellTypeMonth,
 };
 
+NS_ENUM(NSInteger, actionsheetButtonType) {
+    actionsheetButtonTypeWriteStartTime = 0,
+    actionsheetButtonTypeWriteEndTime,
+    actionsheetButtonTypeCancel,
+};
+
 static NSString * const kTodayCellIdentifier = @"todayCellIdentifier";
 static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
-@interface TopViewController () {
+@interface TopViewController () <UIActionSheetDelegate> {
     
     IBOutlet UITableView *mainTableView;
-    
 }
 
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, weak) TodayTableViewCell *todayCell;
+@property (nonatomic, strong) UIActionSheet *writeActionSheet;
+@property (nonatomic, assign) NSTimer *loadTimer;
 
 - (IBAction)gotoMenuButtonTouched:(id)sender;
 - (IBAction)gotoSettingButtonTouched:(id)sender;
@@ -45,6 +52,13 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
 @implementation TopViewController
 
+#pragma setter
+- (void)setLoadTimer:(NSTimer *)newTimer {
+	[_loadTimer invalidate];
+	_loadTimer = newTimer;
+}
+
+#pragma mark - life cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -99,7 +113,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
 #endif
     
-    
     //初期化
     self.items = [self displayCellItems];
 }
@@ -138,6 +151,14 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     return NO;
 }
 
+#pragma mark - callback method
+- (void)updateWorkTime:(NSTimer *)tm {
+    
+    if (_todayCell != nil) {
+        [_todayCell updateWorkTime];
+    }
+}
+
 #pragma mark - override method
 - (void)initControls {
     
@@ -157,6 +178,20 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
 //    self.title = LOCALIZE(@"TopViewController_goWork_title");
     
+    _writeActionSheet = [[UIActionSheet alloc] init];
+    _writeActionSheet.delegate = self;
+//    _writeActionSheet.title = @"選択してください。";
+    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_start_work_write")];
+    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_end_work_write")];
+    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"Common_actionsheet_cancel")];
+    _writeActionSheet.cancelButtonIndex = 2;
+    
+    //Timer
+    self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:30.f
+                                                      target:self
+                                                    selector:@selector(updateWorkTime:)
+                                                    userInfo:nil
+                                                     repeats:YES];
 }
 
 #pragma mark - IBAction
@@ -192,6 +227,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             [settingController dismissViewControllerAnimated:YES completion:nil];
         };
     }];
+}
+
+- (IBAction)writeWorkSheetButtonTouched:(id)sender {
+    
+    [_writeActionSheet showInView:self.navigationController.toolbar];
 }
 
 #pragma mark - private methods
@@ -310,5 +350,26 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
 }
 
+#pragma mark - UIActionSheet delegate method
+-(void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    switch (buttonIndex) {
+    case actionsheetButtonTypeWriteStartTime:
+            [StoryboardUtil gotoMonthWorkingTableEditViewController:self completion:^(id destinationController) {
+                //set param.
+            }];
+            
+        break;
+    case actionsheetButtonTypeWriteEndTime:
+            [StoryboardUtil gotoMonthWorkingTableEditViewController:self completion:^(id destinationController) {
+                //set param.
+            }];
+        break;
+    case actionsheetButtonTypeCancel:
+            //cancel
+        break;
+    }
+
+}
 
 @end
