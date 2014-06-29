@@ -18,8 +18,7 @@
 "Common_actionsheet_cancel" = "キャンセル";
 
 //TOP
-"TopViewController_goWork_title" = "出勤";
-"TopViewController_leaveWork_title" = "退勤";
+"TopViewController_goWork_title" = "HakenMan";
 "TopViewController_actionsheet_start_work_write" = "出勤時間を書く";
 "TopViewController_actionsheet_end_work_write" = "退勤時間を書く";
 

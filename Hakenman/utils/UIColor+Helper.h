@@ -14,4 +14,11 @@
 @interface UIColor (Helper)
 
 + (id)colorWithHexString:(NSString *)hex alpha:(CGFloat)a;
+
+#pragma mark - Hakenman Theme color
++ (UIColor *)HKMBlueColor;
++ (UIColor *)HKMSkyblueColor;
++ (UIColor *)HKMDarkblueColor;
++ (UIColor *)HKMDarkOrangeColor;
++ (UIColor *)HKMOrangeColor;
 @end

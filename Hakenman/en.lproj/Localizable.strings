@@ -19,8 +19,7 @@
 "Common_actionsheet_cancel" = "Cancel";
 
 //TOP
-"TopViewController_goWork_title" = "Work";
-"TopViewController_leaveWork_title" = "goto Home";
+"TopViewController_goWork_title" = "HakenMan";
 "TopViewController_actionsheet_start_work_write" = "Write work start";
 "TopViewController_actionsheet_end_work_write" = "Write work finish";
 

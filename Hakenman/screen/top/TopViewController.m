@@ -18,6 +18,7 @@
 #import "MonthTableViewCell.h"
 
 #import "NSDate+Helper.h"
+#import "UIColor+Helper.h"
 
 #import "MonthWorkingTableViewController.h"
 
@@ -118,6 +119,12 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    //Navigationbar, statusbar initialize
+    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
+        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
+        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+        [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    }
     
     [super viewWillAppear:animated];
 }
@@ -140,12 +147,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [self.view layoutSubviews]; // <- これが重要！
 }
 
-//オーバーライドしてスタイル指定
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    
-    return UIStatusBarStyleLightContent;
-}
-
 //オーバーライドして非表示かどうかを選択
 - (BOOL)prefersStatusBarHidden {
     return NO;
@@ -162,21 +163,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 #pragma mark - override method
 - (void)initControls {
     
-    //Navigationbar, statusbar initialize
-    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
-        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-        self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
-    }
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        //viewControllerで制御することを伝える。iOS7 からできたメソッド
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
-    
-//    self.title = LOCALIZE(@"TopViewController_goWork_title");
+    self.title = LOCALIZE(@"TopViewController_goWork_title");
     
     _writeActionSheet = [[UIActionSheet alloc] init];
     _writeActionSheet.delegate = self;
