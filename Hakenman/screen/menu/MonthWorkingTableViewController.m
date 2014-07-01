@@ -74,36 +74,54 @@
     //NSDate convDate2ShortStringでDateを決めるべき
     NSDate *sheetDate = [NSDate date];
 #else
-    _inputDates = @"20140602";
     
-    //NSDate convDate2ShortStringでDateを決めるべき
+    //選択された語尾の日付が1日以上だったら、初日から表示するために日を一日に固定する
+    if ([_inputDates hasSuffix:@"01"] == NO) {
+        _inputDates = @"20140701";
+    }
+    
+    //NSDate convDate2ShortStringでDateを決めるべき（なおった？）
     NSDate *sheetDate = [NSDate convDate2ShortString:_inputDates];
 
+    //sheetDateで受け取った値は正常に受け取るのに、ログで表示するときだけ変に出る
     DLog(@"[sheetDate convDate2ShortString] - %@", [NSDate convDate2ShortString:_inputDates]);
     
+    //任意のArrayに３０日までの値を格納
     NSMutableArray *mTempArray = [[NSMutableArray alloc]init];
     
     NSString *leftDates = @"";
     NSString *leftWeeks = @"";
     if (_items == nil) {
         DLog(@"_items is nil");
+        //sheetDateからその月の最後の日を算出（何日で終わるのか）
         int lastDay = [sheetDate getLastday];
+        //sheetDateからその日の曜日を算出
         int weekDay = [sheetDate getWeekday];
-        NSNumber *workFlag = [NSNumber numberWithBool:YES];    //model.workday_flagからとるべきですか?
+        //休日か否かを取る
+        NSNumber *workFlag = [NSNumber numberWithBool:YES];
+            //終わる日時にあわせて繰り返す
             for (int i = 1; i<=lastDay; i++) {
                 leftDates = [NSString stringWithFormat:@"%d", i];
-                leftWeeks = [NSString stringWithFormat:@"%d", i];
-                if (weekDay == weekSatDay && weekDay == weekSunday) {
+                leftWeeks = [NSString stringWithFormat:@"%d", weekDay];
+                //土日は基本的に休み
+                if (weekDay == weekSatDay || weekDay == weekSunday) {
                     workFlag = [NSNumber numberWithBool:NO];
                 }else{
                     workFlag = [NSNumber numberWithBool:YES];
                 }
+                //後でクラスとして別処理する予定です
                 NSMutableDictionary *mTempDictionary = [[NSMutableDictionary alloc]init];
                 [mTempDictionary setObject:leftDates forKey:LEFT_DAY];
                 [mTempDictionary setObject:leftWeeks forKey:LEFT_WEEK];
                 [mTempDictionary setObject:workFlag forKey:LEFT_WORKFLAG];
                 DLog(@"day is - %@", leftDates);
                 [mTempArray addObject:mTempDictionary];
+                //土曜日になったら、曜日表示を日曜日からやり直す
+                if (weekDay == 7) {
+                    weekDay = 1;
+                }else{
+                    weekDay++;
+                }
             }
             _items = [mTempArray mutableCopy];
         
