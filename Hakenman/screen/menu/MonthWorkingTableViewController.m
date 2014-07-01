@@ -81,7 +81,6 @@
 
     DLog(@"[sheetDate convDate2ShortString] - %@", [NSDate convDate2ShortString:_inputDates]);
     
-    NSMutableDictionary *mTempDictionary = [[NSMutableDictionary alloc]init];
     NSMutableArray *mTempArray = [[NSMutableArray alloc]init];
     
     NSString *leftDates = @"";
@@ -99,12 +98,12 @@
                 }else{
                     workFlag = [NSNumber numberWithBool:YES];
                 }
+                NSMutableDictionary *mTempDictionary = [[NSMutableDictionary alloc]init];
                 [mTempDictionary setObject:leftDates forKey:LEFT_DAY];
                 [mTempDictionary setObject:leftWeeks forKey:LEFT_WEEK];
                 [mTempDictionary setObject:workFlag forKey:LEFT_WORKFLAG];
                 DLog(@"day is - %@", leftDates);
                 [mTempArray addObject:mTempDictionary];
-                [mTempDictionary removeAllObjects];
             }
             _items = [mTempArray mutableCopy];
         
