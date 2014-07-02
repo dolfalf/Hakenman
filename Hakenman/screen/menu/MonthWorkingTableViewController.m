@@ -13,12 +13,9 @@
 #import "NSDate+Helper.h"
 #import "MonthWorkingTableEditViewController.h"
 #import "LeftTableViewData.h"
+#import "RightTableViewData.h"
 
 #define TEST_MODE 0
-
-#define LEFT_DAY @"leftDay"
-#define LEFT_WEEK @"leftWeek"
-#define LEFT_WORKFLAG @"leftWorkFlag"
 
 @interface MonthWorkingTableViewController () <UITableViewDataSource, UITableViewDelegate> {
     
@@ -114,6 +111,8 @@
                     workFlag = [NSNumber numberWithBool:YES];
                 }
                 
+                leftDataModel.yearData = [NSNumber numberWithInt:[sheetDate getYear]];
+                leftDataModel.monthData = [NSNumber numberWithInt:[sheetDate getMonth]];
                 leftDataModel.dayData = leftDates;
                 leftDataModel.weekData = leftWeeks;
                 leftDataModel.workFlag = workFlag;
@@ -232,7 +231,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    LeftTableViewData *model = [_items objectAtIndex:indexPath.row];
+    LeftTableViewData *leftModel = [_items objectAtIndex:indexPath.row];
+    RightTableViewData *rightModel = [[RightTableViewData alloc]init];
     
     if ([tableView isEqual:leftTableView] == YES) {
         //左側を表示するときには、TimeCardを参照する必要がない(自分で作る必要がある)
@@ -244,7 +244,7 @@
         
         //cell update.
 
-        [cell updateCell:model.dayData week:model.weekData isWork:model.workFlag];
+        [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag];
         
         return cell;
         
@@ -255,8 +255,20 @@
             cell = [[RightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
+        //全然なってない、今後エディターと設定値を参照して表示させる予定
+        if (rightModel.start_time == nil || rightModel.end_time == nil || rightModel.rest_time == nil) {
+            rightModel.start_time = [NSNumber numberWithInteger:0];
+            rightModel.end_time = [NSNumber numberWithInteger:0];
+            rightModel.rest_time = [NSNumber numberWithInteger:1];
+        }
+        rightModel.workday_flag = leftModel.workFlag;
+        if (rightModel.workday_flag == [NSNumber numberWithBool:NO]) {
+            rightModel.start_time = [NSNumber numberWithInteger:0];
+            rightModel.end_time = [NSNumber numberWithInteger:0];
+            rightModel.rest_time = [NSNumber numberWithInteger:0];
+        }
         //cell update.
-//        [cell updateCell:model];
+        [cell updateCell:rightModel];
         
         return cell;
     }

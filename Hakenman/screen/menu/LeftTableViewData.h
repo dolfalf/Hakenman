@@ -12,6 +12,8 @@
 
 
 //日付、曜日、休み判定確認
+@property(nonatomic, strong) NSNumber *yearData;
+@property(nonatomic, strong) NSNumber *monthData;
 @property(nonatomic, strong) NSNumber *dayData;
 @property(nonatomic, strong) NSNumber *weekData;
 @property(nonatomic, strong) NSNumber *workFlag;
