@@ -58,6 +58,7 @@
 		3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3DC18DD75FD0062B07A /* TopViewController.m */; };
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3D1F5B2619637DDB003D9C25 /* LeftTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */; };
+		3DD9C5FC19641F7500F4B8C5 /* RightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,8 @@
 		3BC0E3E118DD76460062B07A /* Top.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Top.storyboard; sourceTree = "<group>"; };
 		3D1F5B2419637DDB003D9C25 /* LeftTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewData.h; sourceTree = "<group>"; };
 		3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewData.m; sourceTree = "<group>"; };
+		3DD9C5FA19641F7500F4B8C5 /* RightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightTableViewData.h; sourceTree = "<group>"; };
+		3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewData.m; sourceTree = "<group>"; };
 		532CC838725D4E49AAEC195A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F572CE3580F6449BBEA9BF3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -225,6 +228,8 @@
 				3B65971F19177F250075AB24 /* MonthWorkingTableEditViewController.m */,
 				3D1F5B2419637DDB003D9C25 /* LeftTableViewData.h */,
 				3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */,
+				3DD9C5FA19641F7500F4B8C5 /* RightTableViewData.h */,
+				3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				3BC0E3CA18DD74D80062B07A /* SettingViewController.m in Sources */,
 				3B6AFEDE18E6857100501C94 /* Util.m in Sources */,
 				3B340F3E18DD99FE008F6E1E /* MenuViewController.m in Sources */,
+				3DD9C5FC19641F7500F4B8C5 /* RightTableViewData.m in Sources */,
 				3B65970E19174FAF0075AB24 /* MonthWorkingTableViewController.m in Sources */,
 				3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */,
 				3B8CB23F1942EDD900CD922E /* FileData.m in Sources */,

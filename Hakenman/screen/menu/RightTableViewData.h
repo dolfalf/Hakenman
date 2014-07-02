@@ -1,0 +1,23 @@
+//
+//  RightTableViewData.h
+//  Hakenman
+//
+//  Created by 俊河 李 on 2014/07/02.
+//  Copyright (c) 2014年 kjcode. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface RightTableViewData : NSObject
+
+//    startTimeLabel.text = [Util worktimeString:model.start_time];
+//    endTimeLabel.text = [Util worktimeString:model.end_time];
+//    workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",[Util getWorkTime:model.start_time endTime:model.end_time]];
+//    worktotalLabel.text = [NSString stringWithFormat:@"%2.2f",tt];
+
+@property (nonatomic, strong) NSNumber * end_time;
+@property (nonatomic, strong) NSNumber * rest_time;
+@property (nonatomic, strong) NSNumber * start_time;
+@property (nonatomic, strong) NSNumber * workday_flag;
+
+@end

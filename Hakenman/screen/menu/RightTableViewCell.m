@@ -8,7 +8,7 @@
 
 #import "RightTableViewCell.h"
 #import "Util.h"
-#import "TimeCard.h"
+#import "RightTableViewData.h"
 
 @implementation RightTableViewCell
 
@@ -33,12 +33,16 @@
     // Configure the view for the selected state
 }
 
-- (void)updateCell:(TimeCard *)model {
+//表示めちゃくちゃ。。。早くかえないと。。。
+- (void)updateCell:(RightTableViewData *)model {
     
-//    startTimeLabel.text = [Util worktimeString:model.start_time];
-//    endTimeLabel.text = [Util worktimeString:model.end_time];
+    startTimeLabel.text = [NSString stringWithFormat:@"%@", model.start_time];
+    endTimeLabel.text = [NSString stringWithFormat:@"%@", model.end_time];
+//    NSNumber *durationWorkTime = [model.end_time integerValue] - [model.start_time integerValue];
 //    workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",[Util getWorkTime:model.start_time endTime:model.end_time]];
+    workTimeLabel.text = @"0.0";
 //    worktotalLabel.text = [NSString stringWithFormat:@"%2.2f",tt];
+    worktotalLabel.text = @"8.0";
     
 }
 
