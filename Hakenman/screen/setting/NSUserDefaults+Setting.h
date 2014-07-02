@@ -19,4 +19,7 @@
 + (NSString *)workEndTime;
 + (void)setWorkEndTime:(NSString *)value;
 
++ (NSInteger)displayWorkSheet;
++ (void)displayWorkSheet:(NSInteger)value;
+
 @end

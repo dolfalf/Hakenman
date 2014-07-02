@@ -13,16 +13,50 @@
 + (NSInteger)timeKubun {
     
     NSUserDefaults *userDefaults = [self standardUserDefaults];
-    [userDefaults registerDefaults:@{@"TimeKubunKey" : @(30)}];
+    [userDefaults registerDefaults:@{@"TimeKubunKey" : @(15)}];
     
-    return [[userDefaults objectForKey:@"TimeKubunKey"] integerValue];
+    NSInteger conValue = 0;
+    
+    switch ([[userDefaults objectForKey:@"TimeKubunKey"] integerValue]) {
+        case 0:
+            conValue = 0;
+            break;
+        case 10:
+            conValue = 1;
+            break;
+        case 15:
+            conValue = 2;
+            break;
+        case 30:
+            conValue = 3;
+            break;
+    }
+    
+    return conValue;
     
 }
 
 + (void)setTimeKubun:(NSInteger)value {
     
+    NSInteger conValue = 0;
+    
+    switch (value) {
+        case 0:
+            conValue = 0;
+            break;
+        case 1:
+            conValue = 10;
+            break;
+        case 2:
+            conValue = 15;
+            break;
+        case 3:
+            conValue = 30;
+            break;
+    }
+    
     NSUserDefaults *userDefaults = [self standardUserDefaults];
-    [userDefaults setObject:@(value) forKey:@"TimeKubunKey"];
+    [userDefaults setObject:@(conValue) forKey:@"TimeKubunKey"];
     
     [userDefaults synchronize];
 }
@@ -32,7 +66,7 @@
     NSUserDefaults *userDefaults = [self standardUserDefaults];
     [userDefaults registerDefaults:@{@"WorkStartTimeKey" : @"09:00"}];
     
-    return [userDefaults objectForKey:@"WorkStartTimeKey"];
+    return [userDefaults objectForKey:@"WorkStartTimeKey"] ;
 }
 
 + (void)setWorkStartTime:(NSString *)value {
@@ -57,6 +91,49 @@
     [userDefaults setObject:value forKey:@"WorkEndTimeKey"];
     
     [userDefaults synchronize];
+}
+
++ (NSInteger)displayWorkSheet {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"displayWorkKey" : @"All"}];
+    
+    NSString *strValue = [userDefaults objectForKey:@"displayWorkKey"];
+    NSInteger conValue = 0;
+    if ([strValue isEqualToString:@"All"] == YES) {
+        conValue = 0;
+    }else if ([strValue isEqualToString:@"One Years"] == YES) {
+        conValue = 1;
+    }else if ([strValue isEqualToString:@"6 Months"] == YES) {
+        conValue = 2;
+    }
+    
+    return conValue;
+}
+
++ (void)displayWorkSheet:(NSInteger)value {
+    
+    NSString *strValue = @"";
+    
+    switch (value) {
+        case 0:
+            //all
+            strValue = @"All";
+            break;
+        case 1:
+            //One years
+            strValue = @"One Years";
+            break;
+        case 2:
+            //6 months
+            strValue = @"6 Months";
+            break;
+    }
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:strValue forKey:@"displayWorkKey"];
+    
+    [userDefaults synchronize];
+    
 }
 
 @end

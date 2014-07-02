@@ -28,11 +28,25 @@
 "MenuViewController_menulist_send_daily_mail_title"         = "日報送信";
 
 //SETTING
-"SettingViewController_menulist_working_space_title"                = "勤務場所";
+"SettingViewController_menulist_working_space_title"                = "勤務先";
 "SettingViewController_menulist_calc_time_unit_title"               = "勤務時間単位";
 "SettingViewController_menulist_default_work_time_title"            = "基本勤務時間";
 "SettingViewController_menulist_work_table_display_option_title"    = "勤務表表示";
 "SettingViewController_menulist_daily_mail_content_title"           = "日報文言登録";
+
+"SettingViewController_worktime_picker_title"      = "時間きり";
+"SettingViewController_worktime_picker_none"       = "なし";
+"SettingViewController_worktime_picker_10"         = "10分";
+"SettingViewController_worktime_picker_15"         = "15分";
+"SettingViewController_worktime_picker_30"         = "30分";
+
+"SettingViewController_default_start_worktime_picker_title"       = "出勤時間";
+"SettingViewController_default_end_worktime_picker_title"         = "退勤時間";
+
+"SettingViewController_last_worksheet_display_title"    = "勤務表表示";
+"SettingViewController_last_worksheet_display_all"      = "すべて";
+"SettingViewController_last_worksheet_display_oneyear"  = "最近一年間";
+"SettingViewController_last_worksheet_display_sixmonth" = "最近６ヶ月";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";

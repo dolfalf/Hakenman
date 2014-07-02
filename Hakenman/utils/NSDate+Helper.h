@@ -26,6 +26,7 @@
 + (NSDate *)convDate2String:(NSString *)yyyyMMddHHmmss;
 
 - (NSString *)yyyyMMString;
+- (NSString *)yyyyMMddString;
 - (NSString *)yyyyMMddHHmmssString;
 - (NSString *)convHHmmString;
 @end

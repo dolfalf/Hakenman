@@ -123,11 +123,13 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     _menuBarButton.hidden =
     _settingBarButton.hidden = NO;
-    
+
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    [self.navigationController setToolbarHidden:NO animated:YES];
     
     [super viewDidAppear:animated];
 }
@@ -135,7 +137,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 - (void)viewWillDisappear:(BOOL)animated {
     _menuBarButton.hidden =
     _settingBarButton.hidden = YES;
-    
+    self.navigationController.toolbarHidden = YES;
+     
     [super viewWillDisappear:animated];
 }
 
@@ -340,6 +343,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     DLog(@"%d table cell selected.", indexPath.row);
     
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    
     if (indexPath.row == tableCellTypeToday) {
         //
     }else {
@@ -356,6 +361,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 //            [timeCardDao fetchModelYear:summaryMode month:<#(NSInteger)#>
             
 //            controller.timeCard = ;
+    
         }];
     }
     

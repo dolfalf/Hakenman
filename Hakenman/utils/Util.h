@@ -21,4 +21,7 @@
 + (NSString *)eventTimeString:(NSDate *)dt;
 + (float)getWorkTime:(NSDate *)startTime endTime:(NSDate *)endTime;
 
++ (NSArray *)worktimePickList;
++ (NSArray *)displayWorkSheetList;
+
 @end

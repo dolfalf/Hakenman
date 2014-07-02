@@ -35,6 +35,20 @@
 "SettingViewController_menulist_work_table_display_option_title"    = "Work Talbe display option";
 "SettingViewController_menulist_daily_mail_content_title"           = "Daily email contents";
 
+"SettingViewController_worktime_picker_title"      = "Time division";
+"SettingViewController_worktime_picker_none"       = "none";
+"SettingViewController_worktime_picker_10"         = "10min";
+"SettingViewController_worktime_picker_15"         = "15min";
+"SettingViewController_worktime_picker_30"         = "30min";
+
+"SettingViewController_default_start_worktime_picker_title"       = "work starttime";
+"SettingViewController_default_end_worktime_picker_title"         = "Work endtime";
+
+"SettingViewController_last_worksheet_display_title"    = "Display Worksheet";
+"SettingViewController_last_worksheet_display_all"      = "All";
+"SettingViewController_last_worksheet_display_oneyear"  = "One years";
+"SettingViewController_last_worksheet_display_sixmonth" = "6 months";
+
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
 

@@ -119,6 +119,18 @@
     
 }
 
++ (NSArray *)worktimePickList {
+    
+    return @[LOCALIZE(@"SettingViewController_worktime_picker_none"),
+                                  LOCALIZE(@"SettingViewController_worktime_picker_10"),
+                                  LOCALIZE(@"SettingViewController_worktime_picker_15"),
+                                  LOCALIZE(@"SettingViewController_worktime_picker_30")];
+}
 
++ (NSArray *)displayWorkSheetList {
+    return @[LOCALIZE(@"SettingViewController_last_worksheet_display_all"),
+                                   LOCALIZE(@"SettingViewController_last_worksheet_display_oneyear"),
+                                   LOCALIZE(@"SettingViewController_last_worksheet_display_sixmonth")];
+}
 
 @end

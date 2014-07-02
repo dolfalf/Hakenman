@@ -9,6 +9,9 @@
 #import "SettingViewController.h"
 #import <RETableViewManager/RETableViewManager.h>
 #import <RETableViewManager/RETableViewOptionsController.h>
+#import "NSUserDefaults+Setting.h"
+#import "NSDate+Helper.h"
+#import "Util.h"
 
 enum {
     settingTitleWorkingSpace,
@@ -87,26 +90,60 @@ enum {
     [self.reTableManager addSection:section];
     
     //勤務先 textField
+    RETextItem *workspaceItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_menulist_working_space_title")
+                                                    value:@"test"];
+    workspaceItem.clearButtonMode = UITextFieldViewModeWhileEditing;
+    workspaceItem.textAlignment = NSTextAlignmentLeft;
+    workspaceItem.style = UITableViewCellStyleValue1;
+    [section addItem:workspaceItem];
     
     //時間きり設定 picker
+    NSArray *kubunPickData = [Util worktimePickList];
     
-    //デフォルト勤務時間 picker *2
+    NSString *defaultTimePickString = kubunPickData[[NSUserDefaults timeKubun]];
+    [section addItem:[REPickerItem itemWithTitle:LOCALIZE(@"SettingViewController_worktime_picker_title")
+                                           value:@[defaultTimePickString]
+                                     placeholder:nil
+                                         options:@[kubunPickData]]];
     
-    //勤務表リスト表示 radios
+    //出勤
+    NSDate *startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
+                                               [[NSDate date] yyyyMMddString],
+                                               [[NSUserDefaults workStartTime]
+                                                stringByReplacingOccurrencesOfString:@":" withString:@""]]];
     
+    [NSDate convDate2String:@""];
+    REDateTimeItem *startWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_start_worktime_picker_title") value:startWt
+                                                            placeholder:nil format:@"HH:mm"
+                                                         datePickerMode:UIDatePickerModeDateAndTime];
+    startWtPickerItem.datePickerMode = UIDatePickerModeTime;
+    startWtPickerItem.format = @"HH:mm";
+    [section addItem:startWtPickerItem];
     
-    // Add radio cell (options)
-    //
+    //退勤
+    NSDate *endWt = [NSDate convDate2String:
+                       [NSString stringWithFormat:@"%@%@00",
+                                               [[NSDate date] yyyyMMddString],
+                                               [[NSUserDefaults workEndTime]
+                                                stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+    
+    REDateTimeItem *endWtworkPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_end_worktime_picker_title") value:endWt
+                                                            placeholder:nil format:@"HH:mm"
+                                                         datePickerMode:UIDatePickerModeDateAndTime];
+    endWtworkPickerItem.datePickerMode = UIDatePickerModeTime;
+    endWtworkPickerItem.format = @"HH:mm";
+    [section addItem:endWtworkPickerItem];
+    
+    //過去勤務表リスト表示
+    NSArray *options = [Util displayWorkSheetList];
+    
     __typeof (self) __weak weakSelf = self;
-    RERadioItem *optionItem = [RERadioItem itemWithTitle:@"Radio" value:@"Option 4" selectionHandler:^(RERadioItem *item) {
+    RERadioItem *optionItem = [RERadioItem itemWithTitle:
+                               LOCALIZE(@"SettingViewController_last_worksheet_display_title")
+                                                   value:[options objectAtIndex:[NSUserDefaults displayWorkSheet]]
+                                        selectionHandler:^(RERadioItem *item) {
         __typeof (weakSelf) __strong strongSelf = weakSelf;
         [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
-        
-        // Generate sample options
-        //
-        NSMutableArray *options = [[NSMutableArray alloc] init];
-        for (NSInteger i = 1; i < 40; i++)
-            [options addObject:[NSString stringWithFormat:@"Option %i", i]];
         
         // Present options controller
         //
@@ -117,16 +154,6 @@ enum {
     }];
     [section addItem:optionItem];
 
-    // Add items to the section
-    //
-    RETextItem *textItem = [RETextItem itemWithTitle:@"Enter text" value:@""];
-    textItem.clearButtonMode = UITextFieldViewModeWhileEditing;
-    
-    [section addItem:textItem];
-    
-    // Add a picker item
-    //
-    [section addItem:[REPickerItem itemWithTitle:@"Picker" value:@[@"Item 12", @"Item 23"] placeholder:nil options:@[@[@"Item 11", @"Item 12", @"Item 13"], @[@"Item 21", @"Item 22", @"Item 23", @"Item 24"]]]];
     
 }
 

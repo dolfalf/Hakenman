@@ -164,6 +164,13 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)yyyyMMddString {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [formatter setDateFormat:@"yyyyMMdd"];
+    return [formatter stringFromDate:self];
+}
+
 - (NSString *)yyyyMMddHHmmssString {
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
