@@ -57,6 +57,7 @@
 		3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3CC18DD75310062B07A /* KJViewController.m */; };
 		3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3DC18DD75FD0062B07A /* TopViewController.m */; };
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
+		3D1F5B2619637DDB003D9C25 /* LeftTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,8 @@
 		3BC0E3DB18DD75FD0062B07A /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
 		3BC0E3DC18DD75FD0062B07A /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
 		3BC0E3E118DD76460062B07A /* Top.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Top.storyboard; sourceTree = "<group>"; };
+		3D1F5B2419637DDB003D9C25 /* LeftTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewData.h; sourceTree = "<group>"; };
+		3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewData.m; sourceTree = "<group>"; };
 		532CC838725D4E49AAEC195A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F572CE3580F6449BBEA9BF3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -220,6 +223,8 @@
 				3B659726191781170075AB24 /* SwitchButtonTableViewCell.m */,
 				3B65971E19177F250075AB24 /* MonthWorkingTableEditViewController.h */,
 				3B65971F19177F250075AB24 /* MonthWorkingTableEditViewController.m */,
+				3D1F5B2419637DDB003D9C25 /* LeftTableViewData.h */,
+				3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				3B6CC8B2195D4A8D00F64041 /* TimeCardSummary.m in Sources */,
 				3B6AFEE118E6874200501C94 /* FileDataDao.m in Sources */,
 				3B8CB2521942EFDC00CD922E /* MonthTableViewCell.m in Sources */,
+				3D1F5B2619637DDB003D9C25 /* LeftTableViewData.m in Sources */,
 				3B6CC8AF195D4A8D00F64041 /* TimeCard.m in Sources */,
 				3B8FA72318DDF59400A1182E /* NSUserDefaults+Setting.m in Sources */,
 				3B782548195EC69E003D408D /* UIColor+Helper.m in Sources */,
