@@ -12,6 +12,7 @@
 #import "RightTableViewCell.h"
 #import "NSDate+Helper.h"
 #import "MonthWorkingTableEditViewController.h"
+#import "LeftTableViewData.h"
 
 #define TEST_MODE 0
 
@@ -89,8 +90,8 @@
     //任意のArrayに３０日までの値を格納
     NSMutableArray *mTempArray = [[NSMutableArray alloc]init];
     
-    NSString *leftDates = @"";
-    NSString *leftWeeks = @"";
+    NSNumber *leftDates;
+    NSNumber *leftWeeks;
     if (_items == nil) {
         DLog(@"_items is nil");
         //sheetDateからその月の最後の日を算出（何日で終わるのか）
@@ -101,21 +102,24 @@
         NSNumber *workFlag = [NSNumber numberWithBool:YES];
             //終わる日時にあわせて繰り返す
             for (int i = 1; i<=lastDay; i++) {
-                leftDates = [NSString stringWithFormat:@"%d", i];
-                leftWeeks = [NSString stringWithFormat:@"%d", weekDay];
+                
+                LeftTableViewData *leftDataModel = [[LeftTableViewData alloc]init];
+                
+                leftDates = [NSNumber numberWithInt:i];
+                leftWeeks = [NSNumber numberWithInt:weekDay];
                 //土日は基本的に休み
                 if (weekDay == weekSatDay || weekDay == weekSunday) {
                     workFlag = [NSNumber numberWithBool:NO];
                 }else{
                     workFlag = [NSNumber numberWithBool:YES];
                 }
-                //後でクラスとして別処理する予定です
-                NSMutableDictionary *mTempDictionary = [[NSMutableDictionary alloc]init];
-                [mTempDictionary setObject:leftDates forKey:LEFT_DAY];
-                [mTempDictionary setObject:leftWeeks forKey:LEFT_WEEK];
-                [mTempDictionary setObject:workFlag forKey:LEFT_WORKFLAG];
-                DLog(@"day is - %@", leftDates);
-                [mTempArray addObject:mTempDictionary];
+                
+                leftDataModel.dayData = leftDates;
+                leftDataModel.weekData = leftWeeks;
+                leftDataModel.workFlag = workFlag;
+                
+                [mTempArray addObject:leftDataModel];
+                
                 //土曜日になったら、曜日表示を日曜日からやり直す
                 if (weekDay == 7) {
                     weekDay = 1;
@@ -228,8 +232,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    TimeCard *model = [_items objectAtIndex:indexPath.row];
-    NSArray *showArr = [_items objectAtIndex:indexPath.row];
+    LeftTableViewData *model = [_items objectAtIndex:indexPath.row];
     
     if ([tableView isEqual:leftTableView] == YES) {
         //左側を表示するときには、TimeCardを参照する必要がない(自分で作る必要がある)
@@ -241,8 +244,7 @@
         
         //cell update.
 
-        [cell updateCell:[showArr valueForKey:LEFT_DAY] week:[showArr valueForKey:LEFT_WEEK] isWork:[showArr valueForKey:LEFT_WORKFLAG]];
-//        [cell updateCell:model.t_day week:model.t_week isWork:model.workday_flag];
+        [cell updateCell:model.dayData week:model.weekData isWork:model.workFlag];
         
         return cell;
         
