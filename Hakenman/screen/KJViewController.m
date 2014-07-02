@@ -7,6 +7,7 @@
 //
 
 #import "KJViewController.h"
+#import "UIColor+Helper.h"
 
 @interface KJViewController ()
 
@@ -37,11 +38,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 /**
  * @brief overrideしてください。
  * ViewDidLoadの時に呼ばれます。
  */
 - (void)initControls {
+    
+    //Navigationbar, statusbar initialize
+    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
+        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
+        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+        [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    }
     
 }
 

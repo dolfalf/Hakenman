@@ -18,7 +18,6 @@
 #import "MonthTableViewCell.h"
 
 #import "NSDate+Helper.h"
-#import "UIColor+Helper.h"
 
 #import "MonthWorkingTableViewController.h"
 
@@ -133,11 +132,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [super viewDidAppear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     _menuBarButton.hidden =
     _settingBarButton.hidden = YES;
     
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -169,13 +168,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 #pragma mark - override method
 - (void)initControls {
     
-    //Navigationbar, statusbar initialize
-    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
-        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
-        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-        [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    }
+    [super initControls];
     
+    //Navigation button add.
     [PBFlatSettings sharedInstance].mainColor = [UIColor whiteColor];
     _menuBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(5, 5, 35, 35)
                                                                             andWithType:PBFlatIconMenu];

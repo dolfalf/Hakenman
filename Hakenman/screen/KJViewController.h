@@ -15,6 +15,4 @@
 
 - (void)initControls;
 
-+ (void)gotoMonthWorkingTableViewController:(KJViewController *)owner;
-
 @end

@@ -1,13 +1,19 @@
 PODS:
   - PBFlatUI (1.1.0)
-  - RHTableViewProvider (0.0.1)
+  - REFormattedNumberField (1.1.2)
+  - RETableViewManager (1.5.10):
+    - REFormattedNumberField (~> 1.1.2)
+    - REValidation (~> 0.1.4)
+  - REValidation (0.1.4)
 
 DEPENDENCIES:
   - PBFlatUI (~> 1.1.0)
-  - RHTableViewProvider (~> 0.0)
+  - RETableViewManager (~> 1.5)
 
 SPEC CHECKSUMS:
   PBFlatUI: c5b83184df1ea5567c23cce0f2e36708e8e1638f
-  RHTableViewProvider: c7657e07b174296d46a3c26b80eec8b62bcf3fa1
+  REFormattedNumberField: 321bf62160e6dc480844ac99ab6821ef4dd20802
+  RETableViewManager: 534104717ea10a71b203e80ee0dd3c4c79648be3
+  REValidation: a0033a582415848854e875dfcbe69c107de19f81
 
 COCOAPODS: 0.33.1
