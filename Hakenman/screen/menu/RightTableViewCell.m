@@ -35,7 +35,7 @@
 }
 
 //表示めちゃくちゃ。。。早くかえないと。。。
-- (void)updateCell:(TimeCard *)model {
+- (void)updateCell:(RightTableViewData *)model {
     
     if (model.start_time == nil || model.end_time == nil) {
         startTimeLabel.text = @"";
@@ -43,8 +43,8 @@
         workTimeLabel.text = @"";
         worktotalLabel.text = @"";
     }else{
-        startTimeLabel.text = model.start_time;
-        endTimeLabel.text = model.end_time;
+        startTimeLabel.text = [NSString stringWithFormat:@"%@", model.start_time];
+        endTimeLabel.text = [NSString stringWithFormat:@"%@", model.end_time];
         workTimeLabel.text = @"未実装";
         worktotalLabel.text = @"未実装";
     }

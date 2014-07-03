@@ -8,7 +8,6 @@
 
 #import "MonthWorkingTableViewController.h"
 #import "TimeCardDao.h"
-#import "TimeCard.h"
 #import "LeftTableViewCell.h"
 #import "RightTableViewCell.h"
 #import "NSDate+Helper.h"
@@ -29,6 +28,7 @@
 }
 
 @property (nonatomic, assign) NSInteger selectedIndex;
+@property (nonatomic, strong) NSArray *rightItems;
 
 @end
 
@@ -90,7 +90,6 @@
     NSNumber *leftDates;
     NSNumber *leftWeeks;
     if (_items == nil) {
-        DLog(@"_items is nil");
         //sheetDateからその月の最後の日を算出（何日で終わるのか）
         int lastDay = [sheetDate getLastday];
         //sheetDateからその日の曜日を算出
@@ -181,9 +180,11 @@
     //coreDataに今月カレンダーが存在しているかどうかをチェック
     //新しい今月カレンダーを作成
     //今月カレンダーをロードしテーブルを更新
-    TimeCardDao *dao = [TimeCardDao new];
-    [dao insertModelWorkSheet:[NSDate date]];
     
+    TimeCardDao *dao = [TimeCardDao new];
+    self.rightItems = [dao fetchModelYear:[sheetDate getYear] month:[sheetDate getMonth]];
+    NSLog(@"dao fetch result = %@", _rightItems);
+
 }
 
 #pragma mark - private methods
@@ -236,7 +237,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LeftTableViewData *leftModel = [_items objectAtIndex:indexPath.row];
-//    RightTableViewData *rightModel = [[RightTableViewData alloc]init];
+    RightTableViewData *rightModel = [_rightItems objectAtIndex:indexPath.row];
     
     if ([tableView isEqual:leftTableView] == YES) {
         //左側を表示するときには、TimeCardを参照する必要がない(自分で作る必要がある)
@@ -265,12 +266,12 @@
 //            rightModel.end_time = [NSNumber numberWithInteger:0];
 //            rightModel.rest_time = [NSNumber numberWithInteger:1];
 //        }
-//        rightModel.workday_flag = leftModel.workFlag;
-//        if (rightModel.workday_flag == [NSNumber numberWithBool:NO]) {
-//            rightModel.start_time = [NSNumber numberWithInteger:0];
-//            rightModel.end_time = [NSNumber numberWithInteger:0];
-//            rightModel.rest_time = [NSNumber numberWithInteger:0];
-//        }
+        rightModel.workday_flag = leftModel.workFlag;
+        if (rightModel.workday_flag == [NSNumber numberWithBool:NO]) {
+            rightModel.start_time = [NSNumber numberWithInteger:0];
+            rightModel.end_time = [NSNumber numberWithInteger:0];
+            rightModel.rest_time = [NSNumber numberWithInteger:0];
+        }
         
 //        model.workday_flag = leftModel.workFlag;
 //        if (model.workday_flag == [NSNumber numberWithBool:NO]) {
@@ -279,8 +280,8 @@
 //            model.rest_time = [NSNumber numberWithInteger:0];
 //        }
 //
-//        //cell update.
-//        [cell updateCell:model];
+        //cell update.
+        [cell updateCell:rightModel];
         
         return cell;
     }
