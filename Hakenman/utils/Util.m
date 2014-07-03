@@ -9,6 +9,10 @@
 #import "Util.h"
 #import "const.h"
 #import "NSDate+Helper.h"
+#import <MessageUI/MessageUI.h>
+#import "KJViewController.h"
+#import "TimeCard.h"
+#import <UIKit/UIDocumentInteractionController.h>
 
 @implementation Util
 
@@ -131,6 +135,114 @@
     return @[LOCALIZE(@"SettingViewController_last_worksheet_display_all"),
                                    LOCALIZE(@"SettingViewController_last_worksheet_display_oneyear"),
                                    LOCALIZE(@"SettingViewController_last_worksheet_display_sixmonth")];
+}
+
++ (NSArray *)reportTitleList {
+    return @[LOCALIZE(@"SettingViewController_work_report_title_templete1"),
+             LOCALIZE(@"SettingViewController_work_report_title_templete2")];
+}
+
++ (NSString*)exportCSVString:(NSArray*)sources {
+    
+    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    
+    // 1行目だけ先に追加
+    NSMutableArray* all = [@[@"date,work_starttime ,work_endtime,rest_time"] mutableCopy];
+    
+    // データを降順にソート
+    NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    sources = [sources sortedArrayUsingDescriptors:@[desc]];
+    
+    // カンマ区切りで追加
+    for (NSInteger i=0; i<sources.count; i++) {
+        TimeCard* model = [sources objectAtIndex:i];
+        NSArray* adding = @[model.t_yyyymmdd, model.start_time, model.end_time, model.rest_time];
+        NSString* str = [adding componentsJoinedByString:@","];
+        [all addObject:str];
+    }
+    // CRLFで区切ったNSStringを返す
+    return [all componentsJoinedByString:@"\r\n"];
+}
+
++ (NSString *)generateCSVFilename:(NSString *)prefix {
+    
+    return [NSString stringWithFormat:@"%@_%@.csv",prefix, [[NSDate date] yyyyMMddHHmmssString]];
+}
+
++ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets {
+
+    // メールを利用できるかチェック
+    if (![MFMailComposeViewController canSendMail]) {
+        return;
+    }
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    [controller setMailComposeDelegate:owner];
+    
+    if ([worksheets count] > 0) {
+        // 取得したNSStringをNSdataに変換
+        NSData* data = [[self exportCSVString:worksheets] dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *prefix = [[((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue] substringWithRange:NSMakeRange(0, 6)];
+        // mimeTypeはtext/csv
+        [controller addAttachmentData:data mimeType:@"text/csv" fileName:[self generateCSVFilename:prefix]];
+        
+        // 表示
+        [((KJViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
+    }else {
+        DLog(@"生成するCSVデータがない");
+        return;
+    }
+    
+}
+
++ (void)sendDocumentfileWorkSheet:(KJViewController *)owner data:(NSArray *)worksheets {
+    
+    //テキストファイルとして書き出すためのディレクトリを作成する
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* docDir = [paths objectAtIndex:0];
+    
+    NSString* dirPath = [NSString stringWithFormat:@"%@/cache", docDir];
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    // ディレクトリが存在するか確認する
+    if (![fileManager fileExistsAtPath:dirPath])
+    {
+        // 存在しなければ、ディレクトリを作成する
+        [fileManager createDirectoryAtPath:dirPath
+               withIntermediateDirectories:YES
+                                attributes:nil error:nil];
+    }
+    
+    
+    if ([worksheets count] > 0) {
+        // 最終的に他のアプリで開きたい文字列を用意しておきます
+        NSString* hoge = @"テスト";
+        
+        NSString *prefix = [[((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue] substringWithRange:NSMakeRange(0, 6)];
+        
+        // データの書き込み
+        NSString* filePath = [NSString stringWithFormat:@"%@/%@", dirPath, [self generateCSVFilename:prefix]];
+        
+        [hoge writeToFile:filePath atomically:YES encoding:NSUnicodeStringEncoding error:nil];
+        
+        NSURL *url = [NSURL fileURLWithPath:filePath];
+        //UIDocumentController propertyの存在を確認
+        owner.docInterCon = [UIDocumentInteractionController interactionControllerWithURL:url];
+        owner.docInterCon.delegate = owner;
+        
+        BOOL isValid;
+        isValid = [owner.docInterCon presentOpenInMenuFromRect:((KJViewController *)owner).view.frame
+                                                        inView:((KJViewController *)owner).view
+                                                      animated:YES];
+        //    isValid = [owner.docInterCon presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];
+        if (!isValid) {
+            DLog(@"データを開けるアプリケーションが見つかりません。");
+        }
+    }else {
+        DLog(@"生成するCSVデータがない");
+        return;
+    }
+    
 }
 
 @end

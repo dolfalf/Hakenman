@@ -19,6 +19,7 @@
 
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
+"TopViewController_actionsheet_send_work_report" = "日報メールを送信";
 "TopViewController_actionsheet_start_work_write" = "出勤時間を書く";
 "TopViewController_actionsheet_end_work_write" = "退勤時間を書く";
 
@@ -28,6 +29,9 @@
 "MenuViewController_menulist_send_daily_mail_title"         = "日報送信";
 
 //SETTING
+"SettingViewController_menulist_basic_section_title"                = "基本設定";
+"SettingViewController_menulist_work_report_section_title"          = "日報メール設定";
+"SettingViewController_menulist_work_report_content_section_title"  = "日報内容定型文";
 "SettingViewController_menulist_working_space_title"                = "勤務先";
 "SettingViewController_menulist_calc_time_unit_title"               = "勤務時間単位";
 "SettingViewController_menulist_default_work_time_title"            = "基本勤務時間";
@@ -47,6 +51,11 @@
 "SettingViewController_last_worksheet_display_all"      = "すべて";
 "SettingViewController_last_worksheet_display_oneyear"  = "最近一年間";
 "SettingViewController_last_worksheet_display_sixmonth" = "最近６ヶ月";
+
+"SettingViewController_work_report_title_templete1" = "【日報】yyyy年mm月dd日";
+"SettingViewController_work_report_title_templete2" = "(日報)yyyymmdd";
+
+"SettingViewController_work_report_time_templete_add" = "内容に時間定型文追加";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";
