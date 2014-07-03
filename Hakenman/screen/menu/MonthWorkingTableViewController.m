@@ -272,15 +272,15 @@
 //            rightModel.rest_time = [NSNumber numberWithInteger:0];
 //        }
         
-        model.workday_flag = leftModel.workFlag;
-        if (model.workday_flag == [NSNumber numberWithBool:NO]) {
-            model.start_time = @"0:00";
-            model.end_time = @"0:00";
-            model.rest_time = [NSNumber numberWithInteger:0];
-        }
-
-        //cell update.
-        [cell updateCell:model];
+//        model.workday_flag = leftModel.workFlag;
+//        if (model.workday_flag == [NSNumber numberWithBool:NO]) {
+//            model.start_time = @"0:00";
+//            model.end_time = @"0:00";
+//            model.rest_time = [NSNumber numberWithInteger:0];
+//        }
+//
+//        //cell update.
+//        [cell updateCell:model];
         
         return cell;
     }
