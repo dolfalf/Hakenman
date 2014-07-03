@@ -7,11 +7,14 @@
 //
 
 #import "KJViewController.h"
+
 @class TimeCard;
+@class LeftTableViewData;
 
 @interface MonthWorkingTableEditViewController : KJViewController <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 //TimeCardの代わりにRightTableViewDataの何かで埋める予定
 @property (nonatomic, strong) TimeCard *timeCard;
+@property (nonatomic, strong) LeftTableViewData *showData;
 
 @end

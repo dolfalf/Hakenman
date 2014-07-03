@@ -8,6 +8,7 @@
 
 #import "MonthWorkingTableViewController.h"
 #import "TimeCardDao.h"
+#import "TimeCard.h"
 #import "LeftTableViewCell.h"
 #import "RightTableViewCell.h"
 #import "NSDate+Helper.h"
@@ -69,13 +70,12 @@
     //viewDidLoadで実行される
 
 #if TEST_MODE
-    //NSDate convDate2ShortStringでDateを決めるべき
-    NSDate *sheetDate = [NSDate date];
 #else
     
-    //選択された語尾の日付が1日以上だったら、初日から表示するために日を一日に固定する
-    if ([_inputDates hasSuffix:@"01"] == NO) {
-        _inputDates = @"20140701";
+    //選択された月の語尾に@"01"をつけて、その月の表示のための形に変更する
+    if ([_inputDates isEqualToString:@""] == NO) {
+        //20140701
+        _inputDates = [_inputDates stringByAppendingString:@"01"];
     }
     
     //NSDate convDate2ShortStringでDateを決めるべき（なおった？）
@@ -195,17 +195,21 @@
     if ([[segue identifier] isEqual:@"goToEdit"]) {
         MonthWorkingTableEditViewController *controller = (MonthWorkingTableEditViewController *)[segue destinationViewController];
         
-        controller.timeCard = [_items objectAtIndex:_selectedIndex];
+        //編集画面へ遷移するとき、選んだ日のデータを編集画面へ渡す
+        controller.showData = [_items objectAtIndex:_selectedIndex];
+        
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+    //右と左のスクロールが同時に行われるようにする（オフセットを動的に合わせる）
     if ([scrollView isEqual:rightTableView] == YES) {
         leftTableView.contentOffset = CGPointMake(leftTableView.contentOffset.x,
                                                   rightTableView.contentOffset.y);
+    }else{
+        rightTableView.contentOffset = CGPointMake(rightTableView.contentOffset.x,
+                                                  leftTableView.contentOffset.y);
     }
-    
 }
 
 #pragma mark - UITableView Delegate
@@ -232,7 +236,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LeftTableViewData *leftModel = [_items objectAtIndex:indexPath.row];
-    RightTableViewData *rightModel = [[RightTableViewData alloc]init];
+//    RightTableViewData *rightModel = [[RightTableViewData alloc]init];
     
     if ([tableView isEqual:leftTableView] == YES) {
         //左側を表示するときには、TimeCardを参照する必要がない(自分で作る必要がある)
@@ -256,19 +260,27 @@
         }
         
         //全然なってない、今後エディターと設定値を参照して表示させる予定
-        if (rightModel.start_time == nil || rightModel.end_time == nil || rightModel.rest_time == nil) {
-            rightModel.start_time = [NSNumber numberWithInteger:0];
-            rightModel.end_time = [NSNumber numberWithInteger:0];
-            rightModel.rest_time = [NSNumber numberWithInteger:1];
+//        if (rightModel.start_time == nil || rightModel.end_time == nil || rightModel.rest_time == nil) {
+//            rightModel.start_time = [NSNumber numberWithInteger:0];
+//            rightModel.end_time = [NSNumber numberWithInteger:0];
+//            rightModel.rest_time = [NSNumber numberWithInteger:1];
+//        }
+//        rightModel.workday_flag = leftModel.workFlag;
+//        if (rightModel.workday_flag == [NSNumber numberWithBool:NO]) {
+//            rightModel.start_time = [NSNumber numberWithInteger:0];
+//            rightModel.end_time = [NSNumber numberWithInteger:0];
+//            rightModel.rest_time = [NSNumber numberWithInteger:0];
+//        }
+        
+        model.workday_flag = leftModel.workFlag;
+        if (model.workday_flag == [NSNumber numberWithBool:NO]) {
+            model.start_time = @"0:00";
+            model.end_time = @"0:00";
+            model.rest_time = [NSNumber numberWithInteger:0];
         }
-        rightModel.workday_flag = leftModel.workFlag;
-        if (rightModel.workday_flag == [NSNumber numberWithBool:NO]) {
-            rightModel.start_time = [NSNumber numberWithInteger:0];
-            rightModel.end_time = [NSNumber numberWithInteger:0];
-            rightModel.rest_time = [NSNumber numberWithInteger:0];
-        }
+
         //cell update.
-        [cell updateCell:rightModel];
+        [cell updateCell:model];
         
         return cell;
     }

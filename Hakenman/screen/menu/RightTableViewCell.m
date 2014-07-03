@@ -9,6 +9,7 @@
 #import "RightTableViewCell.h"
 #import "Util.h"
 #import "RightTableViewData.h"
+#import "TimeCard.h"
 
 @implementation RightTableViewCell
 
@@ -34,16 +35,19 @@
 }
 
 //表示めちゃくちゃ。。。早くかえないと。。。
-- (void)updateCell:(RightTableViewData *)model {
+- (void)updateCell:(TimeCard *)model {
     
-    startTimeLabel.text = [NSString stringWithFormat:@"%@", model.start_time];
-    endTimeLabel.text = [NSString stringWithFormat:@"%@", model.end_time];
-//    NSNumber *durationWorkTime = [model.end_time integerValue] - [model.start_time integerValue];
-//    workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",[Util getWorkTime:model.start_time endTime:model.end_time]];
-    workTimeLabel.text = @"0.0";
-//    worktotalLabel.text = [NSString stringWithFormat:@"%2.2f",tt];
-    worktotalLabel.text = @"8.0";
-    
+    if (model.start_time == nil || model.end_time == nil) {
+        startTimeLabel.text = @"";
+        endTimeLabel.text = @"";
+        workTimeLabel.text = @"";
+        worktotalLabel.text = @"";
+    }else{
+        startTimeLabel.text = model.start_time;
+        endTimeLabel.text = model.end_time;
+        workTimeLabel.text = @"未実装";
+        worktotalLabel.text = @"未実装";
+    }
 }
 
 @end

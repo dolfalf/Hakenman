@@ -355,6 +355,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             //TODO:
             TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
 //            NSString *dateString = [NSString stringWithFormat:@"%d", summaryModel.t_yyyymm];
+            controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
             
             
             TimeCardDao *timeCardDao = [TimeCardDao new];

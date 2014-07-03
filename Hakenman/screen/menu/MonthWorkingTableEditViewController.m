@@ -11,6 +11,7 @@
 #import "SwitchButtonTableViewCell.h"
 #import "TimeCardDao.h"
 #import "NSDate+Helper.h"
+#import "LeftTableViewData.h"
 
 #define TABLE_CELL_COUNT            4
 #define TABLE_CELL_TEXTFIELD_TAG    500
@@ -61,9 +62,10 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 
+//    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableEditViewController_edit_navi_title"),
+////                  [_timeCard.t_year intValue],[_timeCard.t_month intValue],[_timeCard.t_day intValue]];
     self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableEditViewController_edit_navi_title"),
-                  [_timeCard.t_year intValue],[_timeCard.t_month intValue],[_timeCard.t_day intValue]];
-    
+                  [_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]];
     [super viewWillAppear:animated];
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class RightTableViewData;
+@class TimeCard;
 
 @interface RightTableViewCell : UITableViewCell {
     
@@ -19,5 +20,6 @@
 }
 
 //TimeCard Coredataの代わりにRightTableViewDataを参照するようにする
-- (void)updateCell:(RightTableViewData *)model;
+//- (void)updateCell:(RightTableViewData *)model;
+- (void)updateCell:(TimeCard *)model;
 @end
