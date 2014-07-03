@@ -114,7 +114,6 @@ enum {
                                                [[NSUserDefaults workStartTime]
                                                 stringByReplacingOccurrencesOfString:@":" withString:@""]]];
     
-    [NSDate convDate2String:@""];
     REDateTimeItem *startWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_start_worktime_picker_title") value:startWt
                                                             placeholder:nil format:@"HH:mm"
                                                          datePickerMode:UIDatePickerModeDateAndTime];
@@ -129,12 +128,12 @@ enum {
                                                [[NSUserDefaults workEndTime]
                                                 stringByReplacingOccurrencesOfString:@":" withString:@""]]];
     
-    REDateTimeItem *endWtworkPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_end_worktime_picker_title") value:endWt
+    REDateTimeItem *endWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_end_worktime_picker_title") value:endWt
                                                             placeholder:nil format:@"HH:mm"
                                                          datePickerMode:UIDatePickerModeDateAndTime];
-    endWtworkPickerItem.datePickerMode = UIDatePickerModeTime;
-    endWtworkPickerItem.format = @"HH:mm";
-    [basicSection addItem:endWtworkPickerItem];
+    endWtPickerItem.datePickerMode = UIDatePickerModeTime;
+    endWtPickerItem.format = @"HH:mm";
+    [basicSection addItem:endWtPickerItem];
     
     //過去勤務表リスト表示
     NSArray *worksheet_options = [Util displayWorkSheetList];
