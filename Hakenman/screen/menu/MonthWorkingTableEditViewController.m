@@ -11,7 +11,9 @@
 #import "SwitchButtonTableViewCell.h"
 #import "TimeCardDao.h"
 #import "NSDate+Helper.h"
+#import "NSUserDefaults+Setting.h"
 #import "LeftTableViewData.h"
+#import <RETableViewManager/RETableViewManager.h>
 
 #define TABLE_CELL_COUNT            4
 #define TABLE_CELL_TEXTFIELD_TAG    500
@@ -25,20 +27,17 @@ typedef enum {
 
 @interface MonthWorkingTableEditViewController () {
     
-    IBOutlet UITableView *editTableView;
     IBOutlet UIBarButtonItem *saveBarButton;
-    
-    UITextField *_currentTextField;
 }
 
-@property (nonatomic, strong) EditTimeTableViewCell *editStartTimeCell;
-@property (nonatomic, strong) EditTimeTableViewCell *editEndTimeCell;
-@property (nonatomic, strong) EditTimeTableViewCell *editRestTimeCell;
-@property (nonatomic, strong) SwitchButtonTableViewCell *editworkDayCell;
+@property (nonatomic, strong) RETableViewManager *reTableManager;
+@property (nonatomic, strong) REDateTimeItem *startWtPickerItem;
+@property (nonatomic, strong) REDateTimeItem *endWtPickerItem;
+@property (nonatomic, strong) REBoolItem *workDayBoolItme;
+@property (nonatomic, strong) RENumberItem *restTimeNumberItem;
 
-@property (nonatomic, weak) UITextField *startTimeTextField;
-@property (nonatomic, weak) UITextField *endTimeTextField;
-@property (nonatomic, weak) UITextField *restTimeTextField;
+@property (nonatomic, weak) IBOutlet UITableView *editTableView;
+
 @property (nonatomic, strong) UITapGestureRecognizer *keyboardDismissTap;
 @end
 
@@ -77,36 +76,9 @@ typedef enum {
 
 #pragma mark - IBAction
 - (IBAction)saveAndClose:(id)sender {
-    
-    TimeCardDao *dao = [TimeCardDao new];
-    
-    if ([_startTimeTextField.text isEqualToString:@""] == NO) {
-        NSArray *st = [_startTimeTextField.text componentsSeparatedByString:@":"];
-        
-        if (_timeCard.start_time == nil) {
-//            _timeCard.start_time = [NSDate convDate2ShortString:_timeCard.t_yyyymmdd];
-        }
-        
-//        _timeCard.start_time = [_timeCard.start_time getTimeOfMonth:[[st objectAtIndex:0] intValue]
-//                                                             mimute:[[st objectAtIndex:1] intValue]];
-    }
-    
-    if ([_endTimeTextField.text isEqualToString:@""] == NO) {
-        NSArray *et = [_endTimeTextField.text componentsSeparatedByString:@":"];
-        
-        if (_timeCard.end_time == nil) {
-//            _timeCard.end_time = [NSDate convDate2ShortString:_timeCard.t_yyyymmdd];
-        }
-        
-//        _timeCard.end_time = [_timeCard.end_time getTimeOfMonth:[[et objectAtIndex:0] intValue]
-//                                                             mimute:[[et objectAtIndex:1] intValue]];
-    }
-    
-    if ([_restTimeTextField.text isEqualToString:@""] == NO) {
-        _timeCard.rest_time = [NSNumber numberWithFloat:[_restTimeTextField.text floatValue]];
-    }
-    
-    [dao insertModel];
+//    TimeCardDao *dao = [TimeCardDao new];
+//    
+//    [dao insertModel];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -123,97 +95,57 @@ typedef enum {
     self.keyboardDismissTap.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:_keyboardDismissTap];
     
+    [self initTableView];
 }
 
-#pragma mark - tableView delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44.0f;
+- (void)initTableView {
     
-}
+    // Create the manager and assign a UITableView
+    //
+    self.reTableManager = [[RETableViewManager alloc] initWithTableView:self.editTableView];
+    
+    // Add a section
+    //
+    RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"勤務時間入力"];
+    [_reTableManager addSection:section];
+    
+    //出勤
+    NSDate *startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
+                                               [[NSDate date] yyyyMMddString],
+                                               [[NSUserDefaults workStartTime]
+                                                stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+    
+    self.startWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_start_worktime_picker_title") value:startWt
+                                                          placeholder:nil format:@"HH:mm"
+                                                       datePickerMode:UIDatePickerModeDateAndTime];
+    _startWtPickerItem.datePickerMode = UIDatePickerModeTime;
+    _startWtPickerItem.format = @"HH:mm";
+    [section addItem:_startWtPickerItem];
+    
+    //退勤
+    NSDate *endWt = [NSDate convDate2String:
+                     [NSString stringWithFormat:@"%@%@00",
+                      [[NSDate date] yyyyMMddString],
+                      [[NSUserDefaults workEndTime]
+                       stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+    
+    self.endWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_end_worktime_picker_title") value:endWt
+                                                            placeholder:nil format:@"HH:mm"
+                                                         datePickerMode:UIDatePickerModeDateAndTime];
+    _endWtPickerItem.datePickerMode = UIDatePickerModeTime;
+    _endWtPickerItem.format = @"HH:mm";
+    [section addItem:_endWtPickerItem];
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //休憩時間
+    self.restTimeNumberItem = [RENumberItem itemWithTitle:@"休憩時間" value:@"" placeholder:@"1時間" format:@"X時間"];
+    [section addItem:_restTimeNumberItem];
     
-    return TABLE_CELL_COUNT;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //平日、休日
+    self.workDayBoolItme = [REBoolItem itemWithTitle:@"営業日" value:YES switchValueChangeHandler:^(REBoolItem *item) {
+        NSLog(@"Value: %i", item.value);
+    }];
     
-    if (indexPath.row == cellTypeStartTime) {
-        
-        NSString *cellIdentifier = @"EditTimeTableViewCell";
-        self.editStartTimeCell = (EditTimeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        
-        if (!_editStartTimeCell) {
-            self.editStartTimeCell = [[EditTimeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        }
-        
-        _startTimeTextField = (UITextField *)[_editStartTimeCell viewWithTag:TABLE_CELL_TEXTFIELD_TAG];
-        _startTimeTextField.delegate = self;
-        _startTimeTextField.placeholder = LOCALIZE(@"MonthWorkingTableEditViewController_edit_placeholder");
-        
-        [_editStartTimeCell updateCell:LOCALIZE(@"MonthWorkingTableEditViewController_edit_start_time_cell") inputTime:_timeCard.start_time];
-        
-        
-        
-        return _editStartTimeCell;
-        
-    }else if(indexPath.row == cellTypeEndTime) {
-        
-        NSString *cellIdentifier = @"EditTimeTableViewCell";
-        self.editEndTimeCell = (EditTimeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (!_editEndTimeCell) {
-            self.editEndTimeCell = [[EditTimeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        }
-        
-        _endTimeTextField = (UITextField *)[_editEndTimeCell viewWithTag:TABLE_CELL_TEXTFIELD_TAG];
-        _endTimeTextField.placeholder = LOCALIZE(@"MonthWorkingTableEditViewController_edit_placeholder");
-        _endTimeTextField.delegate = self;
-        
-        [_editEndTimeCell updateCell:LOCALIZE(@"MonthWorkingTableEditViewController_edit_end_time_cell") inputTime:_timeCard.end_time];
-        
-        return _editEndTimeCell;
-        
-    }else if (indexPath.row == cellTypeRestTime) {
-        
-        NSString *cellIdentifier = @"EditTimeTableViewCell";
-        self.editRestTimeCell = (EditTimeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (!_editRestTimeCell) {
-            self.editRestTimeCell = [[EditTimeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        }
-        
-        _restTimeTextField = (UITextField *)[_editRestTimeCell viewWithTag:TABLE_CELL_TEXTFIELD_TAG];
-        _restTimeTextField.placeholder = LOCALIZE(@"MonthWorkingTableEditViewController_edit_placeholder");
-        _restTimeTextField.delegate = self;
-        
-        [_editRestTimeCell updateCell:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") inputTime:_timeCard.rest_time];
-        return _editRestTimeCell;
-        
-    }else if (indexPath.row == CellTypeWorkday) {
-        
-        NSString *cellIdentifier = @"SwitchButtonTableViewCell";
-        self.editworkDayCell = (SwitchButtonTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (!_editworkDayCell) {
-            self.editworkDayCell = [[SwitchButtonTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        }
-        
-        [_editworkDayCell updateCell:LOCALIZE(@"MonthWorkingTableEditViewController_edit_workday_switch_cell")
-                           isWorkday:_timeCard.workday_flag switchHandler:^(BOOL on) {
-                               //TODO: スウィッチが変更された時の処理
-                           }];
-        
-        return _editworkDayCell;
-    }
-    
-    return nil;
-    
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    DLog(@"%d table cell selected.", indexPath.row);
+    [section addItem:_workDayBoolItme];
     
 }
 
@@ -230,48 +162,18 @@ typedef enum {
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    _currentTextField = textField;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    
-    if ([_restTimeTextField isEqual:textField] == NO) {
-        
-        NSString *timeCheck = [textField.text stringByReplacingOccurrencesOfString:@":" withString:@""];
-        
-        if ([timeCheck length] == 4 || [timeCheck length] == 0) {
-            //ok
-            textField.text = [NSString stringWithFormat:@"%@:%@",
-                              [timeCheck substringWithRange:NSMakeRange(0,2)],
-                              [timeCheck substringWithRange:NSMakeRange(2,2)]];
-        }else {
-            //error.
-            return;
-        }
-    }else {
-        //休憩時間編集
-        if ([textField.text floatValue] > 8) {
-            //error
-        }
-    }
     
 }
 
 -(void)onKeyboardDismissTap:(UITapGestureRecognizer *)recognizer {
     
-    [_currentTextField resignFirstResponder];
 }
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     
-    if (gestureRecognizer == _keyboardDismissTap) {
-        // キーボード表示中のみ有効
-        if (_currentTextField.isFirstResponder) {
-            return YES;
-        } else {
-            return NO;
-        }
-    }
     return YES;
 }
 

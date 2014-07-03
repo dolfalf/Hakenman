@@ -11,7 +11,7 @@
 @class TimeCard;
 @class LeftTableViewData;
 
-@interface MonthWorkingTableEditViewController : KJViewController <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate, UIGestureRecognizerDelegate>
+@interface MonthWorkingTableEditViewController : KJViewController <UIGestureRecognizerDelegate>
 
 //TimeCardの代わりにRightTableViewDataの何かで埋める予定
 @property (nonatomic, strong) TimeCard *timeCard;
