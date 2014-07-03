@@ -23,5 +23,7 @@
 
 + (NSArray *)worktimePickList;
 + (NSArray *)displayWorkSheetList;
++ (NSArray *)reportTitleList;
 
++ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets;
 @end

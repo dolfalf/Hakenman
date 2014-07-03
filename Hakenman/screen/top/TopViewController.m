@@ -21,6 +21,8 @@
 
 #import "MonthWorkingTableViewController.h"
 
+#define TOPVIEWCONTROLLER_MENU_HIDDEN
+
 NS_ENUM(NSInteger, tableCellType) {
     tableCellTypeToday = 0,
     tableCellTypeMonth,
@@ -29,6 +31,7 @@ NS_ENUM(NSInteger, tableCellType) {
 NS_ENUM(NSInteger, actionsheetButtonType) {
     actionsheetButtonTypeWriteStartTime = 0,
     actionsheetButtonTypeWriteEndTime,
+    actionsheetButtonTypeSendWorkReport,
     actionsheetButtonTypeCancel,
 };
 
@@ -121,7 +124,12 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    _menuBarButton.hidden =
+    
+#ifdef TOPVIEWCONTROLLER_MENU_HIDDEN
+    _menuBarButton.hidden = YES;
+#else
+    _menuBarButton.hidden = NO;
+#endif
     _settingBarButton.hidden = NO;
 
     [super viewWillAppear:animated];
@@ -135,7 +143,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    _menuBarButton.hidden =
+    
+    _menuBarButton.hidden = YES;
     _settingBarButton.hidden = YES;
     self.navigationController.toolbarHidden = YES;
      
@@ -197,8 +206,10 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 //    _writeActionSheet.title = @"選択してください。";
     [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_start_work_write")];
     [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_end_work_write")];
+    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_send_work_report")];
     [_writeActionSheet addButtonWithTitle:LOCALIZE(@"Common_actionsheet_cancel")];
-    _writeActionSheet.cancelButtonIndex = 2;
+    _writeActionSheet.destructiveButtonIndex = 2;
+    _writeActionSheet.cancelButtonIndex = 3;
     
     //Timer
     self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:30.f
@@ -383,6 +394,10 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                 //set param.
             }];
         break;
+            
+        case actionsheetButtonTypeSendWorkReport:
+            //TODO:UserDefalutからデータを取得し、メールフォーム表示
+            break;
     case actionsheetButtonTypeCancel:
             //cancel
         break;

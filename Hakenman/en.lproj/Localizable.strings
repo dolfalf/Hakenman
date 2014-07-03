@@ -20,6 +20,7 @@
 
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
+"TopViewController_actionsheet_send_work_report" = "Send work report";
 "TopViewController_actionsheet_start_work_write" = "Write work start";
 "TopViewController_actionsheet_end_work_write" = "Write work finish";
 
@@ -29,6 +30,9 @@
 "MenuViewController_menulist_send_daily_mail_title"         = "Send daily mail";
 
 //SETTING
+"SettingViewController_menulist_basic_section_title"                = "Basic setting";
+"SettingViewController_menulist_work_report_section_title"          = "Work report setting";
+"SettingViewController_menulist_work_report_content_section_title"  = "Report content templete";
 "SettingViewController_menulist_working_space_title"                = "Working space";
 "SettingViewController_menulist_calc_time_unit_title"               = "Time calculation unit";
 "SettingViewController_menulist_default_work_time_title"            = "Defalut working time";
@@ -48,6 +52,11 @@
 "SettingViewController_last_worksheet_display_all"      = "All";
 "SettingViewController_last_worksheet_display_oneyear"  = "One years";
 "SettingViewController_last_worksheet_display_sixmonth" = "6 months";
+
+"SettingViewController_work_report_title_templete1" = "【Report】mm/dd yyyy";
+"SettingViewController_work_report_title_templete2" = "(Report)yyyymmdd";
+
+"SettingViewController_work_report_time_templete_add" = "Add worktime templete";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";

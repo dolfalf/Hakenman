@@ -10,8 +10,11 @@
 #import "const.h"
 #import "StoryboardUtil.h"
 #import <PBFlatUI/PBFlatBarButtonItems.h>
+#import <UIKit/UIDocumentInteractionController.h>
 
-@interface KJViewController : UIViewController
+@interface KJViewController : UIViewController <UIDocumentInteractionControllerDelegate>
+
+@property (nonatomic, strong) UIDocumentInteractionController *docInterCon;
 
 - (void)initControls;
 
