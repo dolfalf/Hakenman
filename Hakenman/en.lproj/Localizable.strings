@@ -33,6 +33,7 @@
 "SettingViewController_menulist_basic_section_title"                = "Basic setting";
 "SettingViewController_menulist_work_report_section_title"          = "Work report setting";
 "SettingViewController_menulist_work_report_content_section_title"  = "Report content templete";
+"SettingViewController_menulist_app_info_section_title"             = "App information";
 "SettingViewController_menulist_working_space_title"                = "Working space";
 "SettingViewController_menulist_calc_time_unit_title"               = "Time calculation unit";
 "SettingViewController_menulist_default_work_time_title"            = "Defalut working time";
@@ -57,6 +58,9 @@
 "SettingViewController_work_report_title_templete2" = "(Report)yyyymmdd";
 
 "SettingViewController_work_report_time_templete_add" = "Add worktime templete";
+
+"SettingViewController_app_info_title"             = "About KJCode";
+"SettingViewController_open_lisence_title"         = "Open lisence";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
