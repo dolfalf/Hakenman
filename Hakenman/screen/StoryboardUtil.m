@@ -34,4 +34,14 @@
     [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
 }
 
++ (void)gotoOpenLicenseViewController:(id)owner completion:(void(^)(id))completion {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"AppInfo" bundle:nil];
+    KJViewController *controller = (KJViewController *)[storyboard instantiateViewControllerWithIdentifier:@"OpenSourceLicenseViewController"];
+    
+    completion(controller);
+    
+    [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
+}
+
 @end

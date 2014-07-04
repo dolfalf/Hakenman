@@ -205,6 +205,25 @@ enum {
     mailContentTextItem.cellHeight = 88;
     [mailContentSection addItem:mailContentTextItem];
     
+    // Add a section
+    //
+    RETableViewSection *appInfoSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_app_info_section_title")];
+    [self.reTableManager addSection:appInfoSection];
+    
+    //アプリについて
+    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_app_info_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        NSLog(@"app_info: %@", item);
+        //遷移
+    }]];
+    
+    //Open source lisence
+    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_opne_lisence_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        NSLog(@"open source: %@", item);
+        [StoryboardUtil gotoOpenLicenseViewController:self completion:^(id controller) {
+            //
+        }];
+    }]];
+    
 }
 
 #pragma mark - transition screen method

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CAAA21D1966222C00A053C7 /* AppInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */; };
+		1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA21F1966224300A053C7 /* AppInformationViewController.m */; };
+		1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */; };
+		1CAAA2251966252400A053C7 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2241966252400A053C7 /* license.html */; };
+		1CAAA2271966261300A053C7 /* kjcodeInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2261966261300A053C7 /* kjcodeInfo.html */; };
 		1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B119656935002446CB /* Tutorial.storyboard */; };
 		1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B419656952002446CB /* TutorialViewController.m */; };
 		1CF2D6FB1964D1240062B0C1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */; };
@@ -74,6 +79,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppInfo.storyboard; sourceTree = "<group>"; };
+		1CAAA21E1966224300A053C7 /* AppInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInformationViewController.h; sourceTree = "<group>"; };
+		1CAAA21F1966224300A053C7 /* AppInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInformationViewController.m; sourceTree = "<group>"; };
+		1CAAA2211966225900A053C7 /* OpenSourceLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSourceLicenseViewController.h; sourceTree = "<group>"; };
+		1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSourceLicenseViewController.m; sourceTree = "<group>"; };
+		1CAAA2241966252400A053C7 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
+		1CAAA2261966261300A053C7 /* kjcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = kjcodeInfo.html; sourceTree = "<group>"; };
 		1CB7F8B119656935002446CB /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		1CB7F8B319656952002446CB /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		1CB7F8B419656952002446CB /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
@@ -199,6 +211,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CAAA21B196621F800A053C7 /* information */ = {
+			isa = PBXGroup;
+			children = (
+				1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */,
+				1CAAA21E1966224300A053C7 /* AppInformationViewController.h */,
+				1CAAA21F1966224300A053C7 /* AppInformationViewController.m */,
+				1CAAA2211966225900A053C7 /* OpenSourceLicenseViewController.h */,
+				1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */,
+				1CAAA2241966252400A053C7 /* license.html */,
+				1CAAA2261966261300A053C7 /* kjcodeInfo.html */,
+			);
+			path = information;
+			sourceTree = "<group>";
+		};
 		1CB7F8B01965691B002446CB /* tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +404,7 @@
 		3BC0E3B418DD72CE0062B07A /* screen */ = {
 			isa = PBXGroup;
 			children = (
+				1CAAA21B196621F800A053C7 /* information */,
 				1CB7F8B01965691B002446CB /* tutorial */,
 				3BC0E3CB18DD75310062B07A /* KJViewController.h */,
 				3BC0E3CC18DD75310062B07A /* KJViewController.m */,
@@ -503,9 +530,12 @@
 				3B469FB418B89D3A0095C418 /* Images.xcassets in Resources */,
 				1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */,
 				3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */,
+				1CAAA2251966252400A053C7 /* license.html in Resources */,
 				3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */,
 				3B469FA618B89D3A0095C418 /* InfoPlist.strings in Resources */,
 				3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */,
+				1CAAA21D1966222C00A053C7 /* AppInfo.storyboard in Resources */,
+				1CAAA2271966261300A053C7 /* kjcodeInfo.html in Resources */,
 				3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,7 +610,9 @@
 				3B659717191767D30075AB24 /* LeftTableViewCell.m in Sources */,
 				3B6CC8B8195D5D1200F64041 /* StoryboardUtil.m in Sources */,
 				3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */,
+				1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */,
 				3B8CB24F1942EFC200CD922E /* TodayTableViewCell.m in Sources */,
+				1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */,
 				3B6CC8B2195D4A8D00F64041 /* TimeCardSummary.m in Sources */,
 				3B6AFEE118E6874200501C94 /* FileDataDao.m in Sources */,
 				3B8CB2521942EFDC00CD922E /* MonthTableViewCell.m in Sources */,
