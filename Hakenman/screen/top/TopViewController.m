@@ -87,9 +87,12 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     for (int j=3; j < 9; j++) {
         for (int i=1; i < 30; i++) {
             TimeCard *model = [timeCardDao createModel];
-            
+            //20140301090000
             model.start_time = [NSString stringWithFormat:@"20140%d%02d090000",j,i];
             model.end_time = [NSString stringWithFormat:@"20140%d%02d1%d0000",j,i, rand()%9];
+            model.t_year = @([[model.start_time substringWithRange:NSMakeRange(0, 4)] intValue]);
+            model.t_month = @([[model.start_time substringWithRange:NSMakeRange(4, 2)] intValue]);
+            model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 8)] intValue]);
             model.t_yyyymmdd = @([[model.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
             model.workday_flag = @(1);
             model.remarks = @"あいうえお";
