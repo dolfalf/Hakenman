@@ -10,7 +10,7 @@
 
 @interface NSDate (Helper)
 
-- (NSInteger)getYear;
+- (int)getYear;
 - (int)getMonth;
 - (int)getDay;
 - (int)getWeekday;

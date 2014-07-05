@@ -7,14 +7,23 @@
 //
 
 #import "MonthTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 #import "TimeCardSummary.h"
+#import "UIColor+Helper.h"
 
 @interface MonthTableViewCell() {
     
+    IBOutlet UIView *calContainerView;
     IBOutlet UILabel *yearLabel;
     IBOutlet UILabel *monthLabel;
-    IBOutlet UILabel *workdayLabel;
+
     IBOutlet UILabel *workTimeLabel;
+    IBOutlet UILabel *workTimeTitleLabel;
+    IBOutlet UILabel *workTimeUnit;
+    
+    IBOutlet UILabel *workdayLabel;
+    IBOutlet UILabel *workdayTitleLabel;
+    IBOutlet UILabel *workdayUnit;
 }
 
 @end
@@ -33,6 +42,14 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    calContainerView.layer.cornerRadius = 5;
+    calContainerView.layer.masksToBounds = YES;
+    [calContainerView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [calContainerView.layer setBorderWidth:1.f];
+    
+    yearLabel.backgroundColor = [UIColor HKMOrangeColor];
+    monthLabel.backgroundColor = [UIColor whiteColor];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -52,6 +69,7 @@
     monthLabel.text = monthString;
     workdayLabel.text = [NSString stringWithFormat:@"%d", [model.workdays intValue]];
     workTimeLabel.text = [NSString stringWithFormat:@"%d", [model.workTime intValue]];
+    
 }
 
 @end

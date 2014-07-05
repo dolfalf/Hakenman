@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CA7EF991967F1BD001772C9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA7EF981967F1BD001772C9 /* QuartzCore.framework */; };
 		1CAAA21D1966222C00A053C7 /* AppInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */; };
 		1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA21F1966224300A053C7 /* AppInformationViewController.m */; };
 		1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */; };
@@ -79,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1CA7EF981967F1BD001772C9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppInfo.storyboard; sourceTree = "<group>"; };
 		1CAAA21E1966224300A053C7 /* AppInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInformationViewController.h; sourceTree = "<group>"; };
 		1CAAA21F1966224300A053C7 /* AppInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInformationViewController.m; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CA7EF991967F1BD001772C9 /* QuartzCore.framework in Frameworks */,
 				1CF2D6FB1964D1240062B0C1 /* MessageUI.framework in Frameworks */,
 				3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */,
 				3B469F9E18B89D3A0095C418 /* CoreGraphics.framework in Frameworks */,
@@ -297,6 +300,7 @@
 		3B469F9A18B89D3A0095C418 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1CA7EF981967F1BD001772C9 /* QuartzCore.framework */,
 				1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */,
 				3B469FE718B8B0420095C418 /* CoreData.framework */,
 				3B469F9B18B89D3A0095C418 /* Foundation.framework */,

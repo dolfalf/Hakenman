@@ -7,10 +7,13 @@
 //
 
 #import "TodayTableViewCell.h"
+#import "const.h"
 #import "LineGraphView.h"
+#import <QuartzCore/QuartzCore.h>
 #import "NSUserDefaults+Setting.h"
 #import "NSDate+Helper.h"
 #import "UIColor+Helper.h"
+#import "Util.h"
 #import "TimeCard.h"
 
 @interface TodayTableViewCell() <LineGraphViewDelegate>
@@ -20,11 +23,17 @@
 
 @implementation TodayTableViewCell {
     
+    IBOutlet UIView *calContainerView;
     IBOutlet UILabel *yearLabel;
     IBOutlet UILabel *monthLabel;
     IBOutlet UILabel *dayLabel;
-    IBOutlet UILabel *messageLabel;
+    IBOutlet UILabel *weekLabel;
     IBOutlet LineGraphView *lineGraphView;
+    
+    IBOutlet UILabel *messageTitleLabel;
+    IBOutlet UILabel *countdownLabel;
+    IBOutlet UILabel *countdownUnitLabel;
+    
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -39,6 +48,17 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    calContainerView.layer.cornerRadius = 5;
+    calContainerView.layer.masksToBounds = YES;
+    [calContainerView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [calContainerView.layer setBorderWidth:1.f];
+    
+    yearLabel.backgroundColor = [UIColor HKMOrangeColor];
+    monthLabel.backgroundColor = [UIColor whiteColor];
+    dayLabel.backgroundColor = [UIColor whiteColor];
+    
+    messageTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_message_title");
+    countdownUnitLabel.text = LOCALIZE(@"TopViewController_tablecell_countdown_unit");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -51,11 +71,8 @@
 #pragma mark - class method
 - (void)updateCell:(cellMessageType)messageType graphItems:(NSArray *)items {
     
-    NSDate *today = [NSDate date];
-    yearLabel.text = [NSString stringWithFormat:@"%d",[today getYear]];
-    monthLabel.text = [NSString stringWithFormat:@"%d",[today getMonth]];
-    dayLabel.text = [NSString stringWithFormat:@"%d",[today getDay]];
-    messageLabel.text = [[NSDate date] convHHmmString];
+    
+//    messageLabel.text = [[NSDate date] convHHmmString];
 //    messageLabel.text = [self p_displayMessage:messageType displayDate:today];
     
     self.graphItems = items;
@@ -63,13 +80,27 @@
 }
 
 - (void)updateWorkTime {
-    //基準時間より残った時間を計算する
     
-    //計算する時間から色の値を求める
+    NSDate *today = [NSDate date];
     
-    messageLabel.textColor = [UIColor colorWithRed:0.502 green:0.0 blue:0.502 alpha:1.f];
-    //messageLabel.textColor = [UIColor colorWithHexString:@"" alpha:1.f];
-    messageLabel.text = [[NSDate date] convHHmmString];
+    yearLabel.text = [NSString stringWithFormat:@"%d",[today getYear]];
+    monthLabel.text = [NSString stringWithFormat:@"%02d",[today getMonth]];
+    dayLabel.text = [NSString stringWithFormat:@"%02d",[today getDay]];
+    weekLabel.text = [Util weekdayString2:[today getWeekday]];
+    
+    switch ([today getWeekday]) {
+        case weekSatDay:
+            weekLabel.textColor = [UIColor HKMBlueColor];
+            break;
+        case weekSunday:
+            weekLabel.textColor = [UIColor HKMBlueColor];
+            break;
+        default:
+            weekLabel.textColor = [UIColor blackColor];
+            break;
+    }
+    
+    countdownLabel.text = [self p_displayMessage:cellMessageTypeWorkStart displayDate:today];
 }
 
 #pragma private methods
@@ -89,10 +120,7 @@
                                                                  mimute:[timeArray[1] intValue]];
             
             NSTimeInterval t = [current_time timeIntervalSinceDate:workStartTime];
-            
             calc_minute = (int)(t / 60);
-            message_format = @"出勤時間まで%d分です。";
-            DLog(@"%d",calc_minute);
         }
             break;
         case cellMessageTypeWorkEnd:
@@ -105,9 +133,6 @@
             NSTimeInterval t = [workEndTime timeIntervalSinceDate:current_time];
             
             calc_minute = (int)(t / (60 * 60));
-            message_format = @"退勤時間まで%d分です。";
-
-            DLog(@"%d",calc_minute);
         }
             break;
             
@@ -116,7 +141,6 @@
     }
     
     return [NSString stringWithFormat:message_format,calc_minute];
-    
 }
 
 

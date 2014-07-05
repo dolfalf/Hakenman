@@ -35,6 +35,15 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+
 - (void)reloadLineGraphView {
     
 }
@@ -43,6 +52,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
