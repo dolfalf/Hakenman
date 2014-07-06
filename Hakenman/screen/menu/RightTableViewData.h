@@ -15,9 +15,9 @@
 //    workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",[Util getWorkTime:model.start_time endTime:model.end_time]];
 //    worktotalLabel.text = [NSString stringWithFormat:@"%2.2f",tt];
 
-@property (nonatomic, strong) NSNumber * end_time;
+@property (nonatomic, strong) NSString * end_time;
 @property (nonatomic, strong) NSNumber * rest_time;
-@property (nonatomic, strong) NSNumber * start_time;
+@property (nonatomic, strong) NSString * start_time;
 @property (nonatomic, strong) NSNumber * workday_flag;
 
 @end

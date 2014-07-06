@@ -85,7 +85,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
     [timeCardDao deleteAllModel];
     for (int j=3; j < 9; j++) {
-        for (int i=1; i < 30; i++) {
+        for (int i=1; i <= 31; i++) {
             TimeCard *model = [timeCardDao createModel];
             //20140301090000
             model.start_time = [NSString stringWithFormat:@"20140%d%02d090000",j,i];
@@ -94,7 +94,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             model.t_month = @([[model.start_time substringWithRange:NSMakeRange(4, 2)] intValue]);
             model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
             model.t_yyyymmdd = @([[model.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
-            model.workday_flag = @(1);
+            //NO or [NSNumber numberWithBool:YES]...WHY?
+            model.workday_flag = [NSNumber numberWithBool:YES];
             model.remarks = @"あいうえお";
             
             DLog(@"start_time:[%@], end_time:[%@]", model.start_time, model.end_time);
@@ -368,18 +369,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             
             //TODO:
             TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
-//            NSString *dateString = [NSString stringWithFormat:@"%d", summaryModel.t_yyyymm];
             controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
-            
-            
-            TimeCardDao *timeCardDao = [TimeCardDao new];
-//            [timeCardDao fetchModelYear:summaryMode month:<#(NSInteger)#>
-            
-//            controller.timeCard = ;
-    
         }];
     }
-    
 }
 
 #pragma mark - UIActionSheet delegate method

@@ -10,6 +10,7 @@
 #import "Util.h"
 #import "RightTableViewData.h"
 #import "TimeCard.h"
+#import "NSDate+Helper.h"
 
 @implementation RightTableViewCell
 
@@ -37,18 +38,18 @@
 //表示めちゃくちゃ。。。早くかえないと。。。
 - (void)updateCell:(RightTableViewData *)model {
     
-    if (model.start_time == nil || model.end_time == nil) {
+    if (model.workday_flag == NO) {
         startTimeLabel.text = @"";
         endTimeLabel.text = @"";
         workTimeLabel.text = @"";
         worktotalLabel.text = @"";
     }else{
-        //20140301090000
-        NSString *str = [model.start_time stringValue];
-        NSString *str2 = [model.end_time stringValue];
-        startTimeLabel.text = [str substringWithRange:NSMakeRange(8, 4)];
-        endTimeLabel.text = [str2 substringWithRange:NSMakeRange(8, 4)];
-        workTimeLabel.text = @"未実装";
+        NSDate *startTimeFromCore = [NSDate convDate2String:model.start_time];
+        NSDate *endTimeFromCore = [NSDate convDate2String:model.end_time];
+        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
+        startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
+        endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
+        workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
         worktotalLabel.text = @"未実装";
     }
 }
