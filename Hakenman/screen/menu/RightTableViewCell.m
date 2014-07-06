@@ -43,8 +43,11 @@
         workTimeLabel.text = @"";
         worktotalLabel.text = @"";
     }else{
-        startTimeLabel.text = [NSString stringWithFormat:@"%@", model.start_time];
-        endTimeLabel.text = [NSString stringWithFormat:@"%@", model.end_time];
+        //20140301090000
+        NSString *str = [model.start_time stringValue];
+        NSString *str2 = [model.end_time stringValue];
+        startTimeLabel.text = [str substringWithRange:NSMakeRange(8, 4)];
+        endTimeLabel.text = [str2 substringWithRange:NSMakeRange(8, 4)];
         workTimeLabel.text = @"未実装";
         worktotalLabel.text = @"未実装";
     }

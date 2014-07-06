@@ -183,7 +183,7 @@
     
     TimeCardDao *dao = [TimeCardDao new];
     self.rightItems = [dao fetchModelYear:[sheetDate getYear] month:[sheetDate getMonth]];
-    NSLog(@"dao fetch result = %@", _rightItems);
+//    NSLog(@"dao fetch result = %@", _rightItems);
 
 }
 
@@ -261,6 +261,7 @@
         }
         
         //全然なってない、今後エディターと設定値を参照して表示させる予定
+//        rightModel.start_time = [[rightModel.start_time substringWithRange:NSMakeRange(0, 4)] intValue]
 //        if (rightModel.start_time == nil || rightModel.end_time == nil || rightModel.rest_time == nil) {
 //            rightModel.start_time = [NSNumber numberWithInteger:0];
 //            rightModel.end_time = [NSNumber numberWithInteger:0];
