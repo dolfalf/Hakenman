@@ -35,6 +35,9 @@
 "TopViewController_tablecell_message_title" = "After time to work,";
 "TopViewController_tablecell_countdown_unit" = "Min.";
 
+"TopViewController_tablecell_total_work_time_title" = "Work times";
+"TopViewController_tablecell_total_work_day_title" = "Work days";
+
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "Month workingtable";
 "MenuViewController_menulist_working_tablelist_title"       = "Workingtablelist";

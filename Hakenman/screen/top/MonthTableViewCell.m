@@ -8,6 +8,7 @@
 
 #import "MonthTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "const.h"
 #import "TimeCardSummary.h"
 #import "UIColor+Helper.h"
 
@@ -50,6 +51,8 @@
     yearLabel.backgroundColor = [UIColor HKMOrangeColor];
     monthLabel.backgroundColor = [UIColor whiteColor];
     
+    workTimeTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_total_work_time_title");
+    workdayTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_total_work_day_title");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

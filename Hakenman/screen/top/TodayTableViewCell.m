@@ -75,6 +75,8 @@
 //    messageLabel.text = [[NSDate date] convHHmmString];
 //    messageLabel.text = [self p_displayMessage:messageType displayDate:today];
     
+    [self updateWorkTime];
+    
     self.graphItems = items;
     
 }
@@ -93,22 +95,22 @@
             weekLabel.textColor = [UIColor HKMBlueColor];
             break;
         case weekSunday:
-            weekLabel.textColor = [UIColor HKMBlueColor];
+            weekLabel.textColor = [UIColor redColor];
             break;
         default:
             weekLabel.textColor = [UIColor blackColor];
             break;
     }
     
-    countdownLabel.text = [self p_displayMessage:cellMessageTypeWorkStart displayDate:today];
+    [self p_displayMessage:cellMessageTypeWorkStart displayDate:today];
 }
 
 #pragma private methods
-- (NSString *)p_displayMessage:(cellMessageType)type displayDate:(NSDate *)dt {
+- (void)p_displayMessage:(cellMessageType)type displayDate:(NSDate *)dt {
     
     //今日の日付から
     NSDate *current_time = dt;
-    NSString *message_format = @"";
+    NSString *message_format = @"%d";
     NSInteger calc_minute = 0;
     
     switch (type) {
@@ -140,7 +142,15 @@
             break;
     }
     
-    return [NSString stringWithFormat:message_format,calc_minute];
+    //表示対象外
+    if (calc_minute < 0 || calc_minute > 120) {
+        countdownLabel.textColor = [UIColor lightGrayColor];
+        countdownLabel.text = @"- ";
+        return;
+    }
+ 
+    countdownLabel.textColor = [UIColor blackColor];
+    countdownLabel.text = [NSString stringWithFormat:message_format,calc_minute];
 }
 
 

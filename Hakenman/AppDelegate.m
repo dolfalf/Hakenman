@@ -16,14 +16,15 @@
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [UIApplication sharedApplication].statusBarHidden = NO;
-    
+
+#ifdef GOOGLE_ANALYTICS_ENABLE
     // initialization: Google Analytics
     GAI *gai = [GAI sharedInstance];
     gai.trackUncaughtExceptions = YES;
     gai.dispatchInterval = 5;
     [[gai logger] setLogLevel:kGAILogLevelError]; // ログレベルを変えることができる
     [gai trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
-    
+#endif
     return YES;
 }
 							
