@@ -14,6 +14,14 @@
 "Common_weekday_friday" = "金";
 "Common_weekday_satday" = "土";
 
+"Common_weekday2_sunday" = "日曜日";
+"Common_weekday2_monday" = "月曜日";
+"Common_weekday2_tueday" = "火曜日";
+"Common_weekday2_wedday" = "水曜日";
+"Common_weekday2_thuday" = "木曜日";
+"Common_weekday2_friday" = "金曜日";
+"Common_weekday2_satday" = "土曜日";
+
 "Common_actionsheet_ok"     = "確認";
 "Common_actionsheet_cancel" = "キャンセル";
 
@@ -22,6 +30,9 @@
 "TopViewController_actionsheet_send_work_report" = "日報メールを送信";
 "TopViewController_actionsheet_start_work_write" = "出勤時間を書く";
 "TopViewController_actionsheet_end_work_write" = "退勤時間を書く";
+
+"TopViewController_tablecell_message_title" = "出勤時間まで後、";
+"TopViewController_tablecell_countdown_unit" = "分";
 
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "今月の勤務表";

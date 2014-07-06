@@ -59,6 +59,41 @@
     return weekString;
 }
 
++ (NSString *)weekdayString2:(int)weekday {
+    
+    //1 = Sunday, 2 = Monday, etc.
+    
+    NSString *weekString = nil;
+    
+    switch (weekday) {
+        case weekSunday:
+            weekString = LOCALIZE(@"Common_weekday2_sunday");
+            break;
+        case weekMonday:
+            weekString = LOCALIZE(@"Common_weekday2_monday");
+            break;
+        case weekTueDay:
+            weekString = LOCALIZE(@"Common_weekday2_tueday");
+            break;
+        case weekWedDay:
+            weekString = LOCALIZE(@"Common_weekday2_wedday");
+            break;
+        case weekThuDay:
+            weekString = LOCALIZE(@"Common_weekday2_thuday");
+            break;
+        case weekFriDay:
+            weekString = LOCALIZE(@"Common_weekday2_friday");
+            break;
+        case weekSatDay:
+            weekString = LOCALIZE(@"Common_weekday2_satday");
+            break;
+        default:
+            break;
+    }
+    
+    return weekString;
+}
+
 + (NSString *)worktimeString:(NSDate *)dt {
     
     if (dt == nil) {

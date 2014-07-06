@@ -10,47 +10,47 @@
 
 @implementation NSDate (Helper)
 
-- (NSInteger)getYear {
+- (int)getYear {
     
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSYearCalendarUnit fromDate:self];
-    return [components year];
+    return (int)[components year];
 }
 
 - (int)getMonth {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSMonthCalendarUnit fromDate:self];
-    return [components month];
+    return (int)[components month];
 }
 
 - (int)getDay {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSDayCalendarUnit fromDate:self];
-    return [components day];
+    return (int)[components day];
 }
 
 - (int)getWeekday {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSWeekdayCalendarUnit fromDate:self];
-    return [components weekday];
+    return (int)[components weekday];
 }
 
 - (int)getLastday {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSRange range = [cal rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:self];
-    return range.length;
+    return (int)range.length;
 }
 
 - (int)getHour {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSHourCalendarUnit fromDate:self];
-    return [components hour];
+    return (int)[components hour];
 }
 
 - (int)getMinuite {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSMinuteCalendarUnit fromDate:self];
-    return [components minute];
+    return (int)[components minute];
 }
 
 - (NSDate *)getBeginOfMonth {

@@ -15,6 +15,14 @@
 "Common_weekday_friday" = "Fri";
 "Common_weekday_satday" = "Sat";
 
+"Common_weekday2_sunday" = "Sunday";
+"Common_weekday2_monday" = "Monday";
+"Common_weekday2_tueday" = "Tuesday";
+"Common_weekday2_wedday" = "Wednesday";
+"Common_weekday2_thuday" = "Thursday";
+"Common_weekday2_friday" = "Friday";
+"Common_weekday2_satday" = "Saturday";
+
 "Common_actionsheet_ok"     = "OK";
 "Common_actionsheet_cancel" = "Cancel";
 
@@ -23,6 +31,9 @@
 "TopViewController_actionsheet_send_work_report" = "Send work report";
 "TopViewController_actionsheet_start_work_write" = "Write work start";
 "TopViewController_actionsheet_end_work_write" = "Write work finish";
+
+"TopViewController_tablecell_message_title" = "After time to work,";
+"TopViewController_tablecell_countdown_unit" = "Min.";
 
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "Month workingtable";

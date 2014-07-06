@@ -15,6 +15,7 @@
 
 //convert String
 + (NSString *)weekdayString:(int)weekday;
++ (NSString *)weekdayString2:(int)weekday;
 + (NSString *)worktimeString:(NSDate *)dt;
 + (NSString *)weekStatusDayString:(NSDate *)dt;
 + (NSString *)weekStatusTimeString:(NSDate *)dt;

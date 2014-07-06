@@ -13,7 +13,13 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    // google analytics
+    #import "GAI.h"
+    #import "GAIDictionaryBuilder.h"
+    #import "GAIFields.h"
 #endif
+
+#define GOOGLE_ANALYTICS_ID @"UA-52562316-1"
 
 #ifdef DEBUG
 #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
