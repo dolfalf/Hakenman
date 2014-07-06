@@ -36,7 +36,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+
+#ifdef GOOGLE_ANALYTICS_ENABLE
     // ApplicationViewController を継承する全ViewController は Google Analytics の計測対象とする
     // スクリーン名はこちらで一元管理する
     // デフォルトで ViewController名をスクリーン名にセットしている
@@ -46,6 +47,8 @@
     
     [[GAI sharedInstance].defaultTracker set:kGAIScreenName value:(screenName ? screenName : className)];
     [[GAI sharedInstance].defaultTracker send:[[GAIDictionaryBuilder createAppView] build]];
+#endif
+    
 }
 
 - (void)didReceiveMemoryWarning

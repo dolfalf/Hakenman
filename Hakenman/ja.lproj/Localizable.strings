@@ -34,6 +34,9 @@
 "TopViewController_tablecell_message_title" = "出勤時間まで後、";
 "TopViewController_tablecell_countdown_unit" = "分";
 
+"TopViewController_tablecell_total_work_time_title" = "勤務時間";
+"TopViewController_tablecell_total_work_day_title" = "勤務日数";
+
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "今月の勤務表";
 "MenuViewController_menulist_working_tablelist_title"       = "勤務表リスト";

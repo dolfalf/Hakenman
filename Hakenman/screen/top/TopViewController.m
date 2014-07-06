@@ -330,7 +330,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
         
         TimeCardDao *dao = [TimeCardDao new];
         NSArray *weekTimeCards = [dao fetchModelLastWeek];
-        [cell updateCell:cellMessageTypeWorkEnd graphItems:weekTimeCards];
+        [cell updateCell:cellMessageTypeWorkStart graphItems:weekTimeCards];
         return cell;
         
     }else if(indexPath.row >= tableCellTypeMonth) {
@@ -361,6 +361,16 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     if (indexPath.row == tableCellTypeToday) {
         //
+        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+            //paramを渡す
+            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+            
+            //現在の日時を渡す
+            NSDate *today = [NSDate date];
+            controller.inputDates = [today yyyyMMString];
+            
+        }];
+        
     }else {
         [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
             //paramを渡す
@@ -370,12 +380,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
 //            NSString *dateString = [NSString stringWithFormat:@"%d", summaryModel.t_yyyymm];
             controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
-            
-            
-            TimeCardDao *timeCardDao = [TimeCardDao new];
-//            [timeCardDao fetchModelYear:summaryMode month:<#(NSInteger)#>
-            
-//            controller.timeCard = ;
     
         }];
     }
