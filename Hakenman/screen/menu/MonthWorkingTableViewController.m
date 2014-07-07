@@ -183,7 +183,7 @@
     
     TimeCardDao *dao = [TimeCardDao new];
     self.rightItems = [dao fetchModelYear:[sheetDate getYear] month:[sheetDate getMonth]];
-    NSLog(@"dao fetch result = %@", _rightItems);
+//    NSLog(@"dao fetch result = %@", _rightItems);
 
 }
 
@@ -198,6 +198,7 @@
         
         //編集画面へ遷移するとき、選んだ日のデータを編集画面へ渡す
         controller.showData = [_items objectAtIndex:_selectedIndex];
+        controller.timeCard = [_rightItems objectAtIndex:_selectedIndex];
         
     }
 }
@@ -260,25 +261,11 @@
             cell = [[RightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
-        //全然なってない、今後エディターと設定値を参照して表示させる予定
-//        if (rightModel.start_time == nil || rightModel.end_time == nil || rightModel.rest_time == nil) {
-//            rightModel.start_time = [NSNumber numberWithInteger:0];
-//            rightModel.end_time = [NSNumber numberWithInteger:0];
-//            rightModel.rest_time = [NSNumber numberWithInteger:1];
-//        }
-        rightModel.workday_flag = leftModel.workFlag;
-        if (rightModel.workday_flag == [NSNumber numberWithBool:NO]) {
-            rightModel.start_time = [NSNumber numberWithInteger:0];
-            rightModel.end_time = [NSNumber numberWithInteger:0];
+        if (rightModel.workday_flag == NO) {
+            rightModel.start_time = @"00000000000000";
+            rightModel.end_time = @"00000000000000";
             rightModel.rest_time = [NSNumber numberWithInteger:0];
         }
-        
-//        model.workday_flag = leftModel.workFlag;
-//        if (model.workday_flag == [NSNumber numberWithBool:NO]) {
-//            model.start_time = @"0:00";
-//            model.end_time = @"0:00";
-//            model.rest_time = [NSNumber numberWithInteger:0];
-//        }
 //
         //cell update.
         [cell updateCell:rightModel];

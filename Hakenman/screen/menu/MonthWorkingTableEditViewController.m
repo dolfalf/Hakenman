@@ -108,34 +108,38 @@ typedef enum {
     //
     RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"勤務時間入力"];
     [_reTableManager addSection:section];
-    
+
+    NSDate *startWt;
+    NSDate *endWt;
     //出勤
-    NSDate *startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
+    if ([_timeCard.start_time isEqualToString:@""] || [_timeCard.end_time isEqualToString:@""]) {
+        startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
                                                [[NSDate date] yyyyMMddString],
                                                [[NSUserDefaults workStartTime]
                                                 stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+        endWt = [NSDate convDate2String:
+                         [NSString stringWithFormat:@"%@%@00",
+                          [[NSDate date] yyyyMMddString],
+                          [[NSUserDefaults workEndTime]
+                           stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+    }else{
+        startWt = [NSDate convDate2String:_timeCard.start_time];
+        endWt = [NSDate convDate2String:_timeCard.end_time];
+    }
     
     self.startWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_start_worktime_picker_title") value:startWt
                                                           placeholder:nil format:@"HH:mm"
                                                        datePickerMode:UIDatePickerModeDateAndTime];
     _startWtPickerItem.datePickerMode = UIDatePickerModeTime;
-    _startWtPickerItem.format = @"HH:mm";
     [section addItem:_startWtPickerItem];
     
     //退勤
-    NSDate *endWt = [NSDate convDate2String:
-                     [NSString stringWithFormat:@"%@%@00",
-                      [[NSDate date] yyyyMMddString],
-                      [[NSUserDefaults workEndTime]
-                       stringByReplacingOccurrencesOfString:@":" withString:@""]]];
-    
     self.endWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_end_worktime_picker_title") value:endWt
                                                             placeholder:nil format:@"HH:mm"
                                                          datePickerMode:UIDatePickerModeDateAndTime];
     _endWtPickerItem.datePickerMode = UIDatePickerModeTime;
-    _endWtPickerItem.format = @"HH:mm";
     [section addItem:_endWtPickerItem];
-
+    
     //休憩時間
     self.restTimeNumberItem = [RENumberItem itemWithTitle:@"休憩時間" value:@"" placeholder:@"1時間" format:@"X時間"];
     [section addItem:_restTimeNumberItem];
