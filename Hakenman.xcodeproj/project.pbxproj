@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CA38F93196AE59A00E4AD9E /* BorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA38F92196AE59A00E4AD9E /* BorderLabel.m */; };
 		1CA7EF991967F1BD001772C9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA7EF981967F1BD001772C9 /* QuartzCore.framework */; };
 		1CAAA21D1966222C00A053C7 /* AppInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */; };
 		1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA21F1966224300A053C7 /* AppInformationViewController.m */; };
@@ -79,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1CA38F91196AE59A00E4AD9E /* BorderLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderLabel.h; sourceTree = "<group>"; };
+		1CA38F92196AE59A00E4AD9E /* BorderLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderLabel.m; sourceTree = "<group>"; };
 		1CA7EF981967F1BD001772C9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppInfo.storyboard; sourceTree = "<group>"; };
 		1CAAA21E1966224300A053C7 /* AppInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInformationViewController.h; sourceTree = "<group>"; };
@@ -270,6 +273,8 @@
 				3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */,
 				3DD9C5FA19641F7500F4B8C5 /* RightTableViewData.h */,
 				3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */,
+				1CA38F91196AE59A00E4AD9E /* BorderLabel.h */,
+				1CA38F92196AE59A00E4AD9E /* BorderLabel.m */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -587,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CA38F93196AE59A00E4AD9E /* BorderLabel.m in Sources */,
 				3B9CEA2618DD690C000E4FF3 /* ModelDao.m in Sources */,
 				1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */,
 				3B8CB2451942EDD900CD922E /* SiteInfo.m in Sources */,

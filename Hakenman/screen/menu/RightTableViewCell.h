@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BorderLabel.h"
 
 @class RightTableViewData;
 @class TimeCard;
 
 @interface RightTableViewCell : UITableViewCell {
     
-    IBOutlet UILabel *startTimeLabel;
-    IBOutlet UILabel *endTimeLabel;
-    IBOutlet UILabel *workTimeLabel;
-    IBOutlet UILabel *worktotalLabel;
+    IBOutlet BorderLabel *startTimeLabel;
+    IBOutlet BorderLabel *endTimeLabel;
+    IBOutlet BorderLabel *workTimeLabel;
+    IBOutlet BorderLabel *worktotalLabel;
 }
 
 //TimeCard Coredataの代わりにRightTableViewDataを参照するようにする

@@ -32,6 +32,10 @@
     return [UIColor colorWithHexString:@"92C3FF" alpha:1.f];
 }
 
++ (UIColor *)HKMSkyblueColor:(float)alpha {
+    return [UIColor colorWithHexString:@"92C3FF" alpha:alpha];
+}
+
 + (UIColor *)HKMDarkblueColor {
     return [UIColor colorWithHexString:@"27548A" alpha:1.f];
 }

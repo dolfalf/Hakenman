@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BorderLabel.h"
 
 @interface LeftTableViewCell : UITableViewCell {
     
-    IBOutlet UILabel *dayLabel;
-    IBOutlet UILabel *weekLabel;
-    IBOutlet UILabel *workDayLabel;
+    IBOutlet BorderLabel *dayLabel;
+    IBOutlet BorderLabel *weekLabel;
+    IBOutlet BorderLabel *workDayLabel;
 }
 
 - (void)updateCell:(NSNumber *)day week:(NSNumber *)week isWork:(NSNumber *)work;

@@ -18,6 +18,7 @@
 #pragma mark - Hakenman Theme color
 + (UIColor *)HKMBlueColor;
 + (UIColor *)HKMSkyblueColor;
++ (UIColor *)HKMSkyblueColor:(float)alpha;
 + (UIColor *)HKMDarkblueColor;
 + (UIColor *)HKMDarkOrangeColor;
 + (UIColor *)HKMOrangeColor;

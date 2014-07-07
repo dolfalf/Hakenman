@@ -11,6 +11,7 @@
 #import "LeftTableViewCell.h"
 #import "RightTableViewCell.h"
 #import "NSDate+Helper.h"
+#import "UIColor+Helper.h"
 #import "MonthWorkingTableEditViewController.h"
 #import "LeftTableViewData.h"
 #import "RightTableViewData.h"
@@ -26,6 +27,7 @@
     IBOutlet UIView *rightHeaderView;
     IBOutlet UITableView *rightTableView;
     
+    IBOutlet UIImageView *backgroundImageView;
 }
 
 @property (nonatomic, assign) NSInteger selectedIndex;
@@ -69,6 +71,25 @@
 - (void)initControls {
     //viewDidLoadで実行される
 
+    leftHeaderView.backgroundColor = [UIColor lightGrayColor];
+    for(UIView *vw in [leftHeaderView subviews]) {
+        vw.backgroundColor = [UIColor HKMDarkblueColor];
+    }
+    rightHeaderView.backgroundColor = [UIColor lightGrayColor];
+    for(UIView *vw in [rightHeaderView subviews]) {
+        vw.backgroundColor = [UIColor HKMDarkblueColor];
+    }
+    
+    leftTableView.backgroundColor
+    = rightTableView.backgroundColor = [UIColor clearColor];
+    
+    leftTableView.opaque
+    = rightTableView.opaque = NO;
+    
+    //TODO:イメージに差し替え予定
+    backgroundImageView.backgroundColor = [UIColor lightGrayColor];
+    
+    
 #if TEST_MODE
 #else
     
@@ -189,6 +210,18 @@
 }
 
 #pragma mark - private methods
+- (void)tableViewAlternateBackgroundColor:(NSIndexPath *)indexPath tableViewCell:(UITableViewCell *)cell {
+    if (indexPath.row % 2) {
+        for (UIView *vw in [[[cell.contentView subviews] objectAtIndex:0] subviews]) {
+            vw.backgroundColor = [UIColor HKMSkyblueColor:0.3f];
+        }
+        
+    } else {
+        for (UIView *vw in [[[cell.contentView subviews] objectAtIndex:0] subviews]) {
+            vw.backgroundColor = [UIColor whiteColor];
+        }
+    }
+}
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -249,8 +282,10 @@
             cell = [[LeftTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
-        //cell update.
+        //background color
+        [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
         
+        //cell update.
         if ([rightModel.workday_flag isEqual:[NSNumber numberWithBool:NO]]) {
             leftModel.workFlag = [NSNumber numberWithBool:NO];
         }
@@ -265,6 +300,9 @@
         if (!cell) {
             cell = [[RightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        //background color
+        [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
+        
         //cell update.
         [cell updateCell:rightModel];
         
