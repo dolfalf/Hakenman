@@ -22,4 +22,9 @@
 + (NSInteger)displayWorkSheet;
 + (void)displayWorkSheet:(NSInteger)value;
 
++ (NSString *)workSitename;
++ (void)setWorkSitename:(NSString *)value;
+
++ (NSString *)reportToMailaddress;
++ (void)setReportToMailaddress:(NSString *)value;
 @end

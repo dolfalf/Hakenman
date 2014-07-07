@@ -29,4 +29,6 @@
 - (NSString *)yyyyMMddString;
 - (NSString *)yyyyMMddHHmmssString;
 - (NSString *)convHHmmString;
+
+- (NSDate *)addMonth:(NSInteger)value;
 @end

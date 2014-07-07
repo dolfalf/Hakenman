@@ -26,13 +26,14 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="setting" id="I7G-g2-edN">
-                        <barButtonItem key="rightBarButtonItem" title="閉じる" id="fVS-kZ-ngF">
+                        <barButtonItem key="leftBarButtonItem" title="閉じる" id="fVS-kZ-ngF">
                             <connections>
                                 <action selector="close:" destination="WTg-TP-bV3" id="WXK-uS-LDi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="closeButton" destination="fVS-kZ-ngF" id="wSt-IE-MOC"/>
                         <outlet property="settingTableView" destination="pSO-wn-ic1" id="N3v-hU-LtS"/>
                     </connections>
                 </viewController>

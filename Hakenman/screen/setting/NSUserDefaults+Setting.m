@@ -136,4 +136,35 @@
     
 }
 
++ (NSString *)workSitename {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"WorkSiteNameKey" : @""}];
+    
+    return [userDefaults objectForKey:@"WorkSiteNameKey"];
+}
+
++ (void)setWorkSitename:(NSString *)value {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:value forKey:@"WorkSiteNameKey"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSString *)reportToMailaddress {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"ReportToMailAddressKey" : @""}];
+    
+    return [userDefaults objectForKey:@"ReportToMailAddressKey"] ;
+}
+
++ (void)setReportToMailaddress:(NSString *)value {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:value forKey:@"ReportToMailAddressKey"];
+    
+    [userDefaults synchronize];
+}
+
 @end

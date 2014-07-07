@@ -25,6 +25,9 @@
 "Common_actionsheet_ok"     = "確認";
 "Common_actionsheet_cancel" = "キャンセル";
 
+"Common_navigation_backbutton_title" = "戻る";
+"Common_navigation_closebutton_title" = "閉じる";
+
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
 "TopViewController_actionsheet_send_work_report" = "日報メールを送信";
@@ -67,11 +70,18 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "最近一年間";
 "SettingViewController_last_worksheet_display_sixmonth" = "最近６ヶ月";
 
+"SettingViewController_mail_title_title"            = "報告メールタイトル";
 "SettingViewController_work_report_title_templete1" = "【日報】yyyy年mm月dd日";
 "SettingViewController_work_report_title_templete2" = "(日報)yyyymmdd";
 
+"SettingViewController_work_report_title_mail_address" = "報告宛先";
+"SettingViewController_work_report_placehold_mail_address" = "メールアドレス";
+
 "SettingViewController_work_report_time_templete_add" = "内容に時間定型文追加";
 
+"SettingViewController_menulist_work_report_content_placeholder" = "報告内容";
+
+"SettingViewController_tutorial_title"             = "チュートリアル";
 "SettingViewController_app_info_title"             = "KJCodeについて";
 "SettingViewController_open_lisence_title"         = "Open lisence";
 

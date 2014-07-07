@@ -25,6 +25,7 @@ enum {
 
 @interface SettingViewController () {
     
+    IBOutlet UIBarButtonItem *closeButton;
 }
 
 @property (nonatomic, strong) NSArray *items;
@@ -76,24 +77,44 @@ enum {
                ,LOCALIZE(@"SettingViewController_menulist_default_work_time_title")
                ,LOCALIZE(@"SettingViewController_menulist_work_table_display_option_title")
                ,LOCALIZE(@"SettingViewController_menulist_daily_mail_content_title")];
+    
+    closeButton.title = LOCALIZE(@"Common_navigation_closebutton_title");
 }
 
+#pragma mark - RETableView methods
 - (void)initTableView {
-    
-    __typeof (self) __weak weakSelf = self;
     
     // Create the manager
     //
     self.reTableManager = [[RETableViewManager alloc] initWithTableView:self.settingTableView];
+
+    [self loadBasicSection];
+    
+    [self loadReportSection];
+    
+    [self loadMailContentSection];
+    
+    [self loadAppInfoSection];
+    
+}
+
+- (void)loadBasicSection {
+    
+    __typeof (self) __weak weakSelf = self;
     
     // Add a section
-    //
     RETableViewSection *basicSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_basic_section_title")];
     [self.reTableManager addSection:basicSection];
     
     //勤務先 textField
     RETextItem *workspaceItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_menulist_working_space_title")
-                                                    value:@"test"];
+                                                    value:[NSUserDefaults workSitename]];
+    
+    workspaceItem.onEndEditing = ^(RETextItem *item) {
+        //入力完了の時
+        [NSUserDefaults setWorkSitename:item.value];
+    };
+    
     workspaceItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     workspaceItem.textAlignment = NSTextAlignmentLeft;
     workspaceItem.style = UITableViewCellStyleValue1;
@@ -104,9 +125,9 @@ enum {
     
     NSString *defaultTimePickString = kubunPickData[[NSUserDefaults timeKubun]];
     [basicSection addItem:[REPickerItem itemWithTitle:LOCALIZE(@"SettingViewController_worktime_picker_title")
-                                           value:@[defaultTimePickString]
-                                     placeholder:nil
-                                         options:@[kubunPickData]]];
+                                                value:@[defaultTimePickString]
+                                          placeholder:nil
+                                              options:@[kubunPickData]]];
     
     //出勤
     NSDate *startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
@@ -115,56 +136,77 @@ enum {
                                                 stringByReplacingOccurrencesOfString:@":" withString:@""]]];
     
     REDateTimeItem *startWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_start_worktime_picker_title") value:startWt
-                                                            placeholder:nil format:@"HH:mm"
-                                                         datePickerMode:UIDatePickerModeDateAndTime];
+                                                          placeholder:nil format:@"HH:mm"
+                                                       datePickerMode:UIDatePickerModeDateAndTime];
     startWtPickerItem.datePickerMode = UIDatePickerModeTime;
     startWtPickerItem.format = @"HH:mm";
     [basicSection addItem:startWtPickerItem];
     
+    startWtPickerItem.onChange = ^ (REDateTimeItem *item) {
+        //Picker値変更
+        [NSUserDefaults setWorkStartTime:[item.value convHHmmString]];
+    };
+    
     //退勤
     NSDate *endWt = [NSDate convDate2String:
-                       [NSString stringWithFormat:@"%@%@00",
-                                               [[NSDate date] yyyyMMddString],
-                                               [[NSUserDefaults workEndTime]
-                                                stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+                     [NSString stringWithFormat:@"%@%@00",
+                      [[NSDate date] yyyyMMddString],
+                      [[NSUserDefaults workEndTime]
+                       stringByReplacingOccurrencesOfString:@":" withString:@""]]];
     
     REDateTimeItem *endWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_end_worktime_picker_title") value:endWt
-                                                            placeholder:nil format:@"HH:mm"
-                                                         datePickerMode:UIDatePickerModeDateAndTime];
+                                                        placeholder:nil format:@"HH:mm"
+                                                     datePickerMode:UIDatePickerModeDateAndTime];
     endWtPickerItem.datePickerMode = UIDatePickerModeTime;
     endWtPickerItem.format = @"HH:mm";
     [basicSection addItem:endWtPickerItem];
     
+    endWtPickerItem.onChange = ^ (REDateTimeItem *item) {
+        //Picker値変更
+        [NSUserDefaults setWorkStartTime:[item.value convHHmmString]];
+    };
+    
     //過去勤務表リスト表示
     NSArray *worksheet_options = [Util displayWorkSheetList];
-
+    
     RERadioItem *worksheet_optionItem = [RERadioItem itemWithTitle:
-                               LOCALIZE(@"SettingViewController_last_worksheet_display_title")
-                                                   value:[worksheet_options objectAtIndex:[NSUserDefaults displayWorkSheet]]
-                                        selectionHandler:^(RERadioItem *item) {
-        __typeof (weakSelf) __strong strongSelf = weakSelf;
-        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
-        
-        // Present options controller
-        //
-        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:worksheet_options multipleChoice:NO completionHandler:^ {
-            [strongSelf.settingTableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        }];
-        [strongSelf.navigationController pushViewController:optionsController animated:YES];
-    }];
+                                         LOCALIZE(@"SettingViewController_last_worksheet_display_title")
+                                                             value:[worksheet_options objectAtIndex:[NSUserDefaults displayWorkSheet]]
+                                                  selectionHandler:^(RERadioItem *item) {
+                                                      __typeof (weakSelf) __strong strongSelf = weakSelf;
+                                                      [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                                                      
+                                                      // Present options controller
+                                                      //
+                                                      RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:worksheet_options multipleChoice:NO completionHandler:^ {
+                                                          [strongSelf.settingTableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                      }];
+                                                      [strongSelf.navigationController pushViewController:optionsController animated:YES];
+                                                  }];
     [basicSection addItem:worksheet_optionItem];
+}
 
+- (void)loadReportSection {
+
+    __typeof (self) __weak weakSelf = self;
     
     // Add a section
-    //
     RETableViewSection *reportSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_work_report_section_title")];
     [self.reTableManager addSection:reportSection];
     
     //日報報告宛先メール
-    RETextItem *reportMailTextItem = [RETextItem itemWithTitle:@"報告宛先" value:@"" placeholder:@"Email Address"];
-    reportMailTextItem.name = @"Your email";
+    RETextItem *reportMailTextItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_work_report_title_mail_address")
+                                                         value:[NSUserDefaults reportToMailaddress]
+                                                   placeholder:@"Email Address"];
+    
+    reportMailTextItem.name = LOCALIZE(@"SettingViewController_work_report_placehold_mail_address");
     reportMailTextItem.validators = @[@"presence", @"email"];
     [reportSection addItem:reportMailTextItem];
+    
+    reportMailTextItem.onEndEditing = ^(RETextItem *item) {
+        //入力完了の時
+        [NSUserDefaults setReportToMailaddress:item.value];
+    };
     
     //日報タイトル設定
     //【日報】2014年7月3日
@@ -172,19 +214,19 @@ enum {
     NSArray *report_title_options = [Util reportTitleList];
     
     RERadioItem *reportTitleOptionItem = [RERadioItem itemWithTitle:
-                                         LOCALIZE(@"SettingViewController_last_worksheet_display_title")
-                                                             value:[report_title_options objectAtIndex:[NSUserDefaults displayWorkSheet]]
-                                                  selectionHandler:^(RERadioItem *item) {
-                                                      __typeof (weakSelf) __strong strongSelf = weakSelf;
-                                                      [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
-                                                      
-                                                      // Present options controller
-                                                      //
-                                                      RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:report_title_options multipleChoice:NO completionHandler:^ {
-                                                          [strongSelf.settingTableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                                                      }];
-                                                      [strongSelf.navigationController pushViewController:optionsController animated:YES];
-                                                  }];
+                                          LOCALIZE(@"SettingViewController_mail_title_title")
+                                                              value:[report_title_options objectAtIndex:[NSUserDefaults displayWorkSheet]]
+                                                   selectionHandler:^(RERadioItem *item) {
+                                                       __typeof (weakSelf) __strong strongSelf = weakSelf;
+                                                       [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                                                       
+                                                       // Present options controller
+                                                       //
+                                                       RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:report_title_options multipleChoice:NO completionHandler:^ {
+                                                           [strongSelf.settingTableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                       }];
+                                                       [strongSelf.navigationController pushViewController:optionsController animated:YES];
+                                                   }];
     [reportSection addItem:reportTitleOptionItem];
     
     
@@ -193,22 +235,47 @@ enum {
         DLog(@"Value: %i", item.value);
         
     }]];
+}
+
+- (void)loadMailContentSection {
     
+    __typeof (self) __weak weakSelf = self;
     
     // Add a section
-    //
     RETableViewSection *mailContentSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_work_report_content_section_title")];
     [self.reTableManager addSection:mailContentSection];
     
     //日報内容テンプレート
-    RELongTextItem *mailContentTextItem = [RELongTextItem itemWithValue:nil placeholder:@"日報内容"];
+    RELongTextItem *mailContentTextItem = [RELongTextItem itemWithValue:nil
+                                                            placeholder:LOCALIZE(@"SettingViewController_menulist_work_report_content_placeholder")];
     mailContentTextItem.cellHeight = 88;
     [mailContentSection addItem:mailContentTextItem];
     
+    mailContentTextItem.onBeginEditing = ^(RELongTextItem *item) {
+        //入力のとき
+        [weakSelf.settingTableView setContentOffset:CGPointMake(0,
+                                                                weakSelf.settingTableView.contentOffset.y + item.cellHeight) animated:YES];
+    };
+    
+    mailContentTextItem.onEndEditing = ^(RELongTextItem *item) {
+        //入力が完了したら
+        [weakSelf.settingTableView setContentOffset:CGPointMake(0,
+                                                                weakSelf.settingTableView.contentOffset.y - item.cellHeight) animated:YES];
+    };
+}
+
+- (void)loadAppInfoSection {
+
     // Add a section
     //
     RETableViewSection *appInfoSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_app_info_section_title")];
     [self.reTableManager addSection:appInfoSection];
+    
+    //チュートリアル
+    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_tutorial_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        NSLog(@"tutorial: %@", item);
+        //遷移
+    }]];
     
     //アプリについて
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_app_info_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
@@ -217,33 +284,12 @@ enum {
     }]];
     
     //Open source lisence
-    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_opne_lisence_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_open_lisence_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
         NSLog(@"open source: %@", item);
         [StoryboardUtil gotoOpenLicenseViewController:self completion:^(id controller) {
             //
         }];
     }]];
-    
-}
-
-#pragma mark - transition screen method
-- (void)goToWorkingSpace {
-    
-}
-
-- (void)goToCalcTimeUnit {
-    
-}
-
-- (void)goToDefaultWorkTime {
-    
-}
-
-- (void)goToTableDisplayOption {
-    
-}
-
-- (void)goToDailyMailContent {
     
 }
 
@@ -256,100 +302,5 @@ enum {
     
     self.completionHandler = nil;
 }
-
-//#pragma mark - UITableView Delegate
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    return 44.0f;
-//    
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    
-//    return [_items count];
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    
-//    NSString *cellIdentifier = @"SettingTableViewCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//    }
-//    
-//    switch (indexPath.row) {
-//        case settingTitleWorkingSpace:
-//            //勤務地設定
-//            cell.detailTextLabel.text = @"大崎";
-//            break;
-//            
-//        case settingTitleCalcTimeUnit:
-//            
-//            cell.detailTextLabel.text = @"10分";
-//            break;
-//            
-//        case settingTitleDefaultWorkTime:
-//            //デフォルト勤務時間
-//            cell.detailTextLabel.text = @"09:00 - 18:00";
-//            break;
-//            
-//        case settingTitleWorkTableDisplayOption:
-//            //勤務表リスト表示オプション
-//            cell.detailTextLabel.text = @"すべて";
-//            break;
-//            
-//        case settingTitleDailyMailContent:
-//            //日報メール文言設定
-//            cell.detailTextLabel.text = @"文言１";            
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    
-//    cell.textLabel.text = [_items objectAtIndex:indexPath.row];
-//    
-//    return cell;
-//    
-//}
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    
-//    DLog(@"%@ table cell selected.", [_items objectAtIndex:indexPath.row]);
-//    
-//    switch (indexPath.row) {
-//        case settingTitleWorkingSpace:
-//            //勤務地設定
-//            [self goToWorkingSpace];
-//            break;
-//            
-//        case settingTitleCalcTimeUnit:
-//            //勤務時間計算単位
-//            [self goToCalcTimeUnit];
-//            break;
-//            
-//        case settingTitleDefaultWorkTime:
-//            //デフォルト勤務時間
-//            [self goToDefaultWorkTime];
-//            break;
-//            
-//        case settingTitleWorkTableDisplayOption:
-//            //勤務表リスト表示オプション
-//            [self goToTableDisplayOption];
-//            break;
-//            
-//        case settingTitleDailyMailContent:
-//            //日報メール文言設定
-//            [self goToDailyMailContent];
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//}
 
 @end

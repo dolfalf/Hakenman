@@ -26,6 +26,9 @@
 "Common_actionsheet_ok"     = "OK";
 "Common_actionsheet_cancel" = "Cancel";
 
+"Common_navigation_backbutton_title" = "Back";
+"Common_navigation_closebutton_title" = "Close";
+
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
 "TopViewController_actionsheet_send_work_report" = "Send work report";
@@ -68,11 +71,17 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "One years";
 "SettingViewController_last_worksheet_display_sixmonth" = "6 months";
 
+"SettingViewController_mail_title_title"            = "Mail title";
 "SettingViewController_work_report_title_templete1" = "【Report】mm/dd yyyy";
 "SettingViewController_work_report_title_templete2" = "(Report)yyyymmdd";
+"SettingViewController_work_report_title_mail_address" = "Report to Mail";
+"SettingViewController_work_report_placehold_mail_address" = "Mail address";
 
 "SettingViewController_work_report_time_templete_add" = "Add worktime templete";
 
+"SettingViewController_menulist_work_report_content_placeholder" = "Report mail contents";
+
+"SettingViewController_tutorial_title"             = "Tutorial";
 "SettingViewController_app_info_title"             = "About KJCode";
 "SettingViewController_open_lisence_title"         = "Open lisence";
 

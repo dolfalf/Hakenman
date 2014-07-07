@@ -185,4 +185,11 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSDate *)addMonth:(NSInteger)value {
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setMonth:value];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    return [calendar dateByAddingComponents:dateComponents toDate:self options:0];
+}
+
 @end
