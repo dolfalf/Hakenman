@@ -14,6 +14,7 @@
 #import "MonthWorkingTableEditViewController.h"
 #import "LeftTableViewData.h"
 #import "RightTableViewData.h"
+#import "TimeCard.h"
 
 #define TEST_MODE 0
 
@@ -53,9 +54,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     DLog(@"%s", __FUNCTION__);
-    
+    [leftTableView reloadData];
     [rightTableView reloadData];
-    
     [super viewWillAppear:animated];
     
 }
@@ -81,6 +81,10 @@
     //NSDate convDate2ShortStringでDateを決めるべき（なおった？）
     NSDate *sheetDate = [NSDate convDate2ShortString:_inputDates];
 
+    TimeCardDao *dao = [TimeCardDao new];
+    
+    self.rightItems = [dao fetchModelYear:[sheetDate getYear] month:[sheetDate getMonth]];
+    
     //sheetDateで受け取った値は正常に受け取るのに、ログで表示するときだけ変に出る
     DLog(@"[sheetDate convDate2ShortString] - %@", [NSDate convDate2ShortString:_inputDates]);
     
@@ -180,9 +184,6 @@
     //coreDataに今月カレンダーが存在しているかどうかをチェック
     //新しい今月カレンダーを作成
     //今月カレンダーをロードしテーブルを更新
-    
-    TimeCardDao *dao = [TimeCardDao new];
-    self.rightItems = [dao fetchModelYear:[sheetDate getYear] month:[sheetDate getMonth]];
 //    NSLog(@"dao fetch result = %@", _rightItems);
 
 }
@@ -249,7 +250,11 @@
         }
         
         //cell update.
-
+        
+        if ([rightModel.workday_flag isEqual:[NSNumber numberWithBool:NO]]) {
+            leftModel.workFlag = [NSNumber numberWithBool:NO];
+        }
+        
         [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag];
         
         return cell;
@@ -260,13 +265,6 @@
         if (!cell) {
             cell = [[RightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        
-        if (rightModel.workday_flag == NO) {
-            rightModel.start_time = @"00000000000000";
-            rightModel.end_time = @"00000000000000";
-            rightModel.rest_time = [NSNumber numberWithInteger:0];
-        }
-//
         //cell update.
         [cell updateCell:rightModel];
         

@@ -94,7 +94,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             model.t_month = @([[model.start_time substringWithRange:NSMakeRange(4, 2)] intValue]);
             model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
             model.t_yyyymmdd = @([[model.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
-            //NO or [NSNumber numberWithBool:YES]...WHY?
             model.workday_flag = [NSNumber numberWithBool:YES];
             model.remarks = @"あいうえお";
             

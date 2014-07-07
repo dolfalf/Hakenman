@@ -38,7 +38,7 @@
 //表示めちゃくちゃ。。。早くかえないと。。。
 - (void)updateCell:(RightTableViewData *)model {
     
-    if (model.workday_flag == NO) {
+    if ([model.start_time isEqualToString:@""] || [model.end_time isEqualToString:@""]) {
         startTimeLabel.text = @"";
         endTimeLabel.text = @"";
         workTimeLabel.text = @"";

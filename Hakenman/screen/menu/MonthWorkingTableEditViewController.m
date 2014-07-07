@@ -33,8 +33,9 @@ typedef enum {
 @property (nonatomic, strong) RETableViewManager *reTableManager;
 @property (nonatomic, strong) REDateTimeItem *startWtPickerItem;
 @property (nonatomic, strong) REDateTimeItem *endWtPickerItem;
+//@property (nonatomic, strong) REDateTimeItem *restTimePickerItem;
+@property (nonatomic, strong) REPickerItem *restTimePickerItem;
 @property (nonatomic, strong) REBoolItem *workDayBoolItme;
-@property (nonatomic, strong) RENumberItem *restTimeNumberItem;
 
 @property (nonatomic, weak) IBOutlet UITableView *editTableView;
 
@@ -76,9 +77,19 @@ typedef enum {
 
 #pragma mark - IBAction
 - (IBAction)saveAndClose:(id)sender {
-//    TimeCardDao *dao = [TimeCardDao new];
-//    
-//    [dao insertModel];
+    
+    TimeCardDao *dao = [TimeCardDao new];
+    
+    [dao createModel];
+    
+    //画面上の値を変更した場合、_timeCardを変更する？
+    _timeCard.start_time = [_startWtPickerItem.value yyyyMMddHHmmssString];
+    _timeCard.end_time = [_endWtPickerItem.value yyyyMMddHHmmssString];
+    //今後修正必要
+//    _timeCard.rest_time = [NSNumber numberWithFloat:[_restTimeNumberItem.value floatValue]];
+    _timeCard.workday_flag = [NSNumber numberWithBool:_workDayBoolItme.value];
+
+    [dao insertModel];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -87,13 +98,6 @@ typedef enum {
 - (void)initControls {
     
     saveBarButton.title = LOCALIZE(@"MonthWorkingTableEditViewController_edit_navi_save_btn");
-    
-    //キーボードの閉じる処理のため
-    self.keyboardDismissTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                      action:@selector(onKeyboardDismissTap:)];
-    self.keyboardDismissTap.delegate = self;
-    self.keyboardDismissTap.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:_keyboardDismissTap];
     
     [self initTableView];
 }
@@ -111,8 +115,9 @@ typedef enum {
 
     NSDate *startWt;
     NSDate *endWt;
-    //出勤
-    if ([_timeCard.start_time isEqualToString:@""] || [_timeCard.end_time isEqualToString:@""]) {
+    
+    if ([_timeCard.start_time isEqualToString:nil] ||
+        [_timeCard.end_time isEqualToString:nil]) {
         startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
                                                [[NSDate date] yyyyMMddString],
                                                [[NSUserDefaults workStartTime]
@@ -126,7 +131,13 @@ typedef enum {
         startWt = [NSDate convDate2String:_timeCard.start_time];
         endWt = [NSDate convDate2String:_timeCard.end_time];
     }
-    
+    BOOL workTime = YES;
+    //営業日ではない場合の基本表示は？
+    if ([_timeCard.workday_flag isEqual:[NSNumber numberWithBool:NO]]) {
+        workTime = NO;
+    }
+    //反応が遅いかそれとも変か。。。
+    //出勤
     self.startWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_start_worktime_picker_title") value:startWt
                                                           placeholder:nil format:@"HH:mm"
                                                        datePickerMode:UIDatePickerModeDateAndTime];
@@ -140,45 +151,20 @@ typedef enum {
     _endWtPickerItem.datePickerMode = UIDatePickerModeTime;
     [section addItem:_endWtPickerItem];
     
-    //休憩時間
-    self.restTimeNumberItem = [RENumberItem itemWithTitle:@"休憩時間" value:@"" placeholder:@"1時間" format:@"X時間"];
-    [section addItem:_restTimeNumberItem];
+    //休憩時間  //休息時間が既に設定されている場合の基本表示は？
+    self.restTimePickerItem = [REPickerItem itemWithTitle:@"休息時間" value:@[@"1", @"00"] placeholder:nil options:@[@[@"1", @"2", @"3", @"4", @"5", @"6"], @[@"00", @"15", @"30", @"45"]]];
+//    self.restTimePickerItem = [REDateTimeItem itemWithTitle:@"休憩時間" value:nil placeholder:nil format:@"HH:mm" datePickerMode:UIDatePickerModeCountDownTimer];
+    [section addItem:_restTimePickerItem];
+//    self.restTimeNumberItem = [RENumberItem itemWithTitle:@"休憩時間" value:@"" placeholder:@"1時間" format:@"X時間"];
+//    [section addItem:_restTimeNumberItem];
     
     //平日、休日
-    self.workDayBoolItme = [REBoolItem itemWithTitle:@"営業日" value:YES switchValueChangeHandler:^(REBoolItem *item) {
+    self.workDayBoolItme = [REBoolItem itemWithTitle:@"営業日" value:workTime switchValueChangeHandler:^(REBoolItem *item) {
         NSLog(@"Value: %i", item.value);
     }];
     
     [section addItem:_workDayBoolItme];
     
-}
-
-#pragma mark - TextField delegate methods
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    // TextField Returnタップ
-    
-    // キーボード非表示
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    
-}
-
--(void)onKeyboardDismissTap:(UITapGestureRecognizer *)recognizer {
-    
-}
-
--(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    
-    return YES;
 }
 
 /*
