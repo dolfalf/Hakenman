@@ -59,7 +59,6 @@
 		3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1C18DD4521000E4FF3 /* DBManager.m */; };
 		3B9CEA2018DD458F000E4FF3 /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
 		3B9CEA2618DD690C000E4FF3 /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2518DD690C000E4FF3 /* ModelDao.m */; };
-		3B9CEA2918DD6F0F000E4FF3 /* SiteInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2818DD6F0F000E4FF3 /* SiteInfoDao.m */; };
 		3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3C318DD737C0062B07A /* Setting.storyboard */; };
 		3BC0E3CA18DD74D80062B07A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3C918DD74D80062B07A /* SettingViewController.m */; };
 		3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3CC18DD75310062B07A /* KJViewController.m */; };
@@ -168,8 +167,6 @@
 		3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCardDao.m; sourceTree = "<group>"; };
 		3B9CEA2418DD690C000E4FF3 /* ModelDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDao.h; sourceTree = "<group>"; };
 		3B9CEA2518DD690C000E4FF3 /* ModelDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDao.m; sourceTree = "<group>"; };
-		3B9CEA2718DD6F0F000E4FF3 /* SiteInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteInfoDao.h; sourceTree = "<group>"; };
-		3B9CEA2818DD6F0F000E4FF3 /* SiteInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteInfoDao.m; sourceTree = "<group>"; };
 		3BC0E3C318DD737C0062B07A /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		3BC0E3C818DD74D80062B07A /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		3BC0E3C918DD74D80062B07A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
@@ -395,8 +392,6 @@
 				3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */,
 				3B8CB253194315DB00CD922E /* TimeCardSummaryDao.h */,
 				3B8CB254194315DB00CD922E /* TimeCardSummaryDao.m */,
-				3B9CEA2718DD6F0F000E4FF3 /* SiteInfoDao.h */,
-				3B9CEA2818DD6F0F000E4FF3 /* SiteInfoDao.m */,
 				3B6AFEDF18E6874200501C94 /* FileDataDao.h */,
 				3B6AFEE018E6874200501C94 /* FileDataDao.m */,
 				3B6AFEE818E69C6300501C94 /* MailContentsDao.h */,
@@ -592,7 +587,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B9CEA2918DD6F0F000E4FF3 /* SiteInfoDao.m in Sources */,
 				3B9CEA2618DD690C000E4FF3 /* ModelDao.m in Sources */,
 				1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */,
 				3B8CB2451942EDD900CD922E /* SiteInfo.m in Sources */,

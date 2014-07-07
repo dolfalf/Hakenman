@@ -272,14 +272,14 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     //サマリーからデータを持ってくる
     TimeCardSummaryDao *summaryDao = [[TimeCardSummaryDao alloc] init];
-    
     NSDate *today = [NSDate date];
-    NSDate *oneYearsAgo = (NSDate *)[today dateByAddingTimeInterval:(60*60*24*365 *-1)];
+    NSDate *lastYear = [today addMonth:-1];
+    NSDate *oneYearsAgo = (NSDate *)[lastYear dateByAddingTimeInterval:(60*60*24*365 *-1)];
     
-    DLog(@"oneYearsAgo[%@] today[%@]",oneYearsAgo, today);
+    DLog(@"oneYearsAgo[%@] today[%@]",oneYearsAgo, lastYear);
     
     [arrays addObjectsFromArray:
-     [summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString] EndMonth:[today yyyyMMString] ascending:NO]];
+     [summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString] EndMonth:[lastYear yyyyMMString] ascending:NO]];
     
     return arrays;
     
@@ -355,7 +355,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    DLog(@"%d table cell selected.", indexPath.row);
+//    DLog(@"%d table cell selected.", indexPath.row);
     
     [self.navigationController setToolbarHidden:YES animated:YES];
     

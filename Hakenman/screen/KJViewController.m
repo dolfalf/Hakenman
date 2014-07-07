@@ -37,6 +37,12 @@
 {
     [super viewDidAppear:animated];
 
+    //戻るボタンタイトルを変更
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOCALIZE(@"Common_navigation_backbutton_title")
+                                                                                   style:UIBarButtonItemStylePlain
+                                                                                  target:nil
+                                                                                  action:nil];
+    
 #ifdef GOOGLE_ANALYTICS_ENABLE
     // ApplicationViewController を継承する全ViewController は Google Analytics の計測対象とする
     // スクリーン名はこちらで一元管理する
