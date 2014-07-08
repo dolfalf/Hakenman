@@ -13,6 +13,8 @@
 #import "KJViewController.h"
 #import "TimeCard.h"
 #import <UIKit/UIDocumentInteractionController.h>
+#import "UIColor+Helper.h"
+#import "NSUserDefaults+Setting.h"
 
 @implementation Util
 
@@ -158,6 +160,48 @@
     
 }
 
++ (NSString *)correctWorktime:(NSString *)yyyymmddHHmmss {
+    
+    NSString *minute = [yyyymmddHHmmss substringWithRange:NSMakeRange(10, 2)];
+    NSString *currentMinute = @"00";
+    
+    switch ([NSUserDefaults timeKubun]) {
+        case 0:
+            //0
+            //なにもしない
+            currentMinute = minute;
+            break;
+        case 1:
+            //10分単位
+        {
+            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/10)*10];
+        }
+            break;
+        case 2:
+            //15分単位
+        {
+            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/15)*15];
+        }
+            break;
+        case 3:
+            //30分単位
+            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/30)*30];
+            break;
+    }
+    
+//    NSString *aa = [yyyymmddHHmmss substringWithRange:NSMakeRange(0, 9)];
+//    NSString *bb = [yyyymmddHHmmss substringWithRange:NSMakeRange(12, 2)];
+    
+    NSString *str = [NSString stringWithFormat:@"%@%@%@"
+            ,[yyyymmddHHmmss substringWithRange:NSMakeRange(0, 10)]
+            ,currentMinute
+            ,[yyyymmddHHmmss substringWithRange:NSMakeRange(12, 2)]];
+    
+    
+    return str;
+    
+}
+
 + (NSArray *)worktimePickList {
     
     return @[LOCALIZE(@"SettingViewController_worktime_picker_none"),
@@ -229,6 +273,38 @@
         return;
     }
     
+}
+
++ (void)sendReportMailWorkSheet:(id)owner subject:(NSString *)subject toRecipient:(NSString *)toRecipient messageBody:(NSString *)body {
+    
+    // メールを利用できるかチェック
+    if (![MFMailComposeViewController canSendMail]) {
+        return;
+    }
+    
+    //navigation textColor
+    //色の変更ができなかった。appleの仕様らしい。
+    //controller.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
+    [UINavigationBar appearance].tintColor = [UIColor HKMBlueColor];
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    [controller setMailComposeDelegate:owner];
+    
+    
+    //subject
+    [ controller setSubject:subject];
+    //to
+    [ controller setToRecipients:@[toRecipient]];
+    //cc
+//    [ controller setCcRecipients:[ NSArray arrayWithObjects:@"cc1@example.com", @"cc2@excample.com", nil ] ];
+    //bcc
+//    [ controller setBccRecipients:[ NSArray arrayWithObjects:@"bcc1@example.com", @"bcc2@excample.com", nil ] ];
+    //content
+    [ controller setMessageBody:body isHTML:NO ];
+
+    // 表示
+    [((KJViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
 }
 
 + (void)sendDocumentfileWorkSheet:(KJViewController *)owner data:(NSArray *)worksheets {

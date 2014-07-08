@@ -27,4 +27,15 @@
 
 + (NSString *)reportToMailaddress;
 + (void)setReportToMailaddress:(NSString *)value;
+
++ (NSString *)reportMailTitle;
++ (void)setReportMailTitle:(NSString *)value;
+
++ (BOOL)reportMailTempleteTimeAdd;
++ (void)setReportMailTempleteTimeAdd:(BOOL)value;
+
++ (NSString *)reportMailContent;
++ (void)setReportMailContent:(NSString *)value;
+
+
 @end

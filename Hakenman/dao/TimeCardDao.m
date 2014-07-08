@@ -113,5 +113,26 @@
     
 }
 
+- (TimeCard *)fetchModelWorkDate:(NSDate *)dt {
+    
+    self.fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [self.fetchRequest setEntity:entity];
+    
+    NSString *dayString = [dt yyyyMMddHHmmssString];
+    DLog(@"dayString[%@]",dayString);
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_yyyymmdd == %@", dayString];    //条件指定
+    [self.fetchRequest setPredicate:pred];
+    
+    NSArray *models = [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
+    
+    if (models == nil || [models count] == 0) {
+        return nil;
+    }
+    return [models objectAtIndex:0];
+    
+}
 
 @end

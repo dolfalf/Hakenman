@@ -33,6 +33,18 @@
     [self initControls];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    //Navigationbar, statusbar initialize
+    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
+        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
+        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+        [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    }
+    
+    [super viewWillAppear:animated];
+    
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -72,13 +84,6 @@
  * ViewDidLoadの時に呼ばれます。
  */
 - (void)initControls {
-    
-    //Navigationbar, statusbar initialize
-    if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
-        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
-        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-        [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    }
     
 }
 

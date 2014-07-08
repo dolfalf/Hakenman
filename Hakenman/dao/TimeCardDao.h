@@ -15,4 +15,5 @@
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month;
 - (NSArray *)fetchModelLastWeek;
+- (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
 @end
