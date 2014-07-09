@@ -116,8 +116,8 @@ typedef enum {
     NSDate *startWt;
     NSDate *endWt;
     
-    if ([_timeCard.start_time isEqualToString:nil] ||
-        [_timeCard.end_time isEqualToString:nil]) {
+    if (_timeCard.start_time == nil ||
+        _timeCard.end_time == nil) {
         startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
                                                [[NSDate date] yyyyMMddString],
                                                [[NSUserDefaults workStartTime]
