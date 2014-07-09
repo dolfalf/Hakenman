@@ -34,6 +34,31 @@
     [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
 }
 
++ (void)gotoTutorialViewController:(id)owner pushController:(BOOL)on {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tutorial" bundle:nil];
+    UINavigationController *naviController = (UINavigationController *)[storyboard instantiateInitialViewController];
+    
+    UIViewController *controller = [naviController.childViewControllers objectAtIndex:0];
+    if (on == YES) {
+        [((UIViewController *)owner).navigationController pushViewController:controller animated:YES];
+    }else {
+        //modal
+        [owner presentViewController:naviController animated:YES completion:nil];
+    }
+
+}
+
++ (void)gotoAppInformationViewController:(id)owner completion:(void(^)(id))completion {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"AppInfo" bundle:nil];
+    KJViewController *controller = (KJViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AppInformationViewController"];
+    
+    completion(controller);
+    
+    [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
+}
+
 + (void)gotoOpenLicenseViewController:(id)owner completion:(void(^)(id))completion {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"AppInfo" bundle:nil];

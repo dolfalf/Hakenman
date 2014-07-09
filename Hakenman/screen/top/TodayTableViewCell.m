@@ -88,7 +88,7 @@
     yearLabel.text = [NSString stringWithFormat:@"%d",[today getYear]];
     monthLabel.text = [NSString stringWithFormat:@"%02d",[today getMonth]];
     dayLabel.text = [NSString stringWithFormat:@"%02d",[today getDay]];
-    weekLabel.text = [Util weekdayString2:[today getWeekday]];
+    weekLabel.text = [Util weekdayString:[today getWeekday]];
     
     switch ([today getWeekday]) {
         case weekSatDay:
@@ -98,7 +98,7 @@
             weekLabel.textColor = [UIColor redColor];
             break;
         default:
-            weekLabel.textColor = [UIColor blackColor];
+            weekLabel.textColor = [UIColor grayColor];
             break;
     }
     

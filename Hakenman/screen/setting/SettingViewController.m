@@ -71,6 +71,8 @@ enum {
     
     [self initTableView];
     
+    self.title = LOCALIZE(@"SettingViewController_navi_title");
+    
     //設定メニュー作成
     _items = @[LOCALIZE(@"SettingViewController_menulist_working_space_title")
                ,LOCALIZE(@"SettingViewController_menulist_calc_time_unit_title")
@@ -112,12 +114,18 @@ enum {
     
     workspaceItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
-        [NSUserDefaults setWorkSitename:item.value];
+        if ([self validate] == YES) {
+            [NSUserDefaults setWorkSitename:item.value];
+        }else {
+            
+        }
+
     };
     
     workspaceItem.clearButtonMode = UITextFieldViewModeWhileEditing;
-    workspaceItem.textAlignment = NSTextAlignmentLeft;
     workspaceItem.style = UITableViewCellStyleValue1;
+    workspaceItem.charactersLimit = 20;
+    workspaceItem.validators = @[@"length(1, 20)"];
     [basicSection addItem:workspaceItem];
     
     //時間きり設定 picker
@@ -197,13 +205,25 @@ enum {
                                                          value:[NSUserDefaults reportToMailaddress]
                                                    placeholder:@"Email Address"];
     
+    reportMailTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
+    reportMailTextItem.style = UITableViewCellStyleValue1;
+    reportMailTextItem.charactersLimit = 30;
     reportMailTextItem.name = LOCALIZE(@"SettingViewController_work_report_placehold_mail_address");
-    reportMailTextItem.validators = @[@"presence", @"email"];
+    reportMailTextItem.name = @"Your email";
+    reportMailTextItem.keyboardType = UIKeyboardTypeEmailAddress;
+    reportMailTextItem.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    reportMailTextItem.validators = @[@"email"];
     [reportSection addItem:reportMailTextItem];
     
     reportMailTextItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
-        [NSUserDefaults setReportToMailaddress:item.value];
+        if ([self validate] == YES) {
+            [NSUserDefaults setReportToMailaddress:item.value];
+        }else {
+            //値が更新されない
+            //item.value = [NSUserDefaults reportToMailaddress];
+        }
+        
     };
     
     //日報タイトル設定
@@ -213,12 +233,20 @@ enum {
                                                          value:[NSUserDefaults reportMailTitle]
                                                    placeholder:@"Email Title"];
     
+    reportMailTitleTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
+    reportMailTitleTextItem.style = UITableViewCellStyleValue1;
+    reportMailTitleTextItem.validators = @[@"length(1, 30)"];
     reportMailTitleTextItem.name = LOCALIZE(@"SettingViewController_work_report_title_defalut");
     [reportSection addItem:reportMailTitleTextItem];
     
     reportMailTitleTextItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
-        [NSUserDefaults setReportMailTitle:item.value];
+        if ([self validate] == YES) {
+            [NSUserDefaults setReportMailTitle:item.value];
+        }else {
+            
+        }
+        
     };
 
     
@@ -243,6 +271,10 @@ enum {
     //日報内容テンプレート
     RELongTextItem *mailContentTextItem = [RELongTextItem itemWithValue:[NSUserDefaults reportMailContent]
                                                             placeholder:LOCALIZE(@"SettingViewController_menulist_work_report_content_placeholder")];
+    
+    mailContentTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
+    mailContentTextItem.style = UITableViewCellStyleValue1;
+    mailContentTextItem.charactersLimit = 200;
     mailContentTextItem.cellHeight = 88;
     [mailContentSection addItem:mailContentTextItem];
     
@@ -270,24 +302,45 @@ enum {
     
     //チュートリアル
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_tutorial_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
-        NSLog(@"tutorial: %@", item);
         //遷移
+        [StoryboardUtil gotoTutorialViewController:self pushController:YES];
     }]];
     
     //アプリについて
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_app_info_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
-        NSLog(@"app_info: %@", item);
         //遷移
+        [StoryboardUtil gotoAppInformationViewController:self completion:^(id controller) {
+            //
+        }];
     }]];
     
     //Open source lisence
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_open_lisence_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
-        NSLog(@"open source: %@", item);
         [StoryboardUtil gotoOpenLicenseViewController:self completion:^(id controller) {
             //
         }];
     }]];
     
+}
+
+#pragma mark - validate method
+- (BOOL)validate {
+    NSArray *managerErrors = _reTableManager.errors;
+    if (managerErrors.count > 0) {
+        NSMutableArray *errors = [NSMutableArray array];
+        for (NSError *error in managerErrors) {
+            [errors addObject:error.localizedDescription];
+        }
+        NSString *errorString = [errors componentsJoinedByString:@"\n"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+        return NO;
+    } else {
+        DLog(@"All good, no errors!");
+    }
+    
+    return YES;
 }
 
 #pragma mark - IBAction

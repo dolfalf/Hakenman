@@ -12,4 +12,7 @@
 @interface TimeCardSummaryDao : ModelDao
 
 - (NSArray *)fetchModelStartMonth:(NSString *)sm EndMonth:(NSString *)em ascending:(BOOL)b;
+
+//MARK: TimeCardが変更されたらこのメソッドを呼んでください。
+- (void)updatedTimeCardSummaryTable:(NSString *)yyyymm;
 @end
