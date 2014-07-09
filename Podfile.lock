@@ -1,4 +1,5 @@
 PODS:
+  - DJWActionSheet (1.0.4)
   - GoogleAnalytics-iOS-SDK (3.0.2)
   - JazzHands (0.1.0)
   - PBFlatUI (1.1.0)
@@ -9,12 +10,14 @@ PODS:
   - REValidation (0.1.4)
 
 DEPENDENCIES:
+  - DJWActionSheet (~> 1.0)
   - GoogleAnalytics-iOS-SDK (= 3.0.2)
   - JazzHands (~> 0.1)
   - PBFlatUI (~> 1.1.0)
   - RETableViewManager (~> 1.5)
 
 SPEC CHECKSUMS:
+  DJWActionSheet: d88b302d7c29523e1e9fb9b62cfac46f59bb90d9
   GoogleAnalytics-iOS-SDK: 092c6c87301bb419ed44c1992cad87bc214de9ae
   JazzHands: 828e9d0d6609fdc9089d8049d64dd2ab45179d13
   PBFlatUI: c5b83184df1ea5567c23cce0f2e36708e8e1638f

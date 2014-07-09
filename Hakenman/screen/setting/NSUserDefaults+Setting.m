@@ -7,6 +7,7 @@
 //
 
 #import "NSUserDefaults+Setting.h"
+#import "const.h"
 
 @implementation NSUserDefaults (Setting)
 
@@ -163,6 +164,48 @@
     
     NSUserDefaults *userDefaults = [self standardUserDefaults];
     [userDefaults setObject:value forKey:@"ReportToMailAddressKey"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSString *)reportMailTitle {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"ReportMailTitleKey" : LOCALIZE(@"SettingViewController_work_report_title_defalut")}];
+    
+    return [userDefaults objectForKey:@"ReportMailTitleKey"] ;
+}
+
++ (void)setReportMailTitle:(NSString *)value {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:value forKey:@"ReportMailTitleKey"];
+    
+    [userDefaults synchronize];
+}
+
++ (BOOL)reportMailTempleteTimeAdd {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"ReportMailTempleteTimeAddKey" : @(YES)}];
+    
+    return [[userDefaults objectForKey:@"ReportMailTempleteTimeAddKey"] boolValue];
+}
+
++ (void)setReportMailTempleteTimeAdd:(BOOL)value {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:@(value) forKey:@"ReportMailTempleteTimeAddKey"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSString *)reportMailContent {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"ReportMailContentKey" : @""}];
+    
+    return [userDefaults objectForKey:@"ReportMailContentKey"] ;
+}
+
++ (void)setReportMailContent:(NSString *)value {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:value forKey:@"ReportMailContentKey"];
     
     [userDefaults synchronize];
 }

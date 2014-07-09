@@ -187,8 +187,6 @@ enum {
 }
 
 - (void)loadReportSection {
-
-    __typeof (self) __weak weakSelf = self;
     
     // Add a section
     RETableViewSection *reportSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_work_report_section_title")];
@@ -211,29 +209,26 @@ enum {
     //日報タイトル設定
     //【日報】2014年7月3日
     // (日報)20140703
-    NSArray *report_title_options = [Util reportTitleList];
+    RETextItem *reportMailTitleTextItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_mail_title_title")
+                                                         value:[NSUserDefaults reportMailTitle]
+                                                   placeholder:@"Email Title"];
     
-    RERadioItem *reportTitleOptionItem = [RERadioItem itemWithTitle:
-                                          LOCALIZE(@"SettingViewController_mail_title_title")
-                                                              value:[report_title_options objectAtIndex:[NSUserDefaults displayWorkSheet]]
-                                                   selectionHandler:^(RERadioItem *item) {
-                                                       __typeof (weakSelf) __strong strongSelf = weakSelf;
-                                                       [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
-                                                       
-                                                       // Present options controller
-                                                       //
-                                                       RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:report_title_options multipleChoice:NO completionHandler:^ {
-                                                           [strongSelf.settingTableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                                                       }];
-                                                       [strongSelf.navigationController pushViewController:optionsController animated:YES];
-                                                   }];
-    [reportSection addItem:reportTitleOptionItem];
+    reportMailTitleTextItem.name = LOCALIZE(@"SettingViewController_work_report_title_defalut");
+    [reportSection addItem:reportMailTitleTextItem];
     
+    reportMailTitleTextItem.onEndEditing = ^(RETextItem *item) {
+        //入力完了の時
+        [NSUserDefaults setReportMailTitle:item.value];
+    };
+
     
     //日報時間表示内容追加可否
-    [reportSection addItem:[REBoolItem itemWithTitle:LOCALIZE(@"SettingViewController_work_report_time_templete_add") value:YES switchValueChangeHandler:^(REBoolItem *item) {
-        DLog(@"Value: %i", item.value);
-        
+    [reportSection addItem:[REBoolItem itemWithTitle:LOCALIZE(@"SettingViewController_work_report_time_templete_add")
+                                               value:[NSUserDefaults reportMailTempleteTimeAdd]
+                            switchValueChangeHandler:^(REBoolItem *item) {
+                                //DLog(@"Value: %i", item.value);
+                                [NSUserDefaults setReportMailTempleteTimeAdd:[@(item.value) boolValue]];
+                                //LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete)
     }]];
 }
 
@@ -246,7 +241,7 @@ enum {
     [self.reTableManager addSection:mailContentSection];
     
     //日報内容テンプレート
-    RELongTextItem *mailContentTextItem = [RELongTextItem itemWithValue:nil
+    RELongTextItem *mailContentTextItem = [RELongTextItem itemWithValue:[NSUserDefaults reportMailContent]
                                                             placeholder:LOCALIZE(@"SettingViewController_menulist_work_report_content_placeholder")];
     mailContentTextItem.cellHeight = 88;
     [mailContentSection addItem:mailContentTextItem];
@@ -261,6 +256,8 @@ enum {
         //入力が完了したら
         [weakSelf.settingTableView setContentOffset:CGPointMake(0,
                                                                 weakSelf.settingTableView.contentOffset.y - item.cellHeight) animated:YES];
+        
+        [NSUserDefaults setReportMailContent:item.value];
     };
 }
 

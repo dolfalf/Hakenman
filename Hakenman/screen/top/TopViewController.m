@@ -10,16 +10,16 @@
 
 #import "TimeCardDao.h"
 #import "TimeCardSummaryDao.h"
-
 #import "SettingViewController.h"
 #import "MenuViewController.h"
-
 #import "TodayTableViewCell.h"
 #import "MonthTableViewCell.h"
-
 #import "NSDate+Helper.h"
-
+#import <DJWActionSheet/DJWActionSheet.h>
+#import "Util.h"
 #import "MonthWorkingTableViewController.h"
+#import <MessageUI/MFMailComposeViewController.h>
+#import "NSUserDefaults+Setting.h"
 
 #define TOPVIEWCONTROLLER_MENU_HIDDEN
 
@@ -32,13 +32,12 @@ NS_ENUM(NSInteger, actionsheetButtonType) {
     actionsheetButtonTypeWriteStartTime = 0,
     actionsheetButtonTypeWriteEndTime,
     actionsheetButtonTypeSendWorkReport,
-    actionsheetButtonTypeCancel,
 };
 
 static NSString * const kTodayCellIdentifier = @"todayCellIdentifier";
 static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
-@interface TopViewController () <UIActionSheetDelegate> {
+@interface TopViewController () <MFMailComposeViewControllerDelegate> {
     
     IBOutlet UITableView *mainTableView;
     
@@ -204,16 +203,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     //title
     self.title = LOCALIZE(@"TopViewController_goWork_title");
     
-    _writeActionSheet = [[UIActionSheet alloc] init];
-    _writeActionSheet.delegate = self;
-//    _writeActionSheet.title = @"選択してください。";
-    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_start_work_write")];
-    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_end_work_write")];
-    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"TopViewController_actionsheet_send_work_report")];
-    [_writeActionSheet addButtonWithTitle:LOCALIZE(@"Common_actionsheet_cancel")];
-    _writeActionSheet.destructiveButtonIndex = 2;
-    _writeActionSheet.cancelButtonIndex = 3;
-    
     //Timer
     self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:30.f
                                                       target:self
@@ -259,7 +248,74 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
 - (IBAction)writeWorkSheetButtonTouched:(id)sender {
     
-    [_writeActionSheet showInView:self.navigationController.toolbar];
+    [DJWActionSheet showInView:self.navigationController.view
+                     withTitle:LOCALIZE(@"Common_actionsheet_title")
+             cancelButtonTitle:LOCALIZE(@"Common_actionsheet_cancel")
+        destructiveButtonTitle:nil
+             otherButtonTitles:@[
+                                 LOCALIZE(@"TopViewController_actionsheet_start_work_write"),
+                                 LOCALIZE(@"TopViewController_actionsheet_end_work_write"),
+                                 LOCALIZE(@"TopViewController_actionsheet_send_work_report")]
+     
+                      tapBlock:^(DJWActionSheet *actionSheet, NSInteger tappedButtonIndex) {
+                          if (tappedButtonIndex == actionSheet.cancelButtonIndex) {
+                              DLog(@"User Cancelled");
+                              
+                          } else if (tappedButtonIndex == actionSheet.destructiveButtonIndex) {
+//                              DLog(@"Destructive button tapped");
+                          }else {
+                              DLog(@"The user tapped button at index: %i", tappedButtonIndex);
+                              
+                              if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
+                                  //
+                              }else if(tappedButtonIndex == actionsheetButtonTypeWriteEndTime) {
+                                  
+                              }else if(tappedButtonIndex == actionsheetButtonTypeSendWorkReport) {
+                                  
+                                  NSMutableString *mailContent = [NSMutableString new];
+                                  
+                                  if ([NSUserDefaults reportMailTempleteTimeAdd] == YES) {
+                                      TimeCardDao *dao = [TimeCardDao new];
+                                      TimeCard *model = [dao fetchModelWorkDate:[NSDate date]];
+//                                      //test
+//                                      TimeCard *model = [dao createModel];
+//                                      model.start_time = @"20140707091234";
+//                                      model.end_time = @"20140707214567";
+                                      NSString *st = [NSUserDefaults workStartTime];
+                                      if (model.start_time != nil && [model.start_time isEqualToString:@""] == NO) {
+                                          //時間きりで補正する
+                                          NSString *corrent_st = [Util correctWorktime:model.start_time];
+                                          st = [NSString stringWithFormat:@"%@:%@"
+                                                ,[corrent_st substringWithRange:NSMakeRange(8, 2)]
+                                                ,[corrent_st substringWithRange:NSMakeRange(10, 2)]];
+                                      }
+                                      NSString *et = [NSUserDefaults workEndTime];
+                                      if (model.end_time != nil && [model.end_time isEqualToString:@""] == NO) {
+                                          //時間きりで補正する
+                                          NSString *corrent_et = [Util correctWorktime:model.end_time];
+                                          et = [NSString stringWithFormat:@"%@:%@"
+                                                ,[corrent_et substringWithRange:NSMakeRange(8, 2)]
+                                                ,[corrent_et substringWithRange:NSMakeRange(10, 2)]];
+                                      }
+                    
+                                      //定型文追加
+                                      NSString *templetFormat = LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete");
+                                      [mailContent appendFormat:templetFormat,st, et, [NSUserDefaults workSitename]];
+                                      
+                                      [mailContent appendString:[NSUserDefaults reportMailContent]];
+                                      
+                                  }
+                                  //report mail send
+                                  [Util sendReportMailWorkSheet:self
+                                                        subject:[NSUserDefaults reportMailTitle]
+                                                    toRecipient:[NSUserDefaults reportToMailaddress]
+                                                    messageBody:mailContent];
+                              }
+                              
+                          }
+                      }];
+    
+//    [_writeActionSheet showInView:self.navigationController.toolbar];
 }
 
 #pragma mark - private methods
@@ -383,30 +439,14 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     }
 }
 
-#pragma mark - UIActionSheet delegate method
--(void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-
-    switch (buttonIndex) {
-    case actionsheetButtonTypeWriteStartTime:
-            [StoryboardUtil gotoMonthWorkingTableEditViewController:self completion:^(id destinationController) {
-                //set param.
-            }];
-            
-        break;
-    case actionsheetButtonTypeWriteEndTime:
-            [StoryboardUtil gotoMonthWorkingTableEditViewController:self completion:^(id destinationController) {
-                //set param.
-            }];
-        break;
-            
-        case actionsheetButtonTypeSendWorkReport:
-            //TODO:UserDefalutからデータを取得し、メールフォーム表示
-            break;
-    case actionsheetButtonTypeCancel:
-            //cancel
-        break;
-    }
-
+#pragma mark - mail delegate
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error
+{
+    if(error) NSLog(@"ERROR - mailComposeController: %@", [error localizedDescription]);
+    [self dismissViewControllerAnimated:YES completion:nil];
+    return;
 }
 
 @end
