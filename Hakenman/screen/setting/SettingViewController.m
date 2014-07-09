@@ -303,7 +303,7 @@ enum {
     //チュートリアル
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_tutorial_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
         //遷移
-        [StoryboardUtil gotoTutorialViewController:self pushController:YES];
+        [StoryboardUtil gotoTutorialViewController:self];
     }]];
     
     //アプリについて
