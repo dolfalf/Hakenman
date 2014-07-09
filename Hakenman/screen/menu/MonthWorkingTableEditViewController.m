@@ -33,7 +33,6 @@ typedef enum {
 @property (nonatomic, strong) RETableViewManager *reTableManager;
 @property (nonatomic, strong) REDateTimeItem *startWtPickerItem;
 @property (nonatomic, strong) REDateTimeItem *endWtPickerItem;
-//@property (nonatomic, strong) REDateTimeItem *restTimePickerItem;
 @property (nonatomic, strong) REPickerItem *restTimePickerItem;
 @property (nonatomic, strong) REBoolItem *workDayBoolItme;
 
@@ -62,10 +61,11 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 
-//    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableEditViewController_edit_navi_title"),
-////                  [_timeCard.t_year intValue],[_timeCard.t_month intValue],[_timeCard.t_day intValue]];
-    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableEditViewController_edit_navi_title"),
-                  [_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]];
+    self.title = [NSString stringWithFormat:
+                  LOCALIZE(@"MonthWorkingTableEditViewController_edit_navi_title"),
+                  [_showData.yearData intValue],
+                  [_showData.monthData intValue],
+                  [_showData.dayData intValue]];
     [super viewWillAppear:animated];
 }
 
@@ -79,15 +79,25 @@ typedef enum {
 - (IBAction)saveAndClose:(id)sender {
     
     TimeCardDao *dao = [TimeCardDao new];
+
+    NSDate *getWd = [NSDate convDate2ShortString:[NSString stringWithFormat:@"%d%.2d%.2d",[_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]]];
+
+    TimeCard *timeCard = [dao fetchModelWorkDate:getWd];
+    if (timeCard == nil) {
+        DLog(@"create Coredata!");
+        timeCard = [dao createModel];
+    }
     
-    [dao createModel];
-    
-    //画面上の値を変更した場合、_timeCardを変更する？
-    _timeCard.start_time = [_startWtPickerItem.value yyyyMMddHHmmssString];
-    _timeCard.end_time = [_endWtPickerItem.value yyyyMMddHHmmssString];
+    timeCard.start_time = [_startWtPickerItem.value yyyyMMddHHmmssString];
+    timeCard.end_time = [_endWtPickerItem.value yyyyMMddHHmmssString];
+    timeCard.t_year = @([[timeCard.start_time substringWithRange:NSMakeRange(0, 4)] intValue]);
+    timeCard.t_month = @([[timeCard.start_time substringWithRange:NSMakeRange(4, 2)] intValue]);
+    timeCard.t_day = @([[timeCard.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
+    timeCard.t_yyyymmdd = @([[timeCard.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
+    timeCard.t_week = _showData.weekData;
     //今後修正必要
 //    _timeCard.rest_time = [NSNumber numberWithFloat:[_restTimeNumberItem.value floatValue]];
-    _timeCard.workday_flag = [NSNumber numberWithBool:_workDayBoolItme.value];
+    timeCard.workday_flag = [NSNumber numberWithBool:_workDayBoolItme.value];
 
     [dao insertModel];
     
@@ -112,29 +122,41 @@ typedef enum {
     //
     RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"勤務時間入力"];
     [_reTableManager addSection:section];
-
+    
+    NSDate *getWd = [NSDate convDate2ShortString:[NSString stringWithFormat:@"%d%.2d%.2d",[_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]]];
     NSDate *startWt;
     NSDate *endWt;
+    BOOL workTime = YES;
     
-    if (_timeCard.start_time == nil ||
-        _timeCard.end_time == nil) {
+    TimeCardDao *dao = [TimeCardDao new];
+    
+    TimeCard *timeCard = [dao fetchModelWorkDate:getWd];
+    
+    if (timeCard == nil) {
+        DLog(@"create Coredata!");
+        timeCard = [dao createModel];
+    }
+    
+    //営業日ではない場合の基本表示は？
+    if ([timeCard.workday_flag isEqual:[NSNumber numberWithBool:NO]] &&
+        [_showData.workFlag isEqual:[NSNumber numberWithBool:NO]]) {
+        workTime = NO;
+    }
+    
+    if (timeCard.start_time == nil ||
+        timeCard.end_time == nil) {
         startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
-                                               [[NSDate date] yyyyMMddString],
+                                               [getWd yyyyMMddString],
                                                [[NSUserDefaults workStartTime]
                                                 stringByReplacingOccurrencesOfString:@":" withString:@""]]];
         endWt = [NSDate convDate2String:
                          [NSString stringWithFormat:@"%@%@00",
-                          [[NSDate date] yyyyMMddString],
+                          [getWd yyyyMMddString],
                           [[NSUserDefaults workEndTime]
                            stringByReplacingOccurrencesOfString:@":" withString:@""]]];
     }else{
-        startWt = [NSDate convDate2String:_timeCard.start_time];
-        endWt = [NSDate convDate2String:_timeCard.end_time];
-    }
-    BOOL workTime = YES;
-    //営業日ではない場合の基本表示は？
-    if ([_timeCard.workday_flag isEqual:[NSNumber numberWithBool:NO]]) {
-        workTime = NO;
+        startWt = [NSDate convDate2String:timeCard.start_time];
+        endWt = [NSDate convDate2String:timeCard.end_time];
     }
     //反応が遅いかそれとも変か。。。
     //出勤
@@ -155,8 +177,6 @@ typedef enum {
     self.restTimePickerItem = [REPickerItem itemWithTitle:@"休息時間" value:@[@"1", @"00"] placeholder:nil options:@[@[@"1", @"2", @"3", @"4", @"5", @"6"], @[@"00", @"15", @"30", @"45"]]];
 //    self.restTimePickerItem = [REDateTimeItem itemWithTitle:@"休憩時間" value:nil placeholder:nil format:@"HH:mm" datePickerMode:UIDatePickerModeCountDownTimer];
     [section addItem:_restTimePickerItem];
-//    self.restTimeNumberItem = [RENumberItem itemWithTitle:@"休憩時間" value:@"" placeholder:@"1時間" format:@"X時間"];
-//    [section addItem:_restTimeNumberItem];
     
     //平日、休日
     self.workDayBoolItme = [REBoolItem itemWithTitle:@"営業日" value:workTime switchValueChangeHandler:^(REBoolItem *item) {

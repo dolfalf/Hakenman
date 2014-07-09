@@ -35,10 +35,8 @@
     // Configure the view for the selected state
 }
 
-//表示めちゃくちゃ。。。早くかえないと。。。
 - (void)updateCell:(RightTableViewData *)model {
-    
-    if ([model.start_time isEqualToString:@""] || [model.end_time isEqualToString:@""]) {
+    if (model.start_time == nil || model.end_time == nil) {
         startTimeLabel.text = @"";
         endTimeLabel.text = @"";
         workTimeLabel.text = @"";

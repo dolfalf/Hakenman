@@ -29,8 +29,8 @@
 }
 
 @property (nonatomic, assign) NSInteger selectedIndex;
-//@property (nonatomic, strong) NSArray *rightItems;
-@property (nonatomic, strong) NSMutableDictionary *rightItems;
+@property (nonatomic, strong) NSDictionary *bigItems;
+@property (nonatomic, strong) NSDate *sheetDate;
 
 @end
 
@@ -55,8 +55,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     DLog(@"%s", __FUNCTION__);
-    [leftTableView reloadData];
-    [rightTableView reloadData];
     [self reloadSheetDate];
     [super viewWillAppear:animated];
     
@@ -88,101 +86,92 @@
     
     //TODO:イメージに差し替え予定
     backgroundImageView.backgroundColor = [UIColor lightGrayColor];
+    
+    if ([_inputDates isEqualToString:@""] == NO) {
+        //ex : 20140701など
+        _inputDates = [_inputDates stringByAppendingString:@"01"];
+    }
+
+    self.sheetDate = [NSDate convDate2ShortString:_inputDates];
+
+    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
+                  [_sheetDate getYear], [_sheetDate getMonth]];
+    
     [self reloadSheetDate];
 }
 
 -(void)reloadSheetDate{
-    //選択された月の語尾に@"01"をつけて、その月の表示のための形に変更する
-    if ([_inputDates isEqualToString:@""] == NO) {
-        //20140701
-        _inputDates = [_inputDates stringByAppendingString:@"01"];
-    }
     
-    //NSDate convDate2ShortStringでDateを決めるべき（なおった？）
-    NSDate *sheetDate = [NSDate convDate2ShortString:_inputDates];
-    
-    //sheetDateで受け取った値は正常に受け取るのに、ログで表示するときだけ変に出る
-    DLog(@"[sheetDate convDate2ShortString] - %@", [NSDate convDate2ShortString:_inputDates]);
-    
-    //任意のArrayに３０日までの値を格納
-    NSMutableArray *mTempArray = [[NSMutableArray alloc]init];
-    
-    //create right item
-    self.rightItems = [NSMutableDictionary new];
+    NSMutableDictionary *bTempDictionary = [[NSMutableDictionary alloc]init];
     
     NSNumber *leftDates;
     NSNumber *leftWeeks;
-    if (_items == nil) {
-        //sheetDateからその月の最後の日を算出（何日で終わるのか）
-        int lastDay = [sheetDate getLastday];
-        //sheetDateからその日の曜日を算出
-        int weekDay = [sheetDate getWeekday];
-        //休日か否かを取る
-        NSNumber *workFlag = [NSNumber numberWithBool:YES];
-        //終わる日時にあわせて繰り返す
-        for (int i = 1; i<=lastDay; i++) {
-            
-            LeftTableViewData *leftDataModel = [[LeftTableViewData alloc]init];
-            
-            leftDates = [NSNumber numberWithInt:i];
-            leftWeeks = [NSNumber numberWithInt:weekDay];
-            //土日は基本的に休み
-            if (weekDay == weekSatDay || weekDay == weekSunday) {
-                workFlag = [NSNumber numberWithBool:NO];
-            }else{
-                workFlag = [NSNumber numberWithBool:YES];
-            }
-            
-            leftDataModel.yearData = [NSNumber numberWithInt:[sheetDate getYear]];
-            leftDataModel.monthData = [NSNumber numberWithInt:[sheetDate getMonth]];
-            leftDataModel.dayData = leftDates;
-            leftDataModel.weekData = leftWeeks;
-            leftDataModel.workFlag = workFlag;
-            
-            [mTempArray addObject:leftDataModel];
-            
-            //土曜日になったら、曜日表示を日曜日からやり直す
-            if (weekDay == 7) {
-                weekDay = 1;
-            }else{
-                weekDay++;
-            }
-            
-            //right
-            RightTableViewData *rMOdel = [RightTableViewData new];
-            [_rightItems setObject:rMOdel forKey:[sheetDate yyyyMMddString]];
-            
-        }
-        _items = [mTempArray mutableCopy];
-        
-        
-        
-        
-        DLog(@"[sheetDate getYear] - %d", [sheetDate getYear]);
-        DLog(@"[sheetDate getMonth] - %d", [sheetDate getMonth]);
-        DLog(@"[sheetDate getDay] - %d", [sheetDate getDay]);
-        DLog(@"[sheetDate getWeekday] - %d", [sheetDate getWeekday]);
-        DLog(@"[sheetDate getLastday] - %d", [sheetDate getLastday]);
-        DLog(@"[sheetDate getHour] - %d", [sheetDate getHour]);
-        DLog(@"[sheetDate getBeginOfMonth] - %@", [sheetDate getBeginOfMonth]);
-        DLog(@"[sheetDate getEndOfMonth] - %@", [sheetDate getEndOfMonth]);
-        DLog(@"[sheetDate getDayOfMonth] - %@", [sheetDate getDayOfMonth:[sheetDate getDay]]);
-    }
+    //sheetDateからその月の最後の日を算出（何日で終わるのか）
+    int lastDay = [_sheetDate getLastday];
+    //sheetDateからその日の曜日を算出
+    int weekDay = [_sheetDate getWeekday];
+    //休日か否かを取る
+    NSNumber *workFlag = [NSNumber numberWithBool:YES];
+    //終わる日時にあわせて繰り返す
     
     //right
     TimeCardDao *dao = [TimeCardDao new];
-    NSArray *models = [dao fetchModelYear:[sheetDate getYear] month:[sheetDate getMonth]];
     
-    for (TimeCard *tm in models) {
-        RightTableViewData *rMOdel = [_rightItems objectForKey:[tm.t_yyyymmdd stringValue]];
+    NSArray *models = [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
+    
+    for (int i = 1; i<=lastDay; i++) {
         
-        rMOdel.start_time = tm.start_time;
-        rMOdel.end_time = tm.end_time;
+        LeftTableViewData *leftDataModel = [[LeftTableViewData alloc]init];
+        RightTableViewData *rightDataModel = [[RightTableViewData alloc]init];
         
+        leftDates = [NSNumber numberWithInt:i];
+        leftWeeks = [NSNumber numberWithInt:weekDay];
+        
+        //土日は基本的に休み
+        if (weekDay == weekSatDay || weekDay == weekSunday) {
+            workFlag = [NSNumber numberWithBool:NO];
+        }else{
+            workFlag = [NSNumber numberWithBool:YES];
+        }
+        
+        leftDataModel.yearData = [NSNumber numberWithInt:[_sheetDate getYear]];
+        leftDataModel.monthData = [NSNumber numberWithInt:[_sheetDate getMonth]];
+        leftDataModel.dayData = leftDates;
+        leftDataModel.weekData = leftWeeks;
+        leftDataModel.workFlag = workFlag;
+        
+//取り出した結果のデータ(資料型)  fetchとして取り出した結果
+        for (TimeCard *tm in models) {
+            //DBに保存されている値を日付単位で検索、表示する日付にあたる値が出るとその値をrightDataModelに入れる
+            NSString *compareStringToday = [NSString stringWithFormat:@"%@%.2d%.2d", leftDataModel.yearData, [_sheetDate getMonth], i];
+            NSString *compareStringCore = [NSString stringWithFormat:@"%@", tm.t_yyyymmdd];
+
+            if ([compareStringToday isEqualToString:compareStringCore]) {
+                rightDataModel.start_time = tm.start_time;
+                rightDataModel.end_time = tm.end_time;
+                rightDataModel.rest_time = tm.rest_time;
+                rightDataModel.workday_flag = tm.workday_flag;
+            }
+            
+        }
+        //土曜日になったら、曜日表示を日曜日からやり直す
+        if (weekDay == 7) {
+            weekDay = 1;
+        }else{
+            weekDay++;
+        }
+        
+        //左に表示すべき値と、右に表示すべき値をDictionaryとして順次で保存
+        [bTempDictionary setObject:leftDataModel forKey:[NSString stringWithFormat:@"left_%d", (i-1)]];
+        [bTempDictionary setObject:rightDataModel forKey:[NSString stringWithFormat:@"right_%d", (i-1)]];
     }
     
-    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
-                  [sheetDate getYear], [sheetDate getMonth]];
+    //表示すべきテーブルに結果を入れる
+    self.bigItems = [bTempDictionary mutableCopy];
+
+    //テーブルの更新
+    [leftTableView reloadData];
+    [rightTableView reloadData];
 }
 
 #pragma mark - private methods
@@ -207,10 +196,7 @@
         MonthWorkingTableEditViewController *controller = (MonthWorkingTableEditViewController *)[segue destinationViewController];
         
         //編集画面へ遷移するとき、選んだ日のデータを編集画面へ渡す
-        controller.showData = [_items objectAtIndex:_selectedIndex];
-        if (_rightItems.count != 0) {
-//            controller.timeCard = [_rightItems objectAtIndex:_selectedIndex];
-        }
+        controller.showData = [_bigItems objectForKey:[NSString stringWithFormat:@"left_%d", _selectedIndex]];
     }
 }
 
@@ -243,26 +229,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [_items count];
+    return (_bigItems.count/2);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-//    //get
-//    NSDictionary *dic = [_arr objectAtIndex:indexPath.row];
-//    
-//    LeftTableViewData *left_item = [dic objectForKey:@"leftdata"];
-//    RightTableViewData *rignt_item = [dic objectForKey:@"rightdata"];
-//    
-//    
-//    //set
-//    NSDictionary *dic = [_arr objectAtIndex:indexPath.row];
-    
-    
-    
-    LeftTableViewData *leftModel = [_items objectAtIndex:indexPath.row];
-//    RightTableViewData *rightModel = [_rightItems obj];
+
+    LeftTableViewData *leftModel = [_bigItems objectForKey:[NSString stringWithFormat:@"left_%d", indexPath.row]];
+    RightTableViewData *rightModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", indexPath.row]];
     
     if ([tableView isEqual:leftTableView] == YES) {
         //左側を表示するときには、TimeCardを参照する必要がない(自分で作る必要がある)
@@ -276,11 +249,11 @@
         [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
         
         //cell update.
-//        if ([rightModel.workday_flag isEqual:[NSNumber numberWithBool:NO]]) {
-//            leftModel.workFlag = [NSNumber numberWithBool:NO];
-//        }else if([rightModel.workday_flag isEqual:[NSNumber numberWithBool:YES]]){
-//            leftModel.workFlag = [NSNumber numberWithBool:YES];
-//        }
+        if ([rightModel.workday_flag isEqual:[NSNumber numberWithBool:NO]]) {
+            leftModel.workFlag = [NSNumber numberWithBool:NO];
+        }else if([rightModel.workday_flag isEqual:[NSNumber numberWithBool:YES]]){
+            leftModel.workFlag = [NSNumber numberWithBool:YES];
+        }
         
         [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag];
         
@@ -296,7 +269,7 @@
         [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
         
         //cell update.
-//        [cell updateCell:rightModel];
+        [cell updateCell:rightModel];
         
         return cell;
     }

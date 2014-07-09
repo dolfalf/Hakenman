@@ -79,7 +79,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 	// Do any additional setup after loading the view.
     
     //MARK: テストデータの生成
-#if 1
+#if 0
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 
     [timeCardDao deleteAllModel];
@@ -93,7 +93,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             model.t_month = @([[model.start_time substringWithRange:NSMakeRange(4, 2)] intValue]);
             model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
             model.t_yyyymmdd = @([[model.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
-            model.workday_flag = [NSNumber numberWithBool:YES];
+            model.workday_flag = [NSNumber numberWithBool:NO];
             model.remarks = @"あいうえお";
             
             DLog(@"start_time:[%@], end_time:[%@]", model.start_time, model.end_time);
