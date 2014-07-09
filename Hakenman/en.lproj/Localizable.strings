@@ -30,17 +30,23 @@
 "Common_navigation_backbutton_title" = "Back";
 "Common_navigation_closebutton_title" = "Close";
 
+"Common_alert_button_ok"        = "OK";
+"Common_alert_button_cancel"    = "Cancel";
+
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
 "TopViewController_actionsheet_send_work_report" = "Send work report";
-"TopViewController_actionsheet_start_work_write" = "Write work start";
-"TopViewController_actionsheet_end_work_write" = "Write work finish";
+"TopViewController_actionsheet_start_work_write" = "start job at the current time.";
+"TopViewController_actionsheet_end_work_write" = "finish job at the current time.";
 
 "TopViewController_tablecell_message_title" = "After time to work,";
 "TopViewController_tablecell_countdown_unit" = "Min.";
 
 "TopViewController_tablecell_total_work_time_title" = "Work times";
 "TopViewController_tablecell_total_work_day_title" = "Work days";
+
+"TopViewController_write_workstart_alertview_message"   = "Are you sure you want to record the work start time in the current time?";
+"TopViewController_write_workend_alertview_message"     = "Are you sure you want to record the work end time in the current time?";
 
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "Month workingtable";

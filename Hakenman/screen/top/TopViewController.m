@@ -37,7 +37,7 @@ NS_ENUM(NSInteger, actionsheetButtonType) {
 static NSString * const kTodayCellIdentifier = @"todayCellIdentifier";
 static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
-@interface TopViewController () <MFMailComposeViewControllerDelegate> {
+@interface TopViewController () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate> {
     
     IBOutlet UITableView *mainTableView;
     
@@ -49,6 +49,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 @property (nonatomic, weak) TodayTableViewCell *todayCell;
 @property (nonatomic, strong) UIActionSheet *writeActionSheet;
 @property (nonatomic, assign) NSTimer *loadTimer;
+
+@property (nonatomic, strong) UIAlertView *writeWorkStartAlert;
+@property (nonatomic, strong) UIAlertView *writeWorkEndAlert;
 
 - (IBAction)gotoMenuButtonTouched:(id)sender;
 - (IBAction)gotoSettingButtonTouched:(id)sender;
@@ -250,6 +253,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     }];
 }
 
+#pragma mark - Custom Actionsheet
 - (IBAction)writeWorkSheetButtonTouched:(id)sender {
     
     [DJWActionSheet showInView:self.navigationController.view
@@ -272,7 +276,22 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                               
                               if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
                                   //
+                                  self.writeWorkStartAlert = [[UIAlertView alloc] initWithTitle:@""
+                                                                                        message:LOCALIZE(@"TopViewController_write_workstart_alertview_message")
+                                                                                       delegate:self
+                                                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                                              otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
+                                  [_writeWorkStartAlert show];
+                                  
+                                  
                               }else if(tappedButtonIndex == actionsheetButtonTypeWriteEndTime) {
+                                  
+                                  self.writeWorkEndAlert = [[UIAlertView alloc] initWithTitle:@""
+                                                                                        message:LOCALIZE(@"TopViewController_write_workend_alertview_message")
+                                                                                       delegate:self
+                                                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                                              otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
+                                  [_writeWorkEndAlert show];
                                   
                               }else if(tappedButtonIndex == actionsheetButtonTypeSendWorkReport) {
                                   
@@ -452,5 +471,27 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [self dismissViewControllerAnimated:YES completion:nil];
     return;
 }
+
+#pragma mark - UIAlertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        return;
+    }
+    
+    TimeCardDao *dao = [TimeCardDao new];
+    NSDate *today = [NSDate date];
+    
+    if ([alertView isEqual:_writeWorkStartAlert] == YES) {
+        //出勤
+        [dao insertModelWorkStart:today];
+    }else if ([alertView isEqual:_writeWorkEndAlert] == YES) {
+        //退勤
+        [dao insertModelWorkEnd:today];
+    }
+    
+    
+}
+
 
 @end

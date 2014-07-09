@@ -11,9 +11,12 @@
 
 @interface TimeCardDao : ModelDao
 
-- (void)insertModelWorkSheet:(NSDate *)dt;
+//Top画面から直接書き込み
+- (void)insertModelWorkStart:(NSDate *)dt;
+- (void)insertModelWorkEnd:(NSDate *)dt;
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month;
 - (NSArray *)fetchModelLastWeek;
 - (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
+
 @end

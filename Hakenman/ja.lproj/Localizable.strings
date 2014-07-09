@@ -29,17 +29,23 @@
 "Common_navigation_backbutton_title" = "戻る";
 "Common_navigation_closebutton_title" = "閉じる";
 
+"Common_alert_button_ok"        = "確認";
+"Common_alert_button_cancel"    = "キャンセル";
+
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
 "TopViewController_actionsheet_send_work_report" = "日報メールを送信";
-"TopViewController_actionsheet_start_work_write" = "出勤時間を書く";
-"TopViewController_actionsheet_end_work_write" = "退勤時間を書く";
+"TopViewController_actionsheet_start_work_write" = "現在時間で出勤";
+"TopViewController_actionsheet_end_work_write" = "現在時間で退勤";
 
 "TopViewController_tablecell_message_title" = "出勤時間まで後、";
 "TopViewController_tablecell_countdown_unit" = "分";
 
 "TopViewController_tablecell_total_work_time_title" = "勤務時間";
 "TopViewController_tablecell_total_work_day_title" = "勤務日数";
+
+"TopViewController_write_workstart_alertview_message"   = "現在時刻で出勤時間を記録しますか。";
+"TopViewController_write_workend_alertview_message"     = "現在時刻で退勤時間を記録しますか。";
 
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "今月の勤務表";

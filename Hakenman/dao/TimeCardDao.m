@@ -31,47 +31,58 @@
     return self;
 }
 
-- (void)insertModelWorkSheet:(NSDate *)dt {
-
+- (TimeCard *)timeCardWithDate:(NSDate *)dt {
+    
     int w_year =[dt getYear];
     int w_month =[dt getMonth];
+    int w_day = [dt getDay];
+    int w_week = [dt getWeekday];
     
     NSArray *items = [self fetchModelYear:w_year month:w_month];
     
-    //既に存在したらそのまま返す
+    //既に存在したら更新
     if (items != nil && [items count] > 0) {
-        return;
+        return [items objectAtIndex:0];
     }
     
     //存在しなければ作成
     
-    for (int day=1; day <= [dt getLastday]; day++) {
-        DLog(@"day:[%d]",day);
-        int w_week = [[dt getDayOfMonth:day] getWeekday];
-        
-        TimeCard *model = [self createModel];
-        
-        //default setting.
-        model.t_year = [NSNumber numberWithInt:w_year];
-        model.t_month = [NSNumber numberWithInt:w_month];
-        model.t_day = [NSNumber numberWithInt:day];
-        model.t_week = [NSNumber numberWithInt:w_week];
-        model.t_yyyymmdd = @([[NSString stringWithFormat:@"%d%02d%02d",w_year, w_month, day] intValue]);
-        model.rest_time = @(1.f);
-        if (w_week == weekSatDay || w_week == weekSunday) {
-            model.workday_flag = @(NO);
-        }else {
-            model.workday_flag = @(YES);
-        }
-        
-//        model.remarks;
-//        model.end_time;
-//        model.start_time;
-//        model.time_card_site_info;
+    TimeCard *model = [self createModel];
+    
+    //default setting.
+    model.t_year = [NSNumber numberWithInt:w_year];
+    model.t_month = [NSNumber numberWithInt:w_month];
+    model.t_day = [NSNumber numberWithInt:w_day];
+    model.t_week = [NSNumber numberWithInt:w_week];
+    model.t_yyyymmdd = @([[NSString stringWithFormat:@"%d%02d%02d",w_year, w_month, w_day] intValue]);
+    model.rest_time = @(1.f);
+    if (w_week == weekSatDay || w_week == weekSunday) {
+        model.workday_flag = @(NO);
+    }else {
+        model.workday_flag = @(YES);
     }
+    
+    return model;
+
+}
+
+- (void)insertModelWorkStart:(NSDate *)dt {
+
+    TimeCard *model = [self timeCardWithDate:dt];
+    
+    model.start_time = [dt yyyyMMddHHmmssString];
     
     [self insertModel];
     
+}
+
+- (void)insertModelWorkEnd:(NSDate *)dt {
+    
+    TimeCard *model = [self timeCardWithDate:dt];
+    
+    model.end_time = [dt yyyyMMddHHmmssString];
+    
+    [self insertModel];
 }
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month {
