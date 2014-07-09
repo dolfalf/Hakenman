@@ -9,11 +9,8 @@
 #import "KJViewController.h"
 
 @interface MonthWorkingTableViewController : KJViewController
-//ただのモデル？（だそう）
-@property (nonatomic, strong) NSArray *items;
+
 //外部から値をもらうためのプロパティ
 @property (nonatomic, strong) NSString *inputDates;
-
-
 
 @end
