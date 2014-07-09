@@ -78,6 +78,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    //summary table更新
+    TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
+//    [timeCardSummaryDao updatedTimeCardSummaryTable:[[NSDate date] yyyyMMString]];
+    [timeCardSummaryDao updatedTimeCardSummaryTable:@"201308"];
+    
     //MARK: テストデータの生成
 #if 0
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
@@ -101,8 +106,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
         }
     }
     
-    TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
-    
     [timeCardSummaryDao deleteAllModel];
     
     for (int j=3; j < 9; j++) {
@@ -123,6 +126,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     //初期化
     self.items = [self displayCellItems];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

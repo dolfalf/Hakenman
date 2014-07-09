@@ -47,6 +47,8 @@
 "MenuViewController_menulist_send_daily_mail_title"         = "日報送信";
 
 //SETTING
+"SettingViewController_navi_title"                                  = "設定";
+
 "SettingViewController_menulist_basic_section_title"                = "基本設定";
 "SettingViewController_menulist_work_report_section_title"          = "日報メール設定";
 "SettingViewController_menulist_work_report_content_section_title"  = "日報内容定型文";
@@ -98,3 +100,6 @@
 "MonthWorkingTableEditViewController_edit_rest_time_cell"   = "休憩時間";
 "MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "営業日";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";
+
+
+//tmp

@@ -48,6 +48,8 @@
 "MenuViewController_menulist_send_daily_mail_title"         = "Send daily mail";
 
 //SETTING
+"SettingViewController_navi_title"                                  = "Setting";
+
 "SettingViewController_menulist_basic_section_title"                = "Basic setting";
 "SettingViewController_menulist_work_report_section_title"          = "Work report setting";
 "SettingViewController_menulist_work_report_content_section_title"  = "Report content templete";

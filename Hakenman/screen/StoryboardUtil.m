@@ -34,6 +34,26 @@
     [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
 }
 
++ (void)gotoTutorialViewController:(id)owner {
+    
+    //MARK:pushはできない。popをする際にメモリエラー発生のため
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tutorial" bundle:nil];
+    UIViewController *controller = (UINavigationController *)[storyboard instantiateInitialViewController];
+    
+    [owner presentViewController:controller animated:YES completion:nil];
+
+}
+
++ (void)gotoAppInformationViewController:(id)owner completion:(void(^)(id))completion {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"AppInfo" bundle:nil];
+    KJViewController *controller = (KJViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AppInformationViewController"];
+    
+    completion(controller);
+    
+    [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
+}
+
 + (void)gotoOpenLicenseViewController:(id)owner completion:(void(^)(id))completion {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"AppInfo" bundle:nil];

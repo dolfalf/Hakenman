@@ -13,10 +13,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="CqG-vp-XQp">
+                        <barButtonItem key="leftBarButtonItem" title="close" id="cF0-P8-zwS">
+                            <connections>
+                                <action selector="close:" destination="nf5-NP-Za2" id="BJN-3H-pKb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FEV-Et-hlt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-280" y="-187"/>
+            <point key="canvasLocation" x="59" y="-191"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
