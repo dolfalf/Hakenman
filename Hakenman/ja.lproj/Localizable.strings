@@ -64,6 +64,7 @@
 "SettingViewController_menulist_default_work_time_title"            = "基本勤務時間";
 "SettingViewController_menulist_work_table_display_option_title"    = "勤務表表示";
 "SettingViewController_menulist_daily_mail_content_title"           = "日報文言登録";
+"SettingViewController_menulist_init_database_title"                = "データ初期化";
 
 "SettingViewController_worktime_picker_title"      = "時間きり";
 "SettingViewController_worktime_picker_none"       = "なし";
@@ -94,6 +95,8 @@
 "SettingViewController_tutorial_title"             = "チュートリアル";
 "SettingViewController_app_info_title"             = "KJCodeについて";
 "SettingViewController_open_lisence_title"         = "Open lisence";
+
+"SettingViewController_database_init_title"         = "データ削除";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";

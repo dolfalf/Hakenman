@@ -9,9 +9,14 @@
 #import "SettingViewController.h"
 #import <RETableViewManager/RETableViewManager.h>
 #import <RETableViewManager/RETableViewOptionsController.h>
+#import <UIKit/UIDocumentInteractionController.h>
 #import "NSUserDefaults+Setting.h"
 #import "NSDate+Helper.h"
 #import "Util.h"
+#import "TimeCardDao.h"
+#import "TimeCardSummaryDao.h"
+
+#define SEND_CSV_DOCUMENT_TEST_ENABLE
 
 enum {
     settingTitleWorkingSpace,
@@ -23,7 +28,7 @@ enum {
     
 } settingTitle;
 
-@interface SettingViewController () {
+@interface SettingViewController () <UIAlertViewDelegate, UIDocumentInteractionControllerDelegate> {
     
     IBOutlet UIBarButtonItem *closeButton;
 }
@@ -31,6 +36,8 @@ enum {
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) RETableViewManager *reTableManager;
 @property (nonatomic, weak) IBOutlet UITableView *settingTableView;
+
+@property (nonatomic, strong) UIAlertView *deleteAlertview;
 
 - (IBAction)close:(id)sender;
 
@@ -98,6 +105,7 @@ enum {
     
     [self loadAppInfoSection];
     
+    [self loadInitDataSection];
 }
 
 - (void)loadBasicSection {
@@ -323,6 +331,50 @@ enum {
     
 }
 
+- (void)loadInitDataSection {
+
+    __typeof (self) __weak weakSelf = self;
+    //
+    RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_init_database_title")];
+    [self.reTableManager addSection:section];
+    
+    // Add a basic cell with disclosure indicator
+    [section addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_database_init_title")
+                                      accessoryType:UITableViewCellAccessoryDetailDisclosureButton
+                                   selectionHandler:^(RETableViewItem *item) {
+                                       
+                                        //TEST
+                                       TimeCardDao *tdao = [TimeCardDao new];
+                                       NSArray *arrays = [tdao fetchModelYear:2014 month:6];
+                                       [Util sendWorkSheetCsvfile:self data:arrays];
+                                       
+                                       
+                                       NSLog(@"initialize database: %@", item);
+                                       weakSelf.deleteAlertview = [[UIAlertView alloc] initWithTitle:@""
+                                                                                             message:LOCALIZE(@"")
+                                                                                            delegate:weakSelf
+                                                                                   cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                                                   otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
+                                       
+                                       [weakSelf.deleteAlertview show];
+                                   
+                                   }]];
+    
+#ifdef SEND_CSV_DOCUMENT_TEST_ENABLE
+    // Add a basic cell with disclosure indicator
+    [section addItem:[RETableViewItem itemWithTitle:@"CSV生成テスト"
+                                      accessoryType:UITableViewCellAccessoryDetailDisclosureButton
+                                   selectionHandler:^(RETableViewItem *item) {
+                                       
+                                       TimeCardDao *tdao = [TimeCardDao new];
+                                       NSArray *arrays = [tdao fetchModelYear:2014 month:6];
+                                       [Util sendWorkSheetCsvfile:self data:arrays];
+                                       
+                                   }]];
+#endif
+    
+}
+
 #pragma mark - validate method
 - (BOOL)validate {
     NSArray *managerErrors = _reTableManager.errors;
@@ -351,6 +403,23 @@ enum {
     }
     
     self.completionHandler = nil;
+}
+
+#pragma mark - UIAlertView delegate 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if ([alertView isEqual:_deleteAlertview] == YES) {
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            //Cancel
+        }else {
+            //OK
+            TimeCardDao *timeCardDao = [TimeCardDao new];
+            [timeCardDao deleteAllModel];
+            TimeCardSummaryDao *timeCardSummaryDao = [TimeCardSummaryDao new];
+            [timeCardSummaryDao deleteAllModel];
+        }
+        
+    }
 }
 
 @end

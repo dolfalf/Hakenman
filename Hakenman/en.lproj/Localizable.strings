@@ -66,6 +66,7 @@
 "SettingViewController_menulist_default_work_time_title"            = "Defalut working time";
 "SettingViewController_menulist_work_table_display_option_title"    = "Work Talbe display option";
 "SettingViewController_menulist_daily_mail_content_title"           = "Daily email contents";
+"SettingViewController_menulist_init_database_title"                = "Initialize Database";
 
 "SettingViewController_worktime_picker_title"      = "Time division";
 "SettingViewController_worktime_picker_none"       = "none";
@@ -94,6 +95,8 @@
 "SettingViewController_tutorial_title"             = "Tutorial";
 "SettingViewController_app_info_title"             = "About KJCode";
 "SettingViewController_open_lisence_title"         = "Open lisence";
+
+"SettingViewController_database_init_title"         = "Remove Data";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";

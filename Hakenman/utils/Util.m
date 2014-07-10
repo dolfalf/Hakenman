@@ -249,31 +249,31 @@
     return [NSString stringWithFormat:@"%@_%@.csv",prefix, [[NSDate date] yyyyMMddHHmmssString]];
 }
 
-+ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets {
-
-    // メールを利用できるかチェック
-    if (![MFMailComposeViewController canSendMail]) {
-        return;
-    }
-    
-    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-    [controller setMailComposeDelegate:owner];
-    
-    if ([worksheets count] > 0) {
-        // 取得したNSStringをNSdataに変換
-        NSData* data = [[self exportCSVString:worksheets] dataUsingEncoding:NSUTF8StringEncoding];
-        NSString *prefix = [[((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue] substringWithRange:NSMakeRange(0, 6)];
-        // mimeTypeはtext/csv
-        [controller addAttachmentData:data mimeType:@"text/csv" fileName:[self generateCSVFilename:prefix]];
-        
-        // 表示
-        [((KJViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
-    }else {
-        DLog(@"生成するCSVデータがない");
-        return;
-    }
-    
-}
+//+ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets {
+//
+//    // メールを利用できるかチェック
+//    if (![MFMailComposeViewController canSendMail]) {
+//        return;
+//    }
+//    
+//    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+//    [controller setMailComposeDelegate:owner];
+//    
+//    if ([worksheets count] > 0) {
+//        // 取得したNSStringをNSdataに変換
+//        NSData* data = [[self exportCSVString:worksheets] dataUsingEncoding:NSUTF8StringEncoding];
+//        NSString *prefix = [[((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue] substringWithRange:NSMakeRange(0, 6)];
+//        // mimeTypeはtext/csv
+//        [controller addAttachmentData:data mimeType:@"text/csv" fileName:[self generateCSVFilename:prefix]];
+//        
+//        // 表示
+//        [((KJViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
+//    }else {
+//        DLog(@"生成するCSVデータがない");
+//        return;
+//    }
+//    
+//}
 
 + (void)sendReportMailWorkSheet:(id)owner subject:(NSString *)subject toRecipient:(NSString *)toRecipient messageBody:(NSString *)body {
     
@@ -307,7 +307,7 @@
     [((KJViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
 }
 
-+ (void)sendDocumentfileWorkSheet:(KJViewController *)owner data:(NSArray *)worksheets {
++ (void)sendWorkSheetCsvfile:(KJViewController *)owner data:(NSArray *)worksheets {
     
     //テキストファイルとして書き出すためのディレクトリを作成する
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -327,7 +327,7 @@
     
     if ([worksheets count] > 0) {
         // 最終的に他のアプリで開きたい文字列を用意しておきます
-        NSString* hoge = @"テスト";
+        NSString* hoge = @"WorkSheet";
         
         NSString *prefix = [[((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue] substringWithRange:NSMakeRange(0, 6)];
         

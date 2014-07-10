@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class KJViewController;
+
 @interface Util : NSObject
 
 //document
@@ -27,6 +29,8 @@
 + (NSArray *)displayWorkSheetList;
 + (NSArray *)reportTitleList;
 
-+ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets;
+//+ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets;
 + (void)sendReportMailWorkSheet:(id)owner subject:(NSString *)subject toRecipient:(NSString *)toRecipient messageBody:(NSString *)body;
+
++ (void)sendWorkSheetCsvfile:(KJViewController *)owner data:(NSArray *)worksheets;
 @end
