@@ -16,6 +16,8 @@
 #import "LeftTableViewData.h"
 #import "RightTableViewData.h"
 #import "TimeCard.h"
+#import "Util.h"
+#import <UIKit/UIDocumentInteractionController.h>
 
 @interface MonthWorkingTableViewController () <UITableViewDataSource, UITableViewDelegate> {
     
@@ -290,5 +292,15 @@
 
     
 }
+
+#pragma mark - IBAction delegate
+
+-(IBAction)barButtonAction:(id)sender{
+    TimeCardDao *dao = [TimeCardDao new];
+    
+    NSArray *models = [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
+    [Util sendWorkSheetCsvfile:self data:models];
+}
+
 
 @end

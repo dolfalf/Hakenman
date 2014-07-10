@@ -263,7 +263,13 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="2014年5月勤務報告書" id="gkT-yE-kjS"/>
+                    <navigationItem key="navigationItem" title="2014年5月勤務報告書" id="gkT-yE-kjS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="OIg-S6-kor">
+                            <connections>
+                                <action selector="barButtonAction:" destination="5Rd-DY-Wn0" id="Xff-Df-Gb3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="backgroundImageView" destination="SBI-wb-Cj2" id="M23-xa-ne3"/>
                         <outlet property="leftHeaderView" destination="JgX-IT-eXU" id="Rze-b2-Wti"/>
