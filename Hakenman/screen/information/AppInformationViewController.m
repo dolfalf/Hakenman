@@ -35,15 +35,15 @@
     
     self.title = LOCALIZE(@"AppInformationViewController_navi_title");
 
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [indicator startAnimating];
+    
+    [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://kj-code.com"]]];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"kjcodeInfo" ofType:@"html"];
 //    [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-
-    [indicator startAnimating];
-    
-    [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://kj-code.com"]]];
     
     [super viewWillAppear:animated];
     
@@ -51,6 +51,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [indicator stopAnimating];
     [super viewWillDisappear:animated];
     
@@ -64,6 +65,7 @@
 #pragma mark - UIWebView delegate
 -(BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [indicator stopAnimating];
     
     if ( inType == UIWebViewNavigationTypeLinkClicked ) {
@@ -76,6 +78,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [indicator stopAnimating];
     
     [[[UIAlertView alloc] initWithTitle:@""

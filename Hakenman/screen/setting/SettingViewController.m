@@ -16,7 +16,7 @@
 #import "TimeCardDao.h"
 #import "TimeCardSummaryDao.h"
 
-#define SEND_CSV_DOCUMENT_TEST_ENABLE
+//#define SEND_CSV_DOCUMENT_TEST_ENABLE
 
 enum {
     settingTitleWorkingSpace,
@@ -322,6 +322,8 @@ enum {
 
 - (void)loadAppInfoSection {
 
+    __typeof (self) __weak weakSelf = self;
+    
     // Add a section
     //
     RETableViewSection *appInfoSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_app_info_section_title")];
@@ -329,12 +331,20 @@ enum {
     
     //チュートリアル
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_tutorial_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        
         //遷移
         [StoryboardUtil gotoTutorialViewController:self];
     }]];
     
     //アプリについて
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_app_info_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        
         //遷移
         [StoryboardUtil gotoAppInformationViewController:self completion:^(id controller) {
             //
@@ -343,6 +353,10 @@ enum {
     
     //Open source lisence
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_open_lisence_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        
         [StoryboardUtil gotoOpenLicenseViewController:self completion:^(id controller) {
             //
         }];
@@ -362,11 +376,8 @@ enum {
                                       accessoryType:UITableViewCellAccessoryDetailDisclosureButton
                                    selectionHandler:^(RETableViewItem *item) {
                                        
-                                        //TEST
-                                       TimeCardDao *tdao = [TimeCardDao new];
-                                       NSArray *arrays = [tdao fetchModelYear:2014 month:6];
-                                       [Util sendWorkSheetCsvfile:self data:arrays];
-                                       
+                                       __typeof (weakSelf) __strong strongSelf = weakSelf;
+                                       [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
                                        
                                        NSLog(@"initialize database: %@", item);
                                        weakSelf.deleteAlertview = [[UIAlertView alloc] initWithTitle:@""
@@ -384,6 +395,9 @@ enum {
     [section addItem:[RETableViewItem itemWithTitle:@"CSV生成テスト"
                                       accessoryType:UITableViewCellAccessoryDetailDisclosureButton
                                    selectionHandler:^(RETableViewItem *item) {
+                                       
+                                       __typeof (weakSelf) __strong strongSelf = weakSelf;
+                                       [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
                                        
                                        TimeCardDao *tdao = [TimeCardDao new];
                                        NSArray *arrays = [tdao fetchModelYear:2014 month:6];
