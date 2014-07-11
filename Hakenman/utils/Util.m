@@ -15,6 +15,7 @@
 #import <UIKit/UIDocumentInteractionController.h>
 #import "UIColor+Helper.h"
 #import "NSUserDefaults+Setting.h"
+#import "NSError+Common.h"
 
 @implementation Util
 
@@ -102,7 +103,7 @@
         return @"";
     }
     
-    return [NSString stringWithFormat:@"%2d:%2d",[dt getHour],[dt getMinuite]];
+    return [NSString stringWithFormat:@"%02d:%02d",[dt getHour],[dt getMinuite]];
 }
 
 + (NSString *)weekStatusDayString:(NSDate *)dt {
@@ -210,10 +211,41 @@
                                   LOCALIZE(@"SettingViewController_worktime_picker_30")];
 }
 
++ (NSInteger)worktimeKubun:(NSString *)pickString {
+    
+    NSInteger kubun = 0;
+    if ([pickString isEqualToString:LOCALIZE(@"SettingViewController_worktime_picker_none")] == YES) {
+        kubun = 0;
+    }else if ([pickString isEqualToString:LOCALIZE(@"SettingViewController_worktime_picker_10")] == YES) {
+        kubun = 1;
+    }else if ([pickString isEqualToString:LOCALIZE(@"SettingViewController_worktime_picker_15")] == YES) {
+        kubun = 2;
+    }else if ([pickString isEqualToString:LOCALIZE(@"SettingViewController_worktime_picker_30")] == YES) {
+        kubun = 3;
+    }
+
+    return kubun;
+}
+
 + (NSArray *)displayWorkSheetList {
     return @[LOCALIZE(@"SettingViewController_last_worksheet_display_all"),
                                    LOCALIZE(@"SettingViewController_last_worksheet_display_oneyear"),
                                    LOCALIZE(@"SettingViewController_last_worksheet_display_sixmonth")];
+}
+
++ (NSInteger)displayWorkSheetIndex:(NSString *)optionString {
+    
+    NSInteger index = 0;
+    if ([optionString isEqualToString:LOCALIZE(@"SettingViewController_last_worksheet_display_all")] == YES) {
+        index = 0;
+    }else if ([optionString isEqualToString:LOCALIZE(@"SettingViewController_last_worksheet_display_oneyear")] == YES) {
+        index = 1;
+    }else if ([optionString isEqualToString:LOCALIZE(@"SettingViewController_last_worksheet_display_sixmonth")] == YES) {
+        index = 2;
+    }
+    
+    return index;
+    
 }
 
 + (NSArray *)reportTitleList {
@@ -221,28 +253,36 @@
              LOCALIZE(@"SettingViewController_work_report_title_templete2")];
 }
 
-+ (NSString*)exportCSVString:(NSArray*)sources {
-    
-    NSDateFormatter* f = [[NSDateFormatter alloc] init];
-    [f setDateFormat:@"yyyy-MM-dd"];
-    
-    // 1行目だけ先に追加
-    NSMutableArray* all = [@[@"date,work_starttime ,work_endtime,rest_time"] mutableCopy];
-    
-    // データを降順にソート
-    NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    sources = [sources sortedArrayUsingDescriptors:@[desc]];
-    
-    // カンマ区切りで追加
-    for (NSInteger i=0; i<sources.count; i++) {
-        TimeCard* model = [sources objectAtIndex:i];
-        NSArray* adding = @[model.t_yyyymmdd, model.start_time, model.end_time, model.rest_time];
-        NSString* str = [adding componentsJoinedByString:@","];
-        [all addObject:str];
-    }
-    // CRLFで区切ったNSStringを返す
-    return [all componentsJoinedByString:@"\r\n"];
-}
+//+ (NSString* )exportCSVString:(NSArray*)sources error:(NSError **)error {
+//    
+//    
+//    if (sources == nil || [sources count] == 0) {
+//        *error = [NSError errorWithHKMErrorCode:HKMErrorCodeNoDataError localizedDescription:LOCALIZE(@"")];
+//        return nil;
+//    }
+//    
+//    NSDateFormatter* f = [[NSDateFormatter alloc] init];
+//    [f setDateFormat:@"yyyy-MM-dd"];
+//    
+//    // 1行目だけ先に追加
+//    NSMutableArray* all = [@[@"date,work_starttime ,work_endtime,rest_time"] mutableCopy];
+//    
+//    // データを降順にソート
+//    NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+//    sources = [sources sortedArrayUsingDescriptors:@[desc]];
+//    
+//    
+//
+//    // カンマ区切りで追加
+//    for (NSInteger i=0; i<sources.count; i++) {
+//        TimeCard* model = [sources objectAtIndex:i];
+//        NSArray* adding = @[model.t_yyyymmdd, model.start_time, model.end_time, model.rest_time];
+//        NSString* str = [adding componentsJoinedByString:@","];
+//        [all addObject:str];
+//    }
+//    // CRLFで区切ったNSStringを返す
+//    return [all componentsJoinedByString:@"\r\n"];
+//}
 
 + (NSString *)generateCSVFilename:(NSString *)prefix {
     
@@ -327,16 +367,58 @@
     
     if ([worksheets count] > 0) {
         // 最終的に他のアプリで開きたい文字列を用意しておきます
-        NSString* hoge = @"WorkSheet";
+        
+        //MARK:
+        NSString *csvString = @"";
+        NSMutableArray* all = [@[@"DATE,WEEKDAY,WORK_START_TIME,WORK_END_TIME,REST_TIME"] mutableCopy];
+        
+        NSString *targetDateYYYYmmdd = [((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue];
+        NSDate *targetMonth = [NSDate convDate2ShortString:targetDateYYYYmmdd];
+        
+        //カレンダーことにカラム生成
+        for (int d = 1; d <= [targetMonth getLastday]; d++) {
+            
+            //日付を作成
+            NSMutableArray *adding = [NSMutableArray new];
+            [adding addObject:[NSString stringWithFormat:@"%d/%d",[targetMonth getMonth], d]];
+            
+            NSDate *targetDay = [NSDate convDate2ShortString:[NSString stringWithFormat:@"%@%02d",[targetMonth yyyyMMString],d]];
+            [adding addObject:[NSString stringWithFormat:@"%@",[Util weekdayString:[targetDay getWeekday]]]];
+            
+            //データを検索するためのキーを生成
+            NSString *keyString = [NSString stringWithFormat:@"%@",[targetDay yyyyMMddString]];
+            
+            //検索
+            for (TimeCard *tm in worksheets) {
+                if ([[tm.t_yyyymmdd stringValue] isEqualToString:keyString] == YES) {
+                    
+                    [adding addObject:[Util worktimeString:[NSDate convDate2String:tm.start_time]]];
+                    [adding addObject:[Util worktimeString:[NSDate convDate2String:tm.end_time]]];
+                    [adding addObject:[NSString stringWithFormat:@"%.1f",[tm.rest_time floatValue]]];
+                    
+                    continue;
+                }
+            }
+            
+            // カンマ区切りで追加
+            NSString* str = [adding componentsJoinedByString:@","];
+            DLog(@"record:%@",str);
+            
+            [all addObject:str];
+        }
+        
+        // CRLFで区切ったNSStringを返す
+        csvString = [all componentsJoinedByString:@"\r\n"];
         
         NSString *prefix = [[((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue] substringWithRange:NSMakeRange(0, 6)];
         
         // データの書き込み
         NSString* filePath = [NSString stringWithFormat:@"%@/%@", dirPath, [self generateCSVFilename:prefix]];
         
-        [hoge writeToFile:filePath atomically:YES encoding:NSUnicodeStringEncoding error:nil];
+        [csvString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
         
         NSURL *url = [NSURL fileURLWithPath:filePath];
+        
         //UIDocumentController propertyの存在を確認
         owner.docInterCon = [UIDocumentInteractionController interactionControllerWithURL:url];
         owner.docInterCon.delegate = owner;

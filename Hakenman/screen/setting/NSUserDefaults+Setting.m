@@ -96,42 +96,18 @@
 
 + (NSInteger)displayWorkSheet {
     
+    //0:All, 1:One Years ,2: 6 Months
     NSUserDefaults *userDefaults = [self standardUserDefaults];
-    [userDefaults registerDefaults:@{@"displayWorkKey" : @"All"}];
+    [userDefaults registerDefaults:@{@"displayWorkKey" : @(0)}];
     
-    NSString *strValue = [userDefaults objectForKey:@"displayWorkKey"];
-    NSInteger conValue = 0;
-    if ([strValue isEqualToString:@"All"] == YES) {
-        conValue = 0;
-    }else if ([strValue isEqualToString:@"One Years"] == YES) {
-        conValue = 1;
-    }else if ([strValue isEqualToString:@"6 Months"] == YES) {
-        conValue = 2;
-    }
-    
-    return conValue;
+    return [[userDefaults objectForKey:@"displayWorkKey"] intValue];
 }
 
-+ (void)displayWorkSheet:(NSInteger)value {
++ (void)setDisplayWorkSheet:(NSInteger)value {
     
-    NSString *strValue = @"";
-    
-    switch (value) {
-        case 0:
-            //all
-            strValue = @"All";
-            break;
-        case 1:
-            //One years
-            strValue = @"One Years";
-            break;
-        case 2:
-            //6 months
-            strValue = @"6 Months";
-            break;
-    }
+    //0:All, 1:One Years ,2: 6 Months
     NSUserDefaults *userDefaults = [self standardUserDefaults];
-    [userDefaults setObject:strValue forKey:@"displayWorkKey"];
+    [userDefaults setObject:@(value) forKey:@"displayWorkKey"];
     
     [userDefaults synchronize];
     

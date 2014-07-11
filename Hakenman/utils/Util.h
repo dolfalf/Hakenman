@@ -26,7 +26,9 @@
 + (NSString *)correctWorktime:(NSString *)yyyymmddHHmmss;
 
 + (NSArray *)worktimePickList;
++ (NSInteger)worktimeKubun:(NSString *)pickString;
 + (NSArray *)displayWorkSheetList;
++ (NSInteger)displayWorkSheetIndex:(NSString *)optionString;
 + (NSArray *)reportTitleList;
 
 //+ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets;

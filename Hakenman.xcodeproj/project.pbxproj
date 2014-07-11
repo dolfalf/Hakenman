@@ -14,6 +14,7 @@
 		1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */; };
 		1CAAA2251966252400A053C7 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2241966252400A053C7 /* license.html */; };
 		1CAAA2271966261300A053C7 /* kjcodeInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2261966261300A053C7 /* kjcodeInfo.html */; };
+		1CB3063F196F845600D8BF54 /* NSError+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB3063E196F845600D8BF54 /* NSError+Common.m */; };
 		1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B119656935002446CB /* Tutorial.storyboard */; };
 		1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B419656952002446CB /* TutorialViewController.m */; };
 		1CF2D6FB1964D1240062B0C1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */; };
@@ -90,6 +91,8 @@
 		1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSourceLicenseViewController.m; sourceTree = "<group>"; };
 		1CAAA2241966252400A053C7 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
 		1CAAA2261966261300A053C7 /* kjcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = kjcodeInfo.html; sourceTree = "<group>"; };
+		1CB3063D196F845600D8BF54 /* NSError+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Common.h"; sourceTree = "<group>"; };
+		1CB3063E196F845600D8BF54 /* NSError+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Common.m"; sourceTree = "<group>"; };
 		1CB7F8B119656935002446CB /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		1CB7F8B319656952002446CB /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		1CB7F8B419656952002446CB /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				3B782547195EC69E003D408D /* UIColor+Helper.m */,
 				3B6AFEDC18E6857100501C94 /* Util.h */,
 				3B6AFEDD18E6857100501C94 /* Util.m */,
+				1CB3063D196F845600D8BF54 /* NSError+Common.h */,
+				1CB3063E196F845600D8BF54 /* NSError+Common.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -615,6 +620,7 @@
 				3B6CC8B8195D5D1200F64041 /* StoryboardUtil.m in Sources */,
 				3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */,
 				1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */,
+				1CB3063F196F845600D8BF54 /* NSError+Common.m in Sources */,
 				3B8CB24F1942EFC200CD922E /* TodayTableViewCell.m in Sources */,
 				1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */,
 				3B6CC8B2195D4A8D00F64041 /* TimeCardSummary.m in Sources */,
