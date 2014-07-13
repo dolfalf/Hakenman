@@ -42,11 +42,10 @@
     
     //既に存在したら更新
     if (items != nil && [items count] > 0) {
-        return [items objectAtIndex:0];
+        return (TimeCard*)[items objectAtIndex:0];
     }
     
     //存在しなければ作成
-    
     TimeCard *model = [self createModel];
     
     //default setting.
@@ -68,7 +67,9 @@
 
 - (void)insertModelWorkStart:(NSDate *)dt {
 
-    TimeCard *model = [self timeCardWithDate:dt];
+    TimeCard *model = [self createModel];
+    
+    model = [self timeCardWithDate:dt];
     
     model.start_time = [dt yyyyMMddHHmmssString];
     
@@ -78,7 +79,9 @@
 
 - (void)insertModelWorkEnd:(NSDate *)dt {
     
-    TimeCard *model = [self timeCardWithDate:dt];
+    TimeCard *model = [self createModel];
+    
+    model = [self timeCardWithDate:dt];
     
     model.end_time = [dt yyyyMMddHHmmssString];
     
