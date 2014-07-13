@@ -137,27 +137,36 @@
 
 + (NSDate *)convDate2ShortString:(NSString *)yyyyMMdd {
     
+    if (yyyyMMdd == nil || [yyyyMMdd isEqualToString:@""]) {
+        return nil;
+    }
+    
     NSString *str = [NSString stringWithFormat:@"%@",yyyyMMdd];
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMdd"];
-    DLog(@"%@",str);
+//    DLog(@"%@",str);
     
     return [formatter dateFromString:str];
 }
 
 + (NSDate *)convDate2String:(NSString *)yyyyMMddHHmmss {
     
+    if (yyyyMMddHHmmss == nil || [yyyyMMddHHmmss isEqualToString:@""]) {
+        return nil;
+    }
+    
     NSString *str = [NSString stringWithFormat:@"%@",yyyyMMddHHmmss];
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMddHHmmss"];
-    DLog(@"%@",str);
+//    DLog(@"%@",str);
     
     return [formatter dateFromString:str];
 }
 
 - (NSString *)yyyyMMString {
+    
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMM"];
@@ -165,6 +174,7 @@
 }
 
 - (NSString *)yyyyMMddString {
+    
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMdd"];
@@ -172,6 +182,7 @@
 }
 
 - (NSString *)yyyyMMddHHmmssString {
+    
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"yyyyMMddHHmmss"];
@@ -179,6 +190,7 @@
 }
 
 - (NSString *)convHHmmString {
+    
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [formatter setDateFormat:@"HH:mm"];
@@ -186,6 +198,7 @@
 }
 
 - (NSDate *)addMonth:(NSInteger)value {
+    
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setMonth:value];
     NSCalendar *calendar = [NSCalendar currentCalendar];

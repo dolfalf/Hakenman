@@ -8,7 +8,7 @@
 
 #import "OpenSourceLicenseViewController.h"
 
-@interface OpenSourceLicenseViewController () {
+@interface OpenSourceLicenseViewController () <UIWebViewDelegate> {
      IBOutlet UIWebView *licenseWebview;
 }
 
@@ -33,8 +33,11 @@
 
 - (void)initControls {
     
+    self.title = LOCALIZE(@"OpenSourceLicenseViewController_navi_title");
+    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"license" ofType:@"html"];
     [licenseWebview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,6 +55,16 @@
     }
     
     return YES;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
+    [[[UIAlertView alloc] initWithTitle:@""
+                                message:[error description]
+                               delegate:nil
+                      cancelButtonTitle:LOCALIZE(@"Common_alert_button_ok")
+                      otherButtonTitles:nil] show];
+    
 }
 
 /*

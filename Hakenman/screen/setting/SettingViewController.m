@@ -133,17 +133,29 @@ enum {
     workspaceItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     workspaceItem.style = UITableViewCellStyleValue1;
     workspaceItem.charactersLimit = 20;
-    workspaceItem.validators = @[@"length(1, 20)"];
+    workspaceItem.validators = @[@"length(0, 20)"];
     [basicSection addItem:workspaceItem];
     
     //時間きり設定 picker
     NSArray *kubunPickData = [Util worktimePickList];
     
     NSString *defaultTimePickString = kubunPickData[[NSUserDefaults timeKubun]];
-    [basicSection addItem:[REPickerItem itemWithTitle:LOCALIZE(@"SettingViewController_worktime_picker_title")
-                                                value:@[defaultTimePickString]
-                                          placeholder:nil
-                                              options:@[kubunPickData]]];
+    
+    REPickerItem *defalutTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"SettingViewController_worktime_picker_title")
+                                                                value:@[defaultTimePickString]
+                                                          placeholder:nil
+                                                              options:@[kubunPickData]];
+    
+    [basicSection addItem:defalutTimePickerItem];
+    
+    defalutTimePickerItem.onChange = ^(REPickerItem *item ) {
+        
+        DLog(@"item:%@", [item.value objectAtIndex:0]);
+        
+        if([item.value count] > 0) {
+            [NSUserDefaults setTimeKubun:[Util worktimeKubun:[item.value objectAtIndex:0]]];
+        }
+    };
     
     //出勤
     NSDate *startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
@@ -179,7 +191,7 @@ enum {
     
     endWtPickerItem.onChange = ^ (REDateTimeItem *item) {
         //Picker値変更
-        [NSUserDefaults setWorkStartTime:[item.value convHHmmString]];
+        [NSUserDefaults setWorkEndTime:[item.value convHHmmString]];
     };
     
     //過去勤務表リスト表示
@@ -196,10 +208,17 @@ enum {
                                                       //
                                                       RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:worksheet_options multipleChoice:NO completionHandler:^ {
                                                           [strongSelf.settingTableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                          
+                                                          //保存
+                                                          DLog(@"item:%@", item.value);
+                                                          
+                                                          [NSUserDefaults setDisplayWorkSheet:[Util displayWorkSheetIndex:item.value]];
+                                                          
                                                       }];
                                                       [strongSelf.navigationController pushViewController:optionsController animated:YES];
                                                   }];
     [basicSection addItem:worksheet_optionItem];
+    
 }
 
 - (void)loadReportSection {

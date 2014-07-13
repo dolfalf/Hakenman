@@ -80,10 +80,10 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "最近一年間";
 "SettingViewController_last_worksheet_display_sixmonth" = "最近６ヶ月";
 
-"SettingViewController_mail_title_title"            = "報告メールタイトル";
+"SettingViewController_mail_title_title"            = "タイトル";
 "SettingViewController_work_report_title_defalut" = "【日報】yyyy年mm月dd日";
 
-"SettingViewController_work_report_title_mail_address" = "報告宛先";
+"SettingViewController_work_report_title_mail_address" = "宛先";
 "SettingViewController_work_report_placehold_mail_address" = "メールアドレス";
 
 "SettingViewController_work_report_time_templete_add" = "内容に時間定型文追加";
@@ -110,5 +110,8 @@
 "MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "営業日";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";
 
+//その他
+"OpenSourceLicenseViewController_navi_title"    = "オープン ライセンス";
+"AppInformationViewController_navi_title"       = "KJCodeについて";
 
 //tmp

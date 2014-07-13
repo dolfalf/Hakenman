@@ -82,10 +82,10 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "One years";
 "SettingViewController_last_worksheet_display_sixmonth" = "6 months";
 
-"SettingViewController_mail_title_title"            = "Mail title";
+"SettingViewController_mail_title_title"            = "Title";
 "SettingViewController_work_report_title_defalut" = "【Report】mm/dd, yyyy";
 
-"SettingViewController_work_report_title_mail_address" = "Report to Mail";
+"SettingViewController_work_report_title_mail_address" = "Reciept";
 "SettingViewController_work_report_placehold_mail_address" = "Mail address";
 
 "SettingViewController_work_report_time_templete_add" = "Add worktime templete";
@@ -109,3 +109,8 @@
 "MonthWorkingTableEditViewController_edit_rest_time_cell"   = "Rest Time";
 "MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "Working day";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "no input";
+
+//ETC
+"OpenSourceLicenseViewController_navi_title"    = "Opne license";
+"AppInformationViewController_navi_title"       = "About KJCode";
+

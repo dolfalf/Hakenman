@@ -20,7 +20,7 @@
 + (void)setWorkEndTime:(NSString *)value;
 
 + (NSInteger)displayWorkSheet;
-+ (void)displayWorkSheet:(NSInteger)value;
++ (void)setDisplayWorkSheet:(NSInteger)value;
 
 + (NSString *)workSitename;
 + (void)setWorkSitename:(NSString *)value;

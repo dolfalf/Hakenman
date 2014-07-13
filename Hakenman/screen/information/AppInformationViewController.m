@@ -8,8 +8,9 @@
 
 #import "AppInformationViewController.h"
 
-@interface AppInformationViewController () {
+@interface AppInformationViewController () <UIWebViewDelegate> {
     IBOutlet UIWebView *descriptionWebview;
+    IBOutlet UIActivityIndicatorView *indicator;
 }
 
 @end
@@ -32,10 +33,28 @@
 }
 - (void)initControls {
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"kjcodeInfo" ofType:@"html"];
-    [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
+    self.title = LOCALIZE(@"AppInformationViewController_navi_title");
+
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"kjcodeInfo" ofType:@"html"];
+//    [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [indicator startAnimating];
+    
+    [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://kj-code.com"]]];
+    
+    [super viewWillAppear:animated];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [indicator stopAnimating];
+    [super viewWillDisappear:animated];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -45,12 +64,26 @@
 #pragma mark - UIWebView delegate
 -(BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {
     
+    [indicator stopAnimating];
+    
     if ( inType == UIWebViewNavigationTypeLinkClicked ) {
         [[UIApplication sharedApplication] openURL:[inRequest URL]];
         return NO;
     }
     
     return YES;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
+    [indicator stopAnimating];
+    
+    [[[UIAlertView alloc] initWithTitle:@""
+                                message:[error description]
+                               delegate:nil
+                      cancelButtonTitle:LOCALIZE(@"Common_alert_button_ok")
+                      otherButtonTitles:nil] show];
+    
 }
 
 /*
