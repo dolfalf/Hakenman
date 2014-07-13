@@ -80,12 +80,20 @@ typedef enum {
     
     TimeCardDao *dao = [TimeCardDao new];
 
-    NSDate *getWd = [NSDate convDate2ShortString:[NSString stringWithFormat:@"%d%.2d%.2d",[_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]]];
-
-    TimeCard *timeCard = [dao fetchModelWorkDate:getWd];
-    if (timeCard == nil) {
+//    NSDate *getWd = [NSDate convDate2ShortString:[NSString stringWithFormat:@"%d%.2d%.2d",[_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]]];
+    
+    NSArray *tempModel = [dao fetchModelYear:[_showData.yearData intValue] month:[_showData.monthData intValue] day:[_showData.dayData intValue]];
+    
+    TimeCard *timeCard;
+    
+    //既に存在したら更新
+    if ([tempModel count] == 0) {
         DLog(@"create Coredata!");
         timeCard = [dao createModel];
+    }else{
+        //[tempModel count] != 0
+        timeCard = [dao createModel];
+        timeCard = (TimeCard*)[tempModel objectAtIndex:0];
     }
     
     timeCard.start_time = [_startWtPickerItem.value yyyyMMddHHmmssString];
@@ -130,11 +138,18 @@ typedef enum {
     
     TimeCardDao *dao = [TimeCardDao new];
     
-    TimeCard *timeCard = [dao fetchModelWorkDate:getWd];
+    NSArray *tempModel = [dao fetchModelYear:[_showData.yearData intValue] month:[_showData.monthData intValue] day:[_showData.dayData intValue]];
     
-    if (timeCard == nil) {
+    TimeCard *timeCard;
+    
+    //既に存在したら更新
+    if ([tempModel count] == 0) {
         DLog(@"create Coredata!");
         timeCard = [dao createModel];
+    }else{
+        //[tempModel count] != 0
+        timeCard = [dao createModel];
+        timeCard = (TimeCard*)[tempModel objectAtIndex:0];
     }
     
     //営業日ではない場合の基本表示は？
@@ -143,7 +158,7 @@ typedef enum {
         workTime = NO;
     }
     
-    if (timeCard.start_time == nil ||
+    if (timeCard.start_time == nil &&
         timeCard.end_time == nil) {
         startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
                                                [getWd yyyyMMddString],

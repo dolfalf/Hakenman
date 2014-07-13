@@ -36,7 +36,7 @@
 }
 
 - (void)updateCell:(RightTableViewData *)model {
-    if (model.start_time == nil || model.end_time == nil) {
+    if (model.start_time == nil && model.end_time == nil) {
         startTimeLabel.text = @"";
         endTimeLabel.text = @"";
         workTimeLabel.text = @"";

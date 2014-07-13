@@ -16,6 +16,7 @@
 - (void)insertModelWorkEnd:(NSDate *)dt;
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month;
+- (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
 - (NSArray *)fetchModelLastWeek;
 - (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
 

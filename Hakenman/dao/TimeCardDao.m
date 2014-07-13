@@ -38,15 +38,14 @@
     int w_day = [dt getDay];
     int w_week = [dt getWeekday];
     
-    NSArray *items = [self fetchModelYear:w_year month:w_month];
+    NSArray *items = [self fetchModelYear:w_year month:w_month day:w_day];
     
     //既に存在したら更新
     if (items != nil && [items count] > 0) {
-        return [items objectAtIndex:0];
+        return (TimeCard*)[items objectAtIndex:0];
     }
     
     //存在しなければ作成
-    
     TimeCard *model = [self createModel];
     
     //default setting.
@@ -68,7 +67,9 @@
 
 - (void)insertModelWorkStart:(NSDate *)dt {
 
-    TimeCard *model = [self timeCardWithDate:dt];
+    TimeCard *model = [self createModel];
+    
+    model = [self timeCardWithDate:dt];
     
     model.start_time = [dt yyyyMMddHHmmssString];
     
@@ -78,7 +79,9 @@
 
 - (void)insertModelWorkEnd:(NSDate *)dt {
     
-    TimeCard *model = [self timeCardWithDate:dt];
+    TimeCard *model = [self createModel];
+    
+    model = [self timeCardWithDate:dt];
     
     model.end_time = [dt yyyyMMddHHmmssString];
     
@@ -103,6 +106,26 @@
     return [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
     
 }
+
+- (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day{
+    
+    self.fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [self.fetchRequest setEntity:entity];
+    
+    //sort
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"t_yyyymmdd" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [self.fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_year = %@ AND t_month = %@ AND t_day = %@", @(year), @(month), @(day)];
+    [self.fetchRequest setPredicate:pred];
+    
+    return [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
+    
+}
+
 
 - (NSArray *)fetchModelLastWeek {
     
