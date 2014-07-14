@@ -7,6 +7,7 @@
 //
 
 #import "TutorialViewController.h"
+#import "UIColor+Helper.h"
 
 #define NUMBER_OF_PAGES 4
 
@@ -16,16 +17,22 @@
 
 @property (nonatomic, strong) IFTTTAnimator *animator;
 
+//page01
 @property (nonatomic, strong) UILabel *page01WelcomeLabel;
 @property (nonatomic, strong) UILabel *page01WriteTimeLabel;
 @property (nonatomic, strong) UILabel *page01SendReportLabel;
 @property (nonatomic, strong) UILabel *page01MakeCsvLabel;
 @property (nonatomic, strong) UIImageView *page01LogoImage;
 
+//page02
 @property (nonatomic, strong) UILabel *page02TitleLabel;
-@property (nonatomic, strong) UIImageView *page02ScreenShotImage;
-@property (nonatomic, strong) UIImageView *page02ScreenShotsubImage;
-@property (nonatomic, strong) UIImageView *page02DescImage;
+@property (nonatomic, strong) UIImageView *page02ScreenShotImage1;
+@property (nonatomic, strong) UIImageView *page02DescImage1;
+@property (nonatomic, strong) UILabel *page02DescLabel1;
+@property (nonatomic, strong) UIImageView *page02ScreenShotImage2;
+@property (nonatomic, strong) UIImageView *page02DescImage2;
+@property (nonatomic, strong) UILabel *page02DescLabel2;
+
 
 @property (strong, nonatomic) UIImageView *wordmark;
 @property (strong, nonatomic) UIImageView *unicorn;
@@ -85,145 +92,320 @@
 */
 
 #pragma mark - pravate methods
-- (void)addLabel {
+- (void)addPageLabel:(UILabel *)lbl text:(NSString *)text fontSize:(float)sz movePoint:(CGPoint)pt {
     
+    lbl.text = text;
+    lbl.font = [UIFont fontWithName:@"Helvetica-Light" size:sz];
+    [lbl sizeToFit];
+    lbl.textAlignment = NSTextAlignmentLeft;
+    lbl.center = self.view.center;
+    lbl.backgroundColor = [UIColor yellowColor];//test
+    lbl.frame = CGRectOffset(lbl.frame, pt.x, pt.y);
+    [self.scrollView addSubview:lbl];
 }
 
-
-#pragma mark - animation methods
-- (void)placeViews
-{
+-(void)addPageImage:(UIImageView *)imageView size:(CGSize)sz movePoint:(CGPoint)pt {
     
-    //Page01
-    self.page01WelcomeLabel = [[UILabel alloc] init];
-    self.page01WelcomeLabel.text = @"Welcome";
-    self.page01WelcomeLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
-    [self.page01WelcomeLabel sizeToFit];
-    self.page01WelcomeLabel.center = self.view.center;
-    self.page01WelcomeLabel.frame = CGRectOffset(_page01WelcomeLabel.frame, 0, -150);
-    [self.scrollView addSubview:self.page01WelcomeLabel];
-    
-    self.page01WriteTimeLabel = [[UILabel alloc] init];
-    self.page01WriteTimeLabel.text = @"Easy Write time.";
-    self.page01WriteTimeLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
-    [self.page01WriteTimeLabel sizeToFit];
-    self.page01WriteTimeLabel.center = _page01WelcomeLabel.center;
-    self.page01WriteTimeLabel.frame = CGRectOffset(_page01WriteTimeLabel.frame, 0, 60);
-    [self.scrollView addSubview:self.page01WriteTimeLabel];
-
-    self.page01SendReportLabel = [[UILabel alloc] init];
-    self.page01SendReportLabel.text = @"Send today Report Mail.";
-    self.page01SendReportLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
-    [self.page01SendReportLabel sizeToFit];
-    self.page01SendReportLabel.center = _page01WriteTimeLabel.center;
-    self.page01SendReportLabel.frame = CGRectOffset(_page01SendReportLabel.frame, 0, 30);
-    [self.scrollView addSubview:self.page01SendReportLabel];
-
-    self.page01MakeCsvLabel = [[UILabel alloc] init];
-    _page01MakeCsvLabel.text = @"Export CSV file.";
-    _page01MakeCsvLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
-    [_page01MakeCsvLabel sizeToFit];
-    _page01MakeCsvLabel.center = _page01SendReportLabel.center;
-    _page01MakeCsvLabel.frame = CGRectOffset(_page01MakeCsvLabel.frame, 0, 30);
-    [self.scrollView addSubview:_page01MakeCsvLabel];
-    
-    
-    self.page01LogoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
-    self.page01LogoImage.center = self.view.center;
-    self.page01LogoImage.frame = CGRectOffset(CGRectInset(_page01LogoImage.frame, 50, 50),0,100);
-    [self.scrollView addSubview:_page01LogoImage];
-    
-    
-    
-    
-    
-    // put a unicorn in the middle of page two, hidden
-    self.unicorn = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Unicorn"]];
-    self.unicorn.center = self.view.center;
-    self.unicorn.frame = CGRectOffset(
-                                      self.unicorn.frame,
-                                      self.view.frame.size.width,
-                                      -100
-                                      );
-    self.unicorn.alpha = 0.0f;
-    [self.scrollView addSubview:self.unicorn];
-    
-    // put a logo on top of it
-    self.wordmark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IFTTT"]];
-    self.wordmark.center = self.view.center;
-    self.wordmark.frame = CGRectOffset(
-                                       self.wordmark.frame,
-                                       self.view.frame.size.width,
-                                       -100
-                                       );
-    [self.scrollView addSubview:self.wordmark];
-    
-    self.firstLabel = [[UILabel alloc] init];
-    self.firstLabel.text = @"Introducing Jazz Hands";
-    [self.firstLabel sizeToFit];
-    self.firstLabel.center = self.view.center;
-//    [self.scrollView addSubview:self.firstLabel];
-    
-    UILabel *secondPageText = [[UILabel alloc] init];
-    secondPageText.text = @"Brought to you by IFTTT";
-    [secondPageText sizeToFit];
-    secondPageText.center = self.view.center;
-    secondPageText.frame = CGRectOffset(secondPageText.frame, timeForPage(2), 180);
-    [self.scrollView addSubview:secondPageText];
-    
-    UILabel *thirdPageText = [[UILabel alloc] init];
-    thirdPageText.text = @"Simple keyframe animations";
-    [thirdPageText sizeToFit];
-    thirdPageText.center = self.view.center;
-    thirdPageText.frame = CGRectOffset(thirdPageText.frame, timeForPage(3), -100);
-    [self.scrollView addSubview:thirdPageText];
-    
-    UILabel *fourthPageText = [[UILabel alloc] init];
-    fourthPageText.text = @"Optimized for scrolling intros";
-    [fourthPageText sizeToFit];
-    fourthPageText.center = self.view.center;
-    fourthPageText.frame = CGRectOffset(fourthPageText.frame, timeForPage(4), 0);
-    [self.scrollView addSubview:fourthPageText];
-    
-    self.lastLabel = fourthPageText;
+    imageView.center = self.view.center;
+    imageView.frame = CGRectOffset(CGRectInset(imageView.frame, sz.width, sz.height),pt.x,pt.y);
+    [self.scrollView addSubview:imageView];
 }
 
-- (void)configureAnimation
-{
+#pragma mark Animation page01
+- (void)page01Animation {
     
-    //page01
-    IFTTTFrameAnimation *welcomeFrameAnimation = [IFTTTFrameAnimation animationWithView:_page01WelcomeLabel];
+    IFTTTAlphaAnimation *welcomeFrameAnimation = [IFTTTAlphaAnimation animationWithView:_page01WelcomeLabel];
     [self.animator addAnimation:welcomeFrameAnimation];
     
     [welcomeFrameAnimation addKeyFrames:@[
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:1.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:0.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                          ]];
+    
+    IFTTTFrameAnimation *welcomeFrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page01WelcomeLabel];
+    [self.animator addAnimation:welcomeFrameAnimation1];
+    
+    [welcomeFrameAnimation1 addKeyFrames:@[
                                            [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01WelcomeLabel.frame, 0, 0)],
-                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01WelcomeLabel.frame, timeForPage(2), -200)],
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01WelcomeLabel.frame, timeForPage(2), 0)],
                                            [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01WelcomeLabel.frame,0,0)],
                                            [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01WelcomeLabel.frame,0,0)],
                                            ]];
     
     
-    IFTTTFrameAnimation *writeTimeFrameAnimation = [IFTTTFrameAnimation animationWithView:_page01WriteTimeLabel];
-    [self.animator addAnimation:writeTimeFrameAnimation];
+    IFTTTAlphaAnimation *writeFrameAnimation = [IFTTTAlphaAnimation animationWithView:_page01WriteTimeLabel];
+    [self.animator addAnimation:writeFrameAnimation];
     
-    [writeTimeFrameAnimation addKeyFrames:@[
-                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01WriteTimeLabel.frame, 0, 0)],
-                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01WriteTimeLabel.frame, timeForPage(2), 200)],
-                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01WriteTimeLabel.frame,0,0)],
-                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01WriteTimeLabel.frame,0,0)],
+    [writeFrameAnimation addKeyFrames:@[
+                                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:1.0f],
+                                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:0.0f],
+                                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                        ]];
+    
+    IFTTTFrameAnimation *writeFrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page01WriteTimeLabel];
+    [self.animator addAnimation:writeFrameAnimation1];
+    
+    [writeFrameAnimation1 addKeyFrames:@[
+                                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01WriteTimeLabel.frame, 0, 0)],
+                                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01WriteTimeLabel.frame, timeForPage(2), 0)],
+                                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01WriteTimeLabel.frame,0,0)],
+                                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01WriteTimeLabel.frame,0,0)],
+                                         ]];
+    
+    IFTTTAlphaAnimation *sendReportFrameAnimation = [IFTTTAlphaAnimation animationWithView:_page01SendReportLabel];
+    [self.animator addAnimation:sendReportFrameAnimation];
+    
+    [sendReportFrameAnimation addKeyFrames:@[
+                                             [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:1.0f],
+                                             [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:0.0f],
+                                             [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                             [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                             ]];
+    
+    IFTTTFrameAnimation *sendReportFrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page01SendReportLabel];
+    [self.animator addAnimation:sendReportFrameAnimation1];
+    
+    [sendReportFrameAnimation1 addKeyFrames:@[
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01SendReportLabel.frame, 0, 0)],
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01SendReportLabel.frame, timeForPage(2), 0)],
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01SendReportLabel.frame,0,0)],
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01SendReportLabel.frame,0,0)],
+                                              ]];
+    
+    IFTTTAlphaAnimation *csvMakeFrameAnimation = [IFTTTAlphaAnimation animationWithView:_page01MakeCsvLabel];
+    [self.animator addAnimation:csvMakeFrameAnimation];
+    
+    [csvMakeFrameAnimation addKeyFrames:@[
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:1.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:0.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
                                           ]];
+    
+    IFTTTFrameAnimation *csvMakeFrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page01MakeCsvLabel];
+    [self.animator addAnimation:csvMakeFrameAnimation1];
+    
+    [csvMakeFrameAnimation1 addKeyFrames:@[
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01MakeCsvLabel.frame, 0, 0)],
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01MakeCsvLabel.frame, timeForPage(2), 0)],
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01MakeCsvLabel.frame,0,0)],
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01MakeCsvLabel.frame,0,0)],
+                                           ]];
+    
+    
     
     
     IFTTTAlphaAnimation *logoAlphaAnimation = [IFTTTAlphaAnimation animationWithView:_page01LogoImage];
     [self.animator addAnimation:logoAlphaAnimation];
-
+    
     [logoAlphaAnimation addKeyFrame:[IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:1.0f]];
     [logoAlphaAnimation addKeyFrame:[IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:0.0f]];
     [logoAlphaAnimation addKeyFrame:[IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f]];
     [logoAlphaAnimation addKeyFrame:[IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f]];
     
     
+    IFTTTFrameAnimation *logoAnimation = [IFTTTFrameAnimation animationWithView:_page01LogoImage];
+    [self.animator addAnimation:logoAnimation];
     
+    [logoAnimation addKeyFrames:@[
+                                  [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01LogoImage.frame, 0, 0)],
+                                  [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01LogoImage.frame, timeForPage(2), 0)],
+                                  [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01LogoImage.frame,0,0)],
+                                  [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01LogoImage.frame,0,0)],
+                                  ]];
+    
+    
+    
+}
+
+- (void)page02Animation {
+    
+    IFTTTAlphaAnimation *page02TitleFrameAnimation = [IFTTTAlphaAnimation animationWithView:_page02TitleLabel];
+    [self.animator addAnimation:page02TitleFrameAnimation];
+    
+    [page02TitleFrameAnimation addKeyFrames:@[
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:0.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:1.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                          [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                          ]];
+    
+    IFTTTFrameAnimation *page02TitleFrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page02TitleLabel];
+    [self.animator addAnimation:page02TitleFrameAnimation1];
+    
+    [page02TitleFrameAnimation1 addKeyFrames:@[
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02TitleLabel.frame, timeForPage(3), 0)],
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02TitleLabel.frame, timeForPage(1) *-1, 0)],
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02TitleLabel.frame,0,0)],
+                                           [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02TitleLabel.frame,0,0)],
+                                           ]];
+    
+    
+    
+    
+    
+    IFTTTAlphaAnimation *page02Image01FrameAnimation = [IFTTTAlphaAnimation animationWithView:_page02ScreenShotImage1];
+    [self.animator addAnimation:page02Image01FrameAnimation];
+    
+    [page02Image01FrameAnimation addKeyFrames:@[
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:0.0f],
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:1.0f],
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                              ]];
+    
+    IFTTTFrameAnimation *page02Image01FrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page02ScreenShotImage1];
+    [self.animator addAnimation:page02Image01FrameAnimation1];
+    
+    [page02Image01FrameAnimation1 addKeyFrames:@[
+                                               [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02ScreenShotImage1.frame, timeForPage(3), 0)],
+                                               [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02ScreenShotImage1.frame, timeForPage(1) *-1, 0)],
+                                               [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02ScreenShotImage1.frame,0,0)],
+                                               [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02ScreenShotImage1.frame,0,0)],
+                                               ]];
+    
+    
+    
+    IFTTTAlphaAnimation *page02DescImage01FrameAnimation = [IFTTTAlphaAnimation animationWithView:_page02DescImage1];
+    [self.animator addAnimation:page02DescImage01FrameAnimation];
+    
+    [page02DescImage01FrameAnimation addKeyFrames:@[
+                                                [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:0.0f],
+                                                [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:1.0f],
+                                                [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                                [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                                ]];
+    
+    IFTTTFrameAnimation *page02DescImage01FrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page02DescImage1];
+    [self.animator addAnimation:page02DescImage01FrameAnimation1];
+    
+    [page02DescImage01FrameAnimation1 addKeyFrames:@[
+                                                 [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02DescImage1.frame, timeForPage(3), 0)],
+                                                 [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02DescImage1.frame, timeForPage(1) *-1, 0)],
+                                                 [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02DescImage1.frame,0,0)],
+                                                 [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02DescImage1.frame,0,0)],
+                                                 ]];
+    
+    
+    
+    IFTTTAlphaAnimation *page02DescImage02FrameAnimation = [IFTTTAlphaAnimation animationWithView:_page02DescImage2];
+    [self.animator addAnimation:page02DescImage02FrameAnimation];
+    
+    [page02DescImage02FrameAnimation addKeyFrames:@[
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:0.0f],
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:1.0f],
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                                    ]];
+    
+    IFTTTFrameAnimation *page02DescImage02FrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page02DescImage2];
+    [self.animator addAnimation:page02DescImage02FrameAnimation1];
+    
+    [page02DescImage02FrameAnimation1 addKeyFrames:@[
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02DescImage2.frame, timeForPage(3), 0)],
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02DescImage2.frame, timeForPage(1) *-1, 0)],
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02DescImage2.frame,0,0)],
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02DescImage2.frame,0,0)],
+                                                     ]];
+    
+    
+
+    IFTTTAlphaAnimation *page02DescLabel01FrameAnimation = [IFTTTAlphaAnimation animationWithView:_page02DescLabel1];
+    [self.animator addAnimation:page02DescLabel01FrameAnimation];
+    
+    [page02DescLabel01FrameAnimation addKeyFrames:@[
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andAlpha:0.0f],
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andAlpha:1.0f],
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andAlpha:0.0f],
+                                                    [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andAlpha:0.0f],
+                                                    ]];
+    
+    IFTTTFrameAnimation *page02DescLabel01FrameAnimation1 = [IFTTTFrameAnimation animationWithView:_page02DescLabel1];
+    [self.animator addAnimation:page02DescLabel01FrameAnimation1];
+    
+    [page02DescLabel01FrameAnimation1 addKeyFrames:@[
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02DescLabel1.frame, timeForPage(3), 0)],
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02DescLabel1.frame, timeForPage(1) *-1, 0)],
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02DescLabel1.frame,0,0)],
+                                                     [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02DescLabel1.frame,0,0)],
+                                                     ]];
+    
+
+    //TODO:
+//    
+//    self.page02ScreenShotImage2
+//    self.page02DescImage2
+//    self.page02DescLabel2
+    
+}
+
+#pragma mark - animation methods
+- (void)placeViews
+{
+    //Page01
+    self.page01WelcomeLabel = [[UILabel alloc] init];
+    [self addPageLabel:_page01WelcomeLabel text:@"Welcome" fontSize:40.f movePoint:CGPointMake(0, -200)];
+    
+    self.page01WriteTimeLabel = [[UILabel alloc] init];
+    [self addPageLabel:_page01WriteTimeLabel text:@"Easy manage\n worktime." fontSize:20.f movePoint:CGPointMake(0, -150)];
+
+    self.page01SendReportLabel = [[UILabel alloc] init];
+    [self addPageLabel:_page01SendReportLabel text:@"Send today Report Mail." fontSize:20.f movePoint:CGPointMake(0, -120)];
+
+    self.page01MakeCsvLabel = [[UILabel alloc] init];
+    [self addPageLabel:_page01MakeCsvLabel text:@"Export CSV file." fontSize:20.f movePoint:CGPointMake(0, -90)];
+    
+    self.page01LogoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    [self addPageImage:_page01LogoImage size:CGSizeMake(50, 50) movePoint:CGPointMake(0, 100)];
+    
+    
+    //Page02
+    self.page02TitleLabel = [[UILabel alloc] init];
+    _page02TitleLabel.numberOfLines = 2;
+    [self addPageLabel:_page02TitleLabel text:@"Easy\n manage worktime!" fontSize:30.f movePoint:CGPointMake(timeForPage(2), -190)];
+    
+    self.page02ScreenShotImage1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page02_screenshot01"]];
+    [self addPageImage:_page02ScreenShotImage1 size:CGSizeMake(-20, -20) movePoint:CGPointMake(timeForPage(2)-10, 0)];
+    
+    self.page02DescImage1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yajirusi01"]];
+    [self addPageImage:_page02DescImage1 size:CGSizeMake(0, 0) movePoint:CGPointMake(timeForPage(2)+40, -15)];
+    
+    self.page02DescImage2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"maru01"]];
+    [self addPageImage:_page02DescImage2 size:CGSizeMake(-10, -10) movePoint:CGPointMake(timeForPage(2)+30, 40)];
+    
+    self.page02DescLabel1 = [[UILabel alloc] init];
+    _page02DescLabel1.numberOfLines = 2;
+    _page02DescLabel1.textColor = [UIColor HKMDarkOrangeColor];
+    [self addPageLabel:_page02DescLabel1 text:@"月の勤怠が\nすぐわかる!" fontSize:13.f movePoint:CGPointMake(timeForPage(2)+110, -50)];
+    
+    self.page02ScreenShotImage2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page02_screenshot02"]];
+    [self addPageImage:_page02ScreenShotImage2 size:CGSizeMake(-20, -20) movePoint:CGPointMake(timeForPage(2)-5, 140)];
+    
+    self.page02DescImage2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"maru01"]];
+    [self addPageImage:_page02DescImage2 size:CGSizeMake(-10, -10) movePoint:CGPointMake(timeForPage(2)+70, 190)];
+    
+    self.page02DescLabel2 = [[UILabel alloc] init];
+    _page02DescLabel2.numberOfLines = 2;
+    _page02DescLabel2.textColor = [UIColor HKMDarkOrangeColor];
+    [self addPageLabel:_page02DescLabel2 text:@"簡単に勤怠を\n入力します！" fontSize:13.f movePoint:CGPointMake(timeForPage(2)+90, 140)];
+    
+    //Page03
+    
+    
+    
+}
+
+- (void)configureAnimation
+{
+    
+    //page01
+    [self page01Animation];
+    
+    //page02
+    [self page02Animation];
     
     
     
