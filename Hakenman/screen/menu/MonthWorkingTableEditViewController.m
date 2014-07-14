@@ -84,17 +84,17 @@ typedef enum {
     
     NSArray *tempModel = [dao fetchModelYear:[_showData.yearData intValue] month:[_showData.monthData intValue] day:[_showData.dayData intValue]];
     
-    TimeCard *timeCard;
-    
     //既に存在したら更新
     if ([tempModel count] == 0) {
         DLog(@"create Coredata!");
-        timeCard = [dao createModel];
+        [dao createModel];
     }else{
         //[tempModel count] != 0
-        timeCard = [dao createModel];
-        timeCard = (TimeCard*)[tempModel objectAtIndex:0];
+        dao.model = (TimeCard*)[tempModel objectAtIndex:0];
+
     }
+    
+    TimeCard *timeCard = (TimeCard *)dao.model;
     
     timeCard.start_time = [_startWtPickerItem.value yyyyMMddHHmmssString];
     timeCard.end_time = [_endWtPickerItem.value yyyyMMddHHmmssString];
@@ -144,11 +144,9 @@ typedef enum {
     
     //既に存在したら更新
     if ([tempModel count] == 0) {
-        DLog(@"create Coredata!");
-        timeCard = [dao createModel];
+        
     }else{
         //[tempModel count] != 0
-        timeCard = [dao createModel];
         timeCard = (TimeCard*)[tempModel objectAtIndex:0];
     }
     

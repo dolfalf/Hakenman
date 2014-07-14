@@ -67,11 +67,9 @@
 
 - (void)insertModelWorkStart:(NSDate *)dt {
 
-    TimeCard *model = [self createModel];
+    self.model = [self timeCardWithDate:dt];
     
-    model = [self timeCardWithDate:dt];
-    
-    model.start_time = [dt yyyyMMddHHmmssString];
+    ((TimeCard *)self.model).start_time = [dt yyyyMMddHHmmssString];
     
     [self insertModel];
     
@@ -79,11 +77,9 @@
 
 - (void)insertModelWorkEnd:(NSDate *)dt {
     
-    TimeCard *model = [self createModel];
+    self.model = [self timeCardWithDate:dt];
     
-    model = [self timeCardWithDate:dt];
-    
-    model.end_time = [dt yyyyMMddHHmmssString];
+    ((TimeCard *)self.model).end_time = [dt yyyyMMddHHmmssString];
     
     [self insertModel];
 }
