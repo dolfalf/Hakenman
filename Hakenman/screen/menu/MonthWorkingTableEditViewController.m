@@ -77,6 +77,17 @@ typedef enum {
 
 #pragma mark - IBAction
 - (IBAction)saveAndClose:(id)sender {
+    if ([_startWtPickerItem.value isEqualToDate:_endWtPickerItem.value]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"出勤時間と退勤時間が同じです" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+        return;
+    }
+    
+    if ([_startWtPickerItem.value earlierDate:_endWtPickerItem.value] == _endWtPickerItem.value) {
+        NSTimeInterval t = 60 * 60 * 24; // 1日
+        _endWtPickerItem.value = [_endWtPickerItem.value dateByAddingTimeInterval:t];
+    }
     
     TimeCardDao *dao = [TimeCardDao new];
 

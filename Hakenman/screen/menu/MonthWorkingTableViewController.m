@@ -33,6 +33,7 @@
 @property (nonatomic, assign) NSInteger selectedIndex;
 @property (nonatomic, strong) NSDictionary *bigItems;
 @property (nonatomic, strong) NSDate *sheetDate;
+@property (nonatomic, strong) NSNumber *result;
 
 @end
 
@@ -170,7 +171,9 @@
     
     //表示すべきテーブルに結果を入れる
     self.bigItems = [bTempDictionary mutableCopy];
-
+    
+    self.result = [[NSNumber alloc]init];
+    
     //テーブルの更新
     [leftTableView reloadData];
     [rightTableView reloadData];
@@ -270,8 +273,24 @@
         //background color
         [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
         
+        //合計時間表示部分（問題あり）
+        NSDate *startTimeFromCore = [NSDate convDate2String:rightModel.start_time];
+        NSDate *endTimeFromCore = [NSDate convDate2String:rightModel.end_time];
+        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
+        
+        if (_result == 0 || indexPath.row == 0) {
+            _result = [NSNumber numberWithFloat:workTimeFromCore];
+            cell.worktotalLabel.text = [NSString stringWithFormat:@"%2.2f", _result.floatValue];
+        }else if(_result != 0 && indexPath.row != 0){
+            _result = [NSNumber numberWithFloat:(_result.floatValue + workTimeFromCore)];
+            cell.worktotalLabel.text = [NSString stringWithFormat:@"%2.2f", _result.floatValue];
+        }
+        //
+        
+        
         //cell update.
         [cell updateCell:rightModel];
+        
         
         return cell;
     }

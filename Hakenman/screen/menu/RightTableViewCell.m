@@ -12,6 +12,10 @@
 #import "TimeCard.h"
 #import "NSDate+Helper.h"
 
+@interface RightTableViewCell()
+
+@end
+
 @implementation RightTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -39,16 +43,32 @@
     if (model.start_time == nil && model.end_time == nil) {
         startTimeLabel.text = @"";
         endTimeLabel.text = @"";
-        workTimeLabel.text = @"";
-        worktotalLabel.text = @"";
+        _workTimeLabel.text = @"";
+        _worktotalLabel.text = @"";
     }else{
         NSDate *startTimeFromCore = [NSDate convDate2String:model.start_time];
         NSDate *endTimeFromCore = [NSDate convDate2String:model.end_time];
-        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
-        startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
-        endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
-        workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
-        worktotalLabel.text = @"未実装";
+        
+        if (model.start_time == nil) {
+            startTimeLabel.text = @"";
+            endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
+            _workTimeLabel.text = @"";
+            _worktotalLabel.text = @"";
+        }else if (model.end_time == nil) {
+            startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
+            endTimeLabel.text = @"";
+            _workTimeLabel.text = @"";
+            _worktotalLabel.text = @"";
+        }else{
+            float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
+            startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
+            endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
+            //合計１２時間以上は赤字で表示する
+            if (workTimeFromCore >= 12.00f) {
+                _workTimeLabel.textColor = [UIColor redColor];
+            }
+            _workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
+        }
     }
 }
 
