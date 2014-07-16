@@ -141,6 +141,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 #endif
     _settingBarButton.hidden = NO;
 
+    //TODO:グラプデータをリロードする
+    
     [super viewWillAppear:animated];
 }
 
