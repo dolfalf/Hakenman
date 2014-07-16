@@ -33,7 +33,6 @@
 @property (nonatomic, assign) NSInteger selectedIndex;
 @property (nonatomic, strong) NSDictionary *bigItems;
 @property (nonatomic, strong) NSDate *sheetDate;
-@property (nonatomic, strong) NSNumber *result;
 
 @end
 
@@ -58,7 +57,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     DLog(@"%s", __FUNCTION__);
+    
+    //テーブルビュー更新
     [self reloadSheetDate];
+    
     [super viewWillAppear:animated];
     
 }
@@ -70,8 +72,19 @@
 
 #pragma mark - KJViewController override method
 - (void)initControls {
-    //viewDidLoadで実行される
+    
+    //viewDidLoadが呼ばれるタイミングで実行される
+    
+    if ([_inputDates isEqualToString:@""] == NO) {
+        //ex : 20140701など
+        _inputDates = [_inputDates stringByAppendingString:@"01"];
+    }
 
+    self.sheetDate = [NSDate convDate2ShortString:_inputDates];
+    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
+                  [_sheetDate getYear], [_sheetDate getMonth]];
+    
+    //テーブル色指定
     leftHeaderView.backgroundColor = [UIColor lightGrayColor];
     for(UIView *vw in [leftHeaderView subviews]) {
         vw.backgroundColor = [UIColor HKMDarkblueColor];
@@ -87,28 +100,17 @@
     leftTableView.opaque
     = rightTableView.opaque = NO;
     
-    //TODO:イメージに差し替え予定
     backgroundImageView.backgroundColor = [UIColor lightGrayColor];
     
-    if ([_inputDates isEqualToString:@""] == NO) {
-        //ex : 20140701など
-        _inputDates = [_inputDates stringByAppendingString:@"01"];
-    }
-
-    self.sheetDate = [NSDate convDate2ShortString:_inputDates];
-
-    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
-                  [_sheetDate getYear], [_sheetDate getMonth]];
-    
-    [self reloadSheetDate];
 }
 
--(void)reloadSheetDate{
+-(void)reloadSheetDate {
     
     NSMutableDictionary *bTempDictionary = [[NSMutableDictionary alloc]init];
     
-    NSNumber *leftDates;
-    NSNumber *leftWeeks;
+    NSNumber *leftDates = nil;
+    NSNumber *leftWeeks = nil;
+    
     //sheetDateからその月の最後の日を算出（何日で終わるのか）
     int lastDay = [_sheetDate getLastday];
     //sheetDateからその日の曜日を算出
@@ -172,8 +174,6 @@
     //表示すべきテーブルに結果を入れる
     self.bigItems = [bTempDictionary mutableCopy];
     
-    self.result = [[NSNumber alloc]init];
-    
     //テーブルの更新
     [leftTableView reloadData];
     [rightTableView reloadData];
@@ -226,7 +226,6 @@
 //    
 //}
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 30.0f;
     
@@ -265,6 +264,7 @@
         return cell;
         
     }else if([tableView isEqual:rightTableView] == YES) {
+        
         NSString *cellIdentifier = @"RightTableViewCell";
         RightTableViewCell *cell = (RightTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
@@ -273,20 +273,24 @@
         //background color
         [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
         
-        //合計時間表示部分（問題あり）
+        //合計時間表示部分
         NSDate *startTimeFromCore = [NSDate convDate2String:rightModel.start_time];
         NSDate *endTimeFromCore = [NSDate convDate2String:rightModel.end_time];
         float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
         
-        if (_result == 0 || indexPath.row == 0) {
-            _result = [NSNumber numberWithFloat:workTimeFromCore];
-            cell.worktotalLabel.text = [NSString stringWithFormat:@"%2.2f", _result.floatValue];
-        }else if(_result != 0 && indexPath.row != 0){
-            _result = [NSNumber numberWithFloat:(_result.floatValue + workTimeFromCore)];
-            cell.worktotalLabel.text = [NSString stringWithFormat:@"%2.2f", _result.floatValue];
+        //workflagがたてている場合のみ計算するため、営業日ではない場合は０にする。
+        if ([rightModel.workday_flag boolValue] == NO) {
+            workTimeFromCore = 0.f;
         }
-        //
         
+        //最初のセールは前のデータがないためそのまま自分のみ反映する
+        if (indexPath == 0) {
+            rightModel.total_time = workTimeFromCore;
+        }else {
+            //前のセルのデータを取得して累計を計算する
+            RightTableViewData *preRightModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", indexPath.row-1]];
+            rightModel.total_time = preRightModel.total_time + workTimeFromCore;
+        }
         
         //cell update.
         [cell updateCell:rightModel];

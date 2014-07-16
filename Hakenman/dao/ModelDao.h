@@ -22,6 +22,7 @@
 - (id)createWithDictionary:(NSDictionary *)item;
 
 - (void)insertModel;
+- (void)updateModel:(id)model;
 - (void)deleteModel;
 - (NSArray *)fetchModel;
 

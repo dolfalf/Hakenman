@@ -16,13 +16,13 @@
     
     IBOutlet BorderLabel *startTimeLabel;
     IBOutlet BorderLabel *endTimeLabel;
-//    IBOutlet BorderLabel *workTimeLabel;
-//    IBOutlet BorderLabel *worktotalLabel;
+    IBOutlet BorderLabel *workTimeLabel;
+    IBOutlet BorderLabel *worktotalLabel;
 }
 
 
-@property (nonatomic, strong) IBOutlet BorderLabel *workTimeLabel;
-@property (nonatomic, strong) IBOutlet BorderLabel *worktotalLabel;
+//@property (nonatomic, strong) IBOutlet BorderLabel *workTimeLabel;
+//@property (nonatomic, strong) IBOutlet BorderLabel *worktotalLabel;
 
 
 

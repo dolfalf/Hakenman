@@ -13,6 +13,8 @@
     CGPoint _preLinePoint;
 }
 
+@property (nonatomic, strong) UILabel *noDataLabel;
+
 - (void)drawLine:(CGContextRef)ctx color:(UIColor *)c width:(float)w startPoint:(CGPoint)sp endPoint:(CGPoint)ep;
 
 - (void)drawCircle:(CGContextRef)ctx fillColor:(UIColor *)fc strokeColor:(UIColor *)sc radius:(float)r CenterPoint:(CGPoint)cp;
@@ -40,6 +42,14 @@
     self = [super initWithCoder:coder];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        self.noDataLabel = [[UILabel alloc] initWithFrame:self.bounds];
+        _noDataLabel.text = @"テータなし";
+        _noDataLabel.textColor = [UIColor lightGrayColor];
+        _noDataLabel.textAlignment = NSTextAlignmentCenter;
+        _noDataLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:35.f];
+        [self addSubview:_noDataLabel];
+        _noDataLabel.hidden = YES;
+        
     }
     return self;
 }
@@ -86,6 +96,15 @@
     
     //ライングラフ描画
     int pointCount = [_delegate linePointNumber];
+    
+    //データがない場合はテキスト表示
+    if (pointCount == 0) {
+        DLog(@"データがないため描画しない");
+        _noDataLabel.hidden = NO;
+        return;
+    }
+    _noDataLabel.hidden = YES;
+    
     float x = (self.frame.size.width - (margin*2))/6.f;
     
     //グラプ描画ポイント取得
