@@ -40,11 +40,12 @@
 }
 
 - (void)updateCell:(RightTableViewData *)model {
+    
     if (model.start_time == nil && model.end_time == nil) {
         startTimeLabel.text = @"";
         endTimeLabel.text = @"";
-        _workTimeLabel.text = @"";
-        _worktotalLabel.text = @"";
+        workTimeLabel.text = @"";
+        worktotalLabel.text = @"";
     }else{
         NSDate *startTimeFromCore = [NSDate convDate2String:model.start_time];
         NSDate *endTimeFromCore = [NSDate convDate2String:model.end_time];
@@ -52,22 +53,32 @@
         if (model.start_time == nil) {
             startTimeLabel.text = @"";
             endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
-            _workTimeLabel.text = @"";
-            _worktotalLabel.text = @"";
+            workTimeLabel.text = @"";
+            worktotalLabel.text = @"";
         }else if (model.end_time == nil) {
             startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
             endTimeLabel.text = @"";
-            _workTimeLabel.text = @"";
-            _worktotalLabel.text = @"";
+            workTimeLabel.text = @"";
+            worktotalLabel.text = @"";
         }else{
             float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
             startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
             endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
+            
+            if ([model.workday_flag boolValue] == NO) {
+                worktotalLabel.text = @"-";
+            }else {
+                worktotalLabel.text = [NSString stringWithFormat:@"%2.2f", model.total_time];
+            }
+            
             //合計１２時間以上は赤字で表示する
             if (workTimeFromCore >= 12.00f) {
-                _workTimeLabel.textColor = [UIColor redColor];
+                workTimeLabel.textColor = [UIColor redColor];
+            }else {
+                workTimeLabel.textColor = [UIColor blackColor];
             }
-            _workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
+            
+            workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
         }
     }
 }

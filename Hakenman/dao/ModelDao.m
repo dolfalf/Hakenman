@@ -65,6 +65,23 @@
     
 }
 
+- (void)updateModel:(id)model {
+    
+    if (model == nil) {
+        return;
+    }
+    self.model = model;
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![_model.managedObjectContext save:&error]) {
+        //error
+		DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		abort();
+	}
+    
+}
+
 - (void)deleteModel {
     
     if (_model == nil) {
