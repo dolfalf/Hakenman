@@ -87,7 +87,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [timeCardSummaryDao updatedTimeCardSummaryTable:@"201308"];
     
     //MARK: テストデータの生成
-#if 0
+#if 1
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 
     [timeCardDao deleteAllModel];
@@ -127,9 +127,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
 #endif
     
-    //初期化
-    self.items = [self displayCellItems];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -141,7 +138,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 #endif
     _settingBarButton.hidden = NO;
 
-    //TODO:グラプデータをリロードする
+    //グラプデータをリロードする
+    self.items = [self displayCellItems];
+    [mainTableView reloadData];
     
     [super viewWillAppear:animated];
 }

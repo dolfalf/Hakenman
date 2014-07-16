@@ -75,6 +75,8 @@
 //    messageLabel.text = [[NSDate date] convHHmmString];
 //    messageLabel.text = [self p_displayMessage:messageType displayDate:today];
     
+    [lineGraphView setNeedsDisplay];
+    
     [self updateWorkTime];
     
     self.graphItems = items;
