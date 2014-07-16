@@ -44,6 +44,8 @@
 "TopViewController_tablecell_total_work_time_title" = "勤務時間";
 "TopViewController_tablecell_total_work_day_title" = "勤務日数";
 
+"TopViewController_tablecell_total_work_day_no_data" = "データー無し";
+
 "TopViewController_write_workstart_alertview_message"   = "現在時刻で出勤時間を記録しますか。";
 "TopViewController_write_workend_alertview_message"     = "現在時刻で退勤時間を記録しますか。";
 
@@ -94,9 +96,10 @@
 
 "SettingViewController_tutorial_title"             = "チュートリアル";
 "SettingViewController_app_info_title"             = "KJCodeについて";
-"SettingViewController_open_lisence_title"         = "Open lisence";
+"SettingViewController_open_lisence_title"         = "オープンライセンス";
 
 "SettingViewController_database_init_title"         = "データ削除";
+"SettingViewController_database_init_alert_text"    = "データの削除を行います。よろしいですか。";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";
@@ -104,14 +107,16 @@
 //MONTH_WORK_EDIT_TABLE
 "MonthWorkingTableEditViewController_edit_navi_title"       = "%04d年%02d月%02d日";
 "MonthWorkingTableEditViewController_edit_navi_save_btn"    = "保存";
+"MonthWorkingTableEditViewController_edit_section_title"    = "勤務時間入力";
 "MonthWorkingTableEditViewController_edit_start_time_cell"  = "出勤時間";
 "MonthWorkingTableEditViewController_edit_end_time_cell"    = "退勤時間";
 "MonthWorkingTableEditViewController_edit_rest_time_cell"   = "休憩時間";
 "MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "営業日";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";
+"MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "出勤時間と退勤時間が同じです";
 
 //その他
-"OpenSourceLicenseViewController_navi_title"    = "オープン ライセンス";
+"OpenSourceLicenseViewController_navi_title"    = "オープンライセンス";
 "AppInformationViewController_navi_title"       = "KJCodeについて";
 
 //tmp
