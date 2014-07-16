@@ -229,14 +229,13 @@ enum {
     
     //日報報告宛先メール
     RETextItem *reportMailTextItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_work_report_title_mail_address")
-                                                         value:[NSUserDefaults reportToMailaddress]
-                                                   placeholder:@"Email Address"];
+                                                         value:[NSUserDefaults reportToMailaddress] placeholder:LOCALIZE(@"SettingViewController_work_report_placehold_mail_address")];
     
     reportMailTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     reportMailTextItem.style = UITableViewCellStyleValue1;
     reportMailTextItem.charactersLimit = 30;
     reportMailTextItem.name = LOCALIZE(@"SettingViewController_work_report_placehold_mail_address");
-    reportMailTextItem.name = @"Your email";
+//    reportMailTextItem.name = @"Your email";
     reportMailTextItem.keyboardType = UIKeyboardTypeEmailAddress;
     reportMailTextItem.autocapitalizationType = UITextAutocapitalizationTypeNone;
     reportMailTextItem.validators = @[@"email"];
@@ -258,7 +257,7 @@ enum {
     // (日報)20140703
     RETextItem *reportMailTitleTextItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_mail_title_title")
                                                          value:[NSUserDefaults reportMailTitle]
-                                                   placeholder:@"Email Title"];
+                                                   placeholder:LOCALIZE(@"SettingViewController_work_report_mail_title_placeholder")];
     
     reportMailTitleTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     reportMailTitleTextItem.style = UITableViewCellStyleValue1;
@@ -381,7 +380,7 @@ enum {
                                        
                                        NSLog(@"initialize database: %@", item);
                                        weakSelf.deleteAlertview = [[UIAlertView alloc] initWithTitle:@""
-                                                                                             message:LOCALIZE(@"")
+                                                                                             message:LOCALIZE(@"SettingViewController_database_init_alert_text")
                                                                                             delegate:weakSelf
                                                                                    cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
                                                                                    otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];

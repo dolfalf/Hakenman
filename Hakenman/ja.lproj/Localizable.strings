@@ -44,7 +44,7 @@
 "TopViewController_tablecell_total_work_time_title" = "勤務時間";
 "TopViewController_tablecell_total_work_day_title" = "勤務日数";
 
-"TopViewController_tablecell_total_work_day_no_data" = "データー無し";
+"LineGraphView_total_work_day_no_data" = "テータなし";
 
 "TopViewController_write_workstart_alertview_message"   = "現在時刻で出勤時間を記録しますか。";
 "TopViewController_write_workend_alertview_message"     = "現在時刻で退勤時間を記録しますか。";
@@ -87,6 +87,7 @@
 
 "SettingViewController_work_report_title_mail_address" = "宛先";
 "SettingViewController_work_report_placehold_mail_address" = "メールアドレス";
+"SettingViewController_work_report_mail_title_placeholder" = "メールタイトル";
 
 "SettingViewController_work_report_time_templete_add" = "内容に時間定型文追加";
 
@@ -99,7 +100,7 @@
 "SettingViewController_open_lisence_title"         = "オープンライセンス";
 
 "SettingViewController_database_init_title"         = "データ削除";
-"SettingViewController_database_init_alert_text"    = "データの削除を行います。よろしいですか。";
+"SettingViewController_database_init_alert_text"    = "データを削除しますか？";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";

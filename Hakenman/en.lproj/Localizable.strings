@@ -45,7 +45,7 @@
 "TopViewController_tablecell_total_work_time_title" = "Work times";
 "TopViewController_tablecell_total_work_day_title" = "Work days";
 
-"TopViewController_tablecell_total_work_day_no_data" = "No Data";
+"LineGraphView_total_work_day_no_data" = "No Data";
 
 "TopViewController_write_workstart_alertview_message"   = "Are you sure you want to record the work start time in the current time?";
 "TopViewController_write_workend_alertview_message"     = "Are you sure you want to record the work end time in the current time?";
@@ -89,6 +89,7 @@
 
 "SettingViewController_work_report_title_mail_address" = "Reciept";
 "SettingViewController_work_report_placehold_mail_address" = "Mail address";
+"SettingViewController_work_report_mail_title_placeholder" = "Mail Title";
 
 "SettingViewController_work_report_time_templete_add" = "Add worktime templete";
 
@@ -99,7 +100,7 @@
 "SettingViewController_open_lisence_title"         = "Open lisence";
 
 "SettingViewController_database_init_title"         = "Remove Data";
-"SettingViewController_database_init_alert_text"    = "データの削除を行います。よろしいですか。";
+"SettingViewController_database_init_alert_text"    = "Are You Sure Remove Data?";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
