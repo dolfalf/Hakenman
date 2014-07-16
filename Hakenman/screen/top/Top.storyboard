@@ -230,6 +230,9 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="MJa-my-xaW"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="S7n-ci-1Pg" id="7cz-pa-mEn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QR4-za-9uo" sceneMemberID="firstResponder"/>
             </objects>
