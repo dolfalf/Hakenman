@@ -34,13 +34,13 @@
     [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
 }
 
-+ (void)gotoTutorialViewController:(id)owner {
++ (void)gotoTutorialViewController:(id)owner animated:(BOOL)animated {
     
     //MARK:pushはできない。popをする際にメモリエラー発生のため
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Tutorial" bundle:nil];
     UIViewController *controller = (UINavigationController *)[storyboard instantiateInitialViewController];
     
-    [owner presentViewController:controller animated:YES completion:nil];
+    [owner presentViewController:controller animated:animated completion:nil];
 
 }
 

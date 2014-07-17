@@ -131,6 +131,12 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    //最初起動の場合、チュートリアルを表示
+    if ([NSUserDefaults readWelcomePage] == NO) {
+        [StoryboardUtil gotoTutorialViewController:self animated:NO];
+        [NSUserDefaults setReadWelcomePage:YES];
+    }
+    
 #ifdef TOPVIEWCONTROLLER_MENU_HIDDEN
     _menuBarButton.hidden = YES;
 #else
@@ -149,6 +155,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
+    //出勤時間チェック開始
+    [self startLoadTimer];
+    
     [super viewDidAppear:animated];
 }
 
@@ -157,7 +166,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     _menuBarButton.hidden = YES;
     _settingBarButton.hidden = YES;
     self.navigationController.toolbarHidden = YES;
-     
+    
+    self.loadTimer = nil;
+    
     [super viewWillDisappear:animated];
 }
 
@@ -179,8 +190,27 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     return NO;
 }
 
+#pragma mark - timer 
+- (void)startLoadTimer {
+    
+    if (_loadTimer != nil) {
+        return;
+    }
+    
+    self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:20.f
+                                                      target:self
+                                                    selector:@selector(updateWorkTime:)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    
+    //最初は直接に実行する
+    [self updateWorkTime:nil];
+}
+
 #pragma mark - callback method
 - (void)updateWorkTime:(NSTimer *)tm {
+    
+    DLog(@"%s",__FUNCTION__);
     
     if (_todayCell != nil) {
         [_todayCell updateWorkTime];
@@ -211,12 +241,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     //title
     self.title = LOCALIZE(@"TopViewController_goWork_title");
     
-    //Timer
-    self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:30.f
-                                                      target:self
-                                                    selector:@selector(updateWorkTime:)
-                                                    userInfo:nil
-                                                     repeats:YES];
+    //出勤時間チェック開始
+    [self startLoadTimer];
+    
 }
 
 #pragma mark - IBAction

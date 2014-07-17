@@ -10,6 +10,9 @@
 
 @interface NSUserDefaults (Setting)
 
++ (BOOL)readWelcomePage;
++ (void)setReadWelcomePage:(BOOL)value;
+
 + (NSInteger)timeKubun;
 + (void)setTimeKubun:(NSInteger)value;
 
