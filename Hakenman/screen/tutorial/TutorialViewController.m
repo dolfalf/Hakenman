@@ -8,6 +8,8 @@
 
 #import "TutorialViewController.h"
 #import "UIColor+Helper.h"
+#import "const.h"
+
 
 #define NUMBER_OF_PAGES 4
 
@@ -319,16 +321,16 @@
 {
     //Page01
     self.page01WelcomeLabel = [[UILabel alloc] init];
-    [self addPageLabel:_page01WelcomeLabel text:@"Welcome" fontSize:40.f movePoint:CGPointMake(0, -200)];
+    [self addPageLabel:_page01WelcomeLabel text:LOCALIZE(@"TutorialViewController_page1_title") fontSize:40.f movePoint:CGPointMake(0, -200)];
     
     self.page01WriteTimeLabel = [[UILabel alloc] init];
-    [self addPageLabel:_page01WriteTimeLabel text:@"Easy manage\n worktime." fontSize:20.f movePoint:CGPointMake(0, -150)];
+    [self addPageLabel:_page01WriteTimeLabel text:LOCALIZE(@"TutorialViewController_page1_label1") fontSize:20.f movePoint:CGPointMake(0, -150)];
 
     self.page01SendReportLabel = [[UILabel alloc] init];
-    [self addPageLabel:_page01SendReportLabel text:@"Send today Report Mail." fontSize:20.f movePoint:CGPointMake(0, -120)];
+    [self addPageLabel:_page01SendReportLabel text:LOCALIZE(@"TutorialViewController_page1_label2") fontSize:20.f movePoint:CGPointMake(0, -120)];
 
     self.page01MakeCsvLabel = [[UILabel alloc] init];
-    [self addPageLabel:_page01MakeCsvLabel text:@"Export CSV file." fontSize:20.f movePoint:CGPointMake(0, -90)];
+    [self addPageLabel:_page01MakeCsvLabel text:LOCALIZE(@"TutorialViewController_page1_label3") fontSize:20.f movePoint:CGPointMake(0, -90)];
     
     self.page01LogoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
     [self addPageImage:_page01LogoImage size:CGSizeMake(50, 50) movePoint:CGPointMake(0, 100)];
@@ -337,7 +339,7 @@
     //Page02
     self.page02TitleLabel = [[UILabel alloc] init];
     _page02TitleLabel.numberOfLines = 2;
-    [self addPageLabel:_page02TitleLabel text:@"Easy\n manage worktime!" fontSize:30.f movePoint:CGPointMake(timeForPage(2), -190)];
+    [self addPageLabel:_page02TitleLabel text:LOCALIZE(@"TutorialViewController_page2_title") fontSize:30.f movePoint:CGPointMake(timeForPage(2), -190)];
     
     self.page02ScreenShotImage1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page02_screenshot01"]];
     [self addPageImage:_page02ScreenShotImage1 size:CGSizeMake(-20, -20) movePoint:CGPointMake(timeForPage(2)-10, 0)];
@@ -351,7 +353,7 @@
     self.page02DescLabel1 = [[UILabel alloc] init];
     _page02DescLabel1.numberOfLines = 2;
     _page02DescLabel1.textColor = [UIColor HKMDarkOrangeColor];
-    [self addPageLabel:_page02DescLabel1 text:@"月の勤怠が\nすぐわかる!" fontSize:13.f movePoint:CGPointMake(timeForPage(2)+110, -50)];
+    [self addPageLabel:_page02DescLabel1 text:LOCALIZE(@"TutorialViewController_page2_label1") fontSize:13.f movePoint:CGPointMake(timeForPage(2)+110, -50)];
     
     self.page02ScreenShotImage2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page02_screenshot02"]];
     [self addPageImage:_page02ScreenShotImage2 size:CGSizeMake(-20, -20) movePoint:CGPointMake(timeForPage(2)-5, 140)];
@@ -362,12 +364,12 @@
     self.page02DescLabel2 = [[UILabel alloc] init];
     _page02DescLabel2.numberOfLines = 2;
     _page02DescLabel2.textColor = [UIColor HKMDarkOrangeColor];
-    [self addPageLabel:_page02DescLabel2 text:@"簡単に勤怠を\n入力します！" fontSize:13.f movePoint:CGPointMake(timeForPage(2)+90, 140)];
+    [self addPageLabel:_page02DescLabel2 text:LOCALIZE(@"TutorialViewController_page2_label2") fontSize:13.f movePoint:CGPointMake(timeForPage(2)+90, 140)];
     
     //Page03
     self.page03TitleLabel1 = [[UILabel alloc] init];
     _page03TitleLabel1.numberOfLines = 1;
-    [self addPageLabel:_page03TitleLabel1 text:@"Send Report mail." fontSize:25.f movePoint:CGPointMake(timeForPage(3), -200)];
+    [self addPageLabel:_page03TitleLabel1 text:LOCALIZE(@"TutorialViewController_page3_title1") fontSize:25.f movePoint:CGPointMake(timeForPage(3), -200)];
 
     self.page03ScreenShotImage1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page03_screenshot01"]];
     [self addPageImage:_page03ScreenShotImage1 size:CGSizeMake(-30, -30) movePoint:CGPointMake(timeForPage(3)-10, -70)];
@@ -376,11 +378,12 @@
     [self addPageImage:_page03DescImage1 size:CGSizeMake(-10, -10) movePoint:CGPointMake(timeForPage(3)-10, -90)];
     self.page03DescLabel1 = [[UILabel alloc] init];
     _page03DescLabel1.numberOfLines = 2;
-    [self addPageLabel:_page03DescLabel1 text:@"簡単にテンプレートから\nメール作成します。" fontSize:13.f movePoint:CGPointMake(timeForPage(3)+60, -150)];
+    _page03DescLabel1.textColor = [UIColor HKMDarkOrangeColor];
+    [self addPageLabel:_page03DescLabel1 text:LOCALIZE(@"TutorialViewController_page3_label1") fontSize:13.f movePoint:CGPointMake(timeForPage(3)+60, -150)];
     
     self.page03TitleLabel2 = [[UILabel alloc] init];
     _page03TitleLabel2.numberOfLines = 1;
-    [self addPageLabel:_page03TitleLabel2 text:@"Exoprt CSV file" fontSize:25.f movePoint:CGPointMake(timeForPage(3), 60)];
+    [self addPageLabel:_page03TitleLabel2 text:LOCALIZE(@"TutorialViewController_page3_title2") fontSize:25.f movePoint:CGPointMake(timeForPage(3), 60)];
     
     self.page03ScreenShotImage2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page03_screenshot02"]];
     [self addPageImage:_page03ScreenShotImage2 size:CGSizeMake(-30, -20) movePoint:CGPointMake(timeForPage(3)-10, 150)];
@@ -389,19 +392,20 @@
     [self addPageImage:_page03DescImage2 size:CGSizeMake(0, 0) movePoint:CGPointMake(timeForPage(3)+80, 140)];
     self.page03DescLabel2 = [[UILabel alloc] init];
     _page03DescLabel2.numberOfLines = 2;
-    [self addPageLabel:_page03DescLabel2 text:@"月別のデータを\nCSVファイルに変換！" fontSize:13.f movePoint:CGPointMake(timeForPage(3)+60, 170)];
+    _page03DescLabel2.textColor = [UIColor HKMDarkOrangeColor];
+    [self addPageLabel:_page03DescLabel2 text:LOCALIZE(@"TutorialViewController_page3_label2") fontSize:13.f movePoint:CGPointMake(timeForPage(3)+60, 170)];
 
     //Page04
     self.page04TitleLabel = [[UILabel alloc] init];
     _page04TitleLabel.numberOfLines = 1;
-    [self addPageLabel:_page04TitleLabel text:@"Start for App" fontSize:30.f movePoint:CGPointMake(timeForPage(4), -100)];
+    [self addPageLabel:_page04TitleLabel text:LOCALIZE(@"TutorialViewController_page4_title") fontSize:25.f movePoint:CGPointMake(timeForPage(4), -100)];
     
     self.page04DescLabel = [[UILabel alloc] init];
-    _page04DescLabel.numberOfLines = 3;
-    [self addPageLabel:_page04DescLabel text:@"asdfsadf asfdsaf \nasdf sdf asd fgaerfgawe \nfasdf asdf asfsa faefaefsa " fontSize:15.f movePoint:CGPointMake(timeForPage(4), 0)];
+    _page04DescLabel.numberOfLines = 0;
+    [self addPageLabel:_page04DescLabel text:LOCALIZE(@"TutorialViewController_page4_label") fontSize:15.f movePoint:CGPointMake(timeForPage(4), 0)];
     
     UIButton *startButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [startButton setTitle:@"app start!" forState:UIControlStateNormal];
+    [startButton setTitle:LOCALIZE(@"TutorialViewController_page4_button") forState:UIControlStateNormal];
     startButton.frame = CGRectMake(0, 0, 100, 50);
     startButton.center = self.view.center;
     startButton.frame = CGRectOffset(startButton.frame,timeForPage(4), 50);
