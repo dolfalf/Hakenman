@@ -7,6 +7,7 @@
 //
 
 #import "LineGraphView.h"
+#import "const.h"
 
 @interface LineGraphView() {
     
@@ -43,7 +44,7 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.noDataLabel = [[UILabel alloc] initWithFrame:self.bounds];
-        _noDataLabel.text = @"テータなし";
+        _noDataLabel.text = LOCALIZE(@"LineGraphView_total_work_day_no_data");
         _noDataLabel.textColor = [UIColor lightGrayColor];
         _noDataLabel.textAlignment = NSTextAlignmentCenter;
         _noDataLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:35.f];

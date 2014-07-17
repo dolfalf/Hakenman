@@ -28,6 +28,15 @@
     IBOutlet UITableView *rightTableView;
     
     IBOutlet UIImageView *backgroundImageView;
+    
+    IBOutlet UILabel *dateLabel;
+    IBOutlet UILabel *weekDayLabel;
+    IBOutlet UILabel *workingDayLabel;
+    IBOutlet UILabel *startTimeLabel;
+    IBOutlet UILabel *endTimeLabel;
+    IBOutlet UILabel *workTimeLabel;
+    IBOutlet UILabel *totlaTimeLabel;
+    
 }
 
 @property (nonatomic, assign) NSInteger selectedIndex;
@@ -83,6 +92,15 @@
     self.sheetDate = [NSDate convDate2ShortString:_inputDates];
     self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
                   [_sheetDate getYear], [_sheetDate getMonth]];
+    
+    dateLabel.text = LOCALIZE(@"MonthWorkingTableViewController_date_label_text");
+    weekDayLabel.text = LOCALIZE(@"MonthWorkingTableViewController_weekday_label_text");
+    workingDayLabel.text = LOCALIZE(@"MonthWorkingTableViewController_workingday_label_text");
+    startTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_starttime_label_text");
+    endTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_endtime_label_text");
+    workTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_worktime_label_text");
+    totlaTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_total_label_text");
+    
     
     //テーブル色指定
     leftHeaderView.backgroundColor = [UIColor lightGrayColor];

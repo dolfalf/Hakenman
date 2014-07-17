@@ -45,6 +45,8 @@
 "TopViewController_tablecell_total_work_time_title" = "Work times";
 "TopViewController_tablecell_total_work_day_title" = "Work days";
 
+"LineGraphView_total_work_day_no_data" = "No Data";
+
 "TopViewController_write_workstart_alertview_message"   = "Are you sure you want to record the work start time in the current time?";
 "TopViewController_write_workend_alertview_message"     = "Are you sure you want to record the work end time in the current time?";
 
@@ -74,8 +76,8 @@
 "SettingViewController_worktime_picker_15"         = "15min";
 "SettingViewController_worktime_picker_30"         = "30min";
 
-"SettingViewController_default_start_worktime_picker_title"       = "work starttime";
-"SettingViewController_default_end_worktime_picker_title"         = "Work endtime";
+"SettingViewController_default_start_worktime_picker_title"       = "Work StartTime";
+"SettingViewController_default_end_worktime_picker_title"         = "Work EndTime";
 
 "SettingViewController_last_worksheet_display_title"    = "Display Worksheet";
 "SettingViewController_last_worksheet_display_all"      = "All";
@@ -87,6 +89,7 @@
 
 "SettingViewController_work_report_title_mail_address" = "Reciept";
 "SettingViewController_work_report_placehold_mail_address" = "Mail address";
+"SettingViewController_work_report_mail_title_placeholder" = "Mail Title";
 
 "SettingViewController_work_report_time_templete_add" = "Add worktime templete";
 
@@ -97,20 +100,30 @@
 "SettingViewController_open_lisence_title"         = "Open lisence";
 
 "SettingViewController_database_init_title"         = "Remove Data";
+"SettingViewController_database_init_alert_text"    = "Are You Sure Remove Data?";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
+"MonthWorkingTableViewController_date_label_text"                   = "D";
+"MonthWorkingTableViewController_weekday_label_text"                   = "WE";
+"MonthWorkingTableViewController_workingday_label_text"                   = "W";
+"MonthWorkingTableViewController_starttime_label_text"                   = "ST";
+"MonthWorkingTableViewController_endtime_label_text"                   = "ET";
+"MonthWorkingTableViewController_worktime_label_text"                   = "WT";
+"MonthWorkingTableViewController_total_label_text"                   = "TT";
 
 //MONTH_WORK_EDIT_TABLE
 "MonthWorkingTableEditViewController_edit_navi_title"       = "%04d. %02d. %02d";
-"MonthWorkingTableEditViewController_edit_navi_save_btn"    = "save";
-"MonthWorkingTableEditViewController_edit_start_time_cell"  = "Work start";
-"MonthWorkingTableEditViewController_edit_end_time_cell"    = "Work end";
+"MonthWorkingTableEditViewController_edit_navi_save_btn"    = "Save";
+"MonthWorkingTableEditViewController_edit_section_title"    = "Input the Work Time";
+"MonthWorkingTableEditViewController_edit_start_time_cell"  = "Work Start";
+"MonthWorkingTableEditViewController_edit_end_time_cell"    = "Work End";
 "MonthWorkingTableEditViewController_edit_rest_time_cell"   = "Rest Time";
-"MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "Working day";
-"MonthWorkingTableEditViewController_edit_placeholder"          = "no input";
+"MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "Working Day";
+"MonthWorkingTableEditViewController_edit_placeholder"          = "No input";
+"MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "Start Time & End Time is Same";
 
 //ETC
-"OpenSourceLicenseViewController_navi_title"    = "Opne license";
+"OpenSourceLicenseViewController_navi_title"    = "Open license";
 "AppInformationViewController_navi_title"       = "About KJCode";
 

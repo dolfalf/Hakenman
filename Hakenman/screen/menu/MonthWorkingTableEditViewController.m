@@ -10,10 +10,12 @@
 #import "EditTimeTableViewCell.h"
 #import "SwitchButtonTableViewCell.h"
 #import "TimeCardDao.h"
+#import "TimeCardSummaryDao.h"
 #import "NSDate+Helper.h"
 #import "NSUserDefaults+Setting.h"
 #import "LeftTableViewData.h"
 #import <RETableViewManager/RETableViewManager.h>
+
 
 #define TABLE_CELL_COUNT            4
 #define TABLE_CELL_TEXTFIELD_TAG    500
@@ -78,7 +80,9 @@ typedef enum {
 #pragma mark - IBAction
 - (IBAction)saveAndClose:(id)sender {
     if ([_startWtPickerItem.value isEqualToDate:_endWtPickerItem.value]) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"出勤時間と退勤時間が同じです" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@""
+            message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_start_end_equals_alert")
+                                                      delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [alert show];
         return;
@@ -120,6 +124,11 @@ typedef enum {
 
     [dao insertModel];
     
+    
+    TimeCardSummaryDao *summaryDao = [TimeCardSummaryDao new];
+    [summaryDao updatedTimeCardSummaryTable:[NSString stringWithFormat:@"%d%.2d", [_showData.yearData intValue], [_showData.monthData intValue]]];
+    
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -139,7 +148,7 @@ typedef enum {
     
     // Add a section
     //
-    RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"勤務時間入力"];
+    RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_section_title")];
     [_reTableManager addSection:section];
     
     NSDate *getWd = [NSDate convDate2ShortString:[NSString stringWithFormat:@"%d%.2d%.2d",[_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]]];
@@ -198,12 +207,12 @@ typedef enum {
     [section addItem:_endWtPickerItem];
     
     //休憩時間  //休息時間が既に設定されている場合の基本表示は？
-    self.restTimePickerItem = [REPickerItem itemWithTitle:@"休息時間" value:@[@"1", @"00"] placeholder:nil options:@[@[@"1", @"2", @"3", @"4", @"5", @"6"], @[@"00", @"15", @"30", @"45"]]];
+    self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[@"1", @"00"] placeholder:nil options:@[@[@"1", @"2", @"3", @"4", @"5", @"6"], @[@"00", @"15", @"30", @"45"]]];
 //    self.restTimePickerItem = [REDateTimeItem itemWithTitle:@"休憩時間" value:nil placeholder:nil format:@"HH:mm" datePickerMode:UIDatePickerModeCountDownTimer];
     [section addItem:_restTimePickerItem];
     
     //平日、休日
-    self.workDayBoolItme = [REBoolItem itemWithTitle:@"営業日" value:workTime switchValueChangeHandler:^(REBoolItem *item) {
+    self.workDayBoolItme = [REBoolItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_workday_switch_cell") value:workTime switchValueChangeHandler:^(REBoolItem *item) {
         NSLog(@"Value: %i", item.value);
     }];
     
