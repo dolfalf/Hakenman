@@ -102,6 +102,26 @@
 "SettingViewController_database_init_title"         = "データ削除";
 "SettingViewController_database_init_alert_text"    = "データを削除しますか？";
 
+//TUTORIAL
+"TutorialViewController_page1_title"               = "ようこそ";
+"TutorialViewController_page1_label1"               = "簡単に勤怠を管理しましょう";
+"TutorialViewController_page1_label2"               = "日報メールを送信しましょう";
+"TutorialViewController_page1_label3"               = "CSVファイルで変換しましょう";
+
+"TutorialViewController_page2_title"                = "簡単に勤怠を管理";
+"TutorialViewController_page2_label1"               = "月の勤怠が\nすぐわかる!";
+"TutorialViewController_page2_label2"               = "簡単に勤怠を\n入力できます！";
+
+"TutorialViewController_page3_title1"               = "日報メールを送信";
+"TutorialViewController_page3_label1"               = "簡単にテンプレートから\nメール作成します";
+"TutorialViewController_page3_title2"               = "CSVファイルで変換";
+"TutorialViewController_page3_label2"               = "月別のデータを\nCSVファイルに変換！";
+
+"TutorialViewController_page4_title"               = "実際に使ってみましょう！";
+"TutorialViewController_page4_label"               = "HakenManの\n主な機能をご紹介しました。\nさあ、あなたもHakenManと一緒に\n元気な毎日を送りましょう！";
+"TutorialViewController_page4_button"              = "スタート";
+
+
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";
 "MonthWorkingTableViewController_date_label_text"                   = "日";

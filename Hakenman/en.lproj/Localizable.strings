@@ -102,6 +102,25 @@
 "SettingViewController_database_init_title"         = "Remove Data";
 "SettingViewController_database_init_alert_text"    = "Are You Sure Remove Data?";
 
+//TUTORIAL
+"TutorialViewController_page1_title"               = "Welcome";
+"TutorialViewController_page1_label1"               = "Easy manage worktime.";
+"TutorialViewController_page1_label2"               = "Send today Report Mail.";
+"TutorialViewController_page1_label3"               = "Export CSV file.";
+
+"TutorialViewController_page2_title"               = "Easy\n manage worktime!";
+"TutorialViewController_page2_label1"               = "Viewable Month\n Attendance!";
+"TutorialViewController_page2_label2"               = "Simple Daily\n Attendance!";
+
+"TutorialViewController_page3_title1"               = "Send Report Mail.";
+"TutorialViewController_page3_label1"               = "Send today Report\n Mail From Templete";
+"TutorialViewController_page3_title2"               = "Export CSV file.";
+"TutorialViewController_page3_label2"               = "Monthly Attendance\nConvert to CSV";
+
+"TutorialViewController_page4_title"               = "Start For App";
+"TutorialViewController_page4_label"               = "Introduce the \nmain features of HakenMan.　\nNow, you'll be sent a cheerful \nevery day with HakenMan!";
+"TutorialViewController_page4_button"              = "App Start!";
+
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
 "MonthWorkingTableViewController_date_label_text"                   = "D";
