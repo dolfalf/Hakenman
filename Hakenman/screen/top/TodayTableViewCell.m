@@ -112,7 +112,7 @@
     
     //今日の日付から
     NSDate *current_time = dt;
-    NSString *message_format = @"%d";
+    NSString *message_format = @"%ld";
     NSInteger calc_minute = 0;
     
     switch (type) {
@@ -144,15 +144,29 @@
             break;
     }
     
+    DLog(@"calc_minute:%ld",(long)calc_minute);
+    
     //表示対象外
-    if (calc_minute < 0 || calc_minute > 120) {
+    if (calc_minute < -120 || calc_minute > 0) {
         countdownLabel.textColor = [UIColor lightGrayColor];
         countdownLabel.text = @"- ";
         return;
     }
- 
+    
+    NSString *displayTime = [NSString stringWithFormat:message_format,calc_minute * -1];
+    
     countdownLabel.textColor = [UIColor blackColor];
-    countdownLabel.text = [NSString stringWithFormat:message_format,calc_minute];
+    
+    //Animation
+    if ([displayTime isEqualToString:countdownLabel.text] == NO) {
+        countdownLabel.alpha = 0.f;
+        [UIView animateWithDuration:0.3f animations:^{
+            countdownLabel.alpha = 1.f;
+        } completion:nil];
+    }
+
+    countdownLabel.text = displayTime;
+
 }
 
 

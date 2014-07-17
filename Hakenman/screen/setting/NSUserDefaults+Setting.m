@@ -11,6 +11,22 @@
 
 @implementation NSUserDefaults (Setting)
 
++ (BOOL)readWelcomePage {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"ReadWelcomePageKey" : @(NO)}];
+    
+    return [[userDefaults objectForKey:@"ReadWelcomePageKey"] boolValue];
+}
+
++ (void)setReadWelcomePage:(BOOL)value {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:@(value) forKey:@"ReadWelcomePageKey"];
+    
+    [userDefaults synchronize];
+}
+
 + (NSInteger)timeKubun {
     
     NSUserDefaults *userDefaults = [self standardUserDefaults];

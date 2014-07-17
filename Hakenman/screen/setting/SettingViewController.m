@@ -336,7 +336,7 @@ enum {
         [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
         
         //遷移
-        [StoryboardUtil gotoTutorialViewController:self];
+        [StoryboardUtil gotoTutorialViewController:self animated:YES];
     }]];
     
     //アプリについて
