@@ -179,7 +179,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="休憩" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSw-uQ-Bav">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="勤務時間" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="48" translatesAutoresizingMaskIntoConstraints="NO" id="eSw-uQ-Bav">
                                         <rect key="frame" x="123" y="0.0" width="48" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -187,7 +187,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="累計" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFC-dx-SRv">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="累計" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="58" translatesAutoresizingMaskIntoConstraints="NO" id="HFC-dx-SRv">
                                         <rect key="frame" x="172" y="0.0" width="58" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -278,10 +278,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundImageView" destination="SBI-wb-Cj2" id="M23-xa-ne3"/>
+                        <outlet property="dateLabel" destination="CbM-dd-76b" id="kZI-bR-1kZ"/>
+                        <outlet property="endTimeLabel" destination="GAW-Y1-oOq" id="K4T-34-6Rq"/>
                         <outlet property="leftHeaderView" destination="JgX-IT-eXU" id="Rze-b2-Wti"/>
                         <outlet property="leftTableView" destination="roK-0S-Svx" id="bie-xn-8c4"/>
                         <outlet property="rightHeaderView" destination="mZr-M6-3sr" id="kiz-cA-Qb5"/>
                         <outlet property="rightTableView" destination="OOc-Rp-rBO" id="r5I-Rc-Apf"/>
+                        <outlet property="startTimeLabel" destination="VWO-mZ-R9Y" id="bBS-sz-JZz"/>
+                        <outlet property="totlaTimeLabel" destination="HFC-dx-SRv" id="x8B-8b-vbM"/>
+                        <outlet property="weekDayLabel" destination="W2h-x3-t9c" id="uQn-PO-lBR"/>
+                        <outlet property="workTimeLabel" destination="eSw-uQ-Bav" id="pLg-X1-E82"/>
+                        <outlet property="workingDayLabel" destination="ekd-QG-DHZ" id="aK1-fG-VAL"/>
                         <segue destination="aGA-3q-UoR" kind="push" identifier="goToEdit" id="Nf7-BJ-7DJ"/>
                     </connections>
                 </viewController>

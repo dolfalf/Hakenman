@@ -104,6 +104,13 @@
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";
+"MonthWorkingTableViewController_date_label_text"                   = "日";
+"MonthWorkingTableViewController_weekday_label_text"                   = "曜日";
+"MonthWorkingTableViewController_workingday_label_text"                   = "営";
+"MonthWorkingTableViewController_starttime_label_text"                   = "出勤時間";
+"MonthWorkingTableViewController_endtime_label_text"                   = "退勤時間";
+"MonthWorkingTableViewController_worktime_label_text"                   = "勤務時間";
+"MonthWorkingTableViewController_total_label_text"                   = "累計";
 
 //MONTH_WORK_EDIT_TABLE
 "MonthWorkingTableEditViewController_edit_navi_title"       = "%04d年%02d月%02d日";
