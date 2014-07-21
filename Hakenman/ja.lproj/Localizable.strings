@@ -129,7 +129,7 @@
 "MonthWorkingTableViewController_workingday_label_text"                   = "営";
 "MonthWorkingTableViewController_starttime_label_text"                   = "出勤時間";
 "MonthWorkingTableViewController_endtime_label_text"                   = "退勤時間";
-"MonthWorkingTableViewController_worktime_label_text"                   = "勤務時間";
+"MonthWorkingTableViewController_worktime_label_text"                   = "時間";
 "MonthWorkingTableViewController_total_label_text"                   = "累計";
 
 //MONTH_WORK_EDIT_TABLE
