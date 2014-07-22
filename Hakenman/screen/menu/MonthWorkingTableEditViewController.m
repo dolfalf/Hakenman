@@ -119,7 +119,11 @@ typedef enum {
     timeCard.t_yyyymmdd = @([[timeCard.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
     timeCard.t_week = _showData.weekData;
     //今後修正必要
-//    _timeCard.rest_time = [NSNumber numberWithFloat:[_restTimeNumberItem.value floatValue]];
+
+    NSString *getRestTime = [NSString stringWithFormat:@"%@", [_restTimePickerItem.value objectAtIndex:0]];
+    
+    timeCard.rest_time = [NSNumber numberWithFloat:getRestTime.floatValue];
+    DLog(@"[NSNumber numberWithFloat:getRestTime.floatValue] - %@", [NSNumber numberWithFloat:getRestTime.floatValue]);
     timeCard.workday_flag = [NSNumber numberWithBool:_workDayBoolItme.value];
 
     [dao insertModel];
@@ -204,12 +208,13 @@ typedef enum {
         startWt = [NSDate convDate2String:timeCard.start_time];
         endWt = [NSDate convDate2String:timeCard.end_time];
     }
-    //反応が遅いかそれとも変か。。。
+
     //出勤
     self.startWtPickerItem = [REDateTimeItem itemWithTitle:LOCALIZE(@"SettingViewController_default_start_worktime_picker_title") value:startWt
                                                           placeholder:nil format:@"HH:mm"
                                                        datePickerMode:UIDatePickerModeDateAndTime];
     _startWtPickerItem.datePickerMode = UIDatePickerModeTime;
+//    _startWtPickerItem.inlineDatePicker = YES;
     [section addItem:_startWtPickerItem];
     
     //退勤
@@ -217,11 +222,12 @@ typedef enum {
                                                             placeholder:nil format:@"HH:mm"
                                                          datePickerMode:UIDatePickerModeDateAndTime];
     _endWtPickerItem.datePickerMode = UIDatePickerModeTime;
+//    _endWtPickerItem.inlineDatePicker = YES;
     [section addItem:_endWtPickerItem];
     
     //休憩時間  //休息時間が既に設定されている場合の基本表示は？
-    self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[@"1", @"00"] placeholder:nil options:@[@[@"1", @"2", @"3", @"4", @"5", @"6"], @[@"00", @"15", @"30", @"45"]]];
-//    self.restTimePickerItem = [REDateTimeItem itemWithTitle:@"休憩時間" value:nil placeholder:nil format:@"HH:mm" datePickerMode:UIDatePickerModeCountDownTimer];
+    self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[@"1"] placeholder:nil options:@[@[@"1", @"1.5", @"2", @"2.5", @"3", @"3.5", @"4", @"4.5", @"5", @"5.5", @"6", @"6.5", @"7", @"7.5", @"8"]]];
+//    _restTimePickerItem.inlinePicker = YES;
     [section addItem:_restTimePickerItem];
     
     //平日、休日

@@ -294,7 +294,7 @@
         //合計時間表示部分
         NSDate *startTimeFromCore = [NSDate convDate2String:rightModel.start_time];
         NSDate *endTimeFromCore = [NSDate convDate2String:rightModel.end_time];
-        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
+        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [rightModel.rest_time floatValue];
         
         //workflagがたてている場合のみ計算するため、営業日ではない場合は０にする。
         if ([rightModel.workday_flag boolValue] == NO) {

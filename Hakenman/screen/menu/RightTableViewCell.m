@@ -61,7 +61,7 @@
             workTimeLabel.text = @"";
             worktotalLabel.text = @"";
         }else{
-            float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore];
+            float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [model.rest_time floatValue];
             startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
             endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
             
