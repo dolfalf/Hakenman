@@ -178,6 +178,12 @@
         
         DLog(@"startPoint[%@], endPoint[%@], workTime:[%f]",NSStringFromCGPoint(_preLinePoint), NSStringFromCGPoint(linePoint), wt);
     }
+    
+    //説明分
+    [self drawText:ctx
+              text:LOCALIZE(@"TopViewController_tablecell_graph_desc_text")
+              size:9.f
+             point:CGPointMake(5.f, self.bounds.size.height-13.f)];
 
     
 }

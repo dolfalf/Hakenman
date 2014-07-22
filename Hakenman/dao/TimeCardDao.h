@@ -17,9 +17,9 @@
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month;
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
-- (NSArray *)fetchModelLastWeek;
-- (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
+- (NSArray *)fetchModelGraphDate:(NSDate *)dt;
 
+- (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
 //選択日付をデータをクリア
 - (void)clearTimeCard:(NSDate *)dt;
 
