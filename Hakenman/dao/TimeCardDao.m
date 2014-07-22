@@ -9,6 +9,7 @@
 #import "TimeCardDao.h"
 #import "NSDate+Helper.h"
 #import "const.h"
+#import "NSUserDefaults+Setting.h"
 
 #define ENTITIY_NAME    @"TimeCard"
 
@@ -122,6 +123,37 @@
     
 }
 
+- (NSArray *)fetchModelGraphDate:(NSDate *)dt {
+    
+    self.fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [self.fetchRequest setEntity:entity];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:
+                         @"t_year == %@ AND t_month == %@ AND workday_flag == %@"
+                         , @([dt getYear]), @([dt getMonth]),@(YES)];    //条件指定
+    [self.fetchRequest setPredicate:pred];
+    
+    NSArray *mArray = [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
+    
+    NSMutableArray *retArray = [NSMutableArray new];
+    for (TimeCard *tm in mArray) {
+        if (tm.start_time == nil || [tm.start_time isEqualToString:@""] == YES
+            || tm.end_time == nil || [tm.end_time isEqualToString:@""] == YES) {
+            continue;
+        }
+        
+        [retArray addObject:tm];
+        
+        //ラスト７個分だけ
+        if ([retArray count] > 7) {
+            break;
+        }
+    }
+    
+    return retArray;
+}
 
 - (NSArray *)fetchModelLastWeek {
     
@@ -163,6 +195,24 @@
     }
     return [models objectAtIndex:0];
     
+}
+
+- (void)clearTimeCard:(NSDate *)dt {
+
+    TimeCard *tm = [self fetchModelWorkDate:dt];
+    
+    if (tm == nil) {
+        return;
+    }
+    
+    //時間を初期化
+    tm.start_time = @"";
+    tm.end_time = @"";
+    tm.rest_time = @(1.0f);
+    tm.remarks = @"";
+
+    [self updateModel:tm];
+
 }
 
 @end

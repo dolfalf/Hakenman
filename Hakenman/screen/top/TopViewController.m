@@ -436,7 +436,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
         TodayTableViewCell *cell = [self tableView:tableView todayCellForRowAtIndexPath:indexPath];
         
         TimeCardDao *dao = [TimeCardDao new];
-        NSArray *weekTimeCards = [dao fetchModelLastWeek];
+        NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate date]];
         [cell updateCell:cellMessageTypeWorkStart graphItems:weekTimeCards];
         return cell;
         

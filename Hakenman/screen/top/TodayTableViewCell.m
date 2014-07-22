@@ -14,7 +14,7 @@
 #import "NSDate+Helper.h"
 #import "UIColor+Helper.h"
 #import "Util.h"
-#import "TimeCard.h"
+#import "TimeCardDao.h"
 
 @interface TodayTableViewCell() <LineGraphViewDelegate>
 
@@ -30,6 +30,7 @@
     IBOutlet UILabel *weekLabel;
     IBOutlet LineGraphView *lineGraphView;
     
+    IBOutlet UIView *labelGroupView;
     IBOutlet UILabel *messageTitleLabel;
     IBOutlet UILabel *countdownLabel;
     IBOutlet UILabel *countdownUnitLabel;
@@ -95,12 +96,15 @@
     switch ([today getWeekday]) {
         case weekSatDay:
             weekLabel.textColor = [UIColor HKMBlueColor];
+//            labelGroupView.hidden = YES;
             break;
         case weekSunday:
-            weekLabel.textColor = [UIColor redColor];
+//            weekLabel.textColor = [UIColor redColor];
+            labelGroupView.hidden = YES;
             break;
         default:
             weekLabel.textColor = [UIColor grayColor];
+//            labelGroupView.hidden = NO;
             break;
     }
     
@@ -152,6 +156,16 @@
         countdownLabel.text = @"- ";
         return;
     }
+    
+    //休日の場合
+    if ([dt getWeekday] == weekSatDay || [dt getWeekday] == weekSunday) {
+        countdownLabel.textColor = [UIColor lightGrayColor];
+        countdownLabel.text = @"- ";
+        return;
+    }
+    
+    //すでに出勤したときの場合
+    
     
     NSString *displayTime = [NSString stringWithFormat:message_format,calc_minute * -1];
     

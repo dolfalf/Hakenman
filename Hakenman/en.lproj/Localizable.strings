@@ -50,6 +50,8 @@
 "TopViewController_write_workstart_alertview_message"   = "Are you sure you want to record the work start time in the current time?";
 "TopViewController_write_workend_alertview_message"     = "Are you sure you want to record the work end time in the current time?";
 
+"TopViewController_tablecell_graph_desc_text"           = "Working hours display of up to seven days";
+
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "Month workingtable";
 "MenuViewController_menulist_working_tablelist_title"       = "Workingtablelist";

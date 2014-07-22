@@ -49,6 +49,8 @@
 "TopViewController_write_workstart_alertview_message"   = "現在時刻で出勤時間を記録しますか。";
 "TopViewController_write_workend_alertview_message"     = "現在時刻で退勤時間を記録しますか。";
 
+"TopViewController_tablecell_graph_desc_text"           = "最大７日分の勤務時間表示";
+
 //MENU
 "MenuViewController_menulist_month_working_table_title"     = "今月の勤務表";
 "MenuViewController_menulist_working_tablelist_title"       = "勤務表リスト";
