@@ -20,4 +20,7 @@
 - (NSArray *)fetchModelLastWeek;
 - (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
 
+//選択日付をデータをクリア
+- (void)clearTimeCard:(NSDate *)dt;
+
 @end

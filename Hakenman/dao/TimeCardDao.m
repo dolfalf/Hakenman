@@ -9,6 +9,7 @@
 #import "TimeCardDao.h"
 #import "NSDate+Helper.h"
 #import "const.h"
+#import "NSUserDefaults+Setting.h"
 
 #define ENTITIY_NAME    @"TimeCard"
 
@@ -163,6 +164,24 @@
     }
     return [models objectAtIndex:0];
     
+}
+
+- (void)clearTimeCard:(NSDate *)dt {
+
+    TimeCard *tm = [self fetchModelWorkDate:dt];
+    
+    if (tm == nil) {
+        return;
+    }
+    
+    //時間を初期化
+    tm.start_time = @"";
+    tm.end_time = @"";
+    tm.rest_time = @(1.0f);
+    tm.remarks = @"";
+
+    [self updateModel:tm];
+
 }
 
 @end
