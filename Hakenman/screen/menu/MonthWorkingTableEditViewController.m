@@ -187,6 +187,19 @@ typedef enum {
                           [getWd yyyyMMddString],
                           [[NSUserDefaults workEndTime]
                            stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+    }else if(timeCard.start_time == nil){
+        startWt = [NSDate convDate2String:[NSString stringWithFormat:@"%@%@00",
+                                           [getWd yyyyMMddString],
+                                           [[NSUserDefaults workStartTime]
+                                            stringByReplacingOccurrencesOfString:@":" withString:@""]]];
+        endWt = [NSDate convDate2String:timeCard.end_time];
+    }else if(timeCard.end_time == nil){
+        startWt = [NSDate convDate2String:timeCard.start_time];
+        endWt = [NSDate convDate2String:
+                 [NSString stringWithFormat:@"%@%@00",
+                  [getWd yyyyMMddString],
+                  [[NSUserDefaults workEndTime]
+                   stringByReplacingOccurrencesOfString:@":" withString:@""]]];
     }else{
         startWt = [NSDate convDate2String:timeCard.start_time];
         endWt = [NSDate convDate2String:timeCard.end_time];
