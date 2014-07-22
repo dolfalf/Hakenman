@@ -96,6 +96,7 @@
 		1CB7F8B119656935002446CB /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		1CB7F8B319656952002446CB /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		1CB7F8B419656952002446CB /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
+		1CBFDAA719793374001A51D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3B23F21218E6C48B00518106 /* LineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphView.h; sourceTree = "<group>"; };
 		3B23F21318E6C48B00518106 /* LineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraphView.m; sourceTree = "<group>"; };
@@ -307,6 +308,7 @@
 		3B469F9A18B89D3A0095C418 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1CBFDAA719793374001A51D5 /* SenTestingKit.framework */,
 				1CA7EF981967F1BD001772C9 /* QuartzCore.framework */,
 				1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */,
 				3B469FE718B8B0420095C418 /* CoreData.framework */,
@@ -770,11 +772,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: YONGSUK KIM (Y8RKPBJ3Y3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YONGSUK KIM (Y8RKPBJ3Y3)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9384D2B2-BC3D-4882-A991-7F3907899E25";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -791,11 +797,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: YONGSUK KIM (Y8RKPBJ3Y3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YONGSUK KIM (Y8RKPBJ3Y3)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9384D2B2-BC3D-4882-A991-7F3907899E25";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
