@@ -197,19 +197,22 @@
     
 }
 
-- (void)clearTimeCard:(NSDate *)dt {
-
-    TimeCard *tm = [self fetchModelWorkDate:dt];
+- (void)clearTimeCardWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
     
+    NSArray *tempArr = [self fetchModelYear:year month:month day:day];
+    TimeCard *tm;
+    if (tempArr != nil && [tempArr count] > 0) {
+        tm = (TimeCard*)[tempArr objectAtIndex:0];
+    }
     if (tm == nil) {
         return;
     }
-    
     //時間を初期化
-    tm.start_time = @"";
-    tm.end_time = @"";
-    tm.rest_time = @(1.0f);
+    tm.start_time = nil;
+    tm.end_time = nil;
+    tm.rest_time = nil;
     tm.remarks = @"";
+    tm.workday_flag = nil;
 
     [self updateModel:tm];
 

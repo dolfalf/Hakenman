@@ -30,6 +30,7 @@ typedef enum {
 @interface MonthWorkingTableEditViewController () {
     
     IBOutlet UIBarButtonItem *saveBarButton;
+    UIAlertView *clearTimeAlert;
 }
 
 @property (nonatomic, strong) RETableViewManager *reTableManager;
@@ -237,7 +238,51 @@ typedef enum {
     
     [section addItem:_workDayBoolItme];
     
+    // Add a basic cell with disclosure indicator
+    //
+    
+    clearTimeAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"この日のデータを削除しますか？" delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
+    
+    [section addItem:[RETableViewItem itemWithTitle:@"Clear Date" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
+        [clearTimeAlert show];
+    }]];
 }
+
+#pragma mark - UIAlertViewDelegate
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (clearTimeAlert) {
+        if (buttonIndex == 1) {
+            [self clearDate];
+        }else{
+            //clear cancel
+        }
+    }
+}
+
+
+-(void)clearDate{
+    TimeCardDao *dao = [TimeCardDao new];
+    
+    NSArray *tempModel = [dao fetchModelYear:[_showData.yearData intValue] month:[_showData.monthData intValue] day:[_showData.dayData intValue]];
+    
+    //既に存在したら更新
+    if ([tempModel count] == 0) {
+        DLog(@"削除するデータがないよ");
+    }else{
+        dao.model = (TimeCard*)[tempModel objectAtIndex:0];
+    }
+
+    [dao clearTimeCardWithYear:[_showData.yearData intValue] month:[_showData.monthData intValue] day:[_showData.dayData intValue]];
+    
+    
+    TimeCardSummaryDao *summaryDao = [TimeCardSummaryDao new];
+    [summaryDao updatedTimeCardSummaryTable:[NSString stringWithFormat:@"%d%.2d", [_showData.yearData intValue], [_showData.monthData intValue]]];
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 /*
 #pragma mark - Navigation

@@ -21,6 +21,6 @@
 
 - (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
 //選択日付をデータをクリア
-- (void)clearTimeCard:(NSDate *)dt;
+- (void)clearTimeCardWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
 
 @end
