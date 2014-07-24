@@ -162,8 +162,6 @@
 
 + (NSString *)reportMailTitle {
     NSUserDefaults *userDefaults = [self standardUserDefaults];
-    [userDefaults registerDefaults:@{@"ReportMailTitleKey" : LOCALIZE(@"SettingViewController_work_report_title_defalut")}];
-    
     return [userDefaults objectForKey:@"ReportMailTitleKey"] ;
 }
 

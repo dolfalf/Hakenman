@@ -102,7 +102,7 @@
 "SettingViewController_open_lisence_title"         = "Open lisence";
 
 "SettingViewController_database_init_title"         = "Remove Data";
-"SettingViewController_database_init_alert_text"    = "Are You Sure Remove Data?";
+"SettingViewController_database_init_alert_text"    = "Are you sure Remove Data?";
 
 //TUTORIAL
 "TutorialViewController_page1_title"               = "Welcome";
@@ -141,6 +141,8 @@
 "MonthWorkingTableEditViewController_edit_end_time_cell"    = "Work End";
 "MonthWorkingTableEditViewController_edit_rest_time_cell"   = "Rest Time";
 "MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "Working Day";
+"MonthWorkingTableEditViewController_edit_cleardate_cell"  = "Clear Date";
+"MonthWorkingTableEditViewController_edit_cleardate_alert"  = "Are you sure Clear this Date?";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "No input";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "Start Time & End Time is Same";
 

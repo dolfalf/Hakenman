@@ -122,12 +122,7 @@ enum {
     
     workspaceItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
-        if ([self validate] == YES) {
-            [NSUserDefaults setWorkSitename:item.value];
-        }else {
-            
-        }
-
+        [NSUserDefaults setWorkSitename:item.value];
     };
     
     workspaceItem.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -243,36 +238,24 @@ enum {
     
     reportMailTextItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
-        if ([self validate] == YES) {
-            [NSUserDefaults setReportToMailaddress:item.value];
-        }else {
-            //値が更新されない
-            //item.value = [NSUserDefaults reportToMailaddress];
-        }
+        [NSUserDefaults setReportToMailaddress:item.value];
         
     };
     
     //日報タイトル設定
     //【日報】2014年7月3日
     // (日報)20140703
-    RETextItem *reportMailTitleTextItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_mail_title_title")
-                                                         value:[NSUserDefaults reportMailTitle]
-                                                   placeholder:LOCALIZE(@"SettingViewController_work_report_mail_title_placeholder")];
+    RETextItem *reportMailTitleTextItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_mail_title_title")value:[NSUserDefaults reportMailTitle]placeholder:LOCALIZE(@"SettingViewController_work_report_mail_title_placeholder")];
     
     reportMailTitleTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     reportMailTitleTextItem.style = UITableViewCellStyleValue1;
     reportMailTitleTextItem.validators = @[@"length(1, 30)"];
-    reportMailTitleTextItem.name = LOCALIZE(@"SettingViewController_work_report_title_defalut");
+    reportMailTitleTextItem.name = [NSUserDefaults reportMailTitle];
     [reportSection addItem:reportMailTitleTextItem];
     
     reportMailTitleTextItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
-        if ([self validate] == YES) {
-            [NSUserDefaults setReportMailTitle:item.value];
-        }else {
-            
-        }
-        
+        [NSUserDefaults setReportMailTitle:item.value];
     };
 
     
@@ -280,9 +263,7 @@ enum {
     [reportSection addItem:[REBoolItem itemWithTitle:LOCALIZE(@"SettingViewController_work_report_time_templete_add")
                                                value:[NSUserDefaults reportMailTempleteTimeAdd]
                             switchValueChangeHandler:^(REBoolItem *item) {
-                                //DLog(@"Value: %i", item.value);
                                 [NSUserDefaults setReportMailTempleteTimeAdd:[@(item.value) boolValue]];
-                                //LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete)
     }]];
 }
 
@@ -407,25 +388,25 @@ enum {
     
 }
 
-#pragma mark - validate method
-- (BOOL)validate {
-    NSArray *managerErrors = _reTableManager.errors;
-    if (managerErrors.count > 0) {
-        NSMutableArray *errors = [NSMutableArray array];
-        for (NSError *error in managerErrors) {
-            [errors addObject:error.localizedDescription];
-        }
-        NSString *errorString = [errors componentsJoinedByString:@"\n"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        
-        return NO;
-    } else {
-        DLog(@"All good, no errors!");
-    }
-    
-    return YES;
-}
+//#pragma mark - validate method
+//- (BOOL)validate {
+//    NSArray *managerErrors = _reTableManager.errors;
+//    if (managerErrors.count > 0) {
+//        NSMutableArray *errors = [NSMutableArray array];
+//        for (NSError *error in managerErrors) {
+//            [errors addObject:error.localizedDescription];
+//        }
+//        NSString *errorString = [errors componentsJoinedByString:@"\n"];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//        
+//        return NO;
+//    } else {
+//        DLog(@"All good, no errors!");
+//    }
+//    
+//    return YES;
+//}
 
 #pragma mark - IBAction
 - (IBAction)close:(id)sender {
