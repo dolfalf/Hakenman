@@ -131,8 +131,9 @@
         
     }
     
+    BOOL write_max_text = NO;
     
-    for (int i = 0; i < [linePoints count]; i++) {
+    for (int i = 0; i < [linePoints count] - 1; i++) {
         
         float wt = [[linePoints objectAtIndex:i] floatValue];
         float graph_height = self.frame.size.height - (margin*2);
@@ -158,23 +159,26 @@
         _preLinePoint = CGPointMake(x*i, y);
         
         
-        //Max, Minのテキスト描画
-        if (tmp_max_time == wt) {
+        //Maxテキストを一回のみ描画
+        if (tmp_max_time == wt && write_max_text == NO) {
             [self drawText:ctx
                       text:[NSString
                             stringWithFormat:@"%2.1f",tmp_max_time]
                       size:9.0f
                      point:CGPointMake(_preLinePoint.x - 5.f,
                                        _preLinePoint.y +5.f)];
+            
+            write_max_text = YES;
         }
-        
-        if (tmp_min_time == wt) {
-            [self drawText:ctx
-                      text:[NSString stringWithFormat:@"%2.1f",tmp_min_time]
-                      size:9.0f
-                     point:CGPointMake(_preLinePoint.x - 5.f,
-                                       _preLinePoint.y -15.f)];
-        }
+
+        //minは表示しない
+//        if (tmp_min_time == wt) {
+//            [self drawText:ctx
+//                      text:[NSString stringWithFormat:@"%2.1f",tmp_min_time]
+//                      size:9.0f
+//                     point:CGPointMake(_preLinePoint.x - 5.f,
+//                                       _preLinePoint.y -15.f)];
+//        }
         
         DLog(@"startPoint[%@], endPoint[%@], workTime:[%f]",NSStringFromCGPoint(_preLinePoint), NSStringFromCGPoint(linePoint), wt);
     }

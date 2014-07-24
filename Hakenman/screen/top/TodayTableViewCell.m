@@ -200,7 +200,7 @@
     float duration = (float)t - [card.rest_time floatValue];
     DLog(@"%f", duration);
     
-    return duration / (60*60);
+    return (duration / (60*60)) - [card.rest_time floatValue];
 }
 
 @end

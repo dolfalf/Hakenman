@@ -104,7 +104,7 @@
     
 }
 
-- (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day{
+- (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
     
     self.fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
@@ -130,6 +130,11 @@
     
     [self.fetchRequest setEntity:entity];
     
+    //sort
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"t_yyyymmdd" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [self.fetchRequest setSortDescriptors:sortDescriptors];
+    
     NSPredicate *pred = [NSPredicate predicateWithFormat:
                          @"t_year == %@ AND t_month == %@ AND workday_flag == %@"
                          , @([dt getYear]), @([dt getMonth]),@(YES)];    //条件指定
@@ -137,22 +142,35 @@
     
     NSArray *mArray = [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
     
-    NSMutableArray *retArray = [NSMutableArray new];
+    NSMutableArray *tmpArrays = [NSMutableArray new];
+    
     for (TimeCard *tm in mArray) {
+        
         if (tm.start_time == nil || [tm.start_time isEqualToString:@""] == YES
             || tm.end_time == nil || [tm.end_time isEqualToString:@""] == YES) {
             continue;
         }
         
-        [retArray addObject:tm];
+        [tmpArrays addObject:tm];
         
-        //ラスト７個分だけ
-        if ([retArray count] > 7) {
-            break;
-        }
     }
     
-    return retArray;
+    
+    int start_idx = 0;
+    
+    if ([mArray count] > 8) {
+        start_idx = [mArray count]-8;
+    }
+    
+    NSMutableArray *retArrays = [NSMutableArray new];
+    
+    for (int i=start_idx;i<[tmpArrays count];i++) {
+        TimeCard *tm = (TimeCard *)[tmpArrays objectAtIndex:i];
+        
+        [retArrays addObject:tm];
+    }
+    
+    return retArrays;
 }
 
 - (NSArray *)fetchModelLastWeek {
