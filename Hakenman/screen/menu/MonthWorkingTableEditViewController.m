@@ -28,7 +28,6 @@ typedef enum {
 } CellType;
 
 @interface MonthWorkingTableEditViewController () {
-    
     IBOutlet UIBarButtonItem *saveBarButton;
     UIAlertView *clearTimeAlert;
 }
@@ -38,10 +37,9 @@ typedef enum {
 @property (nonatomic, strong) REDateTimeItem *endWtPickerItem;
 @property (nonatomic, strong) REPickerItem *restTimePickerItem;
 @property (nonatomic, strong) REBoolItem *workDayBoolItme;
+@property (nonatomic, strong) RETableViewItem *clearTimeCellItem;
 
 @property (nonatomic, weak) IBOutlet UITableView *editTableView;
-
-@property (nonatomic, strong) UITapGestureRecognizer *keyboardDismissTap;
 @end
 
 @implementation MonthWorkingTableEditViewController
@@ -124,7 +122,6 @@ typedef enum {
     NSString *getRestTime = [NSString stringWithFormat:@"%@", [_restTimePickerItem.value objectAtIndex:0]];
     
     timeCard.rest_time = [NSNumber numberWithFloat:getRestTime.floatValue];
-    DLog(@"[NSNumber numberWithFloat:getRestTime.floatValue] - %@", [NSNumber numberWithFloat:getRestTime.floatValue]);
     timeCard.workday_flag = [NSNumber numberWithBool:_workDayBoolItme.value];
 
     [dao insertModel];
@@ -215,7 +212,7 @@ typedef enum {
                                                           placeholder:nil format:@"HH:mm"
                                                        datePickerMode:UIDatePickerModeDateAndTime];
     _startWtPickerItem.datePickerMode = UIDatePickerModeTime;
-//    _startWtPickerItem.inlineDatePicker = YES;
+    _startWtPickerItem.inlineDatePicker = YES;
     [section addItem:_startWtPickerItem];
     
     //退勤
@@ -223,12 +220,19 @@ typedef enum {
                                                             placeholder:nil format:@"HH:mm"
                                                          datePickerMode:UIDatePickerModeDateAndTime];
     _endWtPickerItem.datePickerMode = UIDatePickerModeTime;
-//    _endWtPickerItem.inlineDatePicker = YES;
+    _endWtPickerItem.inlineDatePicker = YES;
     [section addItem:_endWtPickerItem];
     
-    //休憩時間  //休息時間が既に設定されている場合の基本表示は？
-    self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[@"1"] placeholder:nil options:@[@[@"1", @"1.5", @"2", @"2.5", @"3", @"3.5", @"4", @"4.5", @"5", @"5.5", @"6", @"6.5", @"7", @"7.5", @"8"]]];
-//    _restTimePickerItem.inlinePicker = YES;
+    //休憩時間
+    NSString *restStr;
+    if (timeCard.rest_time == nil) {
+        restStr = @"1";
+    }else{
+        restStr = [timeCard.rest_time stringValue];
+    }
+    
+    self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[restStr] placeholder:nil options:@[@[@"0", @"1", @"1.5", @"2", @"2.5", @"3", @"3.5", @"4", @"4.5", @"5", @"5.5", @"6", @"6.5", @"7", @"7.5", @"8"]]];
+    _restTimePickerItem.inlinePicker = YES;
     [section addItem:_restTimePickerItem];
     
     //平日、休日
@@ -241,11 +245,13 @@ typedef enum {
     // Add a basic cell with disclosure indicator
     //
     
-    clearTimeAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"この日のデータを削除しますか？" delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
+    clearTimeAlert = [[UIAlertView alloc] initWithTitle:@"" message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_cleardate_alert") delegate:self cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel") otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
     
-    [section addItem:[RETableViewItem itemWithTitle:@"Clear Date" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
+    self.clearTimeCellItem = [RETableViewItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_cleardate_cell") accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
         [clearTimeAlert show];
-    }]];
+    }];
+    
+    [section addItem:_clearTimeCellItem];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -256,6 +262,7 @@ typedef enum {
             [self clearDate];
         }else{
             //clear cancel
+            [_clearTimeCellItem deselectRowAnimated:NO];
         }
     }
 }

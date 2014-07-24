@@ -142,6 +142,8 @@
 "MonthWorkingTableEditViewController_edit_end_time_cell"    = "退勤時間";
 "MonthWorkingTableEditViewController_edit_rest_time_cell"   = "休憩時間";
 "MonthWorkingTableEditViewController_edit_workday_switch_cell"  = "営業日";
+"MonthWorkingTableEditViewController_edit_cleardate_cell"  = "データ削除";
+"MonthWorkingTableEditViewController_edit_cleardate_alert"  = "この日のデータを削除しますか？";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "出勤時間と退勤時間が同じです";
 
