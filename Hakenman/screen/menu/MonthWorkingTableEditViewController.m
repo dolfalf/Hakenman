@@ -78,9 +78,10 @@ typedef enum {
 
 #pragma mark - IBAction
 - (IBAction)saveAndClose:(id)sender {
-    if ([_startWtPickerItem.value isEqualToDate:_endWtPickerItem.value]) {
+    
+    if ([[_startWtPickerItem.value convHHmmString] isEqualToString:[_endWtPickerItem.value convHHmmString]]){
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@""
-            message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_start_end_equals_alert")
+                                                       message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_start_end_equals_alert")
                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [alert show];
@@ -93,8 +94,6 @@ typedef enum {
     }
     
     TimeCardDao *dao = [TimeCardDao new];
-
-//    NSDate *getWd = [NSDate convDate2ShortString:[NSString stringWithFormat:@"%d%.2d%.2d",[_showData.yearData intValue],[_showData.monthData intValue],[_showData.dayData intValue]]];
     
     NSArray *tempModel = [dao fetchModelYear:[_showData.yearData intValue] month:[_showData.monthData intValue] day:[_showData.dayData intValue]];
     
