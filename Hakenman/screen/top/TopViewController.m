@@ -351,7 +351,13 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                     
                                       //定型文追加
                                       NSString *templetFormat = LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete");
-                                      [mailContent appendFormat:templetFormat,st, et, [NSUserDefaults workSitename]];
+                                      NSString *siteName = [NSUserDefaults workSitename];
+                                      if ([siteName isEqualToString:@""] || siteName == nil) {
+                                          templetFormat = LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete_worksite_nothing");
+                                          [mailContent appendFormat:templetFormat,st, et];
+                                      }else{
+                                          [mailContent appendFormat:templetFormat,st, et, [NSUserDefaults workSitename]];
+                                      }
                                       
                                       [mailContent appendString:[NSUserDefaults reportMailContent]];
                                       
@@ -513,9 +519,29 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     if ([alertView isEqual:_writeWorkStartAlert] == YES) {
         //出勤
         [dao insertModelWorkStart:today];
+        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+            //paramを渡す
+            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+            
+            //現在の日時を渡す
+            NSDate *today = [NSDate date];
+            controller.inputDates = [today yyyyMMString];
+            controller.fromCurruntInputDates = [today yyyyMMddString];
+            controller.fromCurruntTimeInput = YES;
+        }];
     }else if ([alertView isEqual:_writeWorkEndAlert] == YES) {
         //退勤
         [dao insertModelWorkEnd:today];
+        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+            //paramを渡す
+            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+            
+            //現在の日時を渡す
+            NSDate *today = [NSDate date];
+            controller.inputDates = [today yyyyMMString];
+            controller.fromCurruntInputDates = [today yyyyMMddString];
+            controller.fromCurruntTimeInput = YES;
+        }];
     }
     
     

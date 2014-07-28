@@ -73,6 +73,14 @@
     [super viewWillAppear:animated];
     
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [self performSelector:@selector(autoSelectedCell) withObject:nil afterDelay:.1f];
+    
+    [super viewDidAppear:animated];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -195,6 +203,16 @@
     //テーブルの更新
     [leftTableView reloadData];
     [rightTableView reloadData];
+    
+}
+
+- (void)autoSelectedCell {
+    if (_fromCurruntTimeInput == YES) {
+        int inputTimeToDay = [[_fromCurruntInputDates substringWithRange:NSMakeRange(6, 2)] intValue];
+//        NSIndexPath *indexPath = [[NSIndexPath alloc]initWithIndexes:inputTimeToDay length:0];
+        [leftTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:inputTimeToDay inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+//        [leftTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
 }
 
 #pragma mark - private methods
@@ -210,6 +228,8 @@
         }
     }
 }
+
+//[tableView scrollToRowAtIndexPath:<#(NSIndexPath *)#> atScrollPosition:<#(UITableViewScrollPosition)#> animated:<#(BOOL)#>];
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -305,10 +325,9 @@
         //cell update.
         [cell updateCell:rightModel];
         
-        
         return cell;
     }
-
+    
     return nil;
     
 }

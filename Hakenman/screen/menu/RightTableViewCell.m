@@ -61,24 +61,25 @@
             workTimeLabel.text = @"";
             worktotalLabel.text = @"";
         }else{
-            float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [model.rest_time floatValue];
-            startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
-            endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
-
             if ([model.workday_flag boolValue] == NO) {
+                startTimeLabel.text = @"-";
+                endTimeLabel.text = @"-";
+                workTimeLabel.text = @"-";
                 worktotalLabel.text = @"-";
             }else {
+                float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [model.rest_time floatValue];
+                startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
+                endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
+
                 worktotalLabel.text = [NSString stringWithFormat:@"%2.2f", model.total_time];
+                //合計12時間以上 / 0時間以下は赤字で表示する
+                if (workTimeFromCore >= 12.00f || workTimeFromCore <= 0) {
+                    workTimeLabel.textColor = [UIColor redColor];
+                }else {
+                    workTimeLabel.textColor = [UIColor blackColor];
+                }
+                workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
             }
-
-            //合計12時間以上 / 0時間以下は赤字で表示する
-            if (workTimeFromCore >= 12.00f || workTimeFromCore <= 0) {
-                workTimeLabel.textColor = [UIColor redColor];
-            }else {
-                workTimeLabel.textColor = [UIColor blackColor];
-            }
-
-            workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
         }
     }
 }
