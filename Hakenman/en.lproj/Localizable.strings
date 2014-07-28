@@ -64,6 +64,7 @@
 "SettingViewController_menulist_work_report_section_title"          = "Work report setting";
 "SettingViewController_menulist_work_report_content_section_title"  = "Report content templete";
 "SettingViewController_menulist_work_report_content_worktime_templete" = "Worktime: %@ ~ %@　(%@)\n\n";
+"SettingViewController_menulist_work_report_content_worktime_templete_worksite_nothing" = "Worktime: %@ ~ %@\n\n";
 "SettingViewController_menulist_app_info_section_title"             = "App information";
 "SettingViewController_menulist_working_space_title"                = "Working space";
 "SettingViewController_menulist_calc_time_unit_title"               = "Time calculation unit";

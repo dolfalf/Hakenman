@@ -108,6 +108,19 @@ enum {
     [self loadInitDataSection];
 }
 
+/**
+ * UITextView に対するキーボードが表示された後の処理
+ */
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+	// キャレットの位置を先頭へ
+	// ここもやはり、textViewDidBeginEditing 以降でないとダメっぽい
+	NSRange range;
+	range.location = 0;
+	range.length = 0;
+	textView.selectedRange = range;
+}
+
 - (void)loadBasicSection {
     
     __typeof (self) __weak weakSelf = self;
@@ -119,14 +132,13 @@ enum {
     //勤務先 textField
     RETextItem *workspaceItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_menulist_working_space_title")
                                                     value:[NSUserDefaults workSitename]];
-    
     workspaceItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
         [NSUserDefaults setWorkSitename:item.value];
     };
     
     workspaceItem.clearButtonMode = UITextFieldViewModeWhileEditing;
-    workspaceItem.style = UITableViewCellStyleValue1;
+    workspaceItem.style = UITableViewCellStyleDefault;
     workspaceItem.charactersLimit = 20;
     workspaceItem.validators = @[@"length(0, 20)"];
     [basicSection addItem:workspaceItem];
@@ -212,7 +224,8 @@ enum {
                                                       }];
                                                       [strongSelf.navigationController pushViewController:optionsController animated:YES];
                                                   }];
-    [basicSection addItem:worksheet_optionItem];
+    //issue #23 対応(臨時)
+//    [basicSection addItem:worksheet_optionItem];
     
 }
 

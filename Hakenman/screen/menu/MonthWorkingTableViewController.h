@@ -12,5 +12,7 @@
 
 //外部から値をもらうためのプロパティ
 @property (nonatomic, strong) NSString *inputDates;
+@property (nonatomic, strong) NSString *fromCurruntInputDates;
+@property (nonatomic, assign) BOOL fromCurruntTimeInput;
 
 @end
