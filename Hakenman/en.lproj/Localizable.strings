@@ -105,23 +105,21 @@
 "SettingViewController_database_init_alert_text"    = "Are you sure Remove Data?";
 
 //TUTORIAL
-"TutorialViewController_page1_title"               = "Welcome";
-"TutorialViewController_page1_label1"               = "Easy manage worktime.";
-"TutorialViewController_page1_label2"               = "Send today Report Mail.";
-"TutorialViewController_page1_label3"               = "Export CSV file.";
+"TutorialViewController_page1_title"                = "HakenMan";
+"TutorialViewController_page1_sub_title"            = "Introduction of useful features";
 
-"TutorialViewController_page2_title"               = "Easy\n manage worktime!";
-"TutorialViewController_page2_label1"               = "Viewable Month\n Attendance!";
-"TutorialViewController_page2_label2"               = "Simple Daily\n Attendance!";
+"TutorialViewController_page2_title"                = "Work management is even easier!";
+"TutorialViewController_page2_desc_label"           = "I am easy to understand work for your situation. Troublesome attendance input you can enter the working hours at the touch of a button.";
 
-"TutorialViewController_page3_title1"               = "Send Report Mail.";
-"TutorialViewController_page3_label1"               = "Send today Report\n Mail From Templete";
-"TutorialViewController_page3_title2"               = "Export CSV file.";
-"TutorialViewController_page3_label2"               = "Monthly Attendance\nConvert to CSV";
+"TutorialViewController_page3_title"               = "Send a brief Daily Mail";
+"TutorialViewController_page3_desc_label"           = "You can automatically generate one call, input under working hours, place of work, a simple boilerplate stationery mail from a template.";
 
-"TutorialViewController_page4_title"               = "Start For App";
-"TutorialViewController_page4_label"               = "Introduce the \nmain features of HakenMan.　\nNow, you'll be sent a cheerful \nevery day with HakenMan!";
-"TutorialViewController_page4_button"              = "App Start!";
+"TutorialViewController_page4_title"               = "Exported in CSV format! ";
+"TutorialViewController_page4_desc_label"          = "Completed by kicking stuck in this feature report if Excel!";
+
+"TutorialViewController_page5_title"               = "Let's actually use!";
+"TutorialViewController_page5_desc_label"          = "I introduce the main features of HakenMan. Pity you're not Spend a cheerful every day with HakenMan!";
+"TutorialViewController_page5_start_button"        = "Start HakenMan";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
