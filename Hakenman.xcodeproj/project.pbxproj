@@ -184,6 +184,9 @@
 		3BC0E3E118DD76460062B07A /* Top.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Top.storyboard; sourceTree = "<group>"; };
 		3D1F5B2419637DDB003D9C25 /* LeftTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewData.h; sourceTree = "<group>"; };
 		3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewData.m; sourceTree = "<group>"; };
+		3D2980671987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D2980681987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3D2980691987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DD9C5FA19641F7500F4B8C5 /* RightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightTableViewData.h; sourceTree = "<group>"; };
 		3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewData.m; sourceTree = "<group>"; };
 		532CC838725D4E49AAEC195A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -521,6 +524,7 @@
 				en,
 				Base,
 				ja,
+				ko,
 			);
 			mainGroup = 3B469F8F18B89D3A0095C418;
 			productRefGroup = 3B469F9918B89D3A0095C418 /* Products */;
@@ -665,6 +669,7 @@
 			children = (
 				3B469FA518B89D3A0095C418 /* en */,
 				3B8FA71718DDF0D100A1182E /* ja */,
+				3D2980671987B66900018BAD /* ko */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 			children = (
 				3B469FC418B89D3A0095C418 /* en */,
 				3B8FA71818DDF0D200A1182E /* ja */,
+				3D2980691987B66900018BAD /* ko */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -683,6 +689,7 @@
 			children = (
 				3B8FA71E18DDF17D00A1182E /* en */,
 				3B8FA72018DDF18100A1182E /* ja */,
+				3D2980681987B66900018BAD /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

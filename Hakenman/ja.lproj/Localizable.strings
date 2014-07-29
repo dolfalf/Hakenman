@@ -97,7 +97,6 @@
 "SettingViewController_menulist_work_report_content_placeholder" = "報告内容";
 "SettingViewController_menulist_work_report_content_worktime_templete" = "勤務時間: %@ ~ %@　(%@)\n\n";
 "SettingViewController_menulist_work_report_content_worktime_templete_worksite_nothing" = "勤務時間: %@ ~ %@\n\n";
-"SettingViewController_menulist_work_report_content_default" = "よろしくお願いします。";
 
 "SettingViewController_tutorial_title"             = "チュートリアル";
 "SettingViewController_app_info_title"             = "KJCodeについて";
