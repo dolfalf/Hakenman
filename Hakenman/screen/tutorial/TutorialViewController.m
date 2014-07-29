@@ -10,7 +10,7 @@
 #import "UIColor+Helper.h"
 #import "const.h"
 #import <PBFlatUI/PBFlatButton.h>
-
+#import "Util.h"
 
 #define NUMBER_OF_PAGES 5
 #define timeForPage(page) (NSInteger)(self.view.frame.size.width * (page - 1))
@@ -148,6 +148,16 @@
 }
 
 #pragma mark - pravate methods
+- (UIImageView *)languageWithImage:(NSString *)imagename {
+    
+    if([Util isJanpaneseLanguage] == NO) {
+        NSString *en_imagename = [NSString stringWithFormat:@"%@_en",imagename];
+        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:en_imagename]];
+    }
+    
+    return [[UIImageView alloc] initWithImage:[UIImage imageNamed:imagename]];
+    
+}
 - (void)addPageLabel:(UILabel *)lbl text:(NSString *)text fontSize:(float)sz point:(CGPoint)pt {
     
     lbl.text = text;
@@ -302,7 +312,7 @@
 - (void)placeViews
 {
     //Page01
-    self.page01LogoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    self.page01LogoImage = [self languageWithImage:@"logo"];
     _page01LogoImage.layer.cornerRadius = 5.f;
     _page01LogoImage.clipsToBounds = YES;
     _page01LogoImage.layer.shadowOpacity = 0.8;
@@ -340,7 +350,7 @@
                                             _page02TitleLabel.frame.size.width,
                                             _page02TitleLabel.frame.size.height);
     
-    self.page02DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page02DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page02DescLabel.numberOfLines = 10;
     _page02DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page02DescLabel
@@ -348,12 +358,12 @@
               fontSize:DESC_FONT_SIZE
                  point:CGPointMake(timeForPage(2)+10.f, 70.f)];
     
-    self.page02ScreenShotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page02_screenshot"]];
+    self.page02ScreenShotImage = [self languageWithImage:@"page02_screenshot"];
     _page02ScreenShotImage.layer.cornerRadius = 5.f;
     _page02ScreenShotImage.clipsToBounds = YES;
     [_page02ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
     [_page02ScreenShotImage.layer setBorderWidth:1.0];
-    [self addPageImage:_page02ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(2), 20)];
+    [self addPageImage:_page02ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(2), 40)];
     
     
     
@@ -369,7 +379,7 @@
                                          _page03TitleLabel.frame.size.width,
                                          _page03TitleLabel.frame.size.height);
     
-    self.page03DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page03DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page03DescLabel.numberOfLines = 10;
     _page03DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page03DescLabel
@@ -378,12 +388,12 @@
                  point:CGPointMake(timeForPage(3)+10.f, 70.f)];
 
     
-    self.page03ScreenShotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page03_screenshot"]];
+    self.page03ScreenShotImage = [self languageWithImage:@"page03_screenshot"];
     _page03ScreenShotImage.layer.cornerRadius = 5.f;
     _page03ScreenShotImage.clipsToBounds = YES;
     [_page03ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
     [_page03ScreenShotImage.layer setBorderWidth:1.0];
-    [self addPageImage:_page03ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(3), 20)];
+    [self addPageImage:_page03ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(3), 40)];
     
     //Page04
     self.page04TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
@@ -397,7 +407,7 @@
                                          _page04TitleLabel.frame.size.width,
                                          _page04TitleLabel.frame.size.height);
     
-    self.page04DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page04DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page04DescLabel.numberOfLines = 10;
     _page04DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page04DescLabel
@@ -406,12 +416,12 @@
             point:CGPointMake(timeForPage(4)+10.f, 70.f)];
 
     
-    self.page04ScreenShotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page04_screenshot"]];
+    self.page04ScreenShotImage = [self languageWithImage:@"page04_screenshot"];
     _page04ScreenShotImage.layer.cornerRadius = 5.f;
     _page04ScreenShotImage.clipsToBounds = YES;
     [_page04ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
     [_page04ScreenShotImage.layer setBorderWidth:1.0];
-    [self addPageImage:_page04ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(4), 20)];
+    [self addPageImage:_page04ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(4), 40)];
     
     //Page05
     self.page05TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
@@ -425,7 +435,7 @@
                                          _page05TitleLabel.frame.size.width,
                                          _page05TitleLabel.frame.size.height);
     
-    self.page05DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page05DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page05DescLabel.numberOfLines = 10;
     _page05DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page05DescLabel

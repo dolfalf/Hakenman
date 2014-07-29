@@ -12,6 +12,9 @@
 
 @interface Util : NSObject
 
+//language
++ (BOOL)isJanpaneseLanguage;
+
 //document
 + (NSString *)getDocumentPath;
 
