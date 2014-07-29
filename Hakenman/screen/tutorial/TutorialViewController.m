@@ -312,7 +312,7 @@
 - (void)placeViews
 {
     //Page01
-    self.page01LogoImage = [self languageWithImage:@"logo"];
+    self.page01LogoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
     _page01LogoImage.layer.cornerRadius = 5.f;
     _page01LogoImage.clipsToBounds = YES;
     _page01LogoImage.layer.shadowOpacity = 0.8;
