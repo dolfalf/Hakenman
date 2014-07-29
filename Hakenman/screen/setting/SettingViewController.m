@@ -118,19 +118,6 @@ enum {
     
 }
 
-/**
- * UITextView に対するキーボードが表示された後の処理
- */
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-	// キャレットの位置を先頭へ
-	// ここもやはり、textViewDidBeginEditing 以降でないとダメっぽい
-	NSRange range;
-	range.location = 0;
-	range.length = 0;
-	textView.selectedRange = range;
-}
-
 - (void)loadBasicSection {
     
     __typeof (self) __weak weakSelf = self;
