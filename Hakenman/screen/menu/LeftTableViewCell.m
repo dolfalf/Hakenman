@@ -8,6 +8,7 @@
 
 #import "LeftTableViewCell.h"
 #import "Util.h"
+#import "const.h"
 
 @implementation LeftTableViewCell
 
@@ -36,6 +37,13 @@
     
     dayLabel.text = [NSString stringWithFormat:@"%d", [day intValue]];
     weekLabel.text = [Util weekdayString:[week intValue]];
+    if ([week intValue] == weekSatDay) {
+        weekLabel.textColor = [UIColor blueColor];
+    }else if ([week intValue] == weekSunday){
+        weekLabel.textColor = [UIColor redColor];
+    }else{
+        weekLabel.textColor = [UIColor blackColor];
+    }
     workDayLabel.text = [work boolValue]?@"○":@"×";
 }
 

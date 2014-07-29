@@ -64,6 +64,7 @@
 "SettingViewController_menulist_work_report_content_section_title"  = "日報内容定型文";
 "SettingViewController_menulist_app_info_section_title"             = "アプリについて";
 "SettingViewController_menulist_working_space_title"                = "勤務先";
+"SettingViewController_menulist_working_space_placeholder"          = "例）赤羽";
 "SettingViewController_menulist_calc_time_unit_title"               = "勤務時間単位";
 "SettingViewController_menulist_default_work_time_title"            = "基本勤務時間";
 "SettingViewController_menulist_work_table_display_option_title"    = "勤務表表示";
@@ -109,17 +110,17 @@
 "TutorialViewController_page1_title"                = "HakenMan";
 "TutorialViewController_page1_sub_title"            = "便利な機能の紹介";
 
-"TutorialViewController_page2_title"                = "勤務管理がさらに簡単！";
-"TutorialViewController_page2_desc_label"           = "自分の勤務状況がわかりやすいです。面倒な勤怠入力がワンタッチで勤務時間を入力できます。";
+"TutorialViewController_page2_title"                = "勤務管理が簡単になる！";
+"TutorialViewController_page2_desc_label"           = "面倒な勤怠入力がワンタッチで入力可能！\nあなたの月の勤務状況がわかりやすくなり\nます。";
 
-"TutorialViewController_page3_title"                = "簡単な日報メールを送信";
-"TutorialViewController_page3_desc_label"           = "テンプレートからメールのひな形を呼び出し1、入力下勤務時間、勤務先、簡単な定型文を自動で生成できます。";
+"TutorialViewController_page3_title"                = "日報メールを送信";
+"TutorialViewController_page3_desc_label"           = "テンプレートからメールのひな形を呼び出し、入力した勤務時間、勤務先、簡単な定型文を自動で生成されます。";
 
 "TutorialViewController_page4_title"               = "CSV形式でエクスポート";
-"TutorialViewController_page4_desc_label"          = "報告がエクセルならこの機能で貼付けることで完了！";
+"TutorialViewController_page4_desc_label"          = "報告がエクセル形式なら、この機能を使い\n貼付けるだけで完了！";
 
 "TutorialViewController_page5_title"               = "実際に使ってみましょう！";
-"TutorialViewController_page5_desc_label"          = "HakenManの主な機能をご紹介しました。さあ、あなたもHakenManと一緒に元気な毎日を過ごしましょう！";
+"TutorialViewController_page5_desc_label"          = "HakenManの主な機能をご紹介しました。\nさあ、今日からHakenManと一緒に元気な\n毎日を過ごしましょう！";
 "TutorialViewController_page5_start_button"        = "スタート";
 
 //MONTH_WORK_TABLE

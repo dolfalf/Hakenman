@@ -28,7 +28,7 @@ enum {
     
 } settingTitle;
 
-@interface SettingViewController () <UIAlertViewDelegate, UIDocumentInteractionControllerDelegate> {
+@interface SettingViewController () <RETableViewManagerDelegate, UIAlertViewDelegate, UIDocumentInteractionControllerDelegate> {
     
     IBOutlet UIBarButtonItem *closeButton;
 }
@@ -96,7 +96,8 @@ enum {
     // Create the manager
     //
     self.reTableManager = [[RETableViewManager alloc] initWithTableView:self.settingTableView];
-
+    _reTableManager.delegate = self;
+    
     [self loadBasicSection];
     
     [self loadReportSection];
@@ -108,17 +109,13 @@ enum {
     [self loadInitDataSection];
 }
 
-/**
- * UITextView に対するキーボードが表示された後の処理
- */
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-	// キャレットの位置を先頭へ
-	// ここもやはり、textViewDidBeginEditing 以降でないとダメっぽい
-	NSRange range;
-	range.location = 0;
-	range.length = 0;
-	textView.selectedRange = range;
+- (void)tableView:(UITableView *)tableView willLayoutCellSubviews:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([cell isKindOfClass:[RETableViewTextCell class]] == YES) {
+        RETableViewTextCell *textCell = (RETableViewTextCell *)cell;
+        textCell.textField.textAlignment = NSTextAlignmentRight;
+    }
+    
 }
 
 - (void)loadBasicSection {
@@ -130,8 +127,8 @@ enum {
     [self.reTableManager addSection:basicSection];
     
     //勤務先 textField
-    RETextItem *workspaceItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_menulist_working_space_title")
-                                                    value:[NSUserDefaults workSitename]];
+    RETextItem *workspaceItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_menulist_working_space_title") value:[NSUserDefaults workSitename] placeholder:LOCALIZE(@"SettingViewController_menulist_working_space_placeholder")];
+
     workspaceItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
         [NSUserDefaults setWorkSitename:item.value];
