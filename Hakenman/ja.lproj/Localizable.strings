@@ -107,24 +107,21 @@
 "SettingViewController_database_init_alert_text"    = "データを削除しますか？";
 
 //TUTORIAL
-"TutorialViewController_page1_title"               = "ようこそ";
-"TutorialViewController_page1_label1"               = "簡単に勤怠を管理しましょう";
-"TutorialViewController_page1_label2"               = "日報メールを送信しましょう";
-"TutorialViewController_page1_label3"               = "CSVファイルで変換しましょう";
+"TutorialViewController_page1_title"                = "HakenMan";
+"TutorialViewController_page1_sub_title"            = "便利な機能の紹介";
 
-"TutorialViewController_page2_title"                = "簡単に勤怠を管理";
-"TutorialViewController_page2_label1"               = "月の勤怠が\nすぐわかる!";
-"TutorialViewController_page2_label2"               = "簡単に勤怠を\n入力できます！";
+"TutorialViewController_page2_title"                = "勤務管理がさらに簡単！";
+"TutorialViewController_page2_desc_label"           = "自分の勤務状況がわかりやすいです。面倒な勤怠入力がワンタッチで勤務時間を入力できます。";
 
-"TutorialViewController_page3_title1"               = "日報メールを送信";
-"TutorialViewController_page3_label1"               = "簡単にテンプレートから\nメール作成します";
-"TutorialViewController_page3_title2"               = "CSVファイルで変換";
-"TutorialViewController_page3_label2"               = "月別のデータを\nCSVファイルに変換！";
+"TutorialViewController_page3_title"                = "簡単な日報メールを送信";
+"TutorialViewController_page3_desc_label"           = "テンプレートからメールのひな形を呼び出し1、入力下勤務時間、勤務先、簡単な定型文を自動で生成できます。";
 
-"TutorialViewController_page4_title"               = "実際に使ってみましょう！";
-"TutorialViewController_page4_label"               = "HakenManの\n主な機能をご紹介しました。\nさあ、あなたもHakenManと一緒に\n元気な毎日を送りましょう！";
-"TutorialViewController_page4_button"              = "スタート";
+"TutorialViewController_page4_title"               = "CSV形式でエクスポート";
+"TutorialViewController_page4_desc_label"          = "報告がエクセルならこの機能で貼付けることで完了！";
 
+"TutorialViewController_page5_title"               = "実際に使ってみましょう！";
+"TutorialViewController_page5_desc_label"          = "HakenManの主な機能をご紹介しました。さあ、あなたもHakenManと一緒に元気な毎日を過ごしましょう！";
+"TutorialViewController_page5_start_button"        = "スタート";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        = "%04d年%02d月分勤務報告書";
