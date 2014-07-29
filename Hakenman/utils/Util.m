@@ -19,6 +19,24 @@
 
 @implementation Util
 
++ (BOOL)isJanpaneseLanguage {
+    
+    //選択可能な言語設定の配列を取得
+    NSArray *langs = [NSLocale preferredLanguages];
+    
+    //取得した配列から先頭の文字列を取得（先頭が現在の設定言語）
+    NSString *currentLanguage = [langs objectAtIndex:0];
+    
+    if([currentLanguage compare:@"ja"] == NSOrderedSame) {
+        //日本語の場合の処理
+        return YES;
+        
+    }else {
+        return NO;
+    }
+    
+    return NO;
+}
 + (NSString *)getDocumentPath {
     
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

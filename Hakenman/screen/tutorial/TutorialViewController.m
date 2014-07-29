@@ -10,7 +10,7 @@
 #import "UIColor+Helper.h"
 #import "const.h"
 #import <PBFlatUI/PBFlatButton.h>
-
+#import "Util.h"
 
 #define NUMBER_OF_PAGES 5
 #define timeForPage(page) (NSInteger)(self.view.frame.size.width * (page - 1))
@@ -48,6 +48,7 @@
 //page05(last page)
 @property (nonatomic, strong) UILabel *page05TitleLabel;
 @property (nonatomic, strong) UILabel *page05DescLabel;
+@property (nonatomic, strong) PBFlatButton *startButton;
 
 @end
 
@@ -85,10 +86,12 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     
+    self.delegate = self;
+    
     [self placeViews];
     [self configureAnimation];
     
-    self.delegate = self;
+    
     
     // ページコントロールのインスタンス化
     pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame) - 300) / 2,
@@ -135,6 +138,8 @@
 #pragma mark - UIScroll delegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {
+    [super scrollViewDidScroll:_scrollView];
+    
     CGFloat pageWidth = self.scrollView.frame.size.width;
     if ((NSInteger)fmod(self.scrollView.contentOffset.x , pageWidth) == 0) {
         // ページコントロールに現在のページを設定
@@ -143,13 +148,22 @@
 }
 
 #pragma mark - pravate methods
+- (UIImageView *)languageWithImage:(NSString *)imagename {
+    
+    if([Util isJanpaneseLanguage] == NO) {
+        NSString *en_imagename = [NSString stringWithFormat:@"%@_en",imagename];
+        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:en_imagename]];
+    }
+    
+    return [[UIImageView alloc] initWithImage:[UIImage imageNamed:imagename]];
+    
+}
 - (void)addPageLabel:(UILabel *)lbl text:(NSString *)text fontSize:(float)sz point:(CGPoint)pt {
     
     lbl.text = text;
     lbl.font = [UIFont fontWithName:@"Helvetica-Light" size:sz];
     [lbl sizeToFit];
     lbl.textAlignment = NSTextAlignmentLeft;
-//    lbl.backgroundColor = [UIColor yellowColor];//test
     lbl.frame = CGRectMake(pt.x, pt.y, lbl.frame.size.width, lbl.frame.size.height);
     [self.scrollView addSubview:lbl];
     
@@ -161,9 +175,7 @@
     lbl.font = [UIFont fontWithName:@"Helvetica-Light" size:sz];
     [lbl sizeToFit];
     lbl.textAlignment = NSTextAlignmentLeft;
-//    lbl.backgroundColor = [UIColor yellowColor];//test
     lbl.center = self.view.center;
-    
     [self.scrollView addSubview:lbl];
     
 }
@@ -183,18 +195,25 @@
     NSMutableArray *effectFrame = [NSMutableArray new];
     for (int i=1; i<= NUMBER_OF_PAGES; i++) {
         [effectFrame addObject:[IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(i)
-                                                               andAlpha:(i==page)?0.f:1.f]];
+                                                               andAlpha:(i==page)?1.f:0.f]];
     }
     
     [frameAnimation addKeyFrames:effectFrame];
     
 }
 
-- (void)effectFrames:(NSArray *)animationFrames control:(id)sender {
+- (void)moveEffectFrames:(NSArray *)animationFrames control:(id)sender {
     
     IFTTTFrameAnimation *frameAnimation = [IFTTTFrameAnimation animationWithView:sender];
     [self.animator addAnimation:frameAnimation];
     [frameAnimation addKeyFrames:animationFrames];
+}
+
+- (void)scaleEffectFrames:(NSArray *)animationFrames control:(id)sender {
+    
+    IFTTTScaleAnimation *scaleAnimation = [IFTTTScaleAnimation animationWithView:sender];
+    [self.animator addAnimation:scaleAnimation];
+    [scaleAnimation addKeyFrames:animationFrames];
 }
 
 #pragma mark Animation page01
@@ -202,18 +221,38 @@
     
     [self alphaEffectPage:1 control:_page01TitleLabel];
     
-    [self effectFrames:@[
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01TitleLabel.frame, 0, 0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01TitleLabel.frame, timeForPage(2), 0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)]
-                       ]
-             control:_page01TitleLabel];
+    [self scaleEffectFrames:@[
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andScale:1.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andScale:3.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andScale:0.f]
+                              ]
+                    control:_page01TitleLabel];
+    
+    
+    [self moveEffectFrames:@[
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01TitleLabel.frame, 0, 0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01TitleLabel.frame, timeForPage(2), 0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)]
+                         ]
+               control:_page01TitleLabel];
+    
     
     [self alphaEffectPage:1 control:_page01SubtitleLabel];
     
-    [self effectFrames:@[
+    [self scaleEffectFrames:@[
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andScale:1.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andScale:3.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andScale:0.f]
+                              ]
+                    control:_page01SubtitleLabel];
+    
+    [self moveEffectFrames:@[
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01SubtitleLabel.frame, 0, 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01SubtitleLabel.frame, timeForPage(2), 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01SubtitleLabel.frame,0,0)],
@@ -225,7 +264,16 @@
     
     [self alphaEffectPage:1 control:_page01LogoImage];
     
-    [self effectFrames:@[
+    [self scaleEffectFrames:@[
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andScale:1.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andScale:3.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andScale:0.f]
+                              ]
+                    control:_page01LogoImage];
+    
+    [self moveEffectFrames:@[
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01LogoImage.frame, 0, 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01LogoImage.frame, timeForPage(2), 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01LogoImage.frame,0,0)],
@@ -237,62 +285,34 @@
 }
 
 - (void)page02Animation {
-    
-    
-//    [self alphaEffectPage:2 control:_page02TitleLabel];
-//    
-//    [self effectFrames:@[
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02TitleLabel.frame, timeForPage(2), 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02TitleLabel.frame, timeForPage(1) *-1, 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02TitleLabel.frame,0,0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02TitleLabel.frame,0,0)],
-//                       ]
-//             control:_page02TitleLabel];
-//    
-//    
-//    [self alphaEffectPage:2 control:_page02DescLabel];
-//    
-//    [self effectFrames:@[
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02DescLabel.frame, timeForPage(4), 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02DescLabel.frame, timeForPage(1) *-1, 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02DescLabel.frame,0,0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02DescLabel.frame,0,0)],
-//                       ]
-//             control:_page02DescLabel];
-//    
-//    
-//    [self alphaEffectPage:2 control:_page02ScreenShotImage];
-//    
-//    [self effectFrames:@[
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02ScreenShotImage.frame, timeForPage(2), 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02ScreenShotImage.frame, timeForPage(1) *-1, 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02ScreenShotImage.frame,0,0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02ScreenShotImage.frame,0,0)],
-//                       ]
-//             control:_page02ScreenShotImage];
-    
-    
-    
-    
+    [self alphaEffectPage:2 control:_page02TitleLabel];
+    [self alphaEffectPage:2 control:_page02DescLabel];
+    [self alphaEffectPage:2 control:_page02ScreenShotImage];
 }
 
 - (void)page03Animation {
-
+    [self alphaEffectPage:3 control:_page03TitleLabel];
+    [self alphaEffectPage:3 control:_page03DescLabel];
+    [self alphaEffectPage:3 control:_page03ScreenShotImage];
 }
 
 - (void)page04Animation {
-    
+    [self alphaEffectPage:4 control:_page04TitleLabel];
+    [self alphaEffectPage:4 control:_page04DescLabel];
+    [self alphaEffectPage:4 control:_page04ScreenShotImage];
 }
 
 - (void)page05Animation {
-    
+    [self alphaEffectPage:5 control:_page05TitleLabel];
+    [self alphaEffectPage:5 control:_page05DescLabel];
+    [self alphaEffectPage:5 control:_startButton];
 }
 
 #pragma mark - animation methods
 - (void)placeViews
 {
     //Page01
-    self.page01LogoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    self.page01LogoImage = [self languageWithImage:@"logo"];
     _page01LogoImage.layer.cornerRadius = 5.f;
     _page01LogoImage.clipsToBounds = YES;
     _page01LogoImage.layer.shadowOpacity = 0.8;
@@ -330,7 +350,7 @@
                                             _page02TitleLabel.frame.size.width,
                                             _page02TitleLabel.frame.size.height);
     
-    self.page02DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page02DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page02DescLabel.numberOfLines = 10;
     _page02DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page02DescLabel
@@ -338,12 +358,12 @@
               fontSize:DESC_FONT_SIZE
                  point:CGPointMake(timeForPage(2)+10.f, 70.f)];
     
-    self.page02ScreenShotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page02_screenshot"]];
+    self.page02ScreenShotImage = [self languageWithImage:@"page02_screenshot"];
     _page02ScreenShotImage.layer.cornerRadius = 5.f;
     _page02ScreenShotImage.clipsToBounds = YES;
     [_page02ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
     [_page02ScreenShotImage.layer setBorderWidth:1.0];
-    [self addPageImage:_page02ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(2), 20)];
+    [self addPageImage:_page02ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(2), 40)];
     
     
     
@@ -359,7 +379,7 @@
                                          _page03TitleLabel.frame.size.width,
                                          _page03TitleLabel.frame.size.height);
     
-    self.page03DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page03DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page03DescLabel.numberOfLines = 10;
     _page03DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page03DescLabel
@@ -368,12 +388,12 @@
                  point:CGPointMake(timeForPage(3)+10.f, 70.f)];
 
     
-    self.page03ScreenShotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page03_screenshot"]];
+    self.page03ScreenShotImage = [self languageWithImage:@"page03_screenshot"];
     _page03ScreenShotImage.layer.cornerRadius = 5.f;
     _page03ScreenShotImage.clipsToBounds = YES;
     [_page03ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
     [_page03ScreenShotImage.layer setBorderWidth:1.0];
-    [self addPageImage:_page03ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(3), 20)];
+    [self addPageImage:_page03ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(3), 40)];
     
     //Page04
     self.page04TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
@@ -387,7 +407,7 @@
                                          _page04TitleLabel.frame.size.width,
                                          _page04TitleLabel.frame.size.height);
     
-    self.page04DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page04DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page04DescLabel.numberOfLines = 10;
     _page04DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page04DescLabel
@@ -396,12 +416,12 @@
             point:CGPointMake(timeForPage(4)+10.f, 70.f)];
 
     
-    self.page04ScreenShotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page04_screenshot"]];
+    self.page04ScreenShotImage = [self languageWithImage:@"page04_screenshot"];
     _page04ScreenShotImage.layer.cornerRadius = 5.f;
     _page04ScreenShotImage.clipsToBounds = YES;
     [_page04ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
     [_page04ScreenShotImage.layer setBorderWidth:1.0];
-    [self addPageImage:_page04ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(4), 20)];
+    [self addPageImage:_page04ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(4), 40)];
     
     //Page05
     self.page05TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
@@ -415,7 +435,7 @@
                                          _page05TitleLabel.frame.size.width,
                                          _page05TitleLabel.frame.size.height);
     
-    self.page05DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    self.page05DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page05DescLabel.numberOfLines = 10;
     _page05DescLabel.textColor = [UIColor grayColor];
     [self addPageLabel:_page05DescLabel
@@ -423,25 +443,25 @@
               fontSize:DESC_FONT_SIZE
                  point:CGPointMake(timeForPage(5)+10.f, _page05TitleLabel.frame.origin.y + 50.f)];
     
-    PBFlatButton *startButton = [[PBFlatButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    startButton.mainColor = [UIColor HKMBlueColor];
-    [startButton setBackgroundColor:[UIColor HKMBlueColor]];
-    [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [startButton setTitle:LOCALIZE(@"TutorialViewController_page5_start_button") forState:UIControlStateNormal];
-    startButton.center = self.view.center;
-    startButton.frame = CGRectOffset(startButton.frame,timeForPage(5), 44);
-    [startButton addTarget:self action:@selector(startButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:startButton];
+    self.startButton = [[PBFlatButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    _startButton.mainColor = [UIColor HKMBlueColor];
+    [_startButton setBackgroundColor:[UIColor HKMBlueColor]];
+    [_startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_startButton setTitle:LOCALIZE(@"TutorialViewController_page5_start_button") forState:UIControlStateNormal];
+    _startButton.center = self.view.center;
+    _startButton.frame = CGRectOffset(_startButton.frame,timeForPage(5), 44);
+    [_startButton addTarget:self action:@selector(startButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:_startButton];
     
 }
 
 - (void)configureAnimation
 {
-    //page01
     [self page01Animation];
-    
-    //page02
     [self page02Animation];
+    [self page03Animation];
+    [self page04Animation];
+    [self page05Animation];
 }
 
 #pragma mark - IFTTTAnimatedScrollViewControllerDelegate
