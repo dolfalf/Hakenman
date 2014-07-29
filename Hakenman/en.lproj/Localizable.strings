@@ -110,8 +110,8 @@
 "TutorialViewController_page1_title"                = "HakenMan";
 "TutorialViewController_page1_sub_title"            = "Introduction of useful features";
 
-"TutorialViewController_page2_title"                = "Work management is even easier!";
-"TutorialViewController_page2_desc_label"           = "I am easy to understand work for your situation. Troublesome attendance input you can enter the working hours at the touch of a button.";
+"TutorialViewController_page2_title"                = "Simply Work Management!";
+"TutorialViewController_page2_desc_label"           = "Troublesome attendance input can be entered at the touch of a button. I will be easy to understand the working situation of the month you.";
 
 "TutorialViewController_page3_title"               = "Send a brief Daily Mail";
 "TutorialViewController_page3_desc_label"           = "You can automatically generate one call, input under working hours, place of work, a simple boilerplate stationery mail from a template.";
@@ -121,7 +121,7 @@
 
 "TutorialViewController_page5_title"               = "Let's actually use!";
 "TutorialViewController_page5_desc_label"          = "I introduce the main features of HakenMan. Pity you're not Spend a cheerful every day with HakenMan!";
-"TutorialViewController_page5_start_button"        = "Start HakenMan";
+"TutorialViewController_page5_start_button"        = "Start";
 
 //MONTH_WORK_TABLE
 "MonthWorkingTableViewController_navi_title"                        ="%04d.%02d. WorkSheet";
