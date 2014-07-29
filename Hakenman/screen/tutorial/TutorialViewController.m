@@ -48,6 +48,7 @@
 //page05(last page)
 @property (nonatomic, strong) UILabel *page05TitleLabel;
 @property (nonatomic, strong) UILabel *page05DescLabel;
+@property (nonatomic, strong) PBFlatButton *startButton;
 
 @end
 
@@ -85,10 +86,12 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     
+    self.delegate = self;
+    
     [self placeViews];
     [self configureAnimation];
     
-    self.delegate = self;
+    
     
     // ページコントロールのインスタンス化
     pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame) - 300) / 2,
@@ -135,6 +138,8 @@
 #pragma mark - UIScroll delegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {
+    [super scrollViewDidScroll:_scrollView];
+    
     CGFloat pageWidth = self.scrollView.frame.size.width;
     if ((NSInteger)fmod(self.scrollView.contentOffset.x , pageWidth) == 0) {
         // ページコントロールに現在のページを設定
@@ -149,7 +154,6 @@
     lbl.font = [UIFont fontWithName:@"Helvetica-Light" size:sz];
     [lbl sizeToFit];
     lbl.textAlignment = NSTextAlignmentLeft;
-//    lbl.backgroundColor = [UIColor yellowColor];//test
     lbl.frame = CGRectMake(pt.x, pt.y, lbl.frame.size.width, lbl.frame.size.height);
     [self.scrollView addSubview:lbl];
     
@@ -161,9 +165,7 @@
     lbl.font = [UIFont fontWithName:@"Helvetica-Light" size:sz];
     [lbl sizeToFit];
     lbl.textAlignment = NSTextAlignmentLeft;
-//    lbl.backgroundColor = [UIColor yellowColor];//test
     lbl.center = self.view.center;
-    
     [self.scrollView addSubview:lbl];
     
 }
@@ -183,18 +185,25 @@
     NSMutableArray *effectFrame = [NSMutableArray new];
     for (int i=1; i<= NUMBER_OF_PAGES; i++) {
         [effectFrame addObject:[IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(i)
-                                                               andAlpha:(i==page)?0.f:1.f]];
+                                                               andAlpha:(i==page)?1.f:0.f]];
     }
     
     [frameAnimation addKeyFrames:effectFrame];
     
 }
 
-- (void)effectFrames:(NSArray *)animationFrames control:(id)sender {
+- (void)moveEffectFrames:(NSArray *)animationFrames control:(id)sender {
     
     IFTTTFrameAnimation *frameAnimation = [IFTTTFrameAnimation animationWithView:sender];
     [self.animator addAnimation:frameAnimation];
     [frameAnimation addKeyFrames:animationFrames];
+}
+
+- (void)scaleEffectFrames:(NSArray *)animationFrames control:(id)sender {
+    
+    IFTTTScaleAnimation *scaleAnimation = [IFTTTScaleAnimation animationWithView:sender];
+    [self.animator addAnimation:scaleAnimation];
+    [scaleAnimation addKeyFrames:animationFrames];
 }
 
 #pragma mark Animation page01
@@ -202,18 +211,38 @@
     
     [self alphaEffectPage:1 control:_page01TitleLabel];
     
-    [self effectFrames:@[
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01TitleLabel.frame, 0, 0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01TitleLabel.frame, timeForPage(2), 0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
-                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)]
-                       ]
-             control:_page01TitleLabel];
+    [self scaleEffectFrames:@[
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andScale:1.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andScale:3.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andScale:0.f]
+                              ]
+                    control:_page01TitleLabel];
+    
+    
+    [self moveEffectFrames:@[
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01TitleLabel.frame, 0, 0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01TitleLabel.frame, timeForPage(2), 0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)],
+                         [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andFrame:CGRectOffset(_page01TitleLabel.frame,0,0)]
+                         ]
+               control:_page01TitleLabel];
+    
     
     [self alphaEffectPage:1 control:_page01SubtitleLabel];
     
-    [self effectFrames:@[
+    [self scaleEffectFrames:@[
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andScale:1.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andScale:3.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andScale:0.f]
+                              ]
+                    control:_page01SubtitleLabel];
+    
+    [self moveEffectFrames:@[
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01SubtitleLabel.frame, 0, 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01SubtitleLabel.frame, timeForPage(2), 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01SubtitleLabel.frame,0,0)],
@@ -225,7 +254,16 @@
     
     [self alphaEffectPage:1 control:_page01LogoImage];
     
-    [self effectFrames:@[
+    [self scaleEffectFrames:@[
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andScale:1.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andScale:3.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andScale:0.f],
+                              [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(5) andScale:0.f]
+                              ]
+                    control:_page01LogoImage];
+    
+    [self moveEffectFrames:@[
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page01LogoImage.frame, 0, 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page01LogoImage.frame, timeForPage(2), 0)],
                        [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page01LogoImage.frame,0,0)],
@@ -237,55 +275,27 @@
 }
 
 - (void)page02Animation {
-    
-    
-//    [self alphaEffectPage:2 control:_page02TitleLabel];
-//    
-//    [self effectFrames:@[
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02TitleLabel.frame, timeForPage(2), 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02TitleLabel.frame, timeForPage(1) *-1, 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02TitleLabel.frame,0,0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02TitleLabel.frame,0,0)],
-//                       ]
-//             control:_page02TitleLabel];
-//    
-//    
-//    [self alphaEffectPage:2 control:_page02DescLabel];
-//    
-//    [self effectFrames:@[
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02DescLabel.frame, timeForPage(4), 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02DescLabel.frame, timeForPage(1) *-1, 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02DescLabel.frame,0,0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02DescLabel.frame,0,0)],
-//                       ]
-//             control:_page02DescLabel];
-//    
-//    
-//    [self alphaEffectPage:2 control:_page02ScreenShotImage];
-//    
-//    [self effectFrames:@[
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(1) andFrame:CGRectOffset(_page02ScreenShotImage.frame, timeForPage(2), 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(2) andFrame:CGRectOffset(_page02ScreenShotImage.frame, timeForPage(1) *-1, 0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(3) andFrame:CGRectOffset(_page02ScreenShotImage.frame,0,0)],
-//                       [IFTTTAnimationKeyFrame keyFrameWithTime:timeForPage(4) andFrame:CGRectOffset(_page02ScreenShotImage.frame,0,0)],
-//                       ]
-//             control:_page02ScreenShotImage];
-    
-    
-    
-    
+    [self alphaEffectPage:2 control:_page02TitleLabel];
+    [self alphaEffectPage:2 control:_page02DescLabel];
+    [self alphaEffectPage:2 control:_page02ScreenShotImage];
 }
 
 - (void)page03Animation {
-
+    [self alphaEffectPage:3 control:_page03TitleLabel];
+    [self alphaEffectPage:3 control:_page03DescLabel];
+    [self alphaEffectPage:3 control:_page03ScreenShotImage];
 }
 
 - (void)page04Animation {
-    
+    [self alphaEffectPage:4 control:_page04TitleLabel];
+    [self alphaEffectPage:4 control:_page04DescLabel];
+    [self alphaEffectPage:4 control:_page04ScreenShotImage];
 }
 
 - (void)page05Animation {
-    
+    [self alphaEffectPage:5 control:_page05TitleLabel];
+    [self alphaEffectPage:5 control:_page05DescLabel];
+    [self alphaEffectPage:5 control:_startButton];
 }
 
 #pragma mark - animation methods
@@ -423,25 +433,25 @@
               fontSize:DESC_FONT_SIZE
                  point:CGPointMake(timeForPage(5)+10.f, _page05TitleLabel.frame.origin.y + 50.f)];
     
-    PBFlatButton *startButton = [[PBFlatButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    startButton.mainColor = [UIColor HKMBlueColor];
-    [startButton setBackgroundColor:[UIColor HKMBlueColor]];
-    [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [startButton setTitle:LOCALIZE(@"TutorialViewController_page5_start_button") forState:UIControlStateNormal];
-    startButton.center = self.view.center;
-    startButton.frame = CGRectOffset(startButton.frame,timeForPage(5), 44);
-    [startButton addTarget:self action:@selector(startButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:startButton];
+    self.startButton = [[PBFlatButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    _startButton.mainColor = [UIColor HKMBlueColor];
+    [_startButton setBackgroundColor:[UIColor HKMBlueColor]];
+    [_startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_startButton setTitle:LOCALIZE(@"TutorialViewController_page5_start_button") forState:UIControlStateNormal];
+    _startButton.center = self.view.center;
+    _startButton.frame = CGRectOffset(_startButton.frame,timeForPage(5), 44);
+    [_startButton addTarget:self action:@selector(startButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:_startButton];
     
 }
 
 - (void)configureAnimation
 {
-    //page01
     [self page01Animation];
-    
-    //page02
     [self page02Animation];
+    [self page03Animation];
+    [self page04Animation];
+    [self page05Animation];
 }
 
 #pragma mark - IFTTTAnimatedScrollViewControllerDelegate
