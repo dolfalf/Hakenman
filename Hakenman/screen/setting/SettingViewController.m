@@ -28,7 +28,7 @@ enum {
     
 } settingTitle;
 
-@interface SettingViewController () <UIAlertViewDelegate, UIDocumentInteractionControllerDelegate> {
+@interface SettingViewController () <RETableViewManagerDelegate, UIAlertViewDelegate, UIDocumentInteractionControllerDelegate> {
     
     IBOutlet UIBarButtonItem *closeButton;
 }
@@ -96,7 +96,8 @@ enum {
     // Create the manager
     //
     self.reTableManager = [[RETableViewManager alloc] initWithTableView:self.settingTableView];
-
+    _reTableManager.delegate = self;
+    
     [self loadBasicSection];
     
     [self loadReportSection];
@@ -106,6 +107,15 @@ enum {
     [self loadAppInfoSection];
     
     [self loadInitDataSection];
+}
+
+- (void)tableView:(UITableView *)tableView willLayoutCellSubviews:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([cell isKindOfClass:[RETableViewTextCell class]] == YES) {
+        RETableViewTextCell *textCell = (RETableViewTextCell *)cell;
+        textCell.textField.textAlignment = NSTextAlignmentRight;
+    }
+    
 }
 
 /**
@@ -130,8 +140,8 @@ enum {
     [self.reTableManager addSection:basicSection];
     
     //勤務先 textField
-    RETextItem *workspaceItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_menulist_working_space_title")
-                                                    value:[NSUserDefaults workSitename]];
+    RETextItem *workspaceItem = [RETextItem itemWithTitle:LOCALIZE(@"SettingViewController_menulist_working_space_title") value:[NSUserDefaults workSitename] placeholder:LOCALIZE(@"SettingViewController_menulist_working_space_placeholder")];
+
     workspaceItem.onEndEditing = ^(RETextItem *item) {
         //入力完了の時
         [NSUserDefaults setWorkSitename:item.value];

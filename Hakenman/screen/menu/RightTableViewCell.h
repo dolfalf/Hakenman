@@ -21,10 +21,6 @@
 }
 
 
-//@property (nonatomic, strong) IBOutlet BorderLabel *workTimeLabel;
-//@property (nonatomic, strong) IBOutlet BorderLabel *worktotalLabel;
-
-
 
 //TimeCard Coredataの代わりにRightTableViewDataを参照するようにする
 - (void)updateCell:(RightTableViewData *)model;
