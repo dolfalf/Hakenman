@@ -210,7 +210,7 @@
     if (_fromCurruntTimeInput == YES) {
         int inputTimeToDay = [[_fromCurruntInputDates substringWithRange:NSMakeRange(6, 2)] intValue];
 //        NSIndexPath *indexPath = [[NSIndexPath alloc]initWithIndexes:inputTimeToDay length:0];
-        [leftTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:inputTimeToDay inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [leftTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:inputTimeToDay-1 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 //        [leftTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
 }

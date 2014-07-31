@@ -11,6 +11,7 @@
 #import "const.h"
 #import <PBFlatUI/PBFlatButton.h>
 #import "Util.h"
+#import "NSUserDefaults+Setting.h"
 
 #define NUMBER_OF_PAGES 5
 #define timeForPage(page) (NSInteger)(self.view.frame.size.width * (page - 1))
@@ -483,6 +484,9 @@
 }
 
 - (IBAction)startButtonTouched:(id)sender {
+    
+    [NSUserDefaults setReadWelcomePage:YES];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

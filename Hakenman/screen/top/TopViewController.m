@@ -127,15 +127,12 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
 #endif
     
+    //Tutorial Show
+    [self performSelector:@selector(showTutorialView) withObject:nil afterDelay:0.3];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
-    
-    //最初起動の場合、チュートリアルを表示
-    if ([NSUserDefaults readWelcomePage] == NO) {
-        [StoryboardUtil gotoTutorialViewController:self animated:NO];
-        [NSUserDefaults setReadWelcomePage:YES];
-    }
     
 #ifdef TOPVIEWCONTROLLER_MENU_HIDDEN
     _menuBarButton.hidden = YES;
@@ -376,6 +373,14 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 }
 
 #pragma mark - private methods
+- (void)showTutorialView {
+    
+    //最初起動の場合、チュートリアルを表示
+    if ([NSUserDefaults readWelcomePage] == NO) {
+        [StoryboardUtil gotoTutorialViewController:self animated:YES];
+    }
+}
+
 - (NSArray *)displayCellItems {
     
     NSMutableArray *arrays = [NSMutableArray new];
