@@ -17,8 +17,8 @@
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month;
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
+- (NSArray *)fetchModelForCSVWithYear:(NSInteger)year month:(NSInteger)month;
 - (NSArray *)fetchModelGraphDate:(NSDate *)dt;
-
 - (TimeCard *)fetchModelWorkDate:(NSDate *)dt;
 //選択日付をデータをクリア
 - (void)clearTimeCardWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
