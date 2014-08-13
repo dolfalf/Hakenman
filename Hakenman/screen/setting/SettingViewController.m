@@ -120,7 +120,7 @@ enum {
 
 - (void)loadBasicSection {
     
-    __typeof (self) __weak weakSelf = self;
+//    __typeof (self) __weak weakSelf = self;
     
     // Add a section
     RETableViewSection *basicSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_basic_section_title")];
@@ -198,6 +198,8 @@ enum {
         [NSUserDefaults setWorkEndTime:[item.value convHHmmString]];
     };
     
+    //MARK: issue #23 対応(臨時)
+    /*
     //過去勤務表リスト表示
     NSArray *worksheet_options = [Util displayWorkSheetList];
     
@@ -221,9 +223,8 @@ enum {
                                                       }];
                                                       [strongSelf.navigationController pushViewController:optionsController animated:YES];
                                                   }];
-    //issue #23 対応(臨時)
-//    [basicSection addItem:worksheet_optionItem];
-    
+    [basicSection addItem:worksheet_optionItem];
+    */
 }
 
 - (void)loadReportSection {
