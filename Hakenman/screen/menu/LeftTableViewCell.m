@@ -33,8 +33,8 @@
     
     remarkFlagView.layer.cornerRadius = 5;
     remarkFlagView.layer.masksToBounds = YES;
-    [remarkFlagView.layer setBorderColor:[UIColor HKMSkyblueColor].CGColor];
-    remarkFlagView.backgroundColor = [UIColor HKMSkyblueColor];
+    [remarkFlagView.layer setBorderColor:[UIColor HKMOrangeColor].CGColor];
+    remarkFlagView.backgroundColor = [UIColor HKMOrangeColor];
     [remarkFlagView.layer setBorderWidth:1.f];
 }
 
