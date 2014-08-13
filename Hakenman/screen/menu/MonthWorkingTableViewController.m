@@ -289,7 +289,7 @@
             leftModel.workFlag = [NSNumber numberWithBool:YES];
         }
         
-        [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag];
+        [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag isRemark:YES];
         
         return cell;
         
