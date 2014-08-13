@@ -104,6 +104,25 @@
     
 }
 
+- (NSArray *)fetchModelForCSVWithYear:(NSInteger)year month:(NSInteger)month {
+    
+    self.fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [self.fetchRequest setEntity:entity];
+    
+    //sort
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"t_yyyymmdd" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [self.fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_year = %@ AND t_month = %@ AND workday_flag = %@", @(year), @(month), [NSNumber numberWithBool:YES]];
+    [self.fetchRequest setPredicate:pred];
+    
+    return [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
+
+}
+
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
     
     self.fetchRequest = [[NSFetchRequest alloc] init];

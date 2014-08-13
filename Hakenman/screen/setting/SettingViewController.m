@@ -279,6 +279,7 @@ enum {
 
 - (void)loadMailContentSection {
     
+    //ブロック文の中で普通にselfを使うとRetainしてしまうので。。。
     __typeof (self) __weak weakSelf = self;
     
     // Add a section

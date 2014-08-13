@@ -36,6 +36,7 @@ typedef enum {
 @property (nonatomic, strong) REDateTimeItem *startWtPickerItem;
 @property (nonatomic, strong) REDateTimeItem *endWtPickerItem;
 @property (nonatomic, strong) REPickerItem *restTimePickerItem;
+@property (nonatomic, strong) RELongTextItem *remarkLongTextItem;
 @property (nonatomic, strong) REBoolItem *workDayBoolItme;
 @property (nonatomic, strong) RETableViewItem *clearTimeCellItem;
 
@@ -116,10 +117,9 @@ typedef enum {
     timeCard.t_day = @([[timeCard.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
     timeCard.t_yyyymmdd = @([[timeCard.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
     timeCard.t_week = _showData.weekData;
+    timeCard.remarks = _remarkLongTextItem.value;
     //今後修正必要
-
     NSString *getRestTime = [NSString stringWithFormat:@"%@", [_restTimePickerItem.value objectAtIndex:0]];
-    
     timeCard.rest_time = [NSNumber numberWithFloat:getRestTime.floatValue];
     timeCard.workday_flag = [NSNumber numberWithBool:_workDayBoolItme.value];
 
@@ -233,6 +233,42 @@ typedef enum {
     self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[restStr] placeholder:nil options:@[@[@"0", @"1", @"1.5", @"2", @"2.5", @"3", @"3.5", @"4", @"4.5", @"5", @"5.5", @"6", @"6.5", @"7", @"7.5", @"8"]]];
     _restTimePickerItem.inlinePicker = YES;
     [section addItem:_restTimePickerItem];
+    
+    NSString *remarkValue;
+    
+    if (timeCard.remarks == nil || [timeCard.remarks isEqualToString:@""]) {
+        remarkValue = @"";
+    }else{
+        remarkValue = timeCard.remarks;
+    }
+    
+    //Remarks
+    self.remarkLongTextItem = [RELongTextItem itemWithValue:remarkValue placeholder:@"内容入力"];
+    _remarkLongTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _remarkLongTextItem.style = UITableViewCellStyleValue1;
+    _remarkLongTextItem.editingStyle = UITableViewCellEditingStyleDelete;
+    _remarkLongTextItem.charactersLimit = 200;
+    _remarkLongTextItem.cellHeight = 88;
+    [section addItem:_remarkLongTextItem];
+    
+    //入力を始めると、キーボードにテキストフィールドがかぶって表示することを対応
+    //ブロック文の中で普通にselfを使うとRetainしてしまうので。。。
+    //後で保存完了時の表示をテーブルビューを横スクロールさせる必要ありですぅ。。。
+    __typeof (self) __weak weakSelf = self;
+    
+    _remarkLongTextItem.onBeginEditing = ^(RELongTextItem *item) {
+        //入力のとき
+        [weakSelf.editTableView setContentOffset:CGPointMake(0,
+                                                                weakSelf.editTableView.contentOffset.y + item.cellHeight) animated:YES];
+    };
+    
+    _remarkLongTextItem.onEndEditing = ^(RELongTextItem *item) {
+        //入力が完了したら
+        [weakSelf.editTableView setContentOffset:CGPointMake(0,
+                                                                weakSelf.editTableView.contentOffset.y - item.cellHeight) animated:YES];
+
+    };
+    
     
     //平日、休日
     self.workDayBoolItme = [REBoolItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_workday_switch_cell") value:workTime switchValueChangeHandler:^(REBoolItem *item) {
