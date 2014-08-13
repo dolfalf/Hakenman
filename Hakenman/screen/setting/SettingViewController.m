@@ -371,7 +371,7 @@ enum {
                                        __typeof (weakSelf) __strong strongSelf = weakSelf;
                                        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
                                        
-                                       NSLog(@"initialize database: %@", item);
+                                       DLog(@"initialize database: %@", item);
                                        weakSelf.deleteAlertview = [[UIAlertView alloc] initWithTitle:@""
                                                                                              message:LOCALIZE(@"SettingViewController_database_init_alert_text")
                                                                                             delegate:weakSelf

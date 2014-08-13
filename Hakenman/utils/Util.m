@@ -134,7 +134,7 @@
     dateFormatter.dateFormat = @"MM/dd";
     
     NSString *formattedDateString = [dateFormatter stringFromDate:dt];
-    NSLog(@"%@", formattedDateString);
+    DLog(@"%@", formattedDateString);
     
     return formattedDateString;
     
@@ -150,7 +150,7 @@
     dateFormatter.dateFormat = @"HH:mm";
     
     NSString *formattedDateString = [dateFormatter stringFromDate:dt];
-    NSLog(@"%@", formattedDateString);
+//    DLog(@"%@", formattedDateString);
     
     return formattedDateString;
 }
@@ -165,7 +165,7 @@
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
     
     NSString *formattedDateString = [dateFormatter stringFromDate:dt];
-    NSLog(@"%@", formattedDateString);
+    DLog(@"%@", formattedDateString);
     
     return formattedDateString;
     

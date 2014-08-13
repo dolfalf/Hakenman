@@ -506,7 +506,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError*)error
 {
-    if(error) NSLog(@"ERROR - mailComposeController: %@", [error localizedDescription]);
+    if(error) DLog(@"ERROR - mailComposeController: %@", [error localizedDescription]);
     [self dismissViewControllerAnimated:YES completion:nil];
     return;
 }

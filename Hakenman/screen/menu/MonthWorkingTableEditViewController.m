@@ -272,7 +272,7 @@ typedef enum {
     
     //平日、休日
     self.workDayBoolItme = [REBoolItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_workday_switch_cell") value:workTime switchValueChangeHandler:^(REBoolItem *item) {
-        NSLog(@"Value: %i", item.value);
+        DLog(@"Value: %i", item.value);
     }];
     
     [section addItem:_workDayBoolItme];
