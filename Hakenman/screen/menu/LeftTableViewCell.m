@@ -25,12 +25,6 @@
 - (void)awakeFromNib
 {
     // Initialization code
-}
-
-- (void)drawRect:(CGRect)rect {
-    
-    [super drawRect:rect];
-    
     remarkFlagView.layer.cornerRadius = 5;
     remarkFlagView.layer.masksToBounds = YES;
     [remarkFlagView.layer setBorderColor:[UIColor HKMOrangeColor].CGColor];
