@@ -11,11 +11,12 @@
 
 @interface LeftTableViewCell : UITableViewCell {
     
+    IBOutlet UIView *remarkFlagView;
     IBOutlet BorderLabel *dayLabel;
     IBOutlet BorderLabel *weekLabel;
     IBOutlet BorderLabel *workDayLabel;
 }
 
-- (void)updateCell:(NSNumber *)day week:(NSNumber *)week isWork:(NSNumber *)work;
+- (void)updateCell:(NSNumber *)day week:(NSNumber *)week isWork:(NSNumber *)work isRemark:(BOOL)remark;
 
 @end

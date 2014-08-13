@@ -11,3 +11,7 @@
 @interface BorderLabel : UILabel
 
 @end
+
+@interface BorderLabelContainerView : UIView
+
+@end

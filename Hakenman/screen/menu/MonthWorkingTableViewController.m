@@ -182,6 +182,7 @@
                 rightDataModel.end_time = tm.end_time;
                 rightDataModel.rest_time = tm.rest_time;
                 rightDataModel.workday_flag = tm.workday_flag;
+                rightDataModel.remark = tm.remarks;
             }
         }
         //土曜日になったら、曜日表示を日曜日からやり直す
@@ -284,7 +285,11 @@
             leftModel.workFlag = [NSNumber numberWithBool:YES];
         }
         
-        [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag];
+        BOOL isRemark = YES;
+        if (rightModel.remark == nil || [rightModel.remark isEqualToString:@""]) {
+            isRemark = NO;
+        }
+        [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag isRemark:isRemark];
         
         return cell;
         
