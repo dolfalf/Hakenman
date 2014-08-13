@@ -125,7 +125,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wt5-y7-oaW" userLabel="View - day container">
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wt5-y7-oaW" userLabel="View - day container" customClass="BorderLabelContainerView">
                                                             <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>

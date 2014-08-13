@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSString * start_time;
 @property (nonatomic, strong) NSNumber * workday_flag;
 @property (nonatomic, assign) float total_time;     //累計時間
+@property (nonatomic, strong) NSString *remark;
 
 @end

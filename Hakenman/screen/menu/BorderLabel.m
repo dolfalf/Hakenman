@@ -41,5 +41,26 @@
 
 }
 
+@end
 
+@implementation BorderLabelContainerView
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    // Drawing code
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextSetStrokeColorWithColor(ctx, [UIColor lightGrayColor].CGColor);
+    CGContextBeginPath(ctx);
+    
+    CGContextMoveToPoint(ctx, self.bounds.size.width, self.bounds.origin.y);
+    CGContextAddLineToPoint(ctx, self.bounds.size.width, self.bounds.size.height);
+    CGContextAddLineToPoint(ctx, self.bounds.origin.x, self.bounds.size.height);
+    
+    
+    
+    CGContextStrokePath(ctx);
+    
+}
 @end
