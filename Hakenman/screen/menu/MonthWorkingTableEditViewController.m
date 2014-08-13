@@ -237,7 +237,7 @@ typedef enum {
     NSString *remarkValue;
     
     if (timeCard.remarks == nil || [timeCard.remarks isEqualToString:@""]) {
-        remarkValue = @"";
+        remarkValue = nil;
     }else{
         remarkValue = timeCard.remarks;
     }

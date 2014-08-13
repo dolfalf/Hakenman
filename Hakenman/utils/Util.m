@@ -428,7 +428,15 @@
                     [adding addObject:[Util worktimeString:[NSDate convDate2String:tm.start_time]]];
                     [adding addObject:[Util worktimeString:[NSDate convDate2String:tm.end_time]]];
                     [adding addObject:[NSString stringWithFormat:@"%.1f",[tm.rest_time floatValue]]];
-                    [adding addObject:tm.remarks];
+                    
+                    NSString *remarkValue;
+                    if (tm.remarks == nil) {
+                        remarkValue = @"";
+                    }else{
+                        remarkValue = tm.remarks;
+                    }
+                    
+                    [adding addObject:remarkValue];
                     continue;
                 }
             }
