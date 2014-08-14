@@ -180,8 +180,8 @@
     
     int start_idx = 0;
     
-    if ([mArray count] > 8) {
-        start_idx = [mArray count]-8;
+    if ([mArray count] > 7) {
+        start_idx = [mArray count]-7;
     }
     
     NSMutableArray *retArrays = [NSMutableArray new];
