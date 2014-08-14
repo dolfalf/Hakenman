@@ -71,7 +71,9 @@
     self.model = [self timeCardWithDate:dt];
     
     ((TimeCard *)self.model).start_time = [dt yyyyMMddHHmmssString];
-    
+    ((TimeCard *)self.model).rest_time = @(0);
+    ((TimeCard *)self.model).end_time = nil;
+    ((TimeCard *)self.model).workday_flag = @(YES);
     [self insertModel];
     
 }
@@ -81,6 +83,7 @@
     self.model = [self timeCardWithDate:dt];
     
     ((TimeCard *)self.model).end_time = [dt yyyyMMddHHmmssString];
+    ((TimeCard *)self.model).workday_flag = @(YES);
     
     [self insertModel];
 }
