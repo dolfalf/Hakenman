@@ -200,6 +200,11 @@
     //表示すべきテーブルに結果を入れる
     self.bigItems = [bTempDictionary mutableCopy];
     
+    
+    //MARK:累計計算
+    [self updateRightDataModelForTotalWorkTime];
+    
+    
     //テーブルの更新
     [leftTableView reloadData];
     [rightTableView reloadData];
@@ -225,6 +230,52 @@
             vw.backgroundColor = [UIColor whiteColor];
         }
     }
+}
+
+- (void)updateRightDataModelForTotalWorkTime {
+    
+    int currentDay = [[NSDate date] getDay];
+    
+    DLog(@"currentDay:[%d]",currentDay);
+    
+    if (currentDay == 1) {
+        
+        RightTableViewData *rData = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", currentDay]];
+        
+        NSDate *startTimeFromCore = [NSDate convDate2String:rData.start_time];
+        NSDate *endTimeFromCore = [NSDate convDate2String:rData.end_time];
+        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [rData.rest_time floatValue];
+        
+        //workflagがたてている場合のみ計算するため、営業日ではない場合は０にする。
+        if ([rData.workday_flag boolValue] == NO) {
+            workTimeFromCore = 0.f;
+        }
+        
+        rData.total_time = workTimeFromCore;
+        
+        return;
+    }
+    
+        
+    float display_total_time = 0.f;
+    
+    for (int i=0; i <= (currentDay-1); i++) {
+        
+        //前のセルのデータを取得して累計を計算する
+        RightTableViewData *tmpModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", i]];
+        
+        NSDate *startTimeFromTmp = [NSDate convDate2String:tmpModel.start_time];
+        NSDate *endTimeFromTmp = [NSDate convDate2String:tmpModel.end_time];
+        float workTimeFromTmp = [Util getWorkTime:startTimeFromTmp endTime:endTimeFromTmp] - [tmpModel.rest_time floatValue];
+        
+        if ([tmpModel.workday_flag boolValue] == NO) {
+            workTimeFromTmp = 0.f;
+        }
+        
+        display_total_time = display_total_time + workTimeFromTmp;
+        tmpModel.total_time = display_total_time;
+    }
+        
 }
 
 #pragma mark - Navigation
@@ -303,43 +354,7 @@
         //background color
         [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
         
-        //最初のセールは前のデータがないためそのまま自分のみ反映する
-        if ([leftModel.dayData intValue] == 1) {
-            //合計時間表示部分
-            NSDate *startTimeFromCore = [NSDate convDate2String:rightModel.start_time];
-            NSDate *endTimeFromCore = [NSDate convDate2String:rightModel.end_time];
-            float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [rightModel.rest_time floatValue];
-            
-            //workflagがたてている場合のみ計算するため、営業日ではない場合は０にする。
-            if ([rightModel.workday_flag boolValue] == NO) {
-                workTimeFromCore = 0.f;
-            }
-            
-            rightModel.total_time = workTimeFromCore;
-            
-        }else{
-            //一日以降の表示
-            int curruntDay = [leftModel.dayData intValue];
-            float display_total_time = 0.f;
-            
-            for (int i=0; i <= (curruntDay-1); i++) {
-                //前のセルのデータを取得して累計を計算する
-                RightTableViewData *tmpModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", i]];
-                
-                NSDate *startTimeFromTmp = [NSDate convDate2String:tmpModel.start_time];
-                NSDate *endTimeFromTmp = [NSDate convDate2String:tmpModel.end_time];
-                float workTimeFromTmp = [Util getWorkTime:startTimeFromTmp endTime:endTimeFromTmp] - [tmpModel.rest_time floatValue];
-                
-                if ([tmpModel.workday_flag boolValue] == NO) {
-                    workTimeFromTmp = 0.f;
-                }
-                
-                display_total_time = display_total_time + workTimeFromTmp;
-            }
-            
-            rightModel.total_time = display_total_time;
-            
-        }
+        //MARK: 累計の計算はwillAppearですることに。
         
         //cell update.
         [cell updateCell:rightModel];
