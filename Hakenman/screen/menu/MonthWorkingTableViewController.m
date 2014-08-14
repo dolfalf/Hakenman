@@ -234,48 +234,29 @@
 
 - (void)updateRightDataModelForTotalWorkTime {
     
-    int currentDay = [[NSDate date] getDay];
+    //MARK:累計計算メソッド
+    float display_total_time = 0.f;
     
-    DLog(@"currentDay:[%d]",currentDay);
-    
-    if (currentDay == 1) {
-        
-        RightTableViewData *rData = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", currentDay]];
+    for (int day = 1; day <= [_sheetDate getLastday];day++) {
+
+        RightTableViewData *rData = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", day-1]];
         
         NSDate *startTimeFromCore = [NSDate convDate2String:rData.start_time];
         NSDate *endTimeFromCore = [NSDate convDate2String:rData.end_time];
         float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [rData.rest_time floatValue];
         
-        //workflagがたてている場合のみ計算するため、営業日ではない場合は０にする。
+        if (rData.start_time == nil || [rData.start_time isEqualToString:@""] == YES
+            || rData.end_time == nil || [rData.end_time isEqualToString:@""] == YES) {
+            continue;
+        }
+        
         if ([rData.workday_flag boolValue] == NO) {
             workTimeFromCore = 0.f;
         }
         
-        rData.total_time = workTimeFromCore;
-        
-        return;
+        display_total_time = display_total_time + workTimeFromCore;
+        rData.total_time = display_total_time;
     }
-    
-        
-    float display_total_time = 0.f;
-    
-    for (int i=0; i <= (currentDay-1); i++) {
-        
-        //前のセルのデータを取得して累計を計算する
-        RightTableViewData *tmpModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", i]];
-        
-        NSDate *startTimeFromTmp = [NSDate convDate2String:tmpModel.start_time];
-        NSDate *endTimeFromTmp = [NSDate convDate2String:tmpModel.end_time];
-        float workTimeFromTmp = [Util getWorkTime:startTimeFromTmp endTime:endTimeFromTmp] - [tmpModel.rest_time floatValue];
-        
-        if ([tmpModel.workday_flag boolValue] == NO) {
-            workTimeFromTmp = 0.f;
-        }
-        
-        display_total_time = display_total_time + workTimeFromTmp;
-        tmpModel.total_time = display_total_time;
-    }
-        
 }
 
 #pragma mark - Navigation
