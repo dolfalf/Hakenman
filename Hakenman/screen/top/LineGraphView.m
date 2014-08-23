@@ -133,7 +133,7 @@
     
     BOOL write_max_text = NO;
     
-    for (int i = 0; i < [linePoints count] - 1; i++) {
+    for (int i = 0; i < [linePoints count]; i++) {
         
         float wt = [[linePoints objectAtIndex:i] floatValue];
         float graph_height = self.frame.size.height - (margin*2);
@@ -147,6 +147,11 @@
         if (i == 0) {
             _preLinePoint = linePoint;
             continue;
+        }
+        
+        if (linePoints.count == 1) {
+            //線を描画できないため
+            break;
         }
         
         //draw line

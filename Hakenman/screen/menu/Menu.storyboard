@@ -112,6 +112,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="W0p-hn-879"/>
                                 </constraints>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeftTableViewCell" rowHeight="30" id="rZ1-gA-ao5" customClass="LeftTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="91" height="30"/>
@@ -124,14 +125,26 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZG-MG-PO9" userLabel="Label - day" customClass="BorderLabel">
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wt5-y7-oaW" userLabel="View - day container" customClass="BorderLabelContainerView">
                                                             <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWo-qv-i3u" userLabel="View - RemarkFlag">
+                                                                    <rect key="frame" x="3" y="11" width="8" height="8"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </view>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZG-MG-PO9" userLabel="Label - day" customClass="BorderLabel">
+                                                                    <rect key="frame" x="11" y="0.0" width="20" height="30"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        </view>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="1A6-de-ZbM" userLabel="Label - week" customClass="BorderLabel">
                                                             <rect key="frame" x="31" y="0.0" width="37" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -156,6 +169,7 @@
                                         </accessibility>
                                         <connections>
                                             <outlet property="dayLabel" destination="eZG-MG-PO9" id="6Ia-s5-9Ng"/>
+                                            <outlet property="remarkFlagView" destination="rWo-qv-i3u" id="N5g-cb-ffq"/>
                                             <outlet property="weekLabel" destination="1A6-de-ZbM" id="K95-jV-TTr"/>
                                             <outlet property="workDayLabel" destination="e54-pQ-rTK" id="vqK-cy-tE2"/>
                                         </connections>

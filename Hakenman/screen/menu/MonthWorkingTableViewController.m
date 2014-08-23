@@ -182,8 +182,8 @@
                 rightDataModel.end_time = tm.end_time;
                 rightDataModel.rest_time = tm.rest_time;
                 rightDataModel.workday_flag = tm.workday_flag;
+                rightDataModel.remark = tm.remarks;
             }
-            
         }
         //土曜日になったら、曜日表示を日曜日からやり直す
         if (weekDay == 7) {
@@ -200,6 +200,11 @@
     //表示すべきテーブルに結果を入れる
     self.bigItems = [bTempDictionary mutableCopy];
     
+    
+    //MARK:累計計算
+    [self updateRightDataModelForTotalWorkTime];
+    
+    
     //テーブルの更新
     [leftTableView reloadData];
     [rightTableView reloadData];
@@ -209,9 +214,7 @@
 - (void)autoSelectedCell {
     if (_fromCurruntTimeInput == YES) {
         int inputTimeToDay = [[_fromCurruntInputDates substringWithRange:NSMakeRange(6, 2)] intValue];
-//        NSIndexPath *indexPath = [[NSIndexPath alloc]initWithIndexes:inputTimeToDay length:0];
         [leftTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:inputTimeToDay-1 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-//        [leftTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
 }
 
@@ -229,7 +232,32 @@
     }
 }
 
-//[tableView scrollToRowAtIndexPath:<#(NSIndexPath *)#> atScrollPosition:<#(UITableViewScrollPosition)#> animated:<#(BOOL)#>];
+- (void)updateRightDataModelForTotalWorkTime {
+    
+    //MARK:累計計算メソッド
+    float display_total_time = 0.f;
+    
+    for (int day = 1; day <= [_sheetDate getLastday];day++) {
+
+        RightTableViewData *rData = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", day-1]];
+        
+        NSDate *startTimeFromCore = [NSDate convDate2String:rData.start_time];
+        NSDate *endTimeFromCore = [NSDate convDate2String:rData.end_time];
+        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [rData.rest_time floatValue];
+        
+        if (rData.start_time == nil || [rData.start_time isEqualToString:@""] == YES
+            || rData.end_time == nil || [rData.end_time isEqualToString:@""] == YES) {
+            continue;
+        }
+        
+        if ([rData.workday_flag boolValue] == NO) {
+            workTimeFromCore = 0.f;
+        }
+        
+        display_total_time = display_total_time + workTimeFromCore;
+        rData.total_time = display_total_time;
+    }
+}
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -289,7 +317,11 @@
             leftModel.workFlag = [NSNumber numberWithBool:YES];
         }
         
-        [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag];
+        BOOL isRemark = YES;
+        if (rightModel.remark == nil || [rightModel.remark isEqualToString:@""]) {
+            isRemark = NO;
+        }
+        [cell updateCell:leftModel.dayData week:leftModel.weekData isWork:leftModel.workFlag isRemark:isRemark];
         
         return cell;
         
@@ -303,24 +335,7 @@
         //background color
         [self tableViewAlternateBackgroundColor:indexPath tableViewCell:cell];
         
-        //合計時間表示部分
-        NSDate *startTimeFromCore = [NSDate convDate2String:rightModel.start_time];
-        NSDate *endTimeFromCore = [NSDate convDate2String:rightModel.end_time];
-        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [rightModel.rest_time floatValue];
-        
-        //workflagがたてている場合のみ計算するため、営業日ではない場合は０にする。
-        if ([rightModel.workday_flag boolValue] == NO) {
-            workTimeFromCore = 0.f;
-        }
-        
-        //最初のセールは前のデータがないためそのまま自分のみ反映する
-        if (indexPath == 0) {
-            rightModel.total_time = workTimeFromCore;
-        }else {
-            //前のセルのデータを取得して累計を計算する
-            RightTableViewData *preRightModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", indexPath.row-1]];
-            rightModel.total_time = preRightModel.total_time + workTimeFromCore;
-        }
+        //MARK: 累計の計算はwillAppearですることに。
         
         //cell update.
         [cell updateCell:rightModel];
@@ -360,7 +375,9 @@
 -(IBAction)barButtonAction:(id)sender{
     TimeCardDao *dao = [TimeCardDao new];
     
-    NSArray *models = [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
+    NSArray *models = [dao fetchModelForCSVWithYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
+    
+//    [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
     [Util sendWorkSheetCsvfile:self data:models];
 }
 

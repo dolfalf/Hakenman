@@ -71,7 +71,9 @@
     self.model = [self timeCardWithDate:dt];
     
     ((TimeCard *)self.model).start_time = [dt yyyyMMddHHmmssString];
-    
+    ((TimeCard *)self.model).rest_time = @(0);
+    ((TimeCard *)self.model).end_time = nil;
+    ((TimeCard *)self.model).workday_flag = @(YES);
     [self insertModel];
     
 }
@@ -81,6 +83,7 @@
     self.model = [self timeCardWithDate:dt];
     
     ((TimeCard *)self.model).end_time = [dt yyyyMMddHHmmssString];
+    ((TimeCard *)self.model).workday_flag = @(YES);
     
     [self insertModel];
 }
@@ -102,6 +105,25 @@
     
     return [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
     
+}
+
+- (NSArray *)fetchModelForCSVWithYear:(NSInteger)year month:(NSInteger)month {
+    
+    self.fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [self.fetchRequest setEntity:entity];
+    
+    //sort
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"t_yyyymmdd" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [self.fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_year = %@ AND t_month = %@ AND workday_flag = %@", @(year), @(month), [NSNumber numberWithBool:YES]];
+    [self.fetchRequest setPredicate:pred];
+    
+    return [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
+
 }
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
@@ -158,8 +180,8 @@
     
     int start_idx = 0;
     
-    if ([mArray count] > 8) {
-        start_idx = [mArray count]-8;
+    if ([mArray count] > 7) {
+        start_idx = [mArray count]-7;
     }
     
     NSMutableArray *retArrays = [NSMutableArray new];

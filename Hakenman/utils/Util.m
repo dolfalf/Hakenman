@@ -134,7 +134,7 @@
     dateFormatter.dateFormat = @"MM/dd";
     
     NSString *formattedDateString = [dateFormatter stringFromDate:dt];
-    NSLog(@"%@", formattedDateString);
+    DLog(@"%@", formattedDateString);
     
     return formattedDateString;
     
@@ -150,7 +150,7 @@
     dateFormatter.dateFormat = @"HH:mm";
     
     NSString *formattedDateString = [dateFormatter stringFromDate:dt];
-    NSLog(@"%@", formattedDateString);
+//    DLog(@"%@", formattedDateString);
     
     return formattedDateString;
 }
@@ -165,7 +165,7 @@
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
     
     NSString *formattedDateString = [dateFormatter stringFromDate:dt];
-    NSLog(@"%@", formattedDateString);
+    DLog(@"%@", formattedDateString);
     
     return formattedDateString;
     
@@ -173,9 +173,24 @@
 
 + (float)getWorkTime:(NSDate *)startTime endTime:(NSDate *)endTime {
     
-	NSTimeInterval since = [endTime timeIntervalSinceDate:startTime];
+    //start_time & end_time 語尾の桁数を００に変換
     
-    return since/(60.f*60.f);
+    //合計時間の計算のため秒単位の語尾を「00」に固定
+    NSString *startStr = [startTime yyyyMMddHHmmssString];
+    startStr = [startStr stringByReplacingCharactersInRange:(NSMakeRange(12, 2)) withString:@"00"];
+    NSDate *convertStart = [NSDate convDate2String:startStr];
+    
+    NSString *endStr = [endTime yyyyMMddHHmmssString];
+    endStr = [endStr stringByReplacingCharactersInRange:(NSMakeRange(12, 2)) withString:@"00"];
+    NSDate *convertEnd = [NSDate convDate2String:endStr];
+    
+	NSTimeInterval since = [convertEnd timeIntervalSinceDate:convertStart];
+    
+    float resultSince1 = since/(60.f*60.f);
+    float resultSince2 = resultSince1 * 100.f;
+    float resultSince3 = ceilf(resultSince2);
+    float resultSince4 = resultSince3/100.f;
+    return resultSince4;
     
 }
 
@@ -388,7 +403,7 @@
         
         //MARK:
         NSString *csvString = @"";
-        NSMutableArray* all = [@[@"DATE,WEEKDAY,WORK_START_TIME,WORK_END_TIME,REST_TIME"] mutableCopy];
+        NSMutableArray* all = [@[@"DATE,WEEKDAY,WORK_START_TIME,WORK_END_TIME,REST_TIME,REMARKS"] mutableCopy];
         
         NSString *targetDateYYYYmmdd = [((TimeCard *)[worksheets objectAtIndex:0]).t_yyyymmdd stringValue];
         NSDate *targetMonth = [NSDate convDate2ShortString:targetDateYYYYmmdd];
@@ -414,6 +429,14 @@
                     [adding addObject:[Util worktimeString:[NSDate convDate2String:tm.end_time]]];
                     [adding addObject:[NSString stringWithFormat:@"%.1f",[tm.rest_time floatValue]]];
                     
+                    NSString *remarkValue;
+                    if (tm.remarks == nil) {
+                        remarkValue = @"";
+                    }else{
+                        remarkValue = tm.remarks;
+                    }
+                    
+                    [adding addObject:remarkValue];
                     continue;
                 }
             }

@@ -469,12 +469,12 @@
 
 - (void)animatedScrollViewControllerDidScrollToEnd:(IFTTTAnimatedScrollViewController *)animatedScrollViewController
 {
-    NSLog(@"Scrolled to end of scrollview!");
+    DLog(@"Scrolled to end of scrollview!");
 }
 
 - (void)animatedScrollViewControllerDidEndDraggingAtEnd:(IFTTTAnimatedScrollViewController *)animatedScrollViewController
 {
-    NSLog(@"Ended dragging at end of scrollview!");
+    DLog(@"Ended dragging at end of scrollview!");
 }
 
 -(IBAction)close:(id)sender {

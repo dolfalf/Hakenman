@@ -20,6 +20,7 @@
 #import "MonthWorkingTableViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "NSUserDefaults+Setting.h"
+#import "UIColor+Helper.h"
 
 #define TOPVIEWCONTROLLER_MENU_HIDDEN
 
@@ -237,6 +238,10 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     //title
     self.title = LOCALIZE(@"TopViewController_goWork_title");
+    
+    //toolbar
+    //#issue31対応
+    self.navigationController.toolbar.backgroundColor = [UIColor HKMDarkblueColor];
     
     //出勤時間チェック開始
     [self startLoadTimer];
@@ -506,7 +511,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError*)error
 {
-    if(error) NSLog(@"ERROR - mailComposeController: %@", [error localizedDescription]);
+    if(error) DLog(@"ERROR - mailComposeController: %@", [error localizedDescription]);
     [self dismissViewControllerAnimated:YES completion:nil];
     return;
 }
