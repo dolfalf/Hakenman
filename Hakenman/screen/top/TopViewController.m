@@ -84,8 +84,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     //summary table更新
     TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
-//    [timeCardSummaryDao updatedTimeCardSummaryTable:[[NSDate date] yyyyMMString]];
-    [timeCardSummaryDao updatedTimeCardSummaryTable:@"201308"];
+    [timeCardSummaryDao updatedTimeCardSummaryTable:[[NSDate date] yyyyMMString]];
     
     //MARK: テストデータの生成
 #if 0

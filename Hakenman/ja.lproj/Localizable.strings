@@ -98,6 +98,7 @@
 "SettingViewController_menulist_work_report_content_worktime_templete" = "勤務時間: %@ ~ %@　(%@)\n\n";
 "SettingViewController_menulist_work_report_content_worktime_templete_worksite_nothing" = "勤務時間: %@ ~ %@\n\n";
 
+"SettingViewController_version_title"              = "バージョン";
 "SettingViewController_tutorial_title"             = "チュートリアル";
 "SettingViewController_app_info_title"             = "KJCodeについて";
 "SettingViewController_open_lisence_title"         = "オープンライセンス";

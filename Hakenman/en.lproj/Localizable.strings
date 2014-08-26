@@ -99,6 +99,7 @@
 
 "SettingViewController_menulist_work_report_content_placeholder" = "Report mail contents";
 
+"SettingViewController_version_title"             = "Version";
 "SettingViewController_tutorial_title"             = "Tutorial";
 "SettingViewController_app_info_title"             = "About KJCode";
 "SettingViewController_open_lisence_title"         = "Open lisence";
