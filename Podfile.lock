@@ -3,7 +3,7 @@ PODS:
   - GoogleAnalytics-iOS-SDK (3.0.2)
   - JazzHands (0.1.0)
   - PBFlatUI (1.1.0)
-  - REFormattedNumberField (1.1.2)
+  - REFormattedNumberField (1.1.4)
   - RETableViewManager (1.5.10):
     - REFormattedNumberField (~> 1.1.2)
     - REValidation (~> 0.1.4)
@@ -21,7 +21,7 @@ SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: 092c6c87301bb419ed44c1992cad87bc214de9ae
   JazzHands: 828e9d0d6609fdc9089d8049d64dd2ab45179d13
   PBFlatUI: c5b83184df1ea5567c23cce0f2e36708e8e1638f
-  REFormattedNumberField: 321bf62160e6dc480844ac99ab6821ef4dd20802
+  REFormattedNumberField: 73fc04771520498a30889a975ec9c1b293059b0e
   RETableViewManager: 534104717ea10a71b203e80ee0dd3c4c79648be3
   REValidation: a0033a582415848854e875dfcbe69c107de19f81
 
