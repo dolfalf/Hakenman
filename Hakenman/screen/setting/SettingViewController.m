@@ -321,6 +321,15 @@ enum {
     RETableViewSection *appInfoSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_app_info_section_title")];
     [self.reTableManager addSection:appInfoSection];
     
+    //バージョン
+    NSString *versionNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *buildNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    
+    RETableViewItem *versionItem = [RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_version_title")];
+    versionItem.style = UITableViewCellStyleValue1;
+    versionItem.detailLabelText = [NSString stringWithFormat:@"%@ (%@)",versionNo,buildNo];
+    [appInfoSection addItem:versionItem];
+    
     //チュートリアル
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_tutorial_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
         

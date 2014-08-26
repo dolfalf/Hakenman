@@ -258,4 +258,44 @@
 
 }
 
+- (NSArray *)timeSummaryTableData {
+    
+    //TimeCardテーブルから更新データ（summary data）を取得
+    self.fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [self.fetchRequest setEntity:entity];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"workday_flag == %@", [NSNumber numberWithBool:YES]];    //条件指定
+    [self.fetchRequest setPredicate:pred];
+    
+    //集計対象カラムt_day
+    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"t_day"];
+    //集計関数countを指定
+    NSExpression *countExpression = [NSExpression expressionForFunction:@"count:"
+                                                              arguments:@[keyPathExpression]];
+    
+    //集計式の対象（NSExpressionDescription）
+    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+    [expressionDescription setName:@"dayCount"];
+    [expressionDescription setExpression:countExpression];
+    [expressionDescription setExpressionResultType:NSInteger32AttributeType];
+    
+    [self.fetchRequest setPropertiesToFetch:@[@"t_year", @"t_month", expressionDescription]];
+    //Group By
+    [self.fetchRequest setPropertiesToGroupBy:@[@"t_year",@"t_month"]];
+    
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"t_year" ascending:NO];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"t_month" ascending:NO];
+    [self.fetchRequest setSortDescriptors:@[sortDescriptor1,sortDescriptor2]];
+    
+    [self.fetchRequest setResultType:NSDictionaryResultType];
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
+
+    
+    DLog(@"出力結果:%@", fetchedObjects);
+    
+    return fetchedObjects;
+}
+
 @end
