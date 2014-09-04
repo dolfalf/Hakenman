@@ -22,7 +22,7 @@
 #import "NSUserDefaults+Setting.h"
 #import "UIColor+Helper.h"
 
-#define TOPVIEWCONTROLLER_MENU_HIDDEN
+//#define TOPVIEWCONTROLLER_MENU_HIDDEN
 
 NS_ENUM(NSInteger, tableCellType) {
     tableCellTypeToday = 0,
