@@ -22,8 +22,9 @@
 #define GOOGLE_ANALYTICS_ID @"UA-52562316-1"
 
 #define GOOGLE_ANALYTICS_ENABLE
-
 #define TEST_FLIGHT_ENABLE
+//８月データのリカバリー用
+#define RECOVERY_CODE_ENABLE
 
 #ifdef DEBUG
 #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

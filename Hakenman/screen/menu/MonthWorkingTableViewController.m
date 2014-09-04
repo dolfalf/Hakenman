@@ -268,6 +268,8 @@
         
         //編集画面へ遷移するとき、選んだ日のデータを編集画面へ渡す
         controller.showData = [_bigItems objectForKey:[NSString stringWithFormat:@"left_%d", _selectedIndex]];
+        //画面遷移時に自動スクロールを無効にする
+        _fromCurruntTimeInput = NO;
     }
 }
 

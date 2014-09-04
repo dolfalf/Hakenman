@@ -73,14 +73,17 @@
 }
 
 - (void)updatedTimeCardSummaryTable:(NSString *)yyyymm {
-   
+    
     //パラメータに指定された月の情報がなければ新しく生成
     //ただし、今月なら生成する必要はない
-    NSDate *today = [NSDate date];
-    if([[today yyyyMMString] isEqualToString:yyyymm] == YES) {
-        DLog(@"更新対象テーブルがない");
-        return;
-    }
+    
+    //REMARK:8월중 인스톨 -> 데이터 입력 -> 9월로 시간변경 -> 8월이 안나옴(DB확인하니 TIMECARDSUMMARY에 아무것도 없음)
+    //이부분이 있으면 데이타가 갱신이 안되므로 코멘트처리 - 악당잰
+//    NSDate *today = [NSDate date];
+//    if([[today yyyyMMString] isEqualToString:yyyymm] == YES) {
+//        DLog(@"更新対象テーブルがない");
+//        return;
+//    }
     
     //DLog(@"%@",[yyyymm substringWithRange:NSMakeRange(0,4)]);
     //統計を取得
@@ -90,17 +93,16 @@
     
     int total_workday = 0;
     float total_workTime = 0.f;
-    
     for (TimeCard *tm in timecards) {
         if([tm.workday_flag isEqual:@1] == YES) {
             total_workday++;
-        }
-        
-        float duration = [Util getWorkTime:[NSDate convDate2String:tm.start_time]
-                                   endTime:[NSDate convDate2String:tm.end_time]];
+           float duration = [Util getWorkTime:[NSDate convDate2String:tm.start_time]
+                                 endTime:[NSDate convDate2String:tm.end_time]];
 
-        total_workTime = total_workTime + duration;
-        
+            duration = duration - [tm.rest_time floatValue];
+            
+            total_workTime = total_workTime + duration;
+        }
     }
     
     DLog(@"TimeCard calc-> totalWorkTime:%f, totalWorkDay:%d",total_workTime,total_workday);
@@ -112,6 +114,7 @@
         model.workTime = @(total_workTime);
         model.workdays = @(total_workday);
         model.summary_type = @1; //not used
+        model.t_yyyymm = @([yyyymm intValue]);  //REMARK: これが漏れたため全部０が設定されてしまった。
         model.remark = @""; //not used
         DLog(@"サマリーデータを生成");
     }else {
@@ -119,11 +122,86 @@
         TimeCardSummary *model =[models objectAtIndex:0];
         model.workTime = @(total_workTime);
         model.workdays = @(total_workday);
+        
         DLog(@"サマリーデータを更新");
     }
     
     // insert or update
     [self insertModel];
 }
+
+- (void)updateTimeCardSummaryTableAll {
+    
+    NSDate *today = [NSDate date];
+    
+    NSArray *gTimeCards = [[TimeCardDao new] timeSummaryTableData];
+    
+    for (NSDictionary *dic in gTimeCards) {
+        
+        int sYear = [[dic objectForKey:@"t_year"] intValue];
+        int sMonth = [[dic objectForKey:@"t_month"] intValue];
+        
+        //現在の月はサマリーを作成しない
+        if (sYear == [today getYear] && sMonth == [today getMonth]) {
+            continue;
+        }
+        
+        //サマリーが存在しない場合のみ生成
+        NSString *yyyymmString = [NSString stringWithFormat:@"%d%02d",sYear,sMonth];
+        NSArray *sModels = [self fetchModelMonth:yyyymmString];
+        if (sModels == nil || [sModels count] == 0) {
+            
+            int total_workday = 0;
+            float total_workTime = 0.f;
+            
+            TimeCardDao *tcDao = [TimeCardDao new];
+            NSArray *timecards = [tcDao fetchModelYear:sYear month:sMonth];
+            
+            for (TimeCard *tm in timecards) {
+                if([tm.workday_flag isEqual:@1] == YES) {
+                    total_workday++;
+                    float duration = [Util getWorkTime:[NSDate convDate2String:tm.start_time]
+                                               endTime:[NSDate convDate2String:tm.end_time]];
+                    
+                    duration = duration - [tm.rest_time floatValue];
+                    total_workTime = total_workTime + duration;
+                }
+                
+            }
+            
+            //存在しないため作成
+            TimeCardSummary *model = [self createModel];
+            model.workTime = @(total_workTime);
+            model.workdays = @(total_workday);
+            model.summary_type = @1; //not used
+            model.t_yyyymm = [NSNumber numberWithInt:[yyyymmString intValue]];
+            model.remark = @""; //not used
+         
+            [self insertModel];
+            DLog(@"%@ サマリー作成",yyyymmString);
+        }
+    }
+    
+}
+
+#ifdef RECOVERY_CODE_ENABLE
+- (void)recoveryTimeCardSummaryTable {
+    
+    //REMARK: t_yyyymmが「0」になっているデータはすべて削除する
+    NSArray *models = [self fetchModelMonth:@"0"];
+    
+    if (models == nil || [models count] == 0) {
+        return;
+    }
+    
+    //ゴミデータを削除
+    for (TimeCardSummary *model in models) {
+        self.model = model;
+        [self deleteModel];
+    }
+    
+    DLog(@"Recoveryのため、ゴミデータを削除しました。");
+}
+#endif
 
 @end

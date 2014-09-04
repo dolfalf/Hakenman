@@ -15,4 +15,12 @@
 
 //MARK: TimeCardが変更されたらこのメソッドを呼んでください。
 - (void)updatedTimeCardSummaryTable:(NSString *)yyyymm;
+//MARK: TimeCardSummaryテーブルを更新
+- (void)updateTimeCardSummaryTableAll;
+
+#ifdef RECOVERY_CODE_ENABLE
+//MARK:リカバリーのため臨時的に使うメソッド
+- (void)recoveryTimeCardSummaryTable;
+#endif
+
 @end

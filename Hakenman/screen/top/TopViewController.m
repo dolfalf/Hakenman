@@ -81,11 +81,21 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    //summary table更新
+
     TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
+    
+#ifdef RECOVERY_CODE_ENABLE
+    //recoveryをする。「０」になっているデータを削除
+    [timeCardSummaryDao recoveryTimeCardSummaryTable];
+#endif
+    
+
+    //summary table更新
 //    [timeCardSummaryDao updatedTimeCardSummaryTable:[[NSDate date] yyyyMMString]];
-    [timeCardSummaryDao updatedTimeCardSummaryTable:@"201308"];
+    //サマリーを全体を更新するように
+    [timeCardSummaryDao updateTimeCardSummaryTableAll];
+
+    
     
     //MARK: テストデータの生成
 #if 0
@@ -130,6 +140,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     //Tutorial Show
     [self performSelector:@selector(showTutorialView) withObject:nil afterDelay:0.3];
+    
 }
 
 

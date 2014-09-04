@@ -23,4 +23,7 @@
 //選択日付をデータをクリア
 - (void)clearTimeCardWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
 
+//timeCardSummaryデータを作成するためのgroupingするデータを返す
+- (NSArray *)timeSummaryTableData;
+
 @end
