@@ -86,7 +86,10 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
 #ifdef RECOVERY_CODE_ENABLE
     //recoveryをする。「０」になっているデータを削除
-    [timeCardSummaryDao recoveryTimeCardSummaryTable];
+    if ([Util olderThanVersion:@"1.0.2"] == YES) {
+        [timeCardSummaryDao recoveryTimeCardSummaryTable];
+    }
+    
 #endif
     
 

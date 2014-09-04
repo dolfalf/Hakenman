@@ -479,4 +479,28 @@
     
 }
 
++ (BOOL)olderThanVersion:(NSString *)ver {
+    
+    //version1.0.2->102にして比較
+    NSArray *v_arrays = [ver componentsSeparatedByString:@"."];
+    if ([v_arrays count] == 3) {
+        int num_ver = [v_arrays[0] intValue] * 100
+        + [v_arrays[1] intValue] * 10
+        + [v_arrays[2] intValue] * 1;
+        
+        NSArray *c_arrays = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]componentsSeparatedByString:@"."];
+        
+        int curr_num_ver = [c_arrays[0] intValue] * 100
+        + [c_arrays[1] intValue] * 10
+        + [c_arrays[2] intValue] * 1;
+        
+        DLog(@"check version:[%d], current version[%d]", num_ver, curr_num_ver);
+        if (num_ver > curr_num_ver) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 @end
