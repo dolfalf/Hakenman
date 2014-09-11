@@ -223,7 +223,7 @@
     
     [self.fetchRequest setEntity:entity];
     
-    NSString *dayString = [dt yyyyMMddHHmmssString];
+    NSString *dayString = [dt yyyyMMddString];
     DLog(@"dayString[%@]",dayString);
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_yyyymmdd == %@", dayString];    //条件指定
