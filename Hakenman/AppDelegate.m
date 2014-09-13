@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DBManager.h"
 #import "TimeCardSummaryDao.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
@@ -18,6 +19,26 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [UIApplication sharedApplication].statusBarHidden = NO;
 
+    
+    //TODO: Parseへrelease用認定証を登録する必要がある。
+    //parseによるNotification登録
+    [Parse setApplicationId:@"tXDVIqH5a5N9TPCJsIPmfJdW0HQDwBD46GN9Xdjv"
+                  clientKey:@"u4O54cwrZHTIxrL2cn67T3hzXV0lmFHVq6mrqQac"];
+    
+    
+    //ja_JP
+    NSLog(@"localeIdentifier: %@", [[NSLocale currentLocale] localeIdentifier]);
+    
+    //言語別Notificationを通知するため
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    [installation setObject:[[NSLocale currentLocale] localeIdentifier] forKey:@"locale"];
+    [installation saveInBackground];
+
+    
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
+     UIRemoteNotificationTypeAlert|
+     UIRemoteNotificationTypeSound];
+    
 #ifdef TEST_FLIGHT_ENABLE
 //    [TestFlight takeOff:@"f252a090-9e2d-41b4-a4d4-599bb9695f32"];
 #endif
@@ -61,6 +82,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    [PFPush handlePush:userInfo];
 }
 
 @end
