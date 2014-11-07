@@ -21,6 +21,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "NSUserDefaults+Setting.h"
 #import "UIColor+Helper.h"
+#import "MonthWorkingCalendarViewController.h"
 
 //#define TOPVIEWCONTROLLER_MENU_HIDDEN
 
@@ -105,7 +106,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 
     [timeCardDao deleteAllModel];
-    for (int j=3; j < 9; j++) {
+    for (int j=3; j < 11; j++) {
         for (int i=1; i <= 31; i++) {
             TimeCard *model = [timeCardDao createModel];
             //20140301090000
@@ -509,14 +510,26 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
         }];
         
     }else {
-        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
-            //paramを渡す
-            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+        //TODO:
+        if ([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeSheet) {
+            [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+                //paramを渡す
+                MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+                
+                //TODO:
+                TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
+                controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
+            }];
+        }else if([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeCalendar) {
             
-            //TODO:
-            TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
-            controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
-        }];
+            [StoryboardUtil gotoMonthWorkingCalendarViewController:self completion:^(id destinationController) {
+                //paramを渡す
+                MonthWorkingCalendarViewController *controller = (MonthWorkingCalendarViewController *)destinationController;
+                
+                TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
+                controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
+            }];
+        }
     }
 }
 

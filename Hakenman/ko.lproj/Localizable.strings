@@ -85,6 +85,10 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "최근 1년간";
 "SettingViewController_last_worksheet_display_sixmonth" = "최근 6개월간";
 
+"SettingViewController_default_worksheet_display_title" = "근무표표시";
+"SettingViewController_default_worksheet_display_sheet" = "시트";
+"SettingViewController_default_worksheet_display_calendar" = "달력";
+
 "SettingViewController_mail_title_title"            = "제목";
 "SettingViewController_work_report_title_defalut" = "【일일업무보고서】yyyy년mm월dd일";
 

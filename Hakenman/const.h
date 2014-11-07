@@ -32,4 +32,10 @@ typedef enum {
     weekSatDay
 } weekday;
 
+typedef NS_ENUM(NSInteger, WorksheetDisplayMode) {
+    
+    WorksheetDisplayModeSheet = 0,
+    WorksheetDisplayModeCalendar,
+};
+
 #endif

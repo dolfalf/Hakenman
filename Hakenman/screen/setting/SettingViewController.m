@@ -197,6 +197,22 @@ enum {
         //Picker値変更
         [NSUserDefaults setWorkEndTime:[item.value convHHmmString]];
     };
+
+    //勤務表表示
+    RESegmentedItem *worksheetItem = [RESegmentedItem itemWithTitle:LOCALIZE(@"SettingViewController_default_worksheet_display_title")
+                                             segmentedControlTitles:@[LOCALIZE(@"SettingViewController_default_worksheet_display_sheet"),
+                                                                      LOCALIZE(@"SettingViewController_default_worksheet_display_calendar")]
+                                                              value:[NSUserDefaults displayModeWorkSheet]
+                                           switchValueChangeHandler:^(RESegmentedItem *item) {
+                                               //code
+                                               [NSUserDefaults setDisplayModeWorkSheet:item.value];
+                                           }];
+    
+    [basicSection addItem:worksheetItem];
+    
+//    [basicSection addItem:[RESegmentedItem itemWithTitles:@[@"One", @"Two"] value:1 switchValueChangeHandler:^(RESegmentedItem *item) {
+//        NSLog(@"Value: %i", item.value);
+//    }]];
     
     //MARK: issue #23 対応(臨時)
     /*

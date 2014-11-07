@@ -88,6 +88,10 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "One years";
 "SettingViewController_last_worksheet_display_sixmonth" = "6 months";
 
+"SettingViewController_default_worksheet_display_title" = "Workhseet Display";
+"SettingViewController_default_worksheet_display_sheet" = "Sheet";
+"SettingViewController_default_worksheet_display_calendar" = "Calendar";
+
 "SettingViewController_mail_title_title"            = "Title";
 "SettingViewController_work_report_title_defalut" = "【Report】mm/dd, yyyy";
 

@@ -10,6 +10,7 @@
 #import "KJViewController.h"
 #import "MonthWorkingTableViewController.h"
 #import "MonthWorkingTableEditViewController.h"
+#import "MonthWorkingCalendarViewController.h"
 
 @implementation StoryboardUtil
 
@@ -18,6 +19,16 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Menu" bundle:nil];
     MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"MonthWorkingTableViewController"];
+    
+    completion(controller);
+    
+    [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
+}
+
++ (void)gotoMonthWorkingCalendarViewController:(id)owner completion:(void(^)(id))completion {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Menu" bundle:nil];
+    MonthWorkingCalendarViewController *controller = (MonthWorkingCalendarViewController *)[storyboard instantiateViewControllerWithIdentifier:@"MonthWorkingCalendarViewController"];
     
     completion(controller);
     

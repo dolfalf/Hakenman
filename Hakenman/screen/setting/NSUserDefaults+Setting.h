@@ -25,6 +25,9 @@
 + (NSInteger)displayWorkSheet;
 + (void)setDisplayWorkSheet:(NSInteger)value;
 
++ (NSInteger)displayModeWorkSheet;
++ (void)setDisplayModeWorkSheet:(NSInteger)value;
+
 + (NSString *)workSitename;
 + (void)setWorkSitename:(NSString *)value;
 
