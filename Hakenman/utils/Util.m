@@ -6,13 +6,14 @@
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
+
 #import "Util.h"
+#import "TimeCard.h"
+#import <MessageUI/MessageUI.h>
+#import <UIKit/UIDocumentInteractionController.h>
+
 #import "const.h"
 #import "NSDate+Helper.h"
-#import <MessageUI/MessageUI.h>
-#import "KJViewController.h"
-#import "TimeCard.h"
-#import <UIKit/UIDocumentInteractionController.h>
 #import "UIColor+Helper.h"
 #import "NSUserDefaults+Setting.h"
 #import "NSError+Common.h"
@@ -208,18 +209,18 @@
         case 1:
             //10分単位
         {
-            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/10)*10];
+            currentMinute = [NSString stringWithFormat:@"%02d",((int)[minute integerValue]/10)*10];
         }
             break;
         case 2:
             //15分単位
         {
-            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/15)*15];
+            currentMinute = [NSString stringWithFormat:@"%02d",((int)[minute integerValue]/15)*15];
         }
             break;
         case 3:
             //30分単位
-            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/30)*30];
+            currentMinute = [NSString stringWithFormat:@"%02d",((int)[minute integerValue]/30)*30];
             break;
     }
     
@@ -377,10 +378,10 @@
     [ controller setMessageBody:body isHTML:NO ];
 
     // 表示
-    [((KJViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
+    [((UIViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
 }
 
-+ (void)sendWorkSheetCsvfile:(KJViewController *)owner data:(NSArray *)worksheets {
++ (void)sendWorkSheetCsvfile:(id<CsvExportProtocol, UIDocumentInteractionControllerDelegate>)owner data:(NSArray *)worksheets {
     
     //テキストファイルとして書き出すためのディレクトリを作成する
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -465,8 +466,8 @@
         owner.docInterCon.delegate = owner;
         
         BOOL isValid;
-        isValid = [owner.docInterCon presentOpenInMenuFromRect:((KJViewController *)owner).view.frame
-                                                        inView:((KJViewController *)owner).view
+        isValid = [owner.docInterCon presentOpenInMenuFromRect:((UIViewController *)owner).view.frame
+                                                        inView:((UIViewController *)owner).view
                                                       animated:YES];
         //    isValid = [owner.docInterCon presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];
         if (!isValid) {

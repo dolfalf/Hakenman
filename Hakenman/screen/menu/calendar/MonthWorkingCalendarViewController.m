@@ -12,12 +12,16 @@
 #import "NSDate+Helper.h"
 #import "TimeCardDao.h"
 #import "const.h"
+#import "Util.h"
+#import "RDVCalendarView+Extension.h"
+#import "MonthWorkingTableEditViewController.h"
+#import "LeftTableViewData.h"
 
 @interface MonthWorkingCalendarViewController ()
 
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) NSDate *sheetDate;
-
+@property (nonatomic, assign) NSInteger selectedIndex;
 @end
 
 @implementation MonthWorkingCalendarViewController
@@ -31,10 +35,19 @@
     return self;
 }
 
+#pragma mark - life cycle methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initControls];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    
+    [self reloadCalendarData];
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +59,12 @@
 - (void)initControls {
     
     [[self.navigationController navigationBar] setTranslucent:NO];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                 target:self
+                                                                                 action:@selector(rightBarButtonTouched:)];
+    
+    self.navigationItem.rightBarButtonItems = @[rightButton];
     
     self.calendarView.separatorStyle = RDVCalendarViewDayCellSeparatorTypeHorizontal;
     self.calendarView.separatorColor = [[UIColor lightGrayColor]  colorWithAlphaComponent:0.7f];
@@ -64,10 +83,10 @@
     self.sheetDate = [NSDate convDate2ShortString:_inputDates];
     self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
                   [_sheetDate getYear], [_sheetDate getMonth]];
-    
-    TimeCardDao *dao = [TimeCardDao new];
-    self.items = [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
-    
+
+    //Localize Label
+    [self.calendarView updateMonthLocalizeLabel];
+    [self.calendarView updateWeekDayLocalizeLabel];
 }
 
 - (void)targetMonth {
@@ -92,6 +111,24 @@
     
 }
 
+- (void)reloadCalendarData {
+    TimeCardDao *dao = [TimeCardDao new];
+    self.items = [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
+    
+    [self.calendarView reloadData];
+}
+
+#pragma mark - BarButton Action
+-(void)rightBarButtonTouched:(id)sender {
+
+    TimeCardDao *dao = [TimeCardDao new];
+    
+    NSArray *models = [dao fetchModelForCSVWithYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
+    
+//    [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
+    [Util sendWorkSheetCsvfile:self data:models];
+}
+
 #pragma mark - calendar delegate methods
 - (void)calendarView:(RDVCalendarView *)calendarView configureDayCell:(RDVCalendarDayCell *)dayCell
              atIndex:(NSInteger)index {
@@ -99,10 +136,12 @@
     
     for (TimeCard *tm in _items) {
         if ((index + 1) == [tm.t_day intValue]) {
-            NSLog(@"hit!!");
+            
+            workingDayCell.workday = [tm.workday_flag boolValue];
             
             [workingDayCell updateWorkStartTime:tm.start_time endTime:tm.end_time];
             workingDayCell.memo = ([tm.remarks isEqualToString:@""] == YES || tm.remarks == nil)?NO:YES;
+            
             break;
         }
     }
@@ -114,17 +153,25 @@
 - (void)calendarView:(RDVCalendarView *)calendarView didSelectCellAtIndex:(NSInteger)index {
     [calendarView deselectDayCellAtIndex:index animated:YES];
     
+    _selectedIndex = index;
+    
     //編集画面へ遷移
+    [StoryboardUtil gotoMonthWorkingTableEditViewController:self completion:^(id controller) {
+        
+//        TimeCard *tm = [_items objectAtIndex:_selectedIndex];
+        
+        //param
+        LeftTableViewData *param = [LeftTableViewData new];
+        
+        param.yearData = @([_sheetDate getYear]);
+        param.monthData = @([_sheetDate getMonth]);
+        param.dayData = @((int)index + 1);
+        param.weekData = @([_sheetDate getWeekday]);
+        param.workFlag = @(([_sheetDate getWeekday] == weekSatDay || [_sheetDate getWeekday] == weekSunday)?NO:YES);
+        
+        ((MonthWorkingTableEditViewController *)controller).showData = param;
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -151,6 +151,9 @@
 "MonthWorkingTableEditViewController_edit_placeholder"          = "No input";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "Start Time & End Time is Same";
 
+//Calendar
+"MonthWorkingCalendarViewController_cal_month_format" =  "MMMM yyyy";
+
 //ETC
 "OpenSourceLicenseViewController_navi_title"    = "Open license";
 "AppInformationViewController_navi_title"       = "About KJCode";

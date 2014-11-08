@@ -317,7 +317,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                           } else if (tappedButtonIndex == actionSheet.destructiveButtonIndex) {
 //                              DLog(@"Destructive button tapped");
                           }else {
-                              DLog(@"The user tapped button at index: %i", tappedButtonIndex);
+                              DLog(@"The user tapped button at index: %d", (int)tappedButtonIndex);
                               
                               if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
                                   //
@@ -498,35 +498,47 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [self.navigationController setToolbarHidden:YES animated:YES];
     
     if (indexPath.row == tableCellTypeToday) {
-        //
-        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
-            //paramを渡す
-            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
-            
-            //現在の日時を渡す
-            NSDate *today = [NSDate date];
-            controller.inputDates = [today yyyyMMString];
-            
-        }];
         
-    }else {
-        //TODO:
         if ([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeSheet) {
+            
             [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
-                //paramを渡す
+                
                 MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
                 
-                //TODO:
-                TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
+                //現在の日時を渡す
+                NSDate *today = [NSDate date];
+                controller.inputDates = [today yyyyMMString];
+                
+            }];
+        }else if([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeCalendar) {
+            
+            
+            [StoryboardUtil gotoMonthWorkingCalendarViewController:self completion:^(id destinationController) {
+                
+                MonthWorkingCalendarViewController *controller = (MonthWorkingCalendarViewController *)destinationController;
+                //現在の日時を渡す
+                NSDate *today = [NSDate date];
+                controller.inputDates = [today yyyyMMString];
+            }];
+            
+        }
+        
+        
+    }else {
+        
+        TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
+        
+        if ([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeSheet) {
+            [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+
+                MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
                 controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
             }];
         }else if([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeCalendar) {
             
             [StoryboardUtil gotoMonthWorkingCalendarViewController:self completion:^(id destinationController) {
-                //paramを渡す
+
                 MonthWorkingCalendarViewController *controller = (MonthWorkingCalendarViewController *)destinationController;
-                
-                TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
                 controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
             }];
         }

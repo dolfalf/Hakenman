@@ -7,9 +7,13 @@
 //
 
 #import "RDVCalendarViewController.h"
+#import "CsvExportProtocol.h"
+#import <UIKit/UIDocumentInteractionController.h>
 
-@interface MonthWorkingCalendarViewController : RDVCalendarViewController
 
+@interface MonthWorkingCalendarViewController : RDVCalendarViewController <CsvExportProtocol, UIDocumentInteractionControllerDelegate>
+
+@property (nonatomic, strong) UIDocumentInteractionController *docInterCon;
 @property (nonatomic, strong) NSString *inputDates;
 
 @end

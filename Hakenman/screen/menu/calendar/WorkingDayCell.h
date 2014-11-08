@@ -11,6 +11,7 @@
 @interface WorkingDayCell : RDVCalendarDayCell
 
 @property (nonatomic, assign, getter=isMemo) BOOL memo;
+@property (nonatomic, assign, getter=isworkday) BOOL workday;
 
 - (void)updateWorkStartTime:(NSString *)st endTime:(NSString *)et;
 @end

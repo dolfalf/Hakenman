@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class KJViewController;
+#import "CsvExportProtocol.h"
 
 @interface Util : NSObject
 
@@ -37,7 +36,7 @@
 //+ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets;
 + (void)sendReportMailWorkSheet:(id)owner subject:(NSString *)subject toRecipient:(NSString *)toRecipient messageBody:(NSString *)body;
 
-+ (void)sendWorkSheetCsvfile:(KJViewController *)owner data:(NSArray *)worksheets;
++ (void)sendWorkSheetCsvfile:(id<CsvExportProtocol,UIDocumentInteractionControllerDelegate>)owner data:(NSArray *)worksheets;
 
 + (BOOL)olderThanVersion:(NSString *)ver;
 @end

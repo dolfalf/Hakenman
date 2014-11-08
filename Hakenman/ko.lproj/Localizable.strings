@@ -150,6 +150,9 @@
 "MonthWorkingTableEditViewController_edit_placeholder"          = "미입력";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "출근시간과 퇴근시간이 같습니다";
 
+//カレンダー
+"MonthWorkingCalendarViewController_cal_month_format" =  "yyyy년 MM월";
+
 //その他
 "OpenSourceLicenseViewController_navi_title"    = "오픈라이센스";
 "AppInformationViewController_navi_title"       = "KJCode는요";

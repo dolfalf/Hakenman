@@ -362,7 +362,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLog(@"%d table cell selected.", indexPath.row);
+    DLog(@"%d table cell selected.", (int)indexPath.row);
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     _selectedIndex = indexPath.row;
@@ -372,7 +372,7 @@
     
 }
 
-#pragma mark - IBAction delegate
+#pragma mark - IBAction
 
 -(IBAction)barButtonAction:(id)sender{
     TimeCardDao *dao = [TimeCardDao new];

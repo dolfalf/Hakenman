@@ -42,7 +42,7 @@
     
     completion(controller);
     
-    [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
+    [((UIViewController *)owner).navigationController pushViewController:controller animated:YES];
 }
 
 + (void)gotoTutorialViewController:(id)owner animated:(BOOL)animated {

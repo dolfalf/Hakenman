@@ -150,6 +150,9 @@
 "MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "出勤時間と退勤時間が同じです";
 
+//カレンダー
+"MonthWorkingCalendarViewController_cal_month_format" =  "yyyy年 MM月";
+
 //その他
 "OpenSourceLicenseViewController_navi_title"    = "オープンライセンス";
 "AppInformationViewController_navi_title"       = "KJCodeについて";

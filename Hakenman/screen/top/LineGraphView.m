@@ -96,7 +96,7 @@
     }
     
     //ライングラフ描画
-    int pointCount = [_delegate linePointNumber];
+    int pointCount = (int)[_delegate linePointNumber];
     
     //データがない場合はテキスト表示
     if (pointCount == 0) {

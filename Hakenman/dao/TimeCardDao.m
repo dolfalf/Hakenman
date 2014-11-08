@@ -181,7 +181,7 @@
     int start_idx = 0;
     
     if ([mArray count] > 7) {
-        int arrayCount = [mArray count];
+        int arrayCount = (int)[mArray count];
         start_idx = arrayCount-7;
     }
     
