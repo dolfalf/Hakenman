@@ -77,7 +77,9 @@
     self.notificationView.layer.cornerRadius = 5.f;
     self.notificationView.clipsToBounds = true;
     
-    
+    self.selectedBackgroundView.layer.cornerRadius = 25.f;
+    self.selectedBackgroundView.clipsToBounds = true;
+
     self.backgroundView.layer.cornerRadius = 25.f;
     self.backgroundView.clipsToBounds = true;
     

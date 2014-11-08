@@ -69,7 +69,7 @@
     self.calendarView.separatorStyle = RDVCalendarViewDayCellSeparatorTypeHorizontal;
     self.calendarView.separatorColor = [[UIColor lightGrayColor]  colorWithAlphaComponent:0.7f];
     self.calendarView.selectedDayColor = [UIColor HKMSkyblueColor:0.7f];
-    self.calendarView.currentDayColor = [[UIColor HKMSkyblueColor] colorWithAlphaComponent:0.3f];
+    self.calendarView.currentDayColor = [[UIColor HKMOrangeColor] colorWithAlphaComponent:0.3f];
     
     [[self calendarView] registerDayCellClass:[WorkingDayCell class]];
     
