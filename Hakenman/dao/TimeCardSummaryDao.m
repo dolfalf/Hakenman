@@ -116,15 +116,17 @@
         model.summary_type = @1; //not used
         model.t_yyyymm = @([yyyymm intValue]);  //REMARK: これが漏れたため全部０が設定されてしまった。
         model.remark = @""; //not used
+        self.model = model; //これがなくてサマリーが更新しなかった。
         DLog(@"サマリーデータを生成");
     }else {
         //すでに存在すればパラメータの日付の情報を更新する。
         TimeCardSummary *model =[models objectAtIndex:0];
         model.workTime = @(total_workTime);
         model.workdays = @(total_workday);
-        
+        self.model = model; //これがなくてサマリーが更新しなかった。
         DLog(@"サマリーデータを更新");
     }
+    
     
     // insert or update
     [self insertModel];

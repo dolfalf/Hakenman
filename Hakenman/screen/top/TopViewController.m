@@ -85,6 +85,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
     TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
     
+    
+    NSArray *array = [timeCardSummaryDao fetchModel];
+    
+    NSLog(@"%@", [[array lastObject] t_yyyymm]);
+    
 #ifdef RECOVERY_CODE_ENABLE
     //recoveryをする。「０」になっているデータを削除
     if ([Util olderThanVersion:@"1.0.2"] == YES) {
