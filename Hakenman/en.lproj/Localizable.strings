@@ -106,10 +106,14 @@
 "SettingViewController_version_title"             = "Version";
 "SettingViewController_tutorial_title"             = "Tutorial";
 "SettingViewController_app_info_title"             = "About KJCode";
+"SettingViewController_kjcode_apps_title"          = "KJCode Apps";
 "SettingViewController_open_lisence_title"         = "Open lisence";
 
 "SettingViewController_database_init_title"         = "Remove Data";
 "SettingViewController_database_init_alert_text"    = "Are you sure Remove Data?";
+
+//KJCODE APPS
+"KJStoreProductViewController_title"                = "KJCode Apps";
 
 //TUTORIAL
 "TutorialViewController_page1_title"                = "HakenMan";

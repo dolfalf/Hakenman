@@ -18,4 +18,5 @@
 + (void)gotoTutorialViewController:(id)owner animated:(BOOL)animated;
 + (void)gotoAppInformationViewController:(id)owner completion:(void(^)(id))completion;
 + (void)gotoOpenLicenseViewController:(id)owner completion:(void(^)(id))completion;
++ (void)gotoKJCodeAppsViewController:(id)owner completion:(void(^)(id))completion;
 @end

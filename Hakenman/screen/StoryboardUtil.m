@@ -11,6 +11,8 @@
 #import "MonthWorkingTableViewController.h"
 #import "MonthWorkingTableEditViewController.h"
 #import "MonthWorkingCalendarViewController.h"
+#import "KJStoreProductViewController.h"
+#import "SVProgressHUD.h"
 
 @implementation StoryboardUtil
 
@@ -73,6 +75,28 @@
     completion(controller);
     
     [((KJViewController *)owner).navigationController pushViewController:controller animated:YES];
+}
+
++ (void)gotoKJCodeAppsViewController:(id)owner completion:(void(^)(id))completion {
+    
+    [SVProgressHUD show];
+    
+    KJStoreProductViewController *pvc = [[KJStoreProductViewController alloc] init];
+    [pvc loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : KJCODE_ITunesItemIdentifier}
+                   completionBlock:^(BOOL result, NSError *error)
+     {
+         [SVProgressHUD dismiss];
+         
+         if (result) {
+//             //SKStoreProductViewController의 화면의 네비게이션 바 커스터마이징
+//             UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:pvc];
+//             navCon.navigationBar.barTintColor = [UIColor purpleColor];          //네비게이션 바 색 지정
+//             navCon.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};        //네비게이션 바 타이틀 색 지정
+             [((KJViewController *)owner).navigationController pushViewController:pvc animated:YES];
+         }
+     }];
+    
+    completion(pvc);
 }
 
 @end

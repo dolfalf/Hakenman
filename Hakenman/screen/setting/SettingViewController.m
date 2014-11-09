@@ -368,6 +368,17 @@ enum {
         }];
     }]];
     
+    //KJCode Apps
+    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_kjcode_apps_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        
+        [StoryboardUtil gotoKJCodeAppsViewController:self completion:^(id controller) {
+            //
+        }];
+    }]];
+    
     //Open source lisence
     [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_open_lisence_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
         

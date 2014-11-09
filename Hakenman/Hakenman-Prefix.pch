@@ -19,6 +19,8 @@
     #import "GAIFields.h"
 #endif
 
+#define KJCODE_ITunesItemIdentifier     @"491883463"
+
 #define GOOGLE_ANALYTICS_ID @"UA-52562316-1"
 
 //#define GOOGLE_ANALYTICS_ENABLE

@@ -105,10 +105,14 @@
 "SettingViewController_version_title"              = "버전";
 "SettingViewController_tutorial_title"             = "튜토리얼";
 "SettingViewController_app_info_title"             = "KJCode는요";
+"SettingViewController_kjcode_apps_title"          = "KJCode 앱 소개";
 "SettingViewController_open_lisence_title"         = "오픈라이센스";
 
 "SettingViewController_database_init_title"         = "데이터 삭제";
 "SettingViewController_database_init_alert_text"    = "데이터를 삭제하시겠습니까?";
+
+//KJCODE APPS
+"KJStoreProductViewController_title"                = "KJCode 앱 소개";
 
 //TUTORIAL
 "TutorialViewController_page1_title"                = "HakenMan";
