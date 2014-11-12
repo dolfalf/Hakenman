@@ -107,7 +107,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     
     //MARK: テストデータの生成
-#if 0
+#ifdef GENERATE_DUMMY_DATA
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 
     [timeCardDao deleteAllModel];
@@ -122,7 +122,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
             model.t_yyyymmdd = @([[model.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
             model.workday_flag = [NSNumber numberWithBool:YES];
-            model.remarks = @"あいうえお";
+            model.remarks = rand()%5==2?@"あいうえお":@"";
             
             DLog(@"start_time:[%@], end_time:[%@]", model.start_time, model.end_time);
             [timeCardDao insertModel];
@@ -242,18 +242,21 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     //Navigation button add.
     [PBFlatSettings sharedInstance].mainColor = [UIColor whiteColor];
+    
+#if 0
     _menuBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(5, 5, 35, 35)
                                                                             andWithType:PBFlatIconMenu];
     
     [_menuBarButton addTarget:self action:@selector(gotoMenuButtonTouched:)
             forControlEvents:UIControlEventTouchUpInside];
     
-    _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
-                                                                               andWithType:PBFlatIconMore];
-    [_settingBarButton addTarget:self action:@selector(gotoSettingButtonTouched:)
-               forControlEvents:UIControlEventTouchUpInside];
-    
     [self.navigationController.navigationBar addSubview:_menuBarButton];
+#endif
+    
+    _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
+                                                         andWithType:PBFlatIconMore];
+    [_settingBarButton addTarget:self action:@selector(gotoSettingButtonTouched:)
+                forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_settingBarButton];
     
     //title
