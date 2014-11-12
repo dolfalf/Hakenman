@@ -38,6 +38,19 @@
     
     return NO;
 }
+
++ (BOOL)is3_5inch {
+    
+    CGSize r = [[UIScreen mainScreen] bounds].size;
+    if(r.height == 480){
+        //3.5inch
+        return YES;
+    }else{
+        //4inch
+        return NO;
+    }
+}
+
 + (NSString *)getDocumentPath {
     
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

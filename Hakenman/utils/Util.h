@@ -13,6 +13,7 @@
 
 //language
 + (BOOL)isJanpaneseLanguage;
++ (BOOL)is3_5inch;
 
 //document
 + (NSString *)getDocumentPath;

@@ -52,9 +52,16 @@
         _endLabel.backgroundColor = [UIColor HKMSkyblueColor:0.5f];
         [_containerView addSubview:_endLabel];
         
-        _startLabel.font
-        = _endLabel.font
-        = [UIFont systemFontOfSize:12.f];
+        if ([Util is3_5inch] == YES) {
+            _startLabel.font
+            = _endLabel.font
+            = [UIFont systemFontOfSize:9.f];
+        }else {
+            _startLabel.font
+            = _endLabel.font
+            = [UIFont systemFontOfSize:12.f];
+        }
+        
         
         _startLabel.textColor
         = _endLabel.textColor
@@ -84,24 +91,43 @@
     self.backgroundView.clipsToBounds = true;
     
     
-    _containerView.frame = CGRectMake(5.f,
-                                      viewSize.height -10.f,
-                                      self.frame.size.width-10.f,
-                                      15.f*2.f);
+    if ([Util is3_5inch] == YES) {
+        
+        _containerView.frame = CGRectMake(5.f,
+                                          viewSize.height -15.f,
+                                          self.frame.size.width-10.f,
+                                          12.f*2.f);
+        
+        _startLabel.frame = CGRectMake(0,0,
+                                       _containerView.frame.size.width,
+                                       12.f);
+        
+        _endLabel.frame = CGRectMake(0,
+                                     _startLabel.frame.origin.y + 12.f,
+                                     _containerView.frame.size.width,
+                                     12.f);
+    }else {
+        
+        _containerView.frame = CGRectMake(5.f,
+                                          viewSize.height -10.f,
+                                          self.frame.size.width-10.f,
+                                          15.f*2.f);
+        
+        _startLabel.frame = CGRectMake(0,0,
+                                       _containerView.frame.size.width,
+                                       15.f);
+        
+        _endLabel.frame = CGRectMake(0,
+                                     _startLabel.frame.origin.y + 15.f,
+                                     _containerView.frame.size.width,
+                                     15.f);
+    }
     
     [_containerView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [_containerView.layer setBorderWidth:1.f];
-//    _containerView.layer.cornerRadius = 5.f;
-//    _containerView.clipsToBounds = true;
+    //    _containerView.layer.cornerRadius = 5.f;
+    //    _containerView.clipsToBounds = true;
     
-    _startLabel.frame = CGRectMake(0,0,
-                                   _containerView.frame.size.width,
-                                   15.f);
-    
-    _endLabel.frame = CGRectMake(0,
-                                 _startLabel.frame.origin.y + 15.f,
-                                 _containerView.frame.size.width,
-                                 15.f);
 }
 
 - (void)prepareForReuse {
