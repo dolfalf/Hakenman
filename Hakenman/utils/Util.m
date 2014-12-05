@@ -6,13 +6,14 @@
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
+
 #import "Util.h"
+#import "TimeCard.h"
+#import <MessageUI/MessageUI.h>
+#import <UIKit/UIDocumentInteractionController.h>
+
 #import "const.h"
 #import "NSDate+Helper.h"
-#import <MessageUI/MessageUI.h>
-#import "KJViewController.h"
-#import "TimeCard.h"
-#import <UIKit/UIDocumentInteractionController.h>
 #import "UIColor+Helper.h"
 #import "NSUserDefaults+Setting.h"
 #import "NSError+Common.h"
@@ -37,6 +38,19 @@
     
     return NO;
 }
+
++ (BOOL)is3_5inch {
+    
+    CGSize r = [[UIScreen mainScreen] bounds].size;
+    if(r.height == 480){
+        //3.5inch
+        return YES;
+    }else{
+        //4inch
+        return NO;
+    }
+}
+
 + (NSString *)getDocumentPath {
     
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -208,18 +222,18 @@
         case 1:
             //10分単位
         {
-            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/10)*10];
+            currentMinute = [NSString stringWithFormat:@"%02d",((int)[minute integerValue]/10)*10];
         }
             break;
         case 2:
             //15分単位
         {
-            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/15)*15];
+            currentMinute = [NSString stringWithFormat:@"%02d",((int)[minute integerValue]/15)*15];
         }
             break;
         case 3:
             //30分単位
-            currentMinute = [NSString stringWithFormat:@"%02d",([minute integerValue]/30)*30];
+            currentMinute = [NSString stringWithFormat:@"%02d",((int)[minute integerValue]/30)*30];
             break;
     }
     
@@ -377,10 +391,10 @@
     [ controller setMessageBody:body isHTML:NO ];
 
     // 表示
-    [((KJViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
+    [((UIViewController *)owner).navigationController presentViewController:controller animated:YES completion:nil];
 }
 
-+ (void)sendWorkSheetCsvfile:(KJViewController *)owner data:(NSArray *)worksheets {
++ (void)sendWorkSheetCsvfile:(id<CsvExportProtocol, UIDocumentInteractionControllerDelegate>)owner data:(NSArray *)worksheets {
     
     //テキストファイルとして書き出すためのディレクトリを作成する
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -465,8 +479,8 @@
         owner.docInterCon.delegate = owner;
         
         BOOL isValid;
-        isValid = [owner.docInterCon presentOpenInMenuFromRect:((KJViewController *)owner).view.frame
-                                                        inView:((KJViewController *)owner).view
+        isValid = [owner.docInterCon presentOpenInMenuFromRect:((UIViewController *)owner).view.frame
+                                                        inView:((UIViewController *)owner).view
                                                       animated:YES];
         //    isValid = [owner.docInterCon presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];
         if (!isValid) {
@@ -477,6 +491,30 @@
         return;
     }
     
+}
+
++ (BOOL)olderThanVersion:(NSString *)ver {
+    
+    //version1.0.2->102にして比較
+    NSArray *v_arrays = [ver componentsSeparatedByString:@"."];
+    if ([v_arrays count] == 3) {
+        int num_ver = [v_arrays[0] intValue] * 100
+        + [v_arrays[1] intValue] * 10
+        + [v_arrays[2] intValue] * 1;
+        
+        NSArray *c_arrays = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]componentsSeparatedByString:@"."];
+        
+        int curr_num_ver = [c_arrays[0] intValue] * 100
+        + [c_arrays[1] intValue] * 10
+        + [c_arrays[2] intValue] * 1;
+        
+        DLog(@"check version:[%d], current version[%d]", num_ver, curr_num_ver);
+        if (num_ver > curr_num_ver) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

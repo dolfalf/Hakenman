@@ -197,6 +197,22 @@ enum {
         //Picker値変更
         [NSUserDefaults setWorkEndTime:[item.value convHHmmString]];
     };
+
+    //勤務表表示
+    RESegmentedItem *worksheetItem = [RESegmentedItem itemWithTitle:LOCALIZE(@"SettingViewController_default_worksheet_display_title")
+                                             segmentedControlTitles:@[LOCALIZE(@"SettingViewController_default_worksheet_display_sheet"),
+                                                                      LOCALIZE(@"SettingViewController_default_worksheet_display_calendar")]
+                                                              value:[NSUserDefaults displayModeWorkSheet]
+                                           switchValueChangeHandler:^(RESegmentedItem *item) {
+                                               //code
+                                               [NSUserDefaults setDisplayModeWorkSheet:item.value];
+                                           }];
+    
+    [basicSection addItem:worksheetItem];
+    
+//    [basicSection addItem:[RESegmentedItem itemWithTitles:@[@"One", @"Two"] value:1 switchValueChangeHandler:^(RESegmentedItem *item) {
+//        NSLog(@"Value: %i", item.value);
+//    }]];
     
     //MARK: issue #23 対応(臨時)
     /*
@@ -348,6 +364,17 @@ enum {
         
         //遷移
         [StoryboardUtil gotoAppInformationViewController:self completion:^(id controller) {
+            //
+        }];
+    }]];
+    
+    //KJCode Apps
+    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_kjcode_apps_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        
+        [StoryboardUtil gotoKJCodeAppsViewController:self completion:^(id controller) {
             //
         }];
     }]];

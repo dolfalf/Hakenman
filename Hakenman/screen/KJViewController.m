@@ -102,6 +102,7 @@
 
 - (void)doAction
 {
+#ifdef GOOGLE_ANALYTICS_ENABLE
     //MARK: 未使用メソッド。将来のため
     // イベントを計測
     //
@@ -111,6 +112,7 @@
     // - Label: アクションの起こされた対象やパラメタなどの付加情報やサブカテゴリ等に使うとよさそう。必要なければ nil を指定
     // - Value: 管理画面から合計と平均を見られるので、そのような分析をしたい数値。たとえば課金額。必要なければ nil を指定
     [[GAI sharedInstance].defaultTracker send:[[GAIDictionaryBuilder createEventWithCategory:@"課金" action:@"広告非表示" label:@"クーポンコード使用" value:@100] build]];
+#endif
 }
 
 @end

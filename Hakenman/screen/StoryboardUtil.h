@@ -11,9 +11,12 @@
 @interface StoryboardUtil : NSObject
 
 + (void)gotoMonthWorkingTableViewController:(id)owner completion:(void(^)(id))completion;
++ (void)gotoMonthWorkingCalendarViewController:(id)owner completion:(void(^)(id))completion;
+
 + (void)gotoMonthWorkingTableEditViewController:(id)owner completion:(void(^)(id))completion;
 
 + (void)gotoTutorialViewController:(id)owner animated:(BOOL)animated;
 + (void)gotoAppInformationViewController:(id)owner completion:(void(^)(id))completion;
 + (void)gotoOpenLicenseViewController:(id)owner completion:(void(^)(id))completion;
++ (void)gotoKJCodeAppsViewController:(id)owner completion:(void(^)(id))completion;
 @end

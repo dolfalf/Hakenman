@@ -181,7 +181,7 @@
     int start_idx = 0;
     
     if ([mArray count] > 7) {
-        int arrayCount = [mArray count];
+        int arrayCount = (int)[mArray count];
         start_idx = arrayCount-7;
     }
     
@@ -223,7 +223,7 @@
     
     [self.fetchRequest setEntity:entity];
     
-    NSString *dayString = [dt yyyyMMddHHmmssString];
+    NSString *dayString = [dt yyyyMMddString];
     DLog(@"dayString[%@]",dayString);
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_yyyymmdd == %@", dayString];    //条件指定

@@ -11,8 +11,9 @@
 #import "StoryboardUtil.h"
 #import <PBFlatUI/PBFlatBarButtonItems.h>
 #import <UIKit/UIDocumentInteractionController.h>
+#import "CsvExportProtocol.h"
 
-@interface KJViewController : UIViewController <UIDocumentInteractionControllerDelegate>
+@interface KJViewController : UIViewController <CsvExportProtocol, UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic, strong) UIDocumentInteractionController *docInterCon;
 

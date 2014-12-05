@@ -88,6 +88,10 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "One years";
 "SettingViewController_last_worksheet_display_sixmonth" = "6 months";
 
+"SettingViewController_default_worksheet_display_title" = "Workhseet Display";
+"SettingViewController_default_worksheet_display_sheet" = "Sheet";
+"SettingViewController_default_worksheet_display_calendar" = "Calendar";
+
 "SettingViewController_mail_title_title"            = "Title";
 "SettingViewController_work_report_title_defalut" = "【Report】mm/dd, yyyy";
 
@@ -102,10 +106,14 @@
 "SettingViewController_version_title"             = "Version";
 "SettingViewController_tutorial_title"             = "Tutorial";
 "SettingViewController_app_info_title"             = "About KJCode";
+"SettingViewController_kjcode_apps_title"          = "KJCode Apps";
 "SettingViewController_open_lisence_title"         = "Open lisence";
 
 "SettingViewController_database_init_title"         = "Remove Data";
 "SettingViewController_database_init_alert_text"    = "Are you sure Remove Data?";
+
+//KJCODE APPS
+"KJStoreProductViewController_title"                = "KJCode Apps";
 
 //TUTORIAL
 "TutorialViewController_page1_title"                = "HakenMan";
@@ -146,6 +154,9 @@
 "MonthWorkingTableEditViewController_edit_cleardate_alert"  = "Are you sure Clear this Date?";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "No input";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "Start Time & End Time is Same";
+
+//Calendar
+"MonthWorkingCalendarViewController_cal_month_format" =  "MMMM yyyy";
 
 //ETC
 "OpenSourceLicenseViewController_navi_title"    = "Open license";

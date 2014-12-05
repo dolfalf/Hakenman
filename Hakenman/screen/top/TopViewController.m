@@ -21,8 +21,9 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "NSUserDefaults+Setting.h"
 #import "UIColor+Helper.h"
+#import "MonthWorkingCalendarViewController.h"
 
-#define TOPVIEWCONTROLLER_MENU_HIDDEN
+//#define TOPVIEWCONTROLLER_MENU_HIDDEN
 
 NS_ENUM(NSInteger, tableCellType) {
     tableCellTypeToday = 0,
@@ -84,9 +85,17 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
     TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
     
+    
+    NSArray *array = [timeCardSummaryDao fetchModel];
+    
+    NSLog(@"%@", [[array lastObject] t_yyyymm]);
+    
 #ifdef RECOVERY_CODE_ENABLE
     //recoveryをする。「０」になっているデータを削除
-    [timeCardSummaryDao recoveryTimeCardSummaryTable];
+    if ([Util olderThanVersion:@"1.0.2"] == YES) {
+        [timeCardSummaryDao recoveryTimeCardSummaryTable];
+    }
+    
 #endif
     
 
@@ -98,11 +107,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     
     //MARK: テストデータの生成
-#if 0
+#ifdef GENERATE_DUMMY_DATA
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 
     [timeCardDao deleteAllModel];
-    for (int j=3; j < 9; j++) {
+    for (int j=3; j < 11; j++) {
         for (int i=1; i <= 31; i++) {
             TimeCard *model = [timeCardDao createModel];
             //20140301090000
@@ -113,7 +122,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
             model.t_yyyymmdd = @([[model.start_time substringWithRange:NSMakeRange(0, 8)] intValue]);
             model.workday_flag = [NSNumber numberWithBool:YES];
-            model.remarks = @"あいうえお";
+            model.remarks = rand()%5==2?@"あいうえお":@"";
             
             DLog(@"start_time:[%@], end_time:[%@]", model.start_time, model.end_time);
             [timeCardDao insertModel];
@@ -233,18 +242,21 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     //Navigation button add.
     [PBFlatSettings sharedInstance].mainColor = [UIColor whiteColor];
+    
+#if 0
     _menuBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(5, 5, 35, 35)
                                                                             andWithType:PBFlatIconMenu];
     
     [_menuBarButton addTarget:self action:@selector(gotoMenuButtonTouched:)
             forControlEvents:UIControlEventTouchUpInside];
     
-    _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
-                                                                               andWithType:PBFlatIconMore];
-    [_settingBarButton addTarget:self action:@selector(gotoSettingButtonTouched:)
-               forControlEvents:UIControlEventTouchUpInside];
-    
     [self.navigationController.navigationBar addSubview:_menuBarButton];
+#endif
+    
+    _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
+                                                         andWithType:PBFlatIconMore];
+    [_settingBarButton addTarget:self action:@selector(gotoSettingButtonTouched:)
+                forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_settingBarButton];
     
     //title
@@ -313,7 +325,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                           } else if (tappedButtonIndex == actionSheet.destructiveButtonIndex) {
 //                              DLog(@"Destructive button tapped");
                           }else {
-                              DLog(@"The user tapped button at index: %i", tappedButtonIndex);
+                              DLog(@"The user tapped button at index: %d", (int)tappedButtonIndex);
                               
                               if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
                                   //
@@ -494,26 +506,50 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [self.navigationController setToolbarHidden:YES animated:YES];
     
     if (indexPath.row == tableCellTypeToday) {
-        //
-        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
-            //paramを渡す
-            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+        
+        if ([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeSheet) {
             
-            //現在の日時を渡す
-            NSDate *today = [NSDate date];
-            controller.inputDates = [today yyyyMMString];
+            [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+                
+                MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+                
+                //現在の日時を渡す
+                NSDate *today = [NSDate date];
+                controller.inputDates = [today yyyyMMString];
+                
+            }];
+        }else if([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeCalendar) {
             
-        }];
+            
+            [StoryboardUtil gotoMonthWorkingCalendarViewController:self completion:^(id destinationController) {
+                
+                MonthWorkingCalendarViewController *controller = (MonthWorkingCalendarViewController *)destinationController;
+                //現在の日時を渡す
+                NSDate *today = [NSDate date];
+                controller.inputDates = [today yyyyMMString];
+            }];
+            
+        }
+        
         
     }else {
-        [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
-            //paramを渡す
-            MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+        
+        TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
+        
+        if ([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeSheet) {
+            [StoryboardUtil gotoMonthWorkingTableViewController:self completion:^(id destinationController) {
+
+                MonthWorkingTableViewController *controller = (MonthWorkingTableViewController *)destinationController;
+                controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
+            }];
+        }else if([NSUserDefaults displayModeWorkSheet] == WorksheetDisplayModeCalendar) {
             
-            //TODO:
-            TimeCardSummary *summaryModel = [_items objectAtIndex:indexPath.row];
-            controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
-        }];
+            [StoryboardUtil gotoMonthWorkingCalendarViewController:self completion:^(id destinationController) {
+
+                MonthWorkingCalendarViewController *controller = (MonthWorkingCalendarViewController *)destinationController;
+                controller.inputDates = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
+            }];
+        }
     }
 }
 

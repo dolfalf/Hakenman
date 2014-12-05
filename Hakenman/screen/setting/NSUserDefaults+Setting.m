@@ -129,6 +129,25 @@
     
 }
 
++ (NSInteger)displayModeWorkSheet {
+    
+    //0:sheet 1:calendar
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"displayModeWorksheetKey" : @(WorksheetDisplayModeSheet)}];
+    
+    return [[userDefaults objectForKey:@"displayModeWorksheetKey"] intValue];
+}
+
++ (void)setDisplayModeWorkSheet:(NSInteger)value {
+    
+    //0:sheet 1:calendar
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:@(value) forKey:@"displayModeWorksheetKey"];
+    
+    [userDefaults synchronize];
+    
+}
+
 + (NSString *)workSitename {
     
     NSUserDefaults *userDefaults = [self standardUserDefaults];

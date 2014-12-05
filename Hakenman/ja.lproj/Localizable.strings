@@ -85,6 +85,10 @@
 "SettingViewController_last_worksheet_display_oneyear"  = "最近一年間";
 "SettingViewController_last_worksheet_display_sixmonth" = "最近６ヶ月";
 
+"SettingViewController_default_worksheet_display_title" = "勤務表表示";
+"SettingViewController_default_worksheet_display_sheet" = "一覧";
+"SettingViewController_default_worksheet_display_calendar" = "カレンダー";
+
 "SettingViewController_mail_title_title"            = "タイトル";
 "SettingViewController_work_report_title_defalut" = "【日報】yyyy年mm月dd日";
 
@@ -101,10 +105,14 @@
 "SettingViewController_version_title"              = "バージョン";
 "SettingViewController_tutorial_title"             = "チュートリアル";
 "SettingViewController_app_info_title"             = "KJCodeについて";
+"SettingViewController_kjcode_apps_title"          = "KJCode アプリ紹介";
 "SettingViewController_open_lisence_title"         = "オープンライセンス";
 
 "SettingViewController_database_init_title"         = "データ削除";
 "SettingViewController_database_init_alert_text"    = "データを削除しますか？";
+
+//KJCODE APPS
+"KJStoreProductViewController_title"                = "KJCode アプリ紹介";
 
 //TUTORIAL
 "TutorialViewController_page1_title"                = "HakenMan";
@@ -145,6 +153,9 @@
 "MonthWorkingTableEditViewController_edit_cleardate_alert"  = "この日のデータを削除しますか？";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "出勤時間と退勤時間が同じです";
+
+//カレンダー
+"MonthWorkingCalendarViewController_cal_month_format" =  "yyyy年 MM月";
 
 //その他
 "OpenSourceLicenseViewController_navi_title"    = "オープンライセンス";

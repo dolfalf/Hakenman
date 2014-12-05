@@ -1,28 +1,31 @@
 PODS:
   - DJWActionSheet (1.0.4)
-  - GoogleAnalytics-iOS-SDK (3.0.2)
   - JazzHands (0.1.0)
   - PBFlatUI (1.1.0)
-  - REFormattedNumberField (1.1.4)
-  - RETableViewManager (1.5.11):
-    - REFormattedNumberField (~> 1.1.2)
+  - RDVCalendarView (1.0.7)
+  - REFormattedNumberField (1.1.5)
+  - RETableViewManager (1.5.14):
+    - REFormattedNumberField (~> 1.1.5)
     - REValidation (~> 0.1.4)
   - REValidation (0.1.4)
+  - SVProgressHUD (HEAD based on 1.0)
 
 DEPENDENCIES:
   - DJWActionSheet (~> 1.0)
-  - GoogleAnalytics-iOS-SDK (= 3.0.2)
   - JazzHands (~> 0.1)
   - PBFlatUI (~> 1.1.0)
+  - RDVCalendarView
   - RETableViewManager (~> 1.5)
+  - SVProgressHUD (HEAD)
 
 SPEC CHECKSUMS:
   DJWActionSheet: d88b302d7c29523e1e9fb9b62cfac46f59bb90d9
-  GoogleAnalytics-iOS-SDK: 092c6c87301bb419ed44c1992cad87bc214de9ae
   JazzHands: 828e9d0d6609fdc9089d8049d64dd2ab45179d13
   PBFlatUI: c5b83184df1ea5567c23cce0f2e36708e8e1638f
-  REFormattedNumberField: 73fc04771520498a30889a975ec9c1b293059b0e
-  RETableViewManager: 10bd6eaddd36ac587e037983619273192a1500e1
+  RDVCalendarView: c0b761eedd0a3007cad3981795776b03894bd2d2
+  REFormattedNumberField: 86318c549b60130a6d7a05abebb142f08f671319
+  RETableViewManager: 62cab967dd2d24545283cf4751e94c222268533a
   REValidation: a0033a582415848854e875dfcbe69c107de19f81
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.1
