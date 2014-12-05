@@ -40,7 +40,7 @@
      UIRemoteNotificationTypeSound];
     
 #ifdef TEST_FLIGHT_ENABLE
-//    [TestFlight takeOff:@"f252a090-9e2d-41b4-a4d4-599bb9695f32"];
+    [TestFlight takeOff:@"f252a090-9e2d-41b4-a4d4-599bb9695f32"];
 #endif
     
 #ifdef GOOGLE_ANALYTICS_ENABLE

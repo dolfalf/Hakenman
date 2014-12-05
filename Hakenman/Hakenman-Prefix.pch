@@ -14,18 +14,18 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     // google analytics
-    #import "GAI.h"
-    #import "GAIDictionaryBuilder.h"
-    #import "GAIFields.h"
+//    #import "GAI.h"
+//    #import "GAIDictionaryBuilder.h"
+//    #import "GAIFields.h"
 #endif
 
 #define KJCODE_ITunesItemIdentifier     @"491883463"
 
-#define GOOGLE_ANALYTICS_ID @"UA-52562316-1"
+//#define GOOGLE_ANALYTICS_ID @"UA-52562316-1"
 
 //#define GOOGLE_ANALYTICS_ENABLE
 
-#define TEST_FLIGHT_ENABLE
+//#define TEST_FLIGHT_ENABLE
 //８月データのリカバリー用
 #define RECOVERY_CODE_ENABLE
 
