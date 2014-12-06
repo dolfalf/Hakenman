@@ -9,6 +9,9 @@
 #ifndef Hakenman_const_h
 #define Hakenman_const_h
 
+#import "UIFont+Helper.h"
+#import "UIColor+Helper.h"
+
 //Localize
 #define LOCALIZE(s)     NSLocalizedString(s, nil)
 

@@ -36,7 +36,8 @@
 - (void)initControls {
     
     self.title = LOCALIZE(@"AppInformationViewController_navi_title");
-
+    HKM_INIT_NAVI_TITLE([UIFont nanumFontOfSize:16.f]);
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [indicator startAnimating];
     
