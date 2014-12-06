@@ -243,7 +243,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     //Navigation button add.
     [PBFlatSettings sharedInstance].mainColor = [UIColor whiteColor];
     
-#if 0
+
     _menuBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(5, 5, 35, 35)
                                                                             andWithType:PBFlatIconMenu];
     
@@ -251,7 +251,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
             forControlEvents:UIControlEventTouchUpInside];
     
     [self.navigationController.navigationBar addSubview:_menuBarButton];
-#endif
+    
     
     _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
                                                          andWithType:PBFlatIconMore];
