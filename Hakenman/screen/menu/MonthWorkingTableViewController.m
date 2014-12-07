@@ -274,9 +274,14 @@
 {
     if ([[segue identifier] isEqual:@"goToEdit"]) {
         MonthWorkingTableEditViewController *controller = (MonthWorkingTableEditViewController *)[segue destinationViewController];
-        
+
+#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
+        //編集画面へ遷移するとき、選んだ日のデータを編集画面へ渡す
+        controller.showData = [_bigItems objectForKey:[NSString stringWithFormat:@"left_%ld", _selectedIndex]];
+#else
         //編集画面へ遷移するとき、選んだ日のデータを編集画面へ渡す
         controller.showData = [_bigItems objectForKey:[NSString stringWithFormat:@"left_%d", _selectedIndex]];
+#endif
         //画面遷移時に自動スクロールを無効にする
         _fromCurruntTimeInput = NO;
     }
@@ -306,10 +311,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
+#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
+    LeftTableViewData *leftModel = [_bigItems objectForKey:[NSString stringWithFormat:@"left_%ld", indexPath.row]];
+    RightTableViewData *rightModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%ld", indexPath.row]];
+#else
     LeftTableViewData *leftModel = [_bigItems objectForKey:[NSString stringWithFormat:@"left_%d", indexPath.row]];
     RightTableViewData *rightModel = [_bigItems objectForKey:[NSString stringWithFormat:@"right_%d", indexPath.row]];
-    
+#endif
+
     if ([tableView isEqual:leftTableView] == YES) {
         //左側を表示するときには、TimeCardを参照する必要がない(自分で作る必要がある)
         NSString *cellIdentifier = @"LeftTableViewCell";
