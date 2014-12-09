@@ -152,6 +152,7 @@
 "MonthWorkingTableEditViewController_edit_cleardate_cell"  = "데이터 삭제";
 "MonthWorkingTableEditViewController_edit_cleardate_alert"  = "이 날의 데이터를 삭제할까요?";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "미입력";
+"MonthWorkingTableEditViewController_edit_memo_placeholder"  = "내용입력";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "출근시간과 퇴근시간이 같습니다";
 
 //カレンダー

@@ -8,6 +8,7 @@
 
 #import "EditTimeTableViewCell.h"
 #import "Util.h"
+#import "const.h"
 
 @implementation EditTimeTableViewCell
 
@@ -33,7 +34,7 @@
 }
 
 - (void)updateCell:(NSString *)title inputTime:(id)time {
-    
+    titleLabel.font = [UIFont nanumFontOfSize:titleLabel.font.pointSize];
     titleLabel.text = title;
     [self setTimeText:time];
 }

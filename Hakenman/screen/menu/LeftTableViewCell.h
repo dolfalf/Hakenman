@@ -11,7 +11,6 @@
 
 @interface LeftTableViewCell : UITableViewCell {
     
-    //REMARK: Font対応してください。
     IBOutlet UIView *remarkFlagView;
     IBOutlet BorderLabel *dayLabel;
     IBOutlet BorderLabel *weekLabel;

@@ -153,6 +153,7 @@
 "MonthWorkingTableEditViewController_edit_cleardate_cell"  = "Clear Date";
 "MonthWorkingTableEditViewController_edit_cleardate_alert"  = "Are you sure Clear this Date?";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "No input";
+"MonthWorkingTableEditViewController_edit_memo_placeholder"  = "Input the Memo";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "Start Time & End Time is Same";
 
 //Calendar

@@ -7,6 +7,7 @@
 //
 
 #import "SwitchButtonTableViewCell.h"
+#import "const.h"
 
 @interface SwitchButtonTableViewCell()
 
@@ -45,7 +46,7 @@
 }
 
 - (void)updateCell:(NSString *)title isWorkday:(NSNumber *)on switchHandler:(void (^)(BOOL))handler {
-    
+    titleLabel.font = [UIFont nanumFontOfSize:titleLabel.font.pointSize];
     titleLabel.text = title;
     workDaySwitch.on = [on boolValue];
     

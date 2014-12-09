@@ -152,6 +152,7 @@
 "MonthWorkingTableEditViewController_edit_cleardate_cell"  = "データ削除";
 "MonthWorkingTableEditViewController_edit_cleardate_alert"  = "この日のデータを削除しますか？";
 "MonthWorkingTableEditViewController_edit_placeholder"          = "未入力";
+"MonthWorkingTableEditViewController_edit_memo_placeholder"  = "内容入力";
 "MonthWorkingTableEditViewController_edit_start_end_equals_alert"  = "出勤時間と退勤時間が同じです";
 
 //カレンダー

@@ -34,10 +34,19 @@
     [installation setObject:[[NSLocale currentLocale] localeIdentifier] forKey:@"locale"];
     [installation saveInBackground];
 
-    
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
-     UIRemoteNotificationTypeAlert|
-     UIRemoteNotificationTypeSound];
+    //iOS8 Notification対応
+    //参照：
+    // http://corinnekrych.blogspot.jp/2014/07/how-to-support-push-notification-for.html
+    // http://blog.parse.com/2014/09/15/ready-for-ios-8-so-is-parse-push/
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        //iOS8
+        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [application registerUserNotificationSettings:notificationSettings];
+        [application registerForRemoteNotifications];
+    } else {
+        //before iOS7
+        [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
     
 #ifdef TEST_FLIGHT_ENABLE
     [TestFlight takeOff:@"f252a090-9e2d-41b4-a4d4-599bb9695f32"];
