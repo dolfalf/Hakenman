@@ -157,6 +157,7 @@
 
 //カレンダー
 "MonthWorkingCalendarViewController_cal_month_format" =  "yyyy년 MM월";
+"MonthWorkingCalendarViewController_total_work_time" =  "이번달 근무지간은 * 시간 입니다.";
 
 //その他
 "OpenSourceLicenseViewController_navi_title"    = "오픈라이센스";

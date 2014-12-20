@@ -158,6 +158,7 @@
 
 //Calendar
 "MonthWorkingCalendarViewController_cal_month_format" =  "MMMM yyyy";
+"MonthWorkingCalendarViewController_total_work_time" = "This month of work time is * hour.";
 
 //ETC
 "OpenSourceLicenseViewController_navi_title"    = "Open license";

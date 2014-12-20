@@ -288,8 +288,8 @@
 		1C588A2A19FB62E900DFDB4A /* calendar */ = {
 			isa = PBXGroup;
 			children = (
-				1C588A2C19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m */,
 				1C588A2B19FB64A500DFDB4A /* MonthWorkingCalendarViewController.h */,
+				1C588A2C19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m */,
 				1C588A2E19FB651600DFDB4A /* WorkingDayCell.h */,
 				1C588A2F19FB651600DFDB4A /* WorkingDayCell.m */,
 				1C3461BA1A0D199100CD046F /* WorkingCalendarView.h */,

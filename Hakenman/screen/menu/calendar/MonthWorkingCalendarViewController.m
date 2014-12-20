@@ -16,12 +16,14 @@
 #import "RDVCalendarView+Extension.h"
 #import "MonthWorkingTableEditViewController.h"
 #import "LeftTableViewData.h"
+#import "UIFont+Helper.h"
 
 @interface MonthWorkingCalendarViewController ()
 
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) NSDate *sheetDate;
 @property (nonatomic, assign) NSInteger selectedIndex;
+@property (nonatomic, strong) UILabel *summaryLabel;
 @end
 
 @implementation MonthWorkingCalendarViewController
@@ -87,6 +89,53 @@
     //Localize Label
     [self.calendarView updateMonthLocalizeLabel];
     [self.calendarView updateWeekDayLocalizeLabel];
+    
+}
+
+- (void)summaryLabelWorkTime {
+    
+//    if ([Util is3_5inch] == YES) {
+//        //3.5inchの場合非表示する
+//        return;
+//    }
+    
+    float wTime = [self calendarTotalWorkTime];
+    
+    if (_summaryLabel == nil) {
+        float margin = 16.f;
+        self.summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin,
+                                                                      self.view.frame.size.height - 15.f,
+                                                                      self.calendarView.frame.size.width - (margin*2),
+                                                                      12.f)];
+        HKM_INIT_LABLE(_summaryLabel, HKMFontTypeNanum, 12.f);
+        _summaryLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:_summaryLabel];
+    }
+
+    NSArray *textString = [LOCALIZE(@"MonthWorkingCalendarViewController_total_work_time") componentsSeparatedByString:@"*"];
+    
+    NSDictionary *textAttr = @{ NSForegroundColorAttributeName:[UIColor lightGrayColor],
+                                         NSFontAttributeName:[UIFont systemFontOfSize:12.f]};
+    
+    NSAttributedString *text1 = [[NSAttributedString alloc] initWithString:[textString objectAtIndex:0]
+                                                                attributes:textAttr];
+
+    NSAttributedString *text2 = [[NSAttributedString alloc] initWithString:[textString objectAtIndex:1]
+                                                                attributes:textAttr];
+    
+    
+    NSDictionary *numberAttr = @{ NSForegroundColorAttributeName : [UIColor HKMOrangeColor],
+                                         NSFontAttributeName : [UIFont boldSystemFontOfSize:12.f]};
+    
+    NSAttributedString *hourString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld",(long)wTime]
+                                                                     attributes:numberAttr];
+    
+    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] init];
+    [mutableAttributedString appendAttributedString:text1];
+    [mutableAttributedString appendAttributedString:hourString];
+    [mutableAttributedString appendAttributedString:text2];
+    
+    _summaryLabel.attributedText = mutableAttributedString;
 }
 
 - (void)targetMonth {
@@ -115,7 +164,38 @@
     TimeCardDao *dao = [TimeCardDao new];
     self.items = [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
     
+    //REMARK: 総勤務時間、総勤務日を表示ビュー
+    [self summaryLabelWorkTime];
+    
     [self.calendarView reloadData];
+}
+
+- (float)calendarTotalWorkTime {
+    
+    //MARK:累計計算メソッド
+    float display_total_time = 0.f;
+    
+    
+    for (TimeCard *tm in _items) {
+        
+        NSDate *startTimeFromCore = [NSDate convDate2String:tm.start_time];
+        NSDate *endTimeFromCore = [NSDate convDate2String:tm.end_time];
+        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [tm.rest_time floatValue];
+        
+        if (tm.start_time == nil || [tm.start_time isEqualToString:@""] == YES
+            || tm.end_time == nil || [tm.end_time isEqualToString:@""] == YES) {
+            continue;
+        }
+        
+        if ([tm.workday_flag boolValue] == NO) {
+            workTimeFromCore = 0.f;
+        }
+        
+        display_total_time = display_total_time + workTimeFromCore;
+    }
+    
+    return display_total_time;
+    
 }
 
 #pragma mark - BarButton Action
@@ -171,6 +251,7 @@
         
         ((MonthWorkingTableEditViewController *)controller).showData = param;
     }];
+    
 }
 
 
