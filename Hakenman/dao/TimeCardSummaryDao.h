@@ -13,8 +13,6 @@
 
 - (NSArray *)fetchModelStartMonth:(NSString *)sm EndMonth:(NSString *)em ascending:(BOOL)b;
 
-- (NSArray *)fetchModelMonth:(NSString *)yyyymm;
-
 //MARK: TimeCardが変更されたらこのメソッドを呼んでください。
 - (void)updatedTimeCardSummaryTable:(NSString *)yyyymm;
 //MARK: TimeCardSummaryテーブルを更新

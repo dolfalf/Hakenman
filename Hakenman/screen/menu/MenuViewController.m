@@ -9,9 +9,7 @@
 #import "MenuViewController.h"
 #import "UIColor+Helper.h"
 #import "NSDate+Helper.h"
-#import "TimeCardDao.h"
-#import "TimeCardSummaryDao.h"
-#import "MonthWorkingTableViewController.h"
+//#import <RETableViewManager/RETableViewManager.h>
 
 #define KJCODE_START_YEAR 2010     // PickerViewの最初の年
 
@@ -30,23 +28,18 @@ enum {
 //기타 문제점 다수 예상...
 
 @interface MenuViewController ()<UIPickerViewDelegate,
-UIPickerViewDataSource, UIAlertViewDelegate>{
-#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
-    long countOfTodayYear;
-    long countOfTodayMonth;
-    long savePastYear;
-    long savePastMonth;
-#else
-    int countOfTodayYear;
-    int countOfTodayMonth;
-    int savePastYear;
-    int savePastMonth;
-#endif
+UIPickerViewDataSource> {
+    
+    NSMutableArray *years;     // PickerViewの年のデータ保持用
+    NSMutableArray *months;    // PickerViewの月のデータ保持用
+    
 }
 
 @property (nonatomic, strong) NSArray *items;
-@property (nonatomic, strong) NSMutableArray *years;     // PickerViewの年のデータ保持用
-@property (nonatomic, strong) NSMutableArray *months;    // PickerViewの月のデータ保持用
+//@property (nonatomic, strong) RETableViewManager *manager;
+//@property (nonatomic, strong) RETableViewSection *section;
+//@property (nonatomic, strong) RETableViewItem *item;
+//@property (nonatomic, strong) REDateTimeItem *date;
 @property (nonatomic, weak) IBOutlet UITableView *menuTableView;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
@@ -67,7 +60,14 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    //    self.manager = [[RETableViewManager alloc]initWithTableView:menuTableView];
+    //    self.section = [[RETableViewSection alloc]initWithHeaderTitle:@"過去のデータ入力"];
+    //    //datePickerの選択値に制限をかける必要あり（ex : 過去のデータだから入力は先月から）
+    //    NSDate *dateValue = [[NSDate date]getBeginOfMonth];
+    //    self.date = [[REDateTimeItem alloc]initWithTitle:nil value:dateValue placeholder:@"place!!!" format:@"yyyy-MM" datePickerMode:UIDatePickerModeDate];
+    //    self.date.maximumDate = dateValue;
+    //    self.date.minimumDate = [NSDate dateWithTimeIntervalSince1970:NSTimeIntervalSince1970];
+    
     // 現在の日付を取得
     NSDate *today = [[NSDate date]getBeginOfMonth];
     
@@ -78,56 +78,47 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
 #if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
     long todayYear  = components.year;   // 現在の年を取得
     long todayMonth = components.month;  // 現在の月を取得
+    
     // ラベルに現在の日付を表示
     self.dateLabel.text = [NSString stringWithFormat:@"西暦%ld年%ld月", todayYear, todayMonth];
 #else
     int todayYear  = components.year;   // 現在の年を取得
     int todayMonth = components.month;  // 現在の月を取得
+    
     // ラベルに現在の日付を表示
     self.dateLabel.text = [NSString stringWithFormat:@"西暦%d年%d月", todayYear, todayMonth];
 #endif
-    countOfTodayYear = todayYear;
-    countOfTodayMonth = todayMonth;
     
     // Pickerviewにデリゲートを設定
     self.pickerView.delegate = self;
     
+    // -------------------------------------------
     // PickerViewに表示させるデータの作成
+    // -------------------------------------------
+    // PickerViewに年部分に表示させる年データの作成 (1970, 1971, ..., 2030)
+    years = [[NSMutableArray alloc] initWithCapacity:(todayYear-KJCODE_START_YEAR)];
+    for (int i = KJCODE_START_YEAR; i <= todayYear; i++) {
+        [years addObject:[NSString stringWithFormat:@"%d", i]];
+    }
+    // PickerViewの月部分に表示させる月データの作成 (1, 2, ..., 12)
+    months = [[NSMutableArray alloc] initWithCapacity:12];
+    
+    for (int i = 1; i <= 12; i++) {
+        [months addObject:[NSString stringWithFormat:@"%d", i]];
+    }
+    
+    // -------------------------------------------
     // PickerViewに初期の選択値として、現在の日付を設定
+    // -------------------------------------------
     // PickerViewの列数を計算する
     // 列数(row)は0から始まるので注意。例えば、1970年を指定したかったらrowは0, 1971ならrowは1となる
 #if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
     long rowOfTodayYear  = todayYear  - KJCODE_START_YEAR;    // 年の列数を計算
-    long rowOfTodayMonth = todayMonth - 2;             // 月の列数を計算
+    long rowOfTodayMonth = todayMonth - 1;             // 月の列数を計算
 #else
     int rowOfTodayYear  = todayYear  - KJCODE_START_YEAR;    // 年の列数を計算
-    int rowOfTodayMonth = todayMonth - 2;             // 月の列数を計算
+    int rowOfTodayMonth = todayMonth - 1;             // 月の列数を計算
 #endif
-
-    if (todayMonth == 1) {
-        rowOfTodayYear = rowOfTodayYear - 1;
-        rowOfTodayMonth = 11;
-        todayYear = todayYear - 1;
-
-        savePastYear = countOfTodayYear - 1;
-        savePastMonth = 12;
-    }else{
-        savePastYear = countOfTodayYear;
-        savePastMonth = countOfTodayMonth - 1;
-    }
-    // PickerViewに年部分に表示させる年データの作成 (1970, 1971, ..., 2030)
-    self.years = [[NSMutableArray alloc] initWithCapacity:(todayYear-KJCODE_START_YEAR)];
-    
-    for (int i = KJCODE_START_YEAR; i <= todayYear; i++) {
-        [_years addObject:[NSString stringWithFormat:@"%d", i]];
-    }
-    
-    // PickerViewの月部分に表示させる月データの作成 (1, 2, ..., 12)
-    self.months = [[NSMutableArray alloc] initWithCapacity:12];
-    for (int i = 1; i <= 12; i++) {
-        [_months addObject:[NSString stringWithFormat:@"%d", i]];
-    }
-
     // PickerViewの初期の選択値を設定
     // componentが行番号、selectRowが列番号
     [self.pickerView selectRow:rowOfTodayYear inComponent:0 animated:YES];  // 年を選択
@@ -161,73 +152,6 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
     self.completionHandler = nil;
 }
 
-- (IBAction)saveThePast:(id)sender{
-    //저장한 순간에 피커에서 값을 읽어냄
-    //읽어낸 값을 기준으로 새 NSDate를 작성
-    //그 후 해당 과거월의 더미데이터를 생성
-    //(생성전 해당 과거월에 관련된 데이터가 하나라도 있을 시에는 데이터가 작성 되지 않도록 함)
-    //화면 전이는 하지 않음.(작성이 완료되었다는 안내만 주고 창을 끔)
-    //메인으로 돌아왔을때 해당 과거월이 표시되어 있을 것(데이터가 들어있을 것)
-    
-    //該当する年月にデータが一つでも存在したら生成しない
-    TimeCardDao *dao = [TimeCardDao new];
-    
-    NSNumber *year = [NSNumber numberWithInteger:savePastYear];
-    NSNumber *month = [NSNumber numberWithInteger:savePastMonth];
-    NSArray *tempModel = [dao fetchModelYear:[year integerValue] month:[month integerValue]];
-    //該当する年月にデータがない＋該当する年月の枠(TimeCardSummary)が存在したら生成しない
-    TimeCardSummaryDao *timeCardSummaryDao = [TimeCardSummaryDao new];
-#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
-    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%ld%ld",savePastYear, savePastMonth]];
-#else
-    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%d%d",savePastYear, savePastMonth]];
-#endif
-    
-    //全部存在しない場合
-    if ([tempModel count] == 0 && [tempSummaryModel count] == 0){
-        NSNumber *resultYearMonth;
-        NSNumber *todayYearMonth;
-#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
-        resultYearMonth = @([[NSString stringWithFormat:@"%ld%.2ld",savePastYear, savePastMonth] integerValue]);
-        todayYearMonth = @([[NSString stringWithFormat:@"%ld%.2ld",countOfTodayYear, countOfTodayMonth] integerValue]);
-#else
-        resultYearMonth = @([[NSString stringWithFormat:@"%d%.2d",savePastYear, savePastMonth] integerValue]);
-        todayYearMonth = @([[NSString stringWithFormat:@"%d%.2d",countOfTodayYear, countOfTodayMonth]integerValue]);
-#endif
-        BOOL isFutureYearMonth = todayYearMonth <= resultYearMonth? YES:NO;
-        
-        if (isFutureYearMonth) {
-            DLog(@"未来のデータは作れないよ");
-            return;
-        }
-        
-        //データ更新可能
-        TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
-        
-        TimeCardSummary *model = [timeCardSummaryDao createModel];
-#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
-        model.t_yyyymm = @([[NSString stringWithFormat:@"%ld%ld",savePastYear, savePastMonth] integerValue]);
-#else
-        model.t_yyyymm = @([[NSString stringWithFormat:@"%d%d",savePastYear, savePastMonth] integerValue]);
-#endif
-
-        DLog(@"t_yyyymm:[%d]", [model.t_yyyymm intValue]);
-        
-        [timeCardSummaryDao insertModel];
-        
-        TimeCardSummaryDao *summaryDao = [TimeCardSummaryDao new];
-#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
-        [summaryDao updatedTimeCardSummaryTable:[NSString stringWithFormat:@"%ld%.2ld", [year integerValue], [month integerValue]]];
-#else
-        [summaryDao updatedTimeCardSummaryTable:[NSString stringWithFormat:@"%d%.2d", [year integerValue], [month integerValue]]];
-#endif
-
-    }else{
-        DLog(@"既にデータがあるよ");
-        return;
-    }
-}
-
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
@@ -238,6 +162,22 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
     }else if ([[segue identifier] isEqual:@"goToSendDailyMail"]) {
         //
     }
+}
+
+#pragma mark - transition screen method
+- (void)goToMonthWorkingTable {
+    DLog(@"%s", __FUNCTION__);
+    
+    [self performSegueWithIdentifier:@"goToMonthWorkingTable" sender:self];
+    
+}
+
+- (void)goToWorkTableList {
+    DLog(@"%s", __FUNCTION__);
+}
+
+-(void)goToSendDailyMail {
+    DLog(@"%s", __FUNCTION__);
 }
 
 #pragma mark - UIPickerView Delegate
@@ -252,9 +192,9 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     switch (component) {
         case 0: // 年(1列目)の場合(配列と同じように0から始まる)
-                return [_years count];   // 年のデータ数を返す
+            return [years count];   // 年のデータ数を返す
         case 1: // 月(2列目)の場合
-                return [_months count]; // 月のデータ数を返す
+            return [months count];  // 月のデータ数を返す
     }
     return 0;
 }
@@ -262,32 +202,83 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     switch (component) {
         case 0: // 年(1列目)の場合(配列と同じように0から始まる)
-            return [_years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
+            return [years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
         case 1: // 月(2列目)の場合
-            return [_months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
+            return [months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
     }
     return nil;
 }
 
 // PickerViewの操作が行われたときに呼ばれる
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row  inComponent:(NSInteger)component {
-#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
-    // PickerViewの選択されている年と月の列番号を取得
-    long rowOfYear  = (long)[pickerView selectedRowInComponent:0]; // 年を取得
-    long rowOfMonth = (long)[pickerView selectedRowInComponent:1]; // 月を取得
-    savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] integerValue];
-    savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] integerValue];
-#else
+    
     // PickerViewの選択されている年と月の列番号を取得
     int rowOfYear  = (int)[pickerView selectedRowInComponent:0]; // 年を取得
     int rowOfMonth = (int)[pickerView selectedRowInComponent:1]; // 月を取得
-    savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] intValue];
-    savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] intValue];
-#endif
-
+    
     // ラベルに現在の日付を表示
     self.dateLabel.text = [NSString stringWithFormat:@"西暦%@年%@月",
-                           [_years objectAtIndex:rowOfYear], [_months objectAtIndex:rowOfMonth]];
+                           [years objectAtIndex:rowOfYear], [months objectAtIndex:rowOfMonth]];
 }
+
+#pragma mark - UITableView Delegate
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    return 44.0f;
+//
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//
+//    return [_items count];
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//
+//    NSString *cellIdentifier = @"MenuTableViewCell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//
+//    // セルが作成されていないか?
+//    if (!cell) { // yes
+//        // セルを作成
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//    }
+//
+//    // セルにテキストを設定
+//    // セルの内容はNSArray型の「items」にセットされているものとする
+//    cell.textLabel.text = [_items objectAtIndex:indexPath.row];
+//
+//    return cell;
+//
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//
+//    DLog(@"%@ tableCell Selected.", [_items objectAtIndex:indexPath.row]);
+//
+//    switch (indexPath.row) {
+//        case menuTitleMonthWorkingTable:
+//            //今月の勤務表
+//            [self goToMonthWorkingTable];
+//            break;
+//
+//        case menuTitleWorkTableList:
+//            //勤務表リスト
+//            [self goToWorkTableList];
+//            break;
+//
+//        case menuTitleSendDailyMail:
+//            //日報メール送信
+//            [self goToSendDailyMail];
+//            break;
+//
+//        default:
+//            break;
+//    }
+//}
+
 
 @end
