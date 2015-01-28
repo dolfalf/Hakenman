@@ -149,6 +149,7 @@
 }
 
 #pragma mark - pravate methods
+
 - (UIImageView *)languageWithImage:(NSString *)imagename {
     
     if([Util isJanpaneseLanguage] == NO) {
@@ -162,7 +163,7 @@
 - (void)addPageLabel:(UILabel *)lbl text:(NSString *)text fontSize:(float)sz point:(CGPoint)pt {
     
     lbl.text = text;
-    lbl.font = [UIFont fontWithName:@"Helvetica-Light" size:sz];
+    HKM_INIT_LABLE(lbl, HKMFontTypeNanum, sz);  //font
     [lbl sizeToFit];
     lbl.textAlignment = NSTextAlignmentLeft;
     lbl.frame = CGRectMake(pt.x, pt.y, lbl.frame.size.width, lbl.frame.size.height);
@@ -173,7 +174,7 @@
 - (void)addPageCenterLabel:(UILabel *)lbl text:(NSString *)text fontSize:(float)sz {
     
     lbl.text = text;
-    lbl.font = [UIFont fontWithName:@"Helvetica-Light" size:sz];
+    HKM_INIT_LABLE(lbl, HKMFontTypeNanum, sz);  //font
     [lbl sizeToFit];
     lbl.textAlignment = NSTextAlignmentLeft;
     lbl.center = self.view.center;
@@ -449,6 +450,8 @@
     [_startButton setBackgroundColor:[UIColor HKMBlueColor]];
     [_startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_startButton setTitle:LOCALIZE(@"TutorialViewController_page5_start_button") forState:UIControlStateNormal];
+    HKM_INIT_LABLE(_startButton.titleLabel, HKMFontTypeNanum, _startButton.titleLabel.font.pointSize);
+    
     _startButton.center = self.view.center;
     _startButton.frame = CGRectOffset(_startButton.frame,timeForPage(5), 44);
     [_startButton addTarget:self action:@selector(startButtonTouched:) forControlEvents:UIControlEventTouchUpInside];

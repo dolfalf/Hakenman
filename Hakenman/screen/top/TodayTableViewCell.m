@@ -60,6 +60,14 @@
     
     messageTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_message_title");
     countdownUnitLabel.text = LOCALIZE(@"TopViewController_tablecell_countdown_unit");
+    
+    HKM_INIT_LABLE(yearLabel, HKMFontTypeBoldNanum, yearLabel.font.pointSize);
+    HKM_INIT_LABLE(monthLabel, HKMFontTypeBoldNanum, monthLabel.font.pointSize);
+    HKM_INIT_LABLE(dayLabel, HKMFontTypeBoldNanum, dayLabel.font.pointSize);
+    HKM_INIT_LABLE(weekLabel, HKMFontTypeNanum, weekLabel.font.pointSize);
+    HKM_INIT_LABLE(messageTitleLabel, HKMFontTypeNanum, messageTitleLabel.font.pointSize);
+    HKM_INIT_LABLE(countdownLabel, HKMFontTypeNanum, countdownLabel.font.pointSize);
+    HKM_INIT_LABLE(countdownUnitLabel, HKMFontTypeNanum, countdownUnitLabel.font.pointSize);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

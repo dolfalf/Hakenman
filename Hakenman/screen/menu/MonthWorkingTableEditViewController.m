@@ -243,7 +243,7 @@ typedef enum {
     }
     
     //Remarks
-    self.remarkLongTextItem = [RELongTextItem itemWithValue:remarkValue placeholder:@"内容入力"];
+    self.remarkLongTextItem = [RELongTextItem itemWithValue:remarkValue placeholder:LOCALIZE(@"MonthWorkingTableEditViewController_edit_memo_placeholder")];
     _remarkLongTextItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     _remarkLongTextItem.style = UITableViewCellStyleValue1;
     _remarkLongTextItem.editingStyle = UITableViewCellEditingStyleDelete;

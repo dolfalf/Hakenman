@@ -34,6 +34,7 @@
 - (void)initControls {
     
     self.title = LOCALIZE(@"OpenSourceLicenseViewController_navi_title");
+    HKM_INIT_NAVI_TITLE([UIFont nanumFontOfSize:16.f]);
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"license" ofType:@"html"];
     [licenseWebview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];

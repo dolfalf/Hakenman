@@ -35,6 +35,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    HKM_INIT_NAVI_TITLE([UIFont nanumFontOfSize:15.f]);
+    
     //Navigationbar, statusbar initialize
     if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
         self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
@@ -54,6 +56,8 @@
                                                                                    style:UIBarButtonItemStylePlain
                                                                                   target:nil
                                                                                   action:nil];
+    
+    HKM_INIT_NAVI_BACK_BUTTON([UIFont nanumFontOfSize:15.f]);
     
 #ifdef GOOGLE_ANALYTICS_ENABLE
     // ApplicationViewController を継承する全ViewController は Google Analytics の計測対象とする

@@ -17,6 +17,7 @@
 #import "RightTableViewData.h"
 #import "TimeCard.h"
 #import "Util.h"
+
 #import <UIKit/UIDocumentInteractionController.h>
 
 @interface MonthWorkingTableViewController () <UITableViewDataSource, UITableViewDelegate> {
@@ -100,6 +101,15 @@
     self.sheetDate = [NSDate convDate2ShortString:_inputDates];
     self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
                   [_sheetDate getYear], [_sheetDate getMonth]];
+
+    dateLabel.font = [UIFont nanumFontOfSize:dateLabel.font.pointSize];
+    weekDayLabel.font = [UIFont nanumFontOfSize:weekDayLabel.font.pointSize];
+    workingDayLabel.font = [UIFont nanumFontOfSize:workingDayLabel.font.pointSize];
+    startTimeLabel.font = [UIFont nanumFontOfSize:startTimeLabel.font.pointSize];
+    endTimeLabel.font = [UIFont nanumFontOfSize:endTimeLabel.font.pointSize];
+    workTimeLabel.font = [UIFont nanumFontOfSize:workTimeLabel.font.pointSize];
+    totlaTimeLabel.font = [UIFont nanumFontOfSize:totlaTimeLabel.font.pointSize];
+    
     
     dateLabel.text = LOCALIZE(@"MonthWorkingTableViewController_date_label_text");
     weekDayLabel.text = LOCALIZE(@"MonthWorkingTableViewController_weekday_label_text");
@@ -108,6 +118,14 @@
     endTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_endtime_label_text");
     workTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_worktime_label_text");
     totlaTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_total_label_text");
+    
+    
+    dateLabel.text = LOCALIZE(@"MonthWorkingTableViewController_date_label_text");
+    weekDayLabel.text = LOCALIZE(@"MonthWorkingTableViewController_weekday_label_text");
+    workingDayLabel.text = LOCALIZE(@"MonthWorkingTableViewController_workingday_label_text");
+    startTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_starttime_label_text");
+    endTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_endtime_label_text");
+    workTimeLabel.text = LOCALIZE(@"MonthWorkingTableViewController_worktime_label_text");
     
     
     //テーブル色指定

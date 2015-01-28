@@ -41,6 +41,10 @@
 
 - (void)updateCell:(NSNumber *)day week:(NSNumber *)week isWork:(NSNumber *)work isRemark:(BOOL)remark {
     
+    dayLabel.font = [UIFont nanumFontOfSize:dayLabel.font.pointSize];
+    weekLabel.font = [UIFont nanumFontOfSize:weekLabel.font.pointSize];
+    workDayLabel.font = [UIFont nanumFontOfSize:workDayLabel.font.pointSize];
+    
     //remark存在表示
     remarkFlagView.hidden = !remark;
 

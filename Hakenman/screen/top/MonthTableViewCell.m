@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "const.h"
 #import "TimeCardSummary.h"
-#import "UIColor+Helper.h"
 
 @interface MonthTableViewCell() {
     
@@ -53,6 +52,17 @@
     
     workTimeTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_total_work_time_title");
     workdayTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_total_work_day_title");
+    
+
+    HKM_INIT_LABLE(yearLabel, HKMFontTypeBoldNanum, yearLabel.font.pointSize);
+    HKM_INIT_LABLE(monthLabel, HKMFontTypeBoldNanum, monthLabel.font.pointSize);
+    HKM_INIT_LABLE(workTimeLabel, HKMFontTypeNanum, workTimeLabel.font.pointSize);
+    HKM_INIT_LABLE(workTimeTitleLabel, HKMFontTypeNanum, workTimeTitleLabel.font.pointSize);
+    HKM_INIT_LABLE(workTimeUnit, HKMFontTypeNanum, workTimeUnit.font.pointSize);
+    HKM_INIT_LABLE(workdayLabel, HKMFontTypeNanum, workdayLabel.font.pointSize);
+    HKM_INIT_LABLE(workdayTitleLabel, HKMFontTypeNanum, workdayTitleLabel.font.pointSize);
+    HKM_INIT_LABLE(workdayUnit, HKMFontTypeNanum, workdayUnit.font.pointSize);
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

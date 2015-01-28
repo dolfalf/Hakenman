@@ -9,6 +9,7 @@
 #import "WorkingDayCell.h"
 #import "UIColor+Helper.h"
 #import "Util.h"
+#import "const.h"
 
 @interface WorkingDayCell()
 
@@ -55,11 +56,11 @@
         if ([Util is3_5inch] == YES) {
             _startLabel.font
             = _endLabel.font
-            = [UIFont systemFontOfSize:9.f];
+            = [UIFont nanumFontOfSize:8.f];
         }else {
             _startLabel.font
             = _endLabel.font
-            = [UIFont systemFontOfSize:12.f];
+            = [UIFont nanumFontOfSize:11.f];
         }
         
         
@@ -70,6 +71,9 @@
         _startLabel.textAlignment
         = _endLabel.textAlignment
         = NSTextAlignmentCenter;
+        
+        HKM_INIT_LABLE(self.textLabel, HKMFontTypeNanum, self.textLabel.font.pointSize);
+        
     }
     return self;
 }

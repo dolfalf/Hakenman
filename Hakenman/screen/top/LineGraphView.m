@@ -47,7 +47,7 @@
         _noDataLabel.text = LOCALIZE(@"LineGraphView_total_work_day_no_data");
         _noDataLabel.textColor = [UIColor lightGrayColor];
         _noDataLabel.textAlignment = NSTextAlignmentCenter;
-        _noDataLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:35.f];
+        _noDataLabel.font = [UIFont nanumFontOfSize:36.f];
         [self addSubview:_noDataLabel];
         _noDataLabel.hidden = YES;
         
@@ -270,8 +270,7 @@
     [[UIColor redColor] setFill]; // This is the default
     
     [t drawAtPoint:CGPointMake(p.x, p.y)
-               withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Helvetica"
-                                                                    size:s]}];
+               withAttributes:@{NSFontAttributeName:[UIFont nanumFontOfSize:5.f]}];
     
 }
 
