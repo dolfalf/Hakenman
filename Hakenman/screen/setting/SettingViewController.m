@@ -413,14 +413,38 @@ enum {
                                        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
                                        
                                        DLog(@"initialize database: %@", item);
-                                       weakSelf.deleteAlertview = [[UIAlertView alloc] initWithTitle:@""
-                                                                                             message:LOCALIZE(@"SettingViewController_database_init_alert_text")
-                                                                                            delegate:weakSelf
-                                                                                   cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                                                                   otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
                                        
-                                       [weakSelf.deleteAlertview show];
-                                   
+                                       if (IOS8) {
+                                           //iOS8
+                                           UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:LOCALIZE(@"SettingViewController_database_init_alert_text") preferredStyle:UIAlertControllerStyleAlert];
+                                           
+                                           UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                                                                  style:UIAlertActionStyleCancel
+                                                                                                handler:^(UIAlertAction *action){
+                                                                                                    
+                                                                                                }];
+                                           
+                                           UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
+                                                                                              style:UIAlertActionStyleDefault
+                                                                                            handler:^(UIAlertAction *action){
+                                                                                                [self deleteAllData];
+                                                                                                [self close:nil];
+                                                                                            }];
+                                           
+                                           [alert addAction:actionCancel];
+                                           [alert addAction:actionOk];
+                                           
+                                           [self presentViewController:alert animated:YES completion:nil];
+                                       } else {
+                                           //before iOS7
+                                           weakSelf.deleteAlertview = [[UIAlertView alloc] initWithTitle:@""
+                                                                                                 message:LOCALIZE(@"SettingViewController_database_init_alert_text")
+                                                                                                delegate:weakSelf
+                                                                                       cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                                                       otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
+                                           
+                                           [weakSelf.deleteAlertview show];
+                                       }
                                    }]];
     
 #ifdef SEND_CSV_DOCUMENT_TEST_ENABLE
@@ -479,13 +503,18 @@ enum {
             //Cancel
         }else {
             //OK
-            TimeCardDao *timeCardDao = [TimeCardDao new];
-            [timeCardDao deleteAllModel];
-            TimeCardSummaryDao *timeCardSummaryDao = [TimeCardSummaryDao new];
-            [timeCardSummaryDao deleteAllModel];
+            [self deleteAllData];
+            [self close:nil];
         }
         
     }
+}
+
+-(void)deleteAllData{
+    TimeCardDao *timeCardDao = [TimeCardDao new];
+    [timeCardDao deleteAllModel];
+    TimeCardSummaryDao *timeCardSummaryDao = [TimeCardSummaryDao new];
+    [timeCardSummaryDao deleteAllModel];
 }
 
 @end

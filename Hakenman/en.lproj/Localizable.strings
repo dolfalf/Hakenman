@@ -29,6 +29,7 @@
 
 "Common_navigation_backbutton_title" = "Back";
 "Common_navigation_closebutton_title" = "Close";
+"Common_navigation_donebutton_title" = "Done";
 
 "Common_alert_button_ok"        = "OK";
 "Common_alert_button_cancel"    = "Cancel";
@@ -53,13 +54,13 @@
 "TopViewController_tablecell_graph_desc_text"           = "Working hours display of up to seven days";
 
 //MENU
-"MenuViewController_menulist_month_working_table_title"     = "Month workingtable";
-"MenuViewController_menulist_working_tablelist_title"       = "Workingtablelist";
-"MenuViewController_menulist_send_daily_mail_title"         = "Send daily mail";
 "MenuViewController_add_past_year_month_title"              = "Make Past TimeSummary";
 "MenuViewController_add_past_year_month_label_start"        = "Target Time：";
 "MenuViewController_add_past_year_month_label"              = "Target Time：%@ / %@";
 "MenuViewController_add_past_year_month_Alert_Message"      = "Make Past TimeSummary?";
+"MenuViewController_add_past_year_month_Alert_Message_Error_1"= "Already exists this TimeSummary";
+"MenuViewController_add_past_year_month_Alert_Message_Error_2"= "Can't Make Future TimeSummary";
+
 
 
 //SETTING

@@ -83,13 +83,40 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [indicator stopAnimating];
-    
-    [[[UIAlertView alloc] initWithTitle:@""
-                                message:[error description]
-                               delegate:nil
-                      cancelButtonTitle:LOCALIZE(@"Common_alert_button_ok")
-                      otherButtonTitles:nil] show];
-    
+#if __LP64__
+    NSInteger errorCode = error.code;
+    NSString *errorMessage = [NSString stringWithFormat:@"(%ld)%@", errorCode, [error.userInfo objectForKey:@"NSLocalizedDescription"]];
+#else
+    NSInteger errorCode = error.code;
+    NSString *errorMessage = [NSString stringWithFormat:@"(%d)%@", errorCode, [error.userInfo objectForKey:@"NSLocalizedDescription"]];
+#endif
+    [self _showAlertWithErrorDescription:errorMessage];
+}
+
+-(void)_showAlertWithErrorDescription:(NSString *)error{
+    if (IOS8) {
+        //iOS8
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                       message:error
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action){
+
+                                                             }];
+        
+        [alert addAction:actionCancel];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        //before iOS7
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""                                                            message:error
+                                                       delegate:self
+                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_ok")
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 /*

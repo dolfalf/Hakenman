@@ -28,6 +28,7 @@
 
 "Common_navigation_backbutton_title" = "戻る";
 "Common_navigation_closebutton_title" = "閉じる";
+"Common_navigation_donebutton_title" = "確認";
 
 "Common_alert_button_ok"        = "確認";
 "Common_alert_button_cancel"    = "キャンセル";
@@ -52,9 +53,6 @@
 "TopViewController_tablecell_graph_desc_text"           = "最大７日分の勤務時間表示";
 
 //MENU
-"MenuViewController_menulist_month_working_table_title"     = "今月の勤務表";
-"MenuViewController_menulist_working_tablelist_title"       = "勤務表リスト";
-"MenuViewController_menulist_send_daily_mail_title"         = "日報送信";
 "MenuViewController_add_past_year_month_title"              = "過去のデータを作成";
 "MenuViewController_add_past_year_month_label_start"        = "作成日付：";
 "MenuViewController_add_past_year_month_label"              = "作成日付：西暦%@年%@月";
