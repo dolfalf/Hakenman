@@ -60,6 +60,8 @@
     [[gai logger] setLogLevel:kGAILogLevelError]; // ログレベルを変えることができる
     [gai trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
 #endif
+    [AdvertisingManager sharedIADBannerView].delegate = self;
+    [AdvertisingManager sharedGADBannerView].delegate = self;
     return YES;
 }
 							
@@ -81,6 +83,7 @@
     
     //MARK: TimeCardSummaryを更新する
     [[TimeCardSummaryDao new] updateTimeCardSummaryTableAll];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -104,6 +107,36 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     [PFPush handlePush:userInfo];
+}
+
+#pragma mark - IAD Delegate
+
+- (void)bannerViewWillLoadAd:(ADBannerView *)banner{
+    DLog(@"apple iAD will Load");
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    DLog(@"apple iAD did Load");
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    DLog(@"apple iAD receive Failed - %@", [error localizedDescription]);
+}
+
+#pragma mark - GAD Delegate
+
+/// Called when an ad request loaded an ad. This is a good opportunity to add this view to the
+/// hierarchy if it has not been added yet. If the ad was received as a part of the server-side auto
+/// refreshing, you can examine the hasAutoRefreshed property of the view.
+- (void)adViewDidReceiveAd:(GADBannerView *)view{
+    DLog(@"google admob received!");
+}
+
+/// Called when an ad request failed. Normally this is because no network connection was available
+/// or no ads were available (i.e. no fill). If the error was received as a part of the server-side
+/// auto refreshing, you can examine the hasAutoRefreshed property of the view.
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error{
+    DLog(@"google admob receive Failed - %@", [error localizedDescription]);
 }
 
 @end

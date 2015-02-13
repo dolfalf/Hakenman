@@ -12,6 +12,7 @@
 #import "TimeCardDao.h"
 #import "TimeCardSummaryDao.h"
 #import "MonthWorkingTableViewController.h"
+#import "AdvertisingManager.h"
 
 #define START_YEAR 2014     // PickerViewの最初の年
 
@@ -35,6 +36,8 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
 @property (nonatomic, strong) NSMutableArray *months;    // PickerViewの月のデータ保持用
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
+@property (nonatomic, weak) IBOutlet UIView *structureTopBannerView;
+@property (nonatomic, weak) IBOutlet UIView *structureBottomBannerView;
 
 @end
 
@@ -69,6 +72,8 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
     self.navigationItem.title = LOCALIZE(@"MenuViewController_add_past_year_month_title");
     self.navigationItem.leftBarButtonItem.title = LOCALIZE(@"Common_navigation_closebutton_title");
     self.navigationItem.rightBarButtonItem.title = LOCALIZE(@"Common_navigation_donebutton_title");
+    [_structureTopBannerView addSubview:[AdvertisingManager sharedIADBannerView]];
+    [_structureBottomBannerView addSubview:[AdvertisingManager sharedGADBannerView]];
 }
 
 - (NSString*)checkCurrentLanguage
@@ -404,6 +409,5 @@ UIPickerViewDataSource, UIAlertViewDelegate>{
                                [_months objectAtIndex:rowOfMonth], [_years objectAtIndex:rowOfYear]];
     }
 }
-
 
 @end

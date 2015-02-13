@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="WeJ-zd-84c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="WeJ-zd-84c">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--menu-->
@@ -17,17 +18,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xq8-iq-eW1">
-                                <rect key="frame" x="0.0" y="196" width="320" height="162"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xq8-iq-eW1">
+                                <rect key="frame" x="0.0" y="226" width="320" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xq8-iq-eW1" secondAttribute="height" multiplier="160:81" id="bwe-W2-RzH"/>
+                                </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zP4-mh-Neq">
-                                <rect key="frame" x="16" y="142" width="288" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zP4-mh-Neq">
+                                <rect key="frame" x="16" y="172" width="288" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zP4-mh-Neq" secondAttribute="height" multiplier="144:23" id="Gx9-Ix-MHw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gdj-2Y-Zcd" userLabel="topBannerView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="bl9-vK-R9U"/>
+                                    <constraint firstAttribute="width" secondItem="Gdj-2Y-Zcd" secondAttribute="height" multiplier="16:5" id="hKB-Rg-QxV"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="f72-Tn-611" userLabel="bottomBannerView">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6BN-ZT-sHl"/>
+                                    <constraint firstAttribute="width" secondItem="f72-Tn-611" secondAttribute="height" multiplier="32:5" id="y0r-Tr-6hx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gdj-2Y-Zcd" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="Avw-Pi-nyp"/>
+                            <constraint firstItem="Gdj-2Y-Zcd" firstAttribute="top" secondItem="JeB-ah-BQK" secondAttribute="bottom" id="Ftz-jo-iDO"/>
+                            <constraint firstAttribute="trailing" secondItem="f72-Tn-611" secondAttribute="trailing" id="LdU-lN-PYk"/>
+                            <constraint firstItem="zP4-mh-Neq" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" constant="16" id="QJx-LE-geX"/>
+                            <constraint firstItem="f72-Tn-611" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="VIb-Z3-SSG"/>
+                            <constraint firstAttribute="trailing" secondItem="zP4-mh-Neq" secondAttribute="trailing" constant="16" id="X90-8f-b6c"/>
+                            <constraint firstItem="jr3-9d-sqt" firstAttribute="top" secondItem="f72-Tn-611" secondAttribute="bottom" id="YRY-Od-KWy"/>
+                            <constraint firstAttribute="trailing" secondItem="Gdj-2Y-Zcd" secondAttribute="trailing" id="aP5-oS-2j8"/>
+                            <constraint firstItem="f72-Tn-611" firstAttribute="top" secondItem="Xq8-iq-eW1" secondAttribute="bottom" constant="130" id="bex-Jo-RJj"/>
+                            <constraint firstItem="zP4-mh-Neq" firstAttribute="top" secondItem="Gdj-2Y-Zcd" secondAttribute="bottom" constant="8" id="h8b-Kd-x0E"/>
+                            <constraint firstAttribute="trailing" secondItem="Xq8-iq-eW1" secondAttribute="trailing" id="lQg-74-rlp"/>
+                            <constraint firstItem="Xq8-iq-eW1" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="shk-eZ-VGs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="menu" id="ElB-CB-WPf">
                         <barButtonItem key="leftBarButtonItem" title="閉じる" id="SDz-Ah-tGI">
@@ -44,6 +81,8 @@
                     <connections>
                         <outlet property="dateLabel" destination="zP4-mh-Neq" id="Cp4-O0-Asq"/>
                         <outlet property="pickerView" destination="Xq8-iq-eW1" id="fpX-85-H5e"/>
+                        <outlet property="structureBottomBannerView" destination="f72-Tn-611" id="NSg-vm-F2c"/>
+                        <outlet property="structureTopBannerView" destination="Gdj-2Y-Zcd" id="cCe-V8-zWH"/>
                         <segue destination="5Rd-DY-Wn0" kind="push" identifier="goToMonthWorkingTable" id="NYs-jy-qXt"/>
                         <segue destination="Q4R-5E-Rbf" kind="push" identifier="goToMonthWorkingCalendar" id="gAX-66-5I6"/>
                     </connections>
