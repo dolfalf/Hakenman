@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C1B827D1A0DCBE000E7FB4A /* RDVCalendarView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B827C1A0DCBE000E7FB4A /* RDVCalendarView+Extension.m */; };
 		1C22AEFD19C1D6FA004196EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AEFA19C1D6FA004196EC /* Parse.framework */; };
 		1C22AF0019C1D74A004196EC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AEFF19C1D74A004196EC /* AudioToolbox.framework */; };
 		1C22AF0219C1D755004196EC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0119C1D755004196EC /* CFNetwork.framework */; };
@@ -18,9 +17,20 @@
 		1C22AF0E19C1D7A9004196EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0D19C1D7A9004196EC /* SystemConfiguration.framework */; };
 		1C3442F01A0F439800367BF4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3442EF1A0F439800367BF4 /* StoreKit.framework */; };
 		1C3442F31A0F43C100367BF4 /* KJStoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3442F21A0F43C100367BF4 /* KJStoreProductViewController.m */; };
-		1C3461BC1A0D199100CD046F /* WorkingCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3461BB1A0D199100CD046F /* WorkingCalendarView.m */; };
-		1C588A2D19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C588A2C19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m */; };
-		1C588A3019FB651600DFDB4A /* WorkingDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C588A2F19FB651600DFDB4A /* WorkingDayCell.m */; };
+		1C8A759C1A944D6200852CFE /* HistoryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A759B1A944D6200852CFE /* HistoryEditViewController.m */; };
+		1C8A75A81A9451FC00852CFE /* MonthWorkingCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75A11A9451FC00852CFE /* MonthWorkingCalendarViewController.m */; };
+		1C8A75A91A9451FC00852CFE /* RDVCalendarView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75A31A9451FC00852CFE /* RDVCalendarView+Extension.m */; };
+		1C8A75AA1A9451FC00852CFE /* WorkingCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75A51A9451FC00852CFE /* WorkingCalendarView.m */; };
+		1C8A75AB1A9451FC00852CFE /* WorkingDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75A71A9451FC00852CFE /* WorkingDayCell.m */; };
+		1C8A75AE1A94528300852CFE /* BorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75AD1A94528300852CFE /* BorderLabel.m */; };
+		1C8A75B31A94529200852CFE /* EditTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75B01A94529200852CFE /* EditTimeTableViewCell.m */; };
+		1C8A75B41A94529200852CFE /* SwitchButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75B21A94529200852CFE /* SwitchButtonTableViewCell.m */; };
+		1C8A75BF1A9452AE00852CFE /* LeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75B61A9452AE00852CFE /* LeftTableViewCell.m */; };
+		1C8A75C01A9452AE00852CFE /* LeftTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75B81A9452AE00852CFE /* LeftTableViewData.m */; };
+		1C8A75C11A9452AE00852CFE /* MonthWorkingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75BA1A9452AE00852CFE /* MonthWorkingTableViewController.m */; };
+		1C8A75C21A9452AE00852CFE /* RightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75BC1A9452AE00852CFE /* RightTableViewCell.m */; };
+		1C8A75C31A9452AE00852CFE /* RightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75BE1A9452AE00852CFE /* RightTableViewData.m */; };
+		1C8A75C61A9452CC00852CFE /* MonthWorkingTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75C51A9452CC00852CFE /* MonthWorkingTableEditViewController.m */; };
 		1C96439E1A32AB01005452CB /* NanumBarunGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C96439C1A32AB00005452CB /* NanumBarunGothic.ttf */; };
 		1C96439F1A32AB01005452CB /* NanumBarunGothicBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C96439D1A32AB00005452CB /* NanumBarunGothicBold.ttf */; };
 		1C9643A11A32AB6C005452CB /* NanumBarunGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C96439C1A32AB00005452CB /* NanumBarunGothic.ttf */; };
@@ -29,7 +39,6 @@
 		1C9BAAA919C1E6620076A79C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9BAAA819C1E6620076A79C /* Social.framework */; };
 		1C9BAAAB19C1E69C0076A79C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9BAAAA19C1E69C0076A79C /* Bolts.framework */; };
 		1C9BAAAD19C1E6D30076A79C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9BAAAC19C1E6D30076A79C /* Accounts.framework */; };
-		1CA38F93196AE59A00E4AD9E /* BorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA38F92196AE59A00E4AD9E /* BorderLabel.m */; };
 		1CA7EF991967F1BD001772C9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA7EF981967F1BD001772C9 /* QuartzCore.framework */; };
 		1CAAA21D1966222C00A053C7 /* AppInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */; };
 		1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA21F1966224300A053C7 /* AppInformationViewController.m */; };
@@ -58,13 +67,7 @@
 		3B469FC718B89D3A0095C418 /* HakenmanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FC618B89D3A0095C418 /* HakenmanTests.m */; };
 		3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FD118B8AB740095C418 /* hakenModel.xcdatamodeld */; };
 		3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
-		3B65970E19174FAF0075AB24 /* MonthWorkingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65970D19174FAE0075AB24 /* MonthWorkingTableViewController.m */; };
 		3B659711191759F00075AB24 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
-		3B659717191767D30075AB24 /* LeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659716191767D30075AB24 /* LeftTableViewCell.m */; };
-		3B65971A191767E40075AB24 /* RightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659719191767E40075AB24 /* RightTableViewCell.m */; };
-		3B65972019177F250075AB24 /* MonthWorkingTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B65971F19177F250075AB24 /* MonthWorkingTableEditViewController.m */; };
-		3B659724191780FA0075AB24 /* EditTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659723191780FA0075AB24 /* EditTimeTableViewCell.m */; };
-		3B659727191781170075AB24 /* SwitchButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659726191781170075AB24 /* SwitchButtonTableViewCell.m */; };
 		3B6AFEDE18E6857100501C94 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6AFEDD18E6857100501C94 /* Util.m */; };
 		3B6AFEE118E6874200501C94 /* FileDataDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6AFEE018E6874200501C94 /* FileDataDao.m */; };
 		3B6AFEEA18E69C6300501C94 /* MailContentsDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6AFEE918E69C6300501C94 /* MailContentsDao.m */; };
@@ -88,12 +91,10 @@
 		3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3CC18DD75310062B07A /* KJViewController.m */; };
 		3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3DC18DD75FD0062B07A /* TopViewController.m */; };
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
-		3D1F5B2619637DDB003D9C25 /* LeftTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */; };
 		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
 		3DC90F651A87BA8B008A42BF /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3DC90F621A87BA8B008A42BF /* README.txt */; };
 		3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */; };
 		3DC90F681A87BAD0008A42BF /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F671A87BAD0008A42BF /* libGoogleAdMobAds.a */; };
-		3DD9C5FC19641F7500F4B8C5 /* RightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +108,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C1B827B1A0DCBE000E7FB4A /* RDVCalendarView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RDVCalendarView+Extension.h"; sourceTree = "<group>"; };
-		1C1B827C1A0DCBE000E7FB4A /* RDVCalendarView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RDVCalendarView+Extension.m"; sourceTree = "<group>"; };
 		1C1B827E1A0DD4A800E7FB4A /* CsvExportProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvExportProtocol.h; sourceTree = "<group>"; };
 		1C22AEFA19C1D6FA004196EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1C22AEFF19C1D74A004196EC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -123,12 +122,34 @@
 		1C3442F21A0F43C100367BF4 /* KJStoreProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJStoreProductViewController.m; sourceTree = "<group>"; };
 		1C3461AD1A0CFBA100CD046F /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
 		1C3461AF1A0CFE6400CD046F /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
-		1C3461BA1A0D199100CD046F /* WorkingCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingCalendarView.h; sourceTree = "<group>"; };
-		1C3461BB1A0D199100CD046F /* WorkingCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingCalendarView.m; sourceTree = "<group>"; };
-		1C588A2B19FB64A500DFDB4A /* MonthWorkingCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingCalendarViewController.h; sourceTree = "<group>"; };
-		1C588A2C19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingCalendarViewController.m; sourceTree = "<group>"; };
-		1C588A2E19FB651600DFDB4A /* WorkingDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingDayCell.h; sourceTree = "<group>"; };
-		1C588A2F19FB651600DFDB4A /* WorkingDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingDayCell.m; sourceTree = "<group>"; };
+		1C8A759A1A944D6200852CFE /* HistoryEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryEditViewController.h; sourceTree = "<group>"; };
+		1C8A759B1A944D6200852CFE /* HistoryEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryEditViewController.m; sourceTree = "<group>"; };
+		1C8A75A01A9451FC00852CFE /* MonthWorkingCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingCalendarViewController.h; sourceTree = "<group>"; };
+		1C8A75A11A9451FC00852CFE /* MonthWorkingCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingCalendarViewController.m; sourceTree = "<group>"; };
+		1C8A75A21A9451FC00852CFE /* RDVCalendarView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RDVCalendarView+Extension.h"; sourceTree = "<group>"; };
+		1C8A75A31A9451FC00852CFE /* RDVCalendarView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RDVCalendarView+Extension.m"; sourceTree = "<group>"; };
+		1C8A75A41A9451FC00852CFE /* WorkingCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingCalendarView.h; sourceTree = "<group>"; };
+		1C8A75A51A9451FC00852CFE /* WorkingCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingCalendarView.m; sourceTree = "<group>"; };
+		1C8A75A61A9451FC00852CFE /* WorkingDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingDayCell.h; sourceTree = "<group>"; };
+		1C8A75A71A9451FC00852CFE /* WorkingDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingDayCell.m; sourceTree = "<group>"; };
+		1C8A75AC1A94528300852CFE /* BorderLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderLabel.h; sourceTree = "<group>"; };
+		1C8A75AD1A94528300852CFE /* BorderLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderLabel.m; sourceTree = "<group>"; };
+		1C8A75AF1A94529200852CFE /* EditTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTimeTableViewCell.h; sourceTree = "<group>"; };
+		1C8A75B01A94529200852CFE /* EditTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTimeTableViewCell.m; sourceTree = "<group>"; };
+		1C8A75B11A94529200852CFE /* SwitchButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchButtonTableViewCell.h; sourceTree = "<group>"; };
+		1C8A75B21A94529200852CFE /* SwitchButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchButtonTableViewCell.m; sourceTree = "<group>"; };
+		1C8A75B51A9452AE00852CFE /* LeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewCell.h; sourceTree = "<group>"; };
+		1C8A75B61A9452AE00852CFE /* LeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewCell.m; sourceTree = "<group>"; };
+		1C8A75B71A9452AE00852CFE /* LeftTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewData.h; sourceTree = "<group>"; };
+		1C8A75B81A9452AE00852CFE /* LeftTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewData.m; sourceTree = "<group>"; };
+		1C8A75B91A9452AE00852CFE /* MonthWorkingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingTableViewController.h; sourceTree = "<group>"; };
+		1C8A75BA1A9452AE00852CFE /* MonthWorkingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingTableViewController.m; sourceTree = "<group>"; };
+		1C8A75BB1A9452AE00852CFE /* RightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightTableViewCell.h; sourceTree = "<group>"; };
+		1C8A75BC1A9452AE00852CFE /* RightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewCell.m; sourceTree = "<group>"; };
+		1C8A75BD1A9452AE00852CFE /* RightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightTableViewData.h; sourceTree = "<group>"; };
+		1C8A75BE1A9452AE00852CFE /* RightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewData.m; sourceTree = "<group>"; };
+		1C8A75C41A9452CC00852CFE /* MonthWorkingTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingTableEditViewController.h; sourceTree = "<group>"; };
+		1C8A75C51A9452CC00852CFE /* MonthWorkingTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingTableEditViewController.m; sourceTree = "<group>"; };
 		1C96439C1A32AB00005452CB /* NanumBarunGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothic.ttf; sourceTree = "<group>"; };
 		1C96439D1A32AB00005452CB /* NanumBarunGothicBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.ttf; sourceTree = "<group>"; };
 		1C9643A31A32AC1B005452CB /* UIFont+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Helper.h"; sourceTree = "<group>"; };
@@ -136,8 +157,6 @@
 		1C9BAAA819C1E6620076A79C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		1C9BAAAA19C1E69C0076A79C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		1C9BAAAC19C1E6D30076A79C /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		1CA38F91196AE59A00E4AD9E /* BorderLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderLabel.h; sourceTree = "<group>"; };
-		1CA38F92196AE59A00E4AD9E /* BorderLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderLabel.m; sourceTree = "<group>"; };
 		1CA7EF981967F1BD001772C9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1CAAA21C1966222C00A053C7 /* AppInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppInfo.storyboard; sourceTree = "<group>"; };
 		1CAAA21E1966224300A053C7 /* AppInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInformationViewController.h; sourceTree = "<group>"; };
@@ -178,20 +197,8 @@
 		3B469FC618B89D3A0095C418 /* HakenmanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HakenmanTests.m; sourceTree = "<group>"; };
 		3B469FD218B8AB740095C418 /* hakenModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hakenModel.xcdatamodel; sourceTree = "<group>"; };
 		3B469FE718B8B0420095C418 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		3B65970C19174FAE0075AB24 /* MonthWorkingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingTableViewController.h; sourceTree = "<group>"; };
-		3B65970D19174FAE0075AB24 /* MonthWorkingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingTableViewController.m; sourceTree = "<group>"; };
 		3B65970F191759F00075AB24 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		3B659710191759F00075AB24 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
-		3B659715191767D30075AB24 /* LeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewCell.h; sourceTree = "<group>"; };
-		3B659716191767D30075AB24 /* LeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewCell.m; sourceTree = "<group>"; };
-		3B659718191767E40075AB24 /* RightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightTableViewCell.h; sourceTree = "<group>"; };
-		3B659719191767E40075AB24 /* RightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewCell.m; sourceTree = "<group>"; };
-		3B65971E19177F250075AB24 /* MonthWorkingTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingTableEditViewController.h; sourceTree = "<group>"; };
-		3B65971F19177F250075AB24 /* MonthWorkingTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingTableEditViewController.m; sourceTree = "<group>"; };
-		3B659722191780FA0075AB24 /* EditTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTimeTableViewCell.h; sourceTree = "<group>"; };
-		3B659723191780FA0075AB24 /* EditTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTimeTableViewCell.m; sourceTree = "<group>"; };
-		3B659725191781170075AB24 /* SwitchButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchButtonTableViewCell.h; sourceTree = "<group>"; };
-		3B659726191781170075AB24 /* SwitchButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchButtonTableViewCell.m; sourceTree = "<group>"; };
 		3B6AFEDC18E6857100501C94 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3B6AFEDD18E6857100501C94 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		3B6AFEDF18E6874200501C94 /* FileDataDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDataDao.h; sourceTree = "<group>"; };
@@ -239,8 +246,6 @@
 		3BC0E3DB18DD75FD0062B07A /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
 		3BC0E3DC18DD75FD0062B07A /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
 		3BC0E3E118DD76460062B07A /* Top.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Top.storyboard; sourceTree = "<group>"; };
-		3D1F5B2419637DDB003D9C25 /* LeftTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewData.h; sourceTree = "<group>"; };
-		3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewData.m; sourceTree = "<group>"; };
 		3D2980671987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D2980681987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D2980691987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -276,8 +281,6 @@
 		3DC90F621A87BA8B008A42BF /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdvertisingManager.m; path = advertising/AdvertisingManager.m; sourceTree = "<group>"; };
 		3DC90F671A87BAD0008A42BF /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAdMobAds.a; path = "Hakenman/advertising/GoogleMobileAdsSdkiOS-6.12.2/libGoogleAdMobAds.a"; sourceTree = "<group>"; };
-		3DD9C5FA19641F7500F4B8C5 /* RightTableViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightTableViewData.h; sourceTree = "<group>"; };
-		3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewData.m; sourceTree = "<group>"; };
 		F572CE3580F6449BBEA9BF3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -323,17 +326,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C588A2A19FB62E900DFDB4A /* calendar */ = {
+		1C8A759D1A9451C200852CFE /* sheet */ = {
 			isa = PBXGroup;
 			children = (
-				1C588A2B19FB64A500DFDB4A /* MonthWorkingCalendarViewController.h */,
-				1C588A2C19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m */,
-				1C588A2E19FB651600DFDB4A /* WorkingDayCell.h */,
-				1C588A2F19FB651600DFDB4A /* WorkingDayCell.m */,
-				1C3461BA1A0D199100CD046F /* WorkingCalendarView.h */,
-				1C3461BB1A0D199100CD046F /* WorkingCalendarView.m */,
-				1C1B827B1A0DCBE000E7FB4A /* RDVCalendarView+Extension.h */,
-				1C1B827C1A0DCBE000E7FB4A /* RDVCalendarView+Extension.m */,
+				1C8A75B51A9452AE00852CFE /* LeftTableViewCell.h */,
+				1C8A75B61A9452AE00852CFE /* LeftTableViewCell.m */,
+				1C8A75B71A9452AE00852CFE /* LeftTableViewData.h */,
+				1C8A75B81A9452AE00852CFE /* LeftTableViewData.m */,
+				1C8A75B91A9452AE00852CFE /* MonthWorkingTableViewController.h */,
+				1C8A75BA1A9452AE00852CFE /* MonthWorkingTableViewController.m */,
+				1C8A75BB1A9452AE00852CFE /* RightTableViewCell.h */,
+				1C8A75BC1A9452AE00852CFE /* RightTableViewCell.m */,
+				1C8A75BD1A9452AE00852CFE /* RightTableViewData.h */,
+				1C8A75BE1A9452AE00852CFE /* RightTableViewData.m */,
+			);
+			path = sheet;
+			sourceTree = "<group>";
+		};
+		1C8A759E1A9451DE00852CFE /* edit */ = {
+			isa = PBXGroup;
+			children = (
+				1C8A75C41A9452CC00852CFE /* MonthWorkingTableEditViewController.h */,
+				1C8A75C51A9452CC00852CFE /* MonthWorkingTableEditViewController.m */,
+				1C8A75AF1A94529200852CFE /* EditTimeTableViewCell.h */,
+				1C8A75B01A94529200852CFE /* EditTimeTableViewCell.m */,
+				1C8A75B11A94529200852CFE /* SwitchButtonTableViewCell.h */,
+				1C8A75B21A94529200852CFE /* SwitchButtonTableViewCell.m */,
+			);
+			path = edit;
+			sourceTree = "<group>";
+		};
+		1C8A759F1A9451FC00852CFE /* calendar */ = {
+			isa = PBXGroup;
+			children = (
+				1C8A75A01A9451FC00852CFE /* MonthWorkingCalendarViewController.h */,
+				1C8A75A11A9451FC00852CFE /* MonthWorkingCalendarViewController.m */,
+				1C8A75A21A9451FC00852CFE /* RDVCalendarView+Extension.h */,
+				1C8A75A31A9451FC00852CFE /* RDVCalendarView+Extension.m */,
+				1C8A75A41A9451FC00852CFE /* WorkingCalendarView.h */,
+				1C8A75A51A9451FC00852CFE /* WorkingCalendarView.m */,
+				1C8A75A61A9451FC00852CFE /* WorkingDayCell.h */,
+				1C8A75A71A9451FC00852CFE /* WorkingDayCell.m */,
 			);
 			path = calendar;
 			sourceTree = "<group>";
@@ -400,28 +433,11 @@
 		3B340F3918DD99D4008F6E1E /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				1C588A2A19FB62E900DFDB4A /* calendar */,
 				3B340F3A18DD99EF008F6E1E /* Menu.storyboard */,
 				3B340F3C18DD99FE008F6E1E /* MenuViewController.h */,
 				3B340F3D18DD99FE008F6E1E /* MenuViewController.m */,
-				3B659715191767D30075AB24 /* LeftTableViewCell.h */,
-				3B659716191767D30075AB24 /* LeftTableViewCell.m */,
-				3B659718191767E40075AB24 /* RightTableViewCell.h */,
-				3B659719191767E40075AB24 /* RightTableViewCell.m */,
-				3B65970C19174FAE0075AB24 /* MonthWorkingTableViewController.h */,
-				3B65970D19174FAE0075AB24 /* MonthWorkingTableViewController.m */,
-				3B659722191780FA0075AB24 /* EditTimeTableViewCell.h */,
-				3B659723191780FA0075AB24 /* EditTimeTableViewCell.m */,
-				3B659725191781170075AB24 /* SwitchButtonTableViewCell.h */,
-				3B659726191781170075AB24 /* SwitchButtonTableViewCell.m */,
-				3B65971E19177F250075AB24 /* MonthWorkingTableEditViewController.h */,
-				3B65971F19177F250075AB24 /* MonthWorkingTableEditViewController.m */,
-				3D1F5B2419637DDB003D9C25 /* LeftTableViewData.h */,
-				3D1F5B2519637DDB003D9C25 /* LeftTableViewData.m */,
-				3DD9C5FA19641F7500F4B8C5 /* RightTableViewData.h */,
-				3DD9C5FB19641F7500F4B8C5 /* RightTableViewData.m */,
-				1CA38F91196AE59A00E4AD9E /* BorderLabel.h */,
-				1CA38F92196AE59A00E4AD9E /* BorderLabel.m */,
+				1C8A759A1A944D6200852CFE /* HistoryEditViewController.h */,
+				1C8A759B1A944D6200852CFE /* HistoryEditViewController.m */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -604,11 +620,16 @@
 		3BC0E3D418DD75FD0062B07A /* top */ = {
 			isa = PBXGroup;
 			children = (
+				1C8A759F1A9451FC00852CFE /* calendar */,
+				1C8A759E1A9451DE00852CFE /* edit */,
+				1C8A759D1A9451C200852CFE /* sheet */,
+				3BC0E3E118DD76460062B07A /* Top.storyboard */,
+				1C8A75AC1A94528300852CFE /* BorderLabel.h */,
+				1C8A75AD1A94528300852CFE /* BorderLabel.m */,
 				3B23F21218E6C48B00518106 /* LineGraphView.h */,
 				3B23F21318E6C48B00518106 /* LineGraphView.m */,
 				3BC0E3DB18DD75FD0062B07A /* TopViewController.h */,
 				3BC0E3DC18DD75FD0062B07A /* TopViewController.m */,
-				3BC0E3E118DD76460062B07A /* Top.storyboard */,
 				3B8CB24D1942EFC200CD922E /* TodayTableViewCell.h */,
 				3B8CB24E1942EFC200CD922E /* TodayTableViewCell.m */,
 				3B8CB2501942EFDC00CD922E /* MonthTableViewCell.h */,
@@ -853,52 +874,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CA38F93196AE59A00E4AD9E /* BorderLabel.m in Sources */,
 				3B9CEA2618DD690C000E4FF3 /* ModelDao.m in Sources */,
+				1C8A75A81A9451FC00852CFE /* MonthWorkingCalendarViewController.m in Sources */,
 				1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */,
+				1C8A75C01A9452AE00852CFE /* LeftTableViewData.m in Sources */,
+				1C8A75C31A9452AE00852CFE /* RightTableViewData.m in Sources */,
 				3B8CB2451942EDD900CD922E /* SiteInfo.m in Sources */,
-				3B65972019177F250075AB24 /* MonthWorkingTableEditViewController.m in Sources */,
 				3BC0E3CA18DD74D80062B07A /* SettingViewController.m in Sources */,
+				1C8A75AE1A94528300852CFE /* BorderLabel.m in Sources */,
 				3B6AFEDE18E6857100501C94 /* Util.m in Sources */,
 				3B340F3E18DD99FE008F6E1E /* MenuViewController.m in Sources */,
-				3DD9C5FC19641F7500F4B8C5 /* RightTableViewData.m in Sources */,
-				3B65970E19174FAF0075AB24 /* MonthWorkingTableViewController.m in Sources */,
 				3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */,
 				3B8CB23F1942EDD900CD922E /* FileData.m in Sources */,
-				3B659724191780FA0075AB24 /* EditTimeTableViewCell.m in Sources */,
 				3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */,
 				3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */,
-				3B65971A191767E40075AB24 /* RightTableViewCell.m in Sources */,
 				1C9643A51A32AC1B005452CB /* UIFont+Helper.m in Sources */,
+				1C8A75C11A9452AE00852CFE /* MonthWorkingTableViewController.m in Sources */,
 				3B469FAC18B89D3A0095C418 /* AppDelegate.m in Sources */,
+				1C8A75BF1A9452AE00852CFE /* LeftTableViewCell.m in Sources */,
 				3B659711191759F00075AB24 /* NSDate+Helper.m in Sources */,
+				1C8A75AB1A9451FC00852CFE /* WorkingDayCell.m in Sources */,
+				1C8A75AA1A9451FC00852CFE /* WorkingCalendarView.m in Sources */,
 				3B469FA818B89D3A0095C418 /* main.m in Sources */,
-				3B659717191767D30075AB24 /* LeftTableViewCell.m in Sources */,
+				1C8A759C1A944D6200852CFE /* HistoryEditViewController.m in Sources */,
 				3B6CC8B8195D5D1200F64041 /* StoryboardUtil.m in Sources */,
 				3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */,
 				1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */,
+				1C8A75A91A9451FC00852CFE /* RDVCalendarView+Extension.m in Sources */,
 				1CB3063F196F845600D8BF54 /* NSError+Common.m in Sources */,
+				1C8A75C21A9452AE00852CFE /* RightTableViewCell.m in Sources */,
 				3B8CB24F1942EFC200CD922E /* TodayTableViewCell.m in Sources */,
-				1C1B827D1A0DCBE000E7FB4A /* RDVCalendarView+Extension.m in Sources */,
 				1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */,
+				1C8A75B31A94529200852CFE /* EditTimeTableViewCell.m in Sources */,
 				3B6CC8B2195D4A8D00F64041 /* TimeCardSummary.m in Sources */,
 				3B6AFEE118E6874200501C94 /* FileDataDao.m in Sources */,
 				3B8CB2521942EFDC00CD922E /* MonthTableViewCell.m in Sources */,
-				3D1F5B2619637DDB003D9C25 /* LeftTableViewData.m in Sources */,
 				1C3442F31A0F43C100367BF4 /* KJStoreProductViewController.m in Sources */,
 				3B6CC8AF195D4A8D00F64041 /* TimeCard.m in Sources */,
-				1C588A2D19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m in Sources */,
 				3B8FA72318DDF59400A1182E /* NSUserDefaults+Setting.m in Sources */,
 				3B782548195EC69E003D408D /* UIColor+Helper.m in Sources */,
-				1C3461BC1A0D199100CD046F /* WorkingCalendarView.m in Sources */,
+				1C8A75B41A94529200852CFE /* SwitchButtonTableViewCell.m in Sources */,
+				1C8A75C61A9452CC00852CFE /* MonthWorkingTableEditViewController.m in Sources */,
 				3B8CB2421942EDD900CD922E /* MailContent.m in Sources */,
 				3B6AFEEA18E69C6300501C94 /* MailContentsDao.m in Sources */,
 				3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */,
 				3B9CEA2018DD458F000E4FF3 /* TimeCardDao.m in Sources */,
 				3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */,
 				3B8CB255194315DB00CD922E /* TimeCardSummaryDao.m in Sources */,
-				3B659727191781170075AB24 /* SwitchButtonTableViewCell.m in Sources */,
-				1C588A3019FB651600DFDB4A /* WorkingDayCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1070,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "805f54ed-a9bc-4088-8bcb-0d91b05948ba";
 				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1078,7 +1100,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "805f54ed-a9bc-4088-8bcb-0d91b05948ba";
 				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
