@@ -9,6 +9,7 @@
 #import <RETableViewManager/RETableViewManager.h>
 #import <RETableViewManager/RETableViewOptionsController.h>
 #import <UIKit/UIDocumentInteractionController.h>
+#import "HistoryEditViewController.h"
 
 @interface MenuViewController() <RETableViewManagerDelegate> {
     
@@ -18,7 +19,7 @@
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) RETableViewManager *reTableManager;
 @property (nonatomic, weak) IBOutlet UITableView *menuTableView;
-
+@property (nonatomic, assign) HistoryEditType selectedEditType;
 @property (nonatomic, strong) UIAlertView *deleteAlertview;
 
 - (IBAction)close:(id)sender;
@@ -31,6 +32,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,13 +51,15 @@
     
     [super initControls];
     
+    //メニュー作成
+    _items = @[LOCALIZE(@"MenuViewController_menu_item_add_past_month_menu")
+               ,LOCALIZE(@"MenuViewController_menu_item_delete_past_month_menu")];
+    
     [self initTableView];
     
-    self.title = LOCALIZE(@"SettingViewController_navi_title");
+    self.title = LOCALIZE(@"MenuViewController_navi_title");
     
-    //設定メニュー作成
-    _items = @[LOCALIZE(@"SettingViewController_menulist_working_space_title")
-               ,LOCALIZE(@"SettingViewController_menulist_calc_time_unit_title")];
+    
     
     closeButton.title = LOCALIZE(@"Common_navigation_closebutton_title");
 }
@@ -77,20 +81,35 @@
     
     // Add a section
     //
-    RETableViewSection *menuSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"SettingViewController_menulist_app_info_section_title")];
+    RETableViewSection *menuSection = [RETableViewSection sectionWithHeaderTitle:LOCALIZE(@"MenuViewController_menu_item_section_title")];
     [self.reTableManager addSection:menuSection];
     
     //修正画面へ
-    [menuSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_app_info_title")
+    [menuSection addItem:[RETableViewItem itemWithTitle:[_items objectAtIndex:0]
                                           accessoryType:UITableViewCellAccessoryDisclosureIndicator
                                        selectionHandler:^(RETableViewItem *item) {
         
         __typeof (weakSelf) __strong strongSelf = weakSelf;
         [strongSelf.menuTableView deselectRowAtIndexPath:item.indexPath animated:YES];
         
-        //遷移
-        [self performSegueWithIdentifier:@"HistoryEditSegue" sender:self];
+                                           //遷移
+                                           self.selectedEditType = HistoryEditTypeAdd;
+                                           [self performSegueWithIdentifier:@"HistoryEditSegue" sender:self];
     }]];
+    
+    //修正画面へ
+    [menuSection addItem:[RETableViewItem itemWithTitle:[_items objectAtIndex:1]
+                                          accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                                       selectionHandler:^(RETableViewItem *item) {
+                                           
+                                           __typeof (weakSelf) __strong strongSelf = weakSelf;
+                                           [strongSelf.menuTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                                           
+                                           //遷移
+                                           self.selectedEditType = HistoryEditTypeRemove;
+                                           [self performSegueWithIdentifier:@"HistoryEditSegue" sender:self];
+                                       }]];
+    
     
 }
 
@@ -103,5 +122,17 @@
     
     self.completionHandler = nil;
 }
+
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+     
+     ((HistoryEditViewController *)[segue destinationViewController]).editType = _selectedEditType;
+     
+ }
 
 @end

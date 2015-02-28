@@ -53,12 +53,18 @@
 "TopViewController_tablecell_graph_desc_text"           = "最大７日分の勤務時間表示";
 
 //MENU
-"MenuViewController_add_past_year_month_title"              = "過去のデータを作成";
-"MenuViewController_add_past_year_month_label_start"        = "作成日付：";
-"MenuViewController_add_past_year_month_label"              = "作成日付：西暦%@年%@月";
-"MenuViewController_add_past_year_month_Alert_Message"      = "この日付でデータを作成しますか";
-"MenuViewController_add_past_year_month_Alert_Message_Error_1"= "既にデータが存在します";
-"MenuViewController_add_past_year_month_Alert_Message_Error_2"= "現在より未来のデータは作れません";
+"MenuViewController_navi_title"                         = "メニュー";
+"MenuViewController_menu_item_section_title"            = "";
+"MenuViewController_menu_item_add_past_month_menu"      = "過去のデータを作成";
+"MenuViewController_menu_item_delete_past_month_menu"   = "過去のデータを削除";
+
+//HISTORY_EDIT
+"HistoryEditViewController_add_past_year_month_title"              = "過去のデータを作成";
+"HistoryEditViewController_add_past_year_month_label_start"        = "作成日付：";
+"HistoryEditViewController_add_past_year_month_label"              = "作成日付：西暦%@年%@月";
+"HistoryEditViewController_add_past_year_month_Alert_Message"      = "この日付でデータを作成しますか";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_1"= "既にデータが存在します";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_2"= "現在より未来のデータは作れません";
 
 //SETTING
 "SettingViewController_navi_title"                                  = "設定";

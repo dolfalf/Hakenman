@@ -6,9 +6,16 @@
 //  Copyright (c) 2015年 kjcode. All rights reserved.
 //
 
+typedef NS_ENUM(NSInteger, HistoryEditType) {
+    HistoryEditTypeAdd,
+    HistoryEditTypeRemove,
+};
+
 #import "KJViewController.h"
 
 @interface HistoryEditViewController : KJViewController
+
+@property (nonatomic, assign) HistoryEditType editType;
 
 @property (nonatomic, copy) void(^completionHandler)(id);
 

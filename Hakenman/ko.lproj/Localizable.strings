@@ -53,12 +53,18 @@
 "TopViewController_tablecell_graph_desc_text"           = "최대 7일간의 근무시간이 표시";
 
 //MENU
-"MenuViewController_add_past_year_month_title"              = "이전 데이터 작성";
-"MenuViewController_add_past_year_month_label_start"        = "작성할 날짜：";
-"MenuViewController_add_past_year_month_label"              = "작성할 날짜：%@년%@월";
-"MenuViewController_add_past_year_month_Alert_Message"      = "이 날짜로 데이터를 작성할까요?";
-"MenuViewController_add_past_year_month_Alert_Message_Error_1"= "이미 데이터가 존재합니다";
-"MenuViewController_add_past_year_month_Alert_Message_Error_2"= "현재보다 미래의 데이터는 작성할 수 없습니다";
+"MenuViewController_navi_title"                         = "메뉴";
+"MenuViewController_menu_item_section_title"            = "";
+"MenuViewController_menu_item_add_past_month_menu"      = "이전 데이타 작성";
+"MenuViewController_menu_item_delete_past_month_menu"   = "이전 데이타 삭제";
+
+//HISTORY_EDIT
+"HistoryEditViewController_add_past_year_month_title"              = "이전 데이터 작성";
+"HistoryEditViewController_add_past_year_month_label_start"        = "작성할 날짜：";
+"HistoryEditViewController_add_past_year_month_label"              = "작성할 날짜：%@년%@월";
+"HistoryEditViewController_add_past_year_month_Alert_Message"      = "이 날짜로 데이터를 작성할까요?";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_1"= "이미 데이터가 존재합니다";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_2"= "현재보다 미래의 데이터는 작성할 수 없습니다";
 
 //SETTING
 "SettingViewController_navi_title"                                  = "설정";
