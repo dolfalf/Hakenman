@@ -29,6 +29,7 @@
 "Common_navigation_backbutton_title" = "뒤로가기";
 "Common_navigation_closebutton_title" = "닫기";
 "Common_navigation_donebutton_title" = "확인";
+"Common_navigation_savebutton_title" = "저장";
 
 "Common_alert_button_ok"        = "확인";
 "Common_alert_button_cancel"    = "취소";
@@ -59,6 +60,8 @@
 "MenuViewController_menu_item_delete_past_month_menu"   = "이전 데이타 삭제";
 
 //HISTORY_EDIT
+"HistoryEditViewController_title_add"                              = "과거근무표추가";
+"HistoryEditViewController_title_remove"                           = "과거근무표삭제";
 "HistoryEditViewController_add_past_year_month_title"              = "이전 데이터 작성";
 "HistoryEditViewController_add_past_year_month_label_start"        = "작성할 날짜：";
 "HistoryEditViewController_add_past_year_month_label"              = "작성할 날짜：%@년%@월";

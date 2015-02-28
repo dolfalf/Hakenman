@@ -37,7 +37,7 @@
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) NSMutableArray *years;     // PickerViewの年のデータ保持用
 @property (nonatomic, strong) NSMutableArray *months;    // PickerViewの月のデータ保持用
-@property (nonatomic, weak) IBOutlet UILabel *dateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *descLabel;
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, weak) IBOutlet UIView *structureTopBannerView;
 @property (nonatomic, weak) IBOutlet UIView *structureBottomBannerView;
@@ -71,6 +71,14 @@
 
 #pragma mark - override method
 - (void)initControls {
+    
+    if (_editType == HistoryEditTypeAdd) {
+        self.title = LOCALIZE(@"HistoryEditViewController_title_add");
+    }else if(_editType == HistoryEditTypeRemove) {
+        self.title = LOCALIZE(@"HistoryEditViewController_title_remove");
+    }else {
+        self.title = @"";
+    }
     
     self.navigationItem.title = LOCALIZE(@"MenuViewController_add_past_year_month_title");
     self.navigationItem.leftBarButtonItem.title = LOCALIZE(@"Common_navigation_closebutton_title");
@@ -154,13 +162,13 @@
         [self.pickerView selectRow:rowOfTodayYear inComponent:0 animated:YES];
         [self.pickerView selectRow:rowOfTodayMonth inComponent:1 animated:YES];
         // ラベルに現在の日付を表示
-        self.dateLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
+        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
                                [_years objectAtIndex:rowOfTodayYear], [_months objectAtIndex:rowOfTodayMonth]];
     }else{
         [self.pickerView selectRow:rowOfTodayMonth inComponent:0 animated:YES];
         [self.pickerView selectRow:rowOfTodayYear inComponent:1 animated:YES];
         // ラベルに現在の日付を表示
-        self.dateLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
+        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
                                [_months objectAtIndex:rowOfTodayMonth], [_years objectAtIndex:rowOfTodayYear]];
         
     }

@@ -30,6 +30,7 @@
 "Common_navigation_backbutton_title" = "Back";
 "Common_navigation_closebutton_title" = "Close";
 "Common_navigation_donebutton_title" = "Done";
+"Common_navigation_savebutton_title" = "Save";
 
 "Common_alert_button_ok"        = "OK";
 "Common_alert_button_cancel"    = "Cancel";
@@ -61,6 +62,8 @@
 "MenuViewController_menu_item_delete_past_month_menu"   = "Remove Past TimeSummary";
 
 //HISTORY_EDIT
+"HistoryEditViewController_title_add"                              = "Add past WorkSheet";
+"HistoryEditViewController_title_remove"                           = "Remove past WorkSheet";
 "HistoryEditViewController_add_past_year_month_title"              = "Make Past TimeSummary";
 "HistoryEditViewController_add_past_year_month_label_start"        = "Target Time：";
 "HistoryEditViewController_add_past_year_month_label"              = "Target Time：%@ / %@";

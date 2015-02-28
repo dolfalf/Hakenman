@@ -29,6 +29,7 @@
 "Common_navigation_backbutton_title" = "戻る";
 "Common_navigation_closebutton_title" = "閉じる";
 "Common_navigation_donebutton_title" = "確認";
+"Common_navigation_savebutton_title" = "保存";
 
 "Common_alert_button_ok"        = "確認";
 "Common_alert_button_cancel"    = "キャンセル";
@@ -59,6 +60,8 @@
 "MenuViewController_menu_item_delete_past_month_menu"   = "過去のデータを削除";
 
 //HISTORY_EDIT
+"HistoryEditViewController_title_add"                              = "過去勤務表追加";
+"HistoryEditViewController_title_remove"                           = "過去勤務表削除";
 "HistoryEditViewController_add_past_year_month_title"              = "過去のデータを作成";
 "HistoryEditViewController_add_past_year_month_label_start"        = "作成日付：";
 "HistoryEditViewController_add_past_year_month_label"              = "作成日付：西暦%@年%@月";
