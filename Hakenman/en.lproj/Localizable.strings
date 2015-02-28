@@ -26,6 +26,10 @@
 "Common_actionsheet_title"  ="Select to action";
 "Common_actionsheet_ok"     = "OK";
 "Common_actionsheet_cancel" = "Cancel";
+"Common_alert_button_yes"       = "Yes";
+"Common_alert_button_no"        = "No";
+"Common_alert_remove_message"       = "Are you sure remove sheet?";
+"Common_alert_add_sheet_message"    = "Are you sure add sheet?";
 
 "Common_navigation_backbutton_title" = "Back";
 "Common_navigation_closebutton_title" = "Close";
@@ -64,6 +68,8 @@
 //HISTORY_EDIT
 "HistoryEditViewController_title_add"                              = "Add past WorkSheet";
 "HistoryEditViewController_title_remove"                           = "Remove past WorkSheet";
+"HistoryEditViewController_add_desc_message"                       = "Added the past past sheet. Added sheet can be edited in the main screen.";
+"HistoryEditViewController_remove_desc_message"                    = "Removed the past sheet. Deleted sheet will not be displayed on the main screen.";
 "HistoryEditViewController_add_past_year_month_title"              = "Make Past TimeSummary";
 "HistoryEditViewController_add_past_year_month_label_start"        = "Target Time：";
 "HistoryEditViewController_add_past_year_month_label"              = "Target Time：%@ / %@";

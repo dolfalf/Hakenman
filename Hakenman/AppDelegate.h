@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AdvertisingManager.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, ADBannerViewDelegate, GADBannerViewDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

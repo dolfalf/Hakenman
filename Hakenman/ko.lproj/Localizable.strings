@@ -33,6 +33,10 @@
 
 "Common_alert_button_ok"        = "확인";
 "Common_alert_button_cancel"    = "취소";
+"Common_alert_button_yes"       = "예";
+"Common_alert_button_no"        = "아니오";
+"Common_alert_remove_message"       = "정말로 삭제하시겠습니까?";
+"Common_alert_add_sheet_message"    = "시트를 추가하시겠습니까?";
 
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
@@ -62,6 +66,8 @@
 //HISTORY_EDIT
 "HistoryEditViewController_title_add"                              = "과거근무표추가";
 "HistoryEditViewController_title_remove"                           = "과거근무표삭제";
+"HistoryEditViewController_add_desc_message"                       = "과거근무표시트이력을 추가합니다. 추가된 시트는 메인화면에서 선택하여 편집할 수 있습니다.";
+"HistoryEditViewController_remove_desc_message"                    = "과거근무표시트이력을 삭제합니다. 삭제된 시트는 메인화면에서 표시되지 않습니다.";
 "HistoryEditViewController_add_past_year_month_title"              = "이전 데이터 작성";
 "HistoryEditViewController_add_past_year_month_label_start"        = "작성할 날짜：";
 "HistoryEditViewController_add_past_year_month_label"              = "작성할 날짜：%@년%@월";

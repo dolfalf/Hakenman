@@ -33,6 +33,10 @@
 
 "Common_alert_button_ok"        = "確認";
 "Common_alert_button_cancel"    = "キャンセル";
+"Common_alert_button_yes"       = "はい";
+"Common_alert_button_no"        = "いいえ";
+"Common_alert_remove_message"   = "本当に削除しますか。";
+"Common_alert_add_sheet_message"    = "シートを追加しますか。";
 
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
@@ -62,6 +66,8 @@
 //HISTORY_EDIT
 "HistoryEditViewController_title_add"                              = "過去勤務表追加";
 "HistoryEditViewController_title_remove"                           = "過去勤務表削除";
+"HistoryEditViewController_add_desc_message"                       = "過去勤務表の履歴を追加します。追加されたシートはメイン画面で選択して編集することができます。";
+"HistoryEditViewController_remove_desc_message"                    = "過去勤務表の履歴を削除します。追加されたシートはメイン画面で表示されなくなります。";
 "HistoryEditViewController_add_past_year_month_title"              = "過去のデータを作成";
 "HistoryEditViewController_add_past_year_month_label_start"        = "作成日付：";
 "HistoryEditViewController_add_past_year_month_label"              = "作成日付：西暦%@年%@月";

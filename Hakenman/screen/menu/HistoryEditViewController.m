@@ -37,6 +37,9 @@
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) NSMutableArray *years;     // PickerViewの年のデータ保持用
 @property (nonatomic, strong) NSMutableArray *months;    // PickerViewの月のデータ保持用
+
+@property (nonatomic, weak) IBOutlet UIView *topContainerView;
+@property (nonatomic, weak) IBOutlet UIView *pickerContainerView;
 @property (nonatomic, weak) IBOutlet UILabel *descLabel;
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, weak) IBOutlet UIView *structureTopBannerView;
@@ -59,7 +62,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initControls];
     [self initYearMonth];
 }
 
@@ -74,19 +76,23 @@
     
     if (_editType == HistoryEditTypeAdd) {
         self.title = LOCALIZE(@"HistoryEditViewController_title_add");
+        _descLabel.text = LOCALIZE(@"HistoryEditViewController_add_desc_message");
     }else if(_editType == HistoryEditTypeRemove) {
         self.title = LOCALIZE(@"HistoryEditViewController_title_remove");
+        _descLabel.text = LOCALIZE(@"HistoryEditViewController_remove_desc_message");
     }else {
         self.title = @"";
+        _descLabel.text = @"";
     }
-    
-    AdvertisingManager *mgr = [AdvertisingManager sharedADBannerView];
-    
-    self.navigationItem.title = LOCALIZE(@"MenuViewController_add_past_year_month_title");
     self.navigationItem.leftBarButtonItem.title = LOCALIZE(@"Common_navigation_closebutton_title");
-    self.navigationItem.rightBarButtonItem.title = LOCALIZE(@"Common_navigation_donebutton_title");
-    [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
-    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
+    self.navigationItem.rightBarButtonItem.title = LOCALIZE(@"Common_navigation_savebutton_title");
+    HKM_INIT_LABLE(_descLabel, HKMFontTypeNanum, _descLabel.font.pointSize);
+
+    //AD Banner.
+    AdvertisingManager *mgr = [AdvertisingManager sharedADBannerView];
+    [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
+    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
+    
 }
 
 - (NSString*)checkCurrentLanguage
@@ -163,15 +169,9 @@
         [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
         [self.pickerView selectRow:rowOfTodayYear inComponent:0 animated:YES];
         [self.pickerView selectRow:rowOfTodayMonth inComponent:1 animated:YES];
-        // ラベルに現在の日付を表示
-        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
-                               [_years objectAtIndex:rowOfTodayYear], [_months objectAtIndex:rowOfTodayMonth]];
     }else{
         [self.pickerView selectRow:rowOfTodayMonth inComponent:0 animated:YES];
         [self.pickerView selectRow:rowOfTodayYear inComponent:1 animated:YES];
-        // ラベルに現在の日付を表示
-        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
-                               [_months objectAtIndex:rowOfTodayMonth], [_years objectAtIndex:rowOfTodayYear]];
         
     }
 }
@@ -254,25 +254,36 @@
     if (_completionHandler) {
         _completionHandler(self);
     }
-    
     self.completionHandler = nil;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (IBAction)onCheckAlert:(id)sender{
     
+    NSString *message = nil;
+    
+    if (_editType == HistoryEditTypeAdd) {
+        message = LOCALIZE(@"Common_alert_add_sheet_message");
+    }else if(_editType == HistoryEditTypeRemove) {
+        message = LOCALIZE(@"Common_alert_remove_message");
+    }
+    
     if (IOS8) {
         //iOS8
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:LOCALIZE(@"MenuViewController_add_past_year_month_Alert_Message") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                       message:message
+                                                                preferredStyle:UIAlertControllerStyleAlert];
         
         [alert setTitle:@""];
-        [alert setMessage:LOCALIZE(@"MenuViewController_add_past_year_month_Alert_Message")];
-        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_no")
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action){
                                                                  
                                                              }];
         
-        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
+        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_yes")
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action){
                                                              [self _saveThePast];
@@ -284,10 +295,11 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else {
         //before iOS7
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""                                                            message:LOCALIZE(@"MenuViewController_add_past_year_month_Alert_Message")
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:message
                                                        delegate:self
-                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                              otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
+                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_no")
+                                              otherButtonTitles:LOCALIZE(@"Common_alert_button_yes"), nil];
         [alert show];
         
     }
@@ -380,28 +392,20 @@
 #pragma mark - UIPickerView Delegate
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     
-    float width = 40.f;
+    float width = 30.f;
     
-    if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
-        [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
-        switch (component) {
-            case 0:
-                width = width*4.f;
-                break;
-            case 1:
-                width = width*2.f;
-                break;
-        }
-    }else{
-        switch (component) {
-            case 0:
-                width = width*2.f;
-                break;
-            case 1:
-                width = width*4.f;
-                break;
-        }
+    switch (component) {
+        case 0:
+            width = width*4.f;
+            break;
+        case 1:
+            width = width;
+            break;
+        case 2:
+            width = width*2.f;
+            break;
     }
+    
     
     return width;
 }
@@ -414,51 +418,37 @@
 // 列数を返す
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     // 年と月を表示するので2列を指定
-    return 2;
+    return 3;
 }
 
 // 各列に対する、行数を返す
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    //英語の場合は日付の表示が逆順
-    if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
-        [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
-        switch (component) {
-            case 0: // 年(1列目)の場合(配列と同じように0から始まる)
-                return [_years count];   // 年のデータ数を返す
-            case 1: // 月(2列目)の場合
-                return [_months count]; // 月のデータ数を返す
-        }
-    }else{
-        switch (component) {
-            case 0: // 月(1列目)の場合
-                return [_months count]; // 月のデータ数を返す
-            case 1: // 年(2列目)の場合(配列と同じように0から始まる)
-                return [_years count]; // 年のデータ数を返す
-        }
+
+    switch (component) {
+        case 0: // 年(1列目)の場合(配列と同じように0から始まる)
+            return [_years count];   // 年のデータ数を返す
+        case 1:
+            return 1;
+        case 2: // 月(2列目)の場合
+            return [_months count]; // 月のデータ数を返す
     }
+    
     return 0;
 }
 
 #if 0
 // 列×行に対応する文字列を返す
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    //英語の場合は日付の表示が逆順
-    if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
-        [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
-        switch (component) {
-            case 0: // 年(1列目)の場合(配列と同じように0から始まる)
-                return [_years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
-            case 1: // 月(2列目)の場合
-                return [_months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
-        }
-    }else{
-        switch (component) {
-            case 0: // 月(1列目)の場合(配列と同じように0から始まる)
-                return [_months objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
-            case 1: // 年(2列目)の場合
-                return [_years objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
-        }
+
+    switch (component) {
+        case 0: // 年(1列目)の場合(配列と同じように0から始まる)
+            return [_years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
+        case 1:
+            return 1;
+        case 2: // 月(2列目)の場合
+            return [_months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
     }
+    
     return nil;
 }
 
@@ -467,47 +457,37 @@
 #if 1
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
     
-    float width = 40.f;
+    float width = 30.f;
     
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,
                                                              width,
                                                              80.f)];
     
-    lbl.font = [UIFont boldNanumFontOfSize:48.f];
+    lbl.font = [UIFont nanumFontOfSize:48.f];
     lbl.textAlignment = NSTextAlignmentCenter;
     
     //debug code.
-    lbl.backgroundColor = [UIColor yellowColor];
+    lbl.backgroundColor = [UIColor clearColor];
     
-    //英語の場合は日付の表示が逆順
-    if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
-        [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
-        switch (component) {
-            case 0: // 年(1列目)の場合(配列と同じように0から始まる)
-            {
-                // 年のデータの列に対応した文字列を返す
-                lbl.frame = CGRectMake(0, 0, width*4.f, 80.f);
-                lbl.text = [_years objectAtIndex:row];
-                break;
-            }
-            case 1: // 月(2列目)の場合
-            {
-                // 月のデータの列に対応した文字列を返す
-                lbl.frame = CGRectMake(0, 0, width*2.f, 80.f);
-                lbl.text = [_months objectAtIndex:row];
-                break;
-            }
+    switch (component) {
+        case 0: // 年(1列目)の場合(配列と同じように0から始まる)
+        {
+            // 年のデータの列に対応した文字列を返す
+            lbl.frame = CGRectMake(0, 0, width*4.f, 80.f);
+            lbl.text = [_years objectAtIndex:row];
+            break;
         }
-    }else{
-        switch (component) {
-            case 0: // 月(1列目)の場合(配列と同じように0から始まる)
-                lbl.frame = CGRectMake(0, 0, width*2.f, 80.f);
-                lbl.text = [_months objectAtIndex:row];
-                break;
-            case 1: // 年(2列目)の場合
-                lbl.frame = CGRectMake(0, 0, width*4.f, 80.f);
-                lbl.text = [_years objectAtIndex:row];
-                break;
+        case 1:
+            lbl.frame = CGRectMake(0, 0, width, 80.f);
+            lbl.text = @"/";
+            break;
+            
+        case 2: // 月(3列目)の場合
+        {
+            // 月のデータの列に対応した文字列を返す
+            lbl.frame = CGRectMake(0, 0, width*2.f, 80.f);
+            lbl.text = [_months objectAtIndex:row];
+            break;
         }
     }
     
@@ -520,45 +500,20 @@
 // PickerViewの操作が行われたときに呼ばれる
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row  inComponent:(NSInteger)component {
     
-    //英語の場合は日付の表示が逆順
-    if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
-        [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
 #if __LP64__
-        // PickerViewの選択されている年と月の列番号を取得
-        long rowOfYear  = (long)[pickerView selectedRowInComponent:0]; // 年を取得
-        long rowOfMonth = (long)[pickerView selectedRowInComponent:1]; // 月を取得
-        savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] integerValue];
-        savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] integerValue];
+    // PickerViewの選択されている年と月の列番号を取得
+    long rowOfYear  = (long)[pickerView selectedRowInComponent:0]; // 年を取得
+    long rowOfMonth = (long)[pickerView selectedRowInComponent:2]; // 月を取得
+    savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] integerValue];
+    savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] integerValue];
 #else
-        // PickerViewの選択されている年と月の列番号を取得
-        int rowOfYear  = (int)[pickerView selectedRowInComponent:0]; // 年を取得
-        int rowOfMonth = (int)[pickerView selectedRowInComponent:1]; // 月を取得
-        savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] intValue];
-        savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] intValue];
+    // PickerViewの選択されている年と月の列番号を取得
+    int rowOfYear  = (int)[pickerView selectedRowInComponent:0]; // 年を取得
+    int rowOfMonth = (int)[pickerView selectedRowInComponent:2]; // 月を取得
+    savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] intValue];
+    savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] intValue];
 #endif
         
-        // ラベルに現在の日付を表示
-        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
-                               [_years objectAtIndex:rowOfYear], [_months objectAtIndex:rowOfMonth]];
-    }else{
-#if __LP64__
-        // PickerViewの選択されている年と月の列番号を取得
-        long rowOfMonth = (long)[pickerView selectedRowInComponent:0]; // 月を取得
-        long rowOfYear  = (long)[pickerView selectedRowInComponent:1]; // 年を取得
-        savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] integerValue];
-        savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] integerValue];
-#else
-        // PickerViewの選択されている年と月の列番号を取得
-        int rowOfMonth = (int)[pickerView selectedRowInComponent:0]; // 月を取得
-        int rowOfYear  = (int)[pickerView selectedRowInComponent:1]; // 年を取得
-        savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] intValue];
-        savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] intValue];
-#endif
-        
-        // ラベルに現在の日付を表示
-        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
-                               [_months objectAtIndex:rowOfMonth], [_years objectAtIndex:rowOfYear]];
-    }
 }
 
 @end

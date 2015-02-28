@@ -9,6 +9,8 @@
 #import "AdvertisingManager.h"
 #import "GADBannerView.h"
 
+#define GAD_ADD_UNIT_ID     @"ca-app-pub-4480295199662286/6532666450"
+
 static AdvertisingManager *_shardInstance;
 
 @interface AdvertisingManager() <ADBannerViewDelegate, GADBannerViewDelegate>
@@ -30,15 +32,15 @@ static AdvertisingManager *_shardInstance;
         // create the iAdBannerView
         _shardInstance = [AdvertisingManager new];
         _shardInstance.iadView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-        _shardInstance.iadView.delegate = self;
+        _shardInstance.iadView.delegate = _shardInstance;
         
         // create the GAdBannerView
         // 画面上部に標準サイズのビューを作成する
         // 利用可能な広告サイズの定数値は GADAdSize.h で説明されている
         _shardInstance.gadView = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
-        _shardInstance.gadView.delegate = self;
+        _shardInstance.gadView.delegate = _shardInstance;
         // 広告ユニット ID を指定する
-        _shardInstance.gadView.adUnitID = @"ca-app-pub-4480295199662286/6532666450";
+        _shardInstance.gadView.adUnitID = GAD_ADD_UNIT_ID;
         
         // ユーザーに広告を表示した場所に後で復元する UIViewController をランタイムに知らせて
         // ビュー階層に追加する

@@ -17,39 +17,95 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fe2-Lo-DXl" userLabel="View - TopContainerView">
-                                <rect key="frame" x="0.0" y="72" width="320" height="193"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fe2-Lo-DXl" userLabel="View - TopContainerView">
+                                <rect key="frame" x="0.0" y="72" width="320" height="111"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zP4-mh-Neq">
-                                        <rect key="frame" x="8" y="8" width="304" height="177"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zP4-mh-Neq">
+                                        <rect key="frame" x="8" y="8" width="304" height="95"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="zP4-mh-Neq" secondAttribute="bottom" constant="8" id="9Yl-9I-RgV"/>
+                                    <constraint firstItem="zP4-mh-Neq" firstAttribute="leading" secondItem="Fe2-Lo-DXl" secondAttribute="leading" constant="8" id="HQK-oE-5pw"/>
+                                    <constraint firstAttribute="height" constant="111" id="HpH-cd-gYf"/>
+                                    <constraint firstItem="zP4-mh-Neq" firstAttribute="top" secondItem="Fe2-Lo-DXl" secondAttribute="top" constant="8" id="RQX-BZ-cRL"/>
+                                    <constraint firstAttribute="trailing" secondItem="zP4-mh-Neq" secondAttribute="trailing" constant="8" id="Y76-uo-St6"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FjW-iA-x7s" userLabel="View - PickerContainerView">
-                                <rect key="frame" x="0.0" y="266" width="320" height="200"/>
-                                <subviews>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xq8-iq-eW1">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </pickerView>
-                                </subviews>
+                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FjW-iA-x7s" userLabel="View - PickerContainerView">
+                                <rect key="frame" x="0.0" y="194" width="320" height="200"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="nh2-0J-0tH"/>
+                                </constraints>
                             </view>
-                            <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f72-Tn-611" userLabel="bottomBannerView">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xq8-iq-eW1">
+                                <rect key="frame" x="0.0" y="194" width="320" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="yHH-hN-bEj"/>
+                                </constraints>
+                            </pickerView>
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="f72-Tn-611" userLabel="bottomBannerView">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Sxw-h5-zDc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gdj-2Y-Zcd" userLabel="topBannerView">
+                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gdj-2Y-Zcd" userLabel="topBannerView">
                                 <rect key="frame" x="0.0" y="467" width="320" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KYr-qI-afm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fe2-Lo-DXl" firstAttribute="top" secondItem="JeB-ah-BQK" secondAttribute="bottom" constant="8" id="8S2-HM-uPy"/>
+                            <constraint firstItem="f72-Tn-611" firstAttribute="top" secondItem="Gdj-2Y-Zcd" secondAttribute="bottom" constant="1" id="8dh-C0-9I0"/>
+                            <constraint firstAttribute="centerY" secondItem="FjW-iA-x7s" secondAttribute="centerY" constant="-10" id="AF0-a5-JXP"/>
+                            <constraint firstItem="Xq8-iq-eW1" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="GfS-0a-9hQ"/>
+                            <constraint firstItem="FjW-iA-x7s" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="N46-a6-qFf"/>
+                            <constraint firstAttribute="trailing" secondItem="Fe2-Lo-DXl" secondAttribute="trailing" id="XGz-j7-H8w"/>
+                            <constraint firstAttribute="centerX" secondItem="Xq8-iq-eW1" secondAttribute="centerX" id="Xtk-VT-u9q"/>
+                            <constraint firstItem="jr3-9d-sqt" firstAttribute="top" secondItem="f72-Tn-611" secondAttribute="bottom" id="ai5-u3-e5P"/>
+                            <constraint firstAttribute="trailing" secondItem="FjW-iA-x7s" secondAttribute="trailing" id="bKz-Ra-uaZ"/>
+                            <constraint firstItem="Fe2-Lo-DXl" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="hZT-fj-iIX"/>
+                            <constraint firstItem="f72-Tn-611" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="jHA-IH-AOV"/>
+                            <constraint firstAttribute="trailing" secondItem="f72-Tn-611" secondAttribute="trailing" id="n4O-Ty-Nqz"/>
+                            <constraint firstAttribute="trailing" secondItem="Xq8-iq-eW1" secondAttribute="trailing" id="nuH-OD-Gjy"/>
+                            <constraint firstAttribute="centerX" secondItem="FjW-iA-x7s" secondAttribute="centerX" id="q1A-VY-vlM"/>
+                            <constraint firstItem="Gdj-2Y-Zcd" firstAttribute="leading" secondItem="WvT-0M-ekw" secondAttribute="leading" id="qFA-GI-LR1"/>
+                            <constraint firstAttribute="centerY" secondItem="Xq8-iq-eW1" secondAttribute="centerY" id="rnx-id-tev"/>
+                            <constraint firstAttribute="trailing" secondItem="Gdj-2Y-Zcd" secondAttribute="trailing" id="u80-kE-Pd2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="menu" id="ElB-CB-WPf">
                         <barButtonItem key="leftBarButtonItem" title="閉じる" id="SDz-Ah-tGI">
@@ -65,9 +121,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descLabel" destination="zP4-mh-Neq" id="Rjt-LC-5N8"/>
+                        <outlet property="pickerContainerView" destination="FjW-iA-x7s" id="6VL-3H-MVM"/>
                         <outlet property="pickerView" destination="Xq8-iq-eW1" id="fpX-85-H5e"/>
                         <outlet property="structureBottomBannerView" destination="f72-Tn-611" id="NSg-vm-F2c"/>
                         <outlet property="structureTopBannerView" destination="Gdj-2Y-Zcd" id="cCe-V8-zWH"/>
+                        <outlet property="topContainerView" destination="Fe2-Lo-DXl" id="3YO-12-Yhi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMk-Yu-ALU" userLabel="First Responder" sceneMemberID="firstResponder"/>
