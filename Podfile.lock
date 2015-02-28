@@ -1,6 +1,6 @@
 PODS:
   - DJWActionSheet (1.0.4)
-  - JazzHands (0.1.1)
+  - JazzHands (0.2.0)
   - PBFlatUI (1.1.0)
   - RDVCalendarView (1.0.7)
   - REFormattedNumberField (1.1.5)
@@ -20,7 +20,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DJWActionSheet: d88b302d7c29523e1e9fb9b62cfac46f59bb90d9
-  JazzHands: d39c6b19bfe34946d220fdede80930b7be37f199
+  JazzHands: 700f8eed9e2b2dec07963fde59153dea3c194f85
   PBFlatUI: c5b83184df1ea5567c23cce0f2e36708e8e1638f
   RDVCalendarView: c0b761eedd0a3007cad3981795776b03894bd2d2
   REFormattedNumberField: 86318c549b60130a6d7a05abebb142f08f671319
@@ -28,4 +28,4 @@ SPEC CHECKSUMS:
   REValidation: a0033a582415848854e875dfcbe69c107de19f81
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
 
-COCOAPODS: 0.34.1
+COCOAPODS: 0.35.0
