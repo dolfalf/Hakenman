@@ -30,7 +30,7 @@ static GADBannerView *gadView;
         gadView = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
         
         // 広告ユニット ID を指定する
-        gadView.adUnitID = @"ca-app-pub-4713706250432935/6090120201";
+        gadView.adUnitID = @"ca-app-pub-4480295199662286/6532666450";
         
         // ユーザーに広告を表示した場所に後で復元する UIViewController をランタイムに知らせて
         // ビュー階層に追加する
