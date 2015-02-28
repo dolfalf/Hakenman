@@ -7,47 +7,96 @@
 //
 
 #import "AdvertisingManager.h"
+#import "GADBannerView.h"
+
+static AdvertisingManager *_shardInstance;
+
+@interface AdvertisingManager() <ADBannerViewDelegate, GADBannerViewDelegate>
+
+@property (nonatomic, strong) ADBannerView *iadView;
+@property (nonatomic, strong) GADBannerView *gadView;
+
+@end
 
 @implementation AdvertisingManager
-static ADBannerView *iadView;
-static GADBannerView *gadView;
-+ (ADBannerView*)sharedIADBannerView{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // create the iAdBannerView
-        iadView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-        iadView.frame = CGRectZero;
-    });
-    return iadView;
-}
 
-+ (GADBannerView*)sharedGADBannerView{
+
++ (AdvertisingManager* )sharedADBannerView {
+    
     static dispatch_once_t onceToken;
+    
     dispatch_once(&onceToken, ^{
+        
+        // create the iAdBannerView
+        _shardInstance = [AdvertisingManager new];
+        _shardInstance.iadView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+        _shardInstance.iadView.delegate = self;
+        
         // create the GAdBannerView
         // 画面上部に標準サイズのビューを作成する
         // 利用可能な広告サイズの定数値は GADAdSize.h で説明されている
-        gadView = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
-        
+        _shardInstance.gadView = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
+        _shardInstance.gadView.delegate = self;
         // 広告ユニット ID を指定する
-        gadView.adUnitID = @"ca-app-pub-4480295199662286/6532666450";
+        _shardInstance.gadView.adUnitID = @"ca-app-pub-4480295199662286/6532666450";
         
         // ユーザーに広告を表示した場所に後で復元する UIViewController をランタイムに知らせて
         // ビュー階層に追加する
-        gadView.rootViewController = [[UIApplication sharedApplication].windows objectAtIndex:0];
-        [gadView loadRequest:[GADRequest request]];
+        _shardInstance.gadView.rootViewController = [[UIApplication sharedApplication].windows objectAtIndex:0];
+        [_shardInstance.gadView loadRequest:[GADRequest request]];
+        
     });
-    return gadView;
+    
+    return _shardInstance;
 }
 
-+ (void)resetBannerViews{
-    if (gadView) {
-        gadView = nil;
-//        [self sharedGADBannerView];
+- (id)getADBannerView:(AdViewType)type {
+    
+    if (AdViewTypeIAd) {
+        return _iadView;
+    }else if(AdViewTypeGAd) {
+        return _gadView;
     }
-    if (iadView) {
-        iadView = nil;
-//        [self sharedIADBannerView];
-    }
+    
+    return nil;
 }
+
+
+#pragma mark - IAD Delegate
+
+- (void)bannerViewWillLoadAd:(ADBannerView *)banner{
+    DLog(@"apple iAD will Load");
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    DLog(@"apple iAD did Load");
+    
+    if ([_delegate respondsToSelector:@selector(iAdLoadSuccess)]) {
+            [_delegate iAdLoadSuccess];
+    }
+
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    DLog(@"apple iAD receive Failed - %@", [error localizedDescription]);
+    
+//    [_delegate iAdLoadFail];
+}
+
+#pragma mark - GAD Delegate
+
+/// Called when an ad request loaded an ad. This is a good opportunity to add this view to the
+/// hierarchy if it has not been added yet. If the ad was received as a part of the server-side auto
+/// refreshing, you can examine the hasAutoRefreshed property of the view.
+- (void)adViewDidReceiveAd:(GADBannerView *)view{
+    DLog(@"google admob received!");
+}
+
+/// Called when an ad request failed. Normally this is because no network connection was available
+/// or no ads were available (i.e. no fill). If the error was received as a part of the server-side
+/// auto refreshing, you can examine the hasAutoRefreshed property of the view.
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error{
+    DLog(@"google admob receive Failed - %@", [error localizedDescription]);
+}
+
 @end

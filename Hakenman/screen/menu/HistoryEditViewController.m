@@ -80,11 +80,13 @@
         self.title = @"";
     }
     
+    AdvertisingManager *mgr = [AdvertisingManager sharedADBannerView];
+    
     self.navigationItem.title = LOCALIZE(@"MenuViewController_add_past_year_month_title");
     self.navigationItem.leftBarButtonItem.title = LOCALIZE(@"Common_navigation_closebutton_title");
     self.navigationItem.rightBarButtonItem.title = LOCALIZE(@"Common_navigation_donebutton_title");
-    [_structureTopBannerView addSubview:[AdvertisingManager sharedIADBannerView]];
-    [_structureBottomBannerView addSubview:[AdvertisingManager sharedGADBannerView]];
+    [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
+    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
 }
 
 - (NSString*)checkCurrentLanguage
@@ -536,7 +538,7 @@
 #endif
         
         // ラベルに現在の日付を表示
-        self.dateLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
+        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
                                [_years objectAtIndex:rowOfYear], [_months objectAtIndex:rowOfMonth]];
     }else{
 #if __LP64__
@@ -554,7 +556,7 @@
 #endif
         
         // ラベルに現在の日付を表示
-        self.dateLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
+        self.descLabel.text = [NSString stringWithFormat:LOCALIZE(@"MenuViewController_add_past_year_month_label"),
                                [_months objectAtIndex:rowOfMonth], [_years objectAtIndex:rowOfYear]];
     }
 }

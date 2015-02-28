@@ -7,12 +7,28 @@
 //
 
 #import <iAd/iAd.h>
-#import "GADBannerView.h"
 
-@interface AdvertisingManager : NSObject <ADBannerViewDelegate, GADBannerViewDelegate>
+typedef NS_ENUM(NSInteger, AdViewType) {
+    AdViewTypeIAd,
+    AdViewTypeGAd,
+};
 
-+ (ADBannerView*)sharedIADBannerView;
-+ (GADBannerView*)sharedGADBannerView;
-+ (void)resetBannerViews;
+@protocol AdvertisingManagerDelegate;
 
+@interface AdvertisingManager : NSObject 
+
+@property (nonatomic, assign) id<AdvertisingManagerDelegate> delegate;
+
++ (AdvertisingManager* )sharedADBannerView;
+
+- (id)getADBannerView:(AdViewType)type;
+
+@end
+
+
+@protocol AdvertisingManagerDelegate <NSObject>
+
+@optional
+- (void)iAdLoadSuccess;
+//- (void)iAdLoadFail;
 @end
