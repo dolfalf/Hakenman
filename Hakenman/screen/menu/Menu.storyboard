@@ -37,7 +37,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="保存" id="1GA-cp-DUP">
                             <connections>
-                                <action selector="close:" destination="1bP-5C-qNm" id="iDO-HF-0iG"/>
+                                <action selector="saveThePast:" destination="1bP-5C-qNm" id="tVM-rd-Crq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
