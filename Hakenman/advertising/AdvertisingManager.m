@@ -2,13 +2,11 @@
 //  AdvertisingManager.m
 //  Hakenman
 //
-//  Created by fukuda mami on 2015/02/06.
+//  Created by lee junha on 2015/02/06.
 //  Copyright (c) 2015年 kjcode. All rights reserved.
 //
 
 #import "AdvertisingManager.h"
-#import "GADBannerView.h"
-
 #define GAD_ADD_UNIT_ID     @"ca-app-pub-4480295199662286/6532666450"
 
 static AdvertisingManager *_shardInstance;
@@ -54,9 +52,9 @@ static AdvertisingManager *_shardInstance;
 
 - (id)getADBannerView:(AdViewType)type {
     
-    if (AdViewTypeIAd) {
+    if (type == AdViewTypeIAd) {
         return _iadView;
-    }else if(AdViewTypeGAd) {
+    }else if(type == AdViewTypeGAd) {
         return _gadView;
     }
     
@@ -74,15 +72,15 @@ static AdvertisingManager *_shardInstance;
     DLog(@"apple iAD did Load");
     
     if ([_delegate respondsToSelector:@selector(iAdLoadSuccess)]) {
-            [_delegate iAdLoadSuccess];
+        [_delegate iAdLoadSuccess];
     }
-
+    
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
     DLog(@"apple iAD receive Failed - %@", [error localizedDescription]);
     
-//    [_delegate iAdLoadFail];
+    //    [_delegate iAdLoadFail];
 }
 
 #pragma mark - GAD Delegate

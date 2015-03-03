@@ -24,13 +24,13 @@
 #if __LP64__
     long countOfTodayYear;
     long countOfTodayMonth;
-    long savePastYear;
-    long savePastMonth;
+    long editPastYear;
+    long editPastMonth;
 #else
     int countOfTodayYear;
     int countOfTodayMonth;
-    int savePastYear;
-    int savePastMonth;
+    int editPastYear;
+    int editPastMonth;
 #endif
 }
 
@@ -77,21 +77,22 @@
     if (_editType == HistoryEditTypeAdd) {
         self.title = LOCALIZE(@"HistoryEditViewController_title_add");
         _descLabel.text = LOCALIZE(@"HistoryEditViewController_add_desc_message");
+        self.navigationItem.rightBarButtonItem.title = LOCALIZE(@"Common_navigation_addbutton_title");
     }else if(_editType == HistoryEditTypeRemove) {
         self.title = LOCALIZE(@"HistoryEditViewController_title_remove");
         _descLabel.text = LOCALIZE(@"HistoryEditViewController_remove_desc_message");
+        self.navigationItem.rightBarButtonItem.title = LOCALIZE(@"Common_navigation_removebutton_title");
     }else {
         self.title = @"";
         _descLabel.text = @"";
     }
-    self.navigationItem.leftBarButtonItem.title = LOCALIZE(@"Common_navigation_closebutton_title");
-    self.navigationItem.rightBarButtonItem.title = LOCALIZE(@"Common_navigation_savebutton_title");
+    self.navigationItem.leftBarButtonItem.title = LOCALIZE(@"Common_navigation_backbutton_title");
     HKM_INIT_LABLE(_descLabel, HKMFontTypeNanum, _descLabel.font.pointSize);
 
     //AD Banner.
     AdvertisingManager *mgr = [AdvertisingManager sharedADBannerView];
-    [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
-    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
+    [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
+    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
     
 }
 
@@ -141,11 +142,11 @@
         rowOfTodayMonth = 11;
         todayYear = todayYear - 1;
         
-        savePastYear = countOfTodayYear - 1;
-        savePastMonth = 12;
+        editPastYear = countOfTodayYear - 1;
+        editPastMonth = 12;
     }else{
-        savePastYear = countOfTodayYear;
-        savePastMonth = countOfTodayMonth - 1;
+        editPastYear = countOfTodayYear;
+        editPastMonth = countOfTodayMonth - 1;
     }
     
     // PickerViewに年部分に表示させる年データの作成 (1970, 1971, ..., 2030)
@@ -168,15 +169,15 @@
     if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
         [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
         [self.pickerView selectRow:rowOfTodayYear inComponent:0 animated:YES];
-        [self.pickerView selectRow:rowOfTodayMonth inComponent:1 animated:YES];
+        [self.pickerView selectRow:rowOfTodayMonth inComponent:2 animated:YES];
     }else{
         [self.pickerView selectRow:rowOfTodayMonth inComponent:0 animated:YES];
-        [self.pickerView selectRow:rowOfTodayYear inComponent:1 animated:YES];
+        [self.pickerView selectRow:rowOfTodayYear inComponent:2 animated:YES];
         
     }
 }
 
-- (void)_saveThePast{
+- (void)_addThePast{
     //저장한 순간에 피커에서 값을 읽어냄
     //읽어낸 값을 기준으로 새 NSDate를 작성
     //그 후 해당 과거월의 더미데이터를 생성
@@ -187,15 +188,15 @@
     //該当する年月にデータが一つでも存在したら生成しない
     TimeCardDao *dao = [TimeCardDao new];
     
-    NSNumber *year = [NSNumber numberWithInteger:savePastYear];
-    NSNumber *month = [NSNumber numberWithInteger:savePastMonth];
+    NSNumber *year = [NSNumber numberWithInteger:editPastYear];
+    NSNumber *month = [NSNumber numberWithInteger:editPastMonth];
     NSArray *tempModel = [dao fetchModelYear:[year integerValue] month:[month integerValue]];
     //該当する年月にデータがない＋該当する年月の枠(TimeCardSummary)が存在したら生成しない
     TimeCardSummaryDao *timeCardSummaryDao = [TimeCardSummaryDao new];
 #if __LP64__
-    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%ld%ld",savePastYear, savePastMonth]];
+    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%ld%.2ld",editPastYear, editPastMonth]];
 #else
-    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%d%d",savePastYear, savePastMonth]];
+    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%d%.2d",editPastYear, editPastMonth]];
 #endif
     
     //全部存在しない場合
@@ -203,29 +204,35 @@
         NSNumber *resultYearMonth;
         NSNumber *todayYearMonth;
 #if __LP64__
-        resultYearMonth = @([[NSString stringWithFormat:@"%ld%.2ld",savePastYear, savePastMonth] integerValue]);
+        resultYearMonth = @([[NSString stringWithFormat:@"%ld%.2ld",editPastYear, editPastMonth] integerValue]);
         todayYearMonth = @([[NSString stringWithFormat:@"%ld%.2ld",countOfTodayYear, countOfTodayMonth] integerValue]);
 #else
-        resultYearMonth = @([[NSString stringWithFormat:@"%d%.2d",savePastYear, savePastMonth] integerValue]);
+        resultYearMonth = @([[NSString stringWithFormat:@"%d%.2d",editPastYear, editPastMonth] integerValue]);
         todayYearMonth = @([[NSString stringWithFormat:@"%d%.2d",countOfTodayYear, countOfTodayMonth]integerValue]);
 #endif
-        BOOL isFutureYearMonth = todayYearMonth <= resultYearMonth? YES:NO;
         
-        if (isFutureYearMonth) {
+        NSComparisonResult result = [todayYearMonth compare:resultYearMonth];
+
+        if (result == NSOrderedSame) {
+            DLog(@"同じ月のデータがあるよ");
+            [self _showErrorAlertWithErrorMessage:
+             LOCALIZE(@"HistoryEditViewController_add_past_year_month_Alert_Message_Error_1")];
+            return;
+        } else if (result == NSOrderedAscending) {
             DLog(@"未来のデータは作れないよ");
             [self _showErrorAlertWithErrorMessage:
-             LOCALIZE(@"MenuViewController_add_past_year_month_Alert_Message_Error_2")];
+             LOCALIZE(@"HistoryEditViewController_add_past_year_month_Alert_Message_Error_2")];
             return;
-        }
+        } // NSOrderedDescendingならそのまま進む（過去なので）
         
         //データ更新可能
         TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
         
         TimeCardSummary *model = [timeCardSummaryDao createModel];
 #if __LP64__
-        model.t_yyyymm = @([[NSString stringWithFormat:@"%ld%ld",savePastYear, savePastMonth] integerValue]);
+        model.t_yyyymm = @([[NSString stringWithFormat:@"%ld%.2ld",editPastYear, editPastMonth] integerValue]);
 #else
-        model.t_yyyymm = @([[NSString stringWithFormat:@"%d%d",savePastYear, savePastMonth] integerValue]);
+        model.t_yyyymm = @([[NSString stringWithFormat:@"%d%.2d",editPastYear, editPastMonth] integerValue]);
 #endif
         
         DLog(@"t_yyyymm:[%d]", [model.t_yyyymm intValue]);
@@ -239,17 +246,76 @@
         [summaryDao updatedTimeCardSummaryTable:[NSString stringWithFormat:@"%d%.2d", [year integerValue], [month integerValue]]];
 #endif
         
-        [self close:nil];
+        [self close];
     }else{
         DLog(@"既にデータがあるよ");
         [self _showErrorAlertWithErrorMessage:
-         LOCALIZE(@"MenuViewController_add_past_year_month_Alert_Message_Error_1")];
+         LOCALIZE(@"HistoryEditViewController_add_past_year_month_Alert_Message_Error_1")];
         return;
     }
 }
 
-#pragma mark - IBAction
-- (IBAction)close:(id)sender {
+- (void)_removeThePast{
+    //저장한 순간에 피커에서 값을 읽어냄
+    //읽어낸 값을 기준으로 새 NSDate를 작성
+    //그 후 해당 과거월을 삭제함
+    //(생성전 해당 과거월에 관련된 데이터가 하나도 없을 시에는 삭제할 데이터가 없음을 알리는 안내를 함)
+    //화면 전이는 하지 않음.(삭제가 완료되었다는 안내만 주고 창을 끔)
+    //메인으로 돌아왔을때 해당 과거월이 삭제되어 있을 것(빈 껍데기가 아니라 월 자체가 표시되지 않을 것)
+    
+    //該当する年月にデータが一つでも存在したら生成しない
+    TimeCardDao *dao = [TimeCardDao new];
+    
+    NSNumber *year = [NSNumber numberWithInteger:editPastYear];
+    NSNumber *month = [NSNumber numberWithInteger:editPastMonth];
+    NSArray *tempModel = [dao fetchModelYear:[year integerValue] month:[month integerValue]];
+    //該当する年月にデータがない＋該当する年月の枠(TimeCardSummary)が存在したら生成しない
+    TimeCardSummaryDao *timeCardSummaryDao = [TimeCardSummaryDao new];
+#if __LP64__
+    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%ld%.2ld",editPastYear, editPastMonth]];
+#else
+    NSArray *tempSummaryModel = [timeCardSummaryDao fetchModelMonth:[NSString stringWithFormat:@"%d%.2d",editPastYear, editPastMonth]];
+#endif
+    
+    //全部存在しない場合
+    if ([tempModel count] == 0 && [tempSummaryModel count] == 0){
+        DLog(@"削除するデータはないよ");
+        [self _showErrorAlertWithErrorMessage:
+         LOCALIZE(@"HistoryEditViewController_add_past_year_month_Alert_Message_Error_3")];
+        return;
+    }else{
+        NSString *removeYearMonth;
+#if __LP64__
+        removeYearMonth = [NSString stringWithFormat:@"%ld%.2ld",editPastYear, editPastMonth];
+#else
+        removeYearMonth = [NSString stringWithFormat:@"%d%.2d",editPastYear, editPastMonth];
+#endif
+        
+        //データを削除
+        //日付データから
+        for (TimeCardSummary *model in tempModel) {
+            timeCardSummaryDao.model = model;
+            [timeCardSummaryDao deleteModel];
+        }
+        //月の枠データ
+        [timeCardSummaryDao removeTimeCardSummaryTable:removeYearMonth];
+        [self close];
+    }
+}
+
+#pragma mark - Action
+- (IBAction)back:(id)sender {
+    
+    if (_completionHandler) {
+        _completionHandler(self);
+    }
+    self.completionHandler = nil;
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
+
+- (void)close{
     
     if (_completionHandler) {
         _completionHandler(self);
@@ -286,7 +352,12 @@
         UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_yes")
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action){
-                                                             [self _saveThePast];
+                                                             if (_editType == HistoryEditTypeAdd) {
+                                                                 [self _addThePast];
+                                                             }else if(_editType == HistoryEditTypeRemove) {
+                                                                 [self _removeThePast];
+                                                             }
+                                                             
                                                          }];
         
         [alert addAction:actionCancel];
@@ -309,7 +380,11 @@
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        [self _saveThePast];
+        if (_editType == HistoryEditTypeAdd) {
+            [self _addThePast];
+        }else if(_editType == HistoryEditTypeRemove) {
+            [self _removeThePast];
+        }
     }else{
         return;
     }
@@ -444,7 +519,7 @@
         case 0: // 年(1列目)の場合(配列と同じように0から始まる)
             return [_years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
         case 1:
-            return 1;
+            return @"/";
         case 2: // 月(2列目)の場合
             return [_months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
     }
@@ -504,14 +579,14 @@
     // PickerViewの選択されている年と月の列番号を取得
     long rowOfYear  = (long)[pickerView selectedRowInComponent:0]; // 年を取得
     long rowOfMonth = (long)[pickerView selectedRowInComponent:2]; // 月を取得
-    savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] integerValue];
-    savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] integerValue];
+    editPastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] integerValue];
+    editPastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] integerValue];
 #else
     // PickerViewの選択されている年と月の列番号を取得
     int rowOfYear  = (int)[pickerView selectedRowInComponent:0]; // 年を取得
     int rowOfMonth = (int)[pickerView selectedRowInComponent:2]; // 月を取得
-    savePastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] intValue];
-    savePastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] intValue];
+    editPastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] intValue];
+    editPastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] intValue];
 #endif
         
 }

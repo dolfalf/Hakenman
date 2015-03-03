@@ -132,6 +132,20 @@
     [self insertModel];
 }
 
+- (void)removeTimeCardSummaryTable:(NSString *)yyyymm{
+    
+    NSArray *models = [self fetchModelMonth:yyyymm];
+    if (models == nil || [models count] == 0) {
+        //何もしない
+    }else {
+        //データを削除
+        for (TimeCardSummary *model in models) {
+            self.model = model;
+            [self deleteModel];
+        }
+    }
+}
+
 - (void)updateTimeCardSummaryTableAll {
     
     NSDate *today = [NSDate date];

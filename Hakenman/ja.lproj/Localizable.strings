@@ -29,14 +29,15 @@
 "Common_navigation_backbutton_title" = "戻る";
 "Common_navigation_closebutton_title" = "閉じる";
 "Common_navigation_donebutton_title" = "確認";
-"Common_navigation_savebutton_title" = "保存";
+"Common_navigation_addbutton_title" = "作成";
+"Common_navigation_removebutton_title" = "削除";
 
 "Common_alert_button_ok"        = "確認";
 "Common_alert_button_cancel"    = "キャンセル";
 "Common_alert_button_yes"       = "はい";
 "Common_alert_button_no"        = "いいえ";
 "Common_alert_remove_message"   = "本当に削除しますか。";
-"Common_alert_add_sheet_message"    = "シートを追加しますか。";
+"Common_alert_add_sheet_message"    = "シートを作成しますか。";
 
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
@@ -64,16 +65,17 @@
 "MenuViewController_menu_item_delete_past_month_menu"   = "過去のデータを削除";
 
 //HISTORY_EDIT
-"HistoryEditViewController_title_add"                              = "過去勤務表追加";
+"HistoryEditViewController_title_add"                              = "過去勤務表作成";
 "HistoryEditViewController_title_remove"                           = "過去勤務表削除";
-"HistoryEditViewController_add_desc_message"                       = "過去勤務表の履歴を追加します。追加されたシートはメイン画面で選択して編集することができます。";
-"HistoryEditViewController_remove_desc_message"                    = "過去勤務表の履歴を削除します。追加されたシートはメイン画面で表示されなくなります。";
+"HistoryEditViewController_add_desc_message"                       = "過去勤務表の履歴を作成します。作成されたシートはメイン画面で選択して編集することができます。";
+"HistoryEditViewController_remove_desc_message"                    = "過去勤務表の履歴を削除します。削除されたシートはメイン画面で表示されなくなります。";
 "HistoryEditViewController_add_past_year_month_title"              = "過去のデータを作成";
 "HistoryEditViewController_add_past_year_month_label_start"        = "作成日付：";
 "HistoryEditViewController_add_past_year_month_label"              = "作成日付：西暦%@年%@月";
-"HistoryEditViewController_add_past_year_month_Alert_Message"      = "この日付でデータを作成しますか";
+"HistoryEditViewController_add_past_year_month_Alert_Message"      = "この日付でデータを作りますか";
 "HistoryEditViewController_add_past_year_month_Alert_Message_Error_1"= "既にデータが存在します";
 "HistoryEditViewController_add_past_year_month_Alert_Message_Error_2"= "現在より未来のデータは作れません";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_3"= "削除するデータがありません";
 
 //SETTING
 "SettingViewController_navi_title"                                  = "設定";

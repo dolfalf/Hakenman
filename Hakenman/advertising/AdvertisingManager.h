@@ -2,12 +2,12 @@
 //  AdvertisingManager.h
 //  Hakenman
 //
-//  Created by fukuda mami on 2015/02/06.
+//  Created by lee junha on 2015/02/06.
 //  Copyright (c) 2015年 kjcode. All rights reserved.
 //
 
 #import <iAd/iAd.h>
-
+#import <GoogleMobileAds/GoogleMobileAds.h>
 typedef NS_ENUM(NSInteger, AdViewType) {
     AdViewTypeIAd,
     AdViewTypeGAd,

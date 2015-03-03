@@ -34,7 +34,8 @@
 "Common_navigation_backbutton_title" = "Back";
 "Common_navigation_closebutton_title" = "Close";
 "Common_navigation_donebutton_title" = "Done";
-"Common_navigation_savebutton_title" = "Save";
+"Common_navigation_addbutton_title" = "Add";
+"Common_navigation_removebutton_title" = "Remove";
 
 "Common_alert_button_ok"        = "OK";
 "Common_alert_button_cancel"    = "Cancel";
@@ -62,21 +63,21 @@
 //MENU
 "MenuViewController_navi_title"                         = "Menu";
 "MenuViewController_menu_item_section_title"            = "";
-"MenuViewController_menu_item_add_past_month_menu"      = "Make Past TimeSummary";
+"MenuViewController_menu_item_add_past_month_menu"      = "Add Past TimeSummary";
 "MenuViewController_menu_item_delete_past_month_menu"   = "Remove Past TimeSummary";
 
 //HISTORY_EDIT
 "HistoryEditViewController_title_add"                              = "Add past WorkSheet";
 "HistoryEditViewController_title_remove"                           = "Remove past WorkSheet";
 "HistoryEditViewController_add_desc_message"                       = "Added the past past sheet. Added sheet can be edited in the main screen.";
-"HistoryEditViewController_remove_desc_message"                    = "Removed the past sheet. Deleted sheet will not be displayed on the main screen.";
-"HistoryEditViewController_add_past_year_month_title"              = "Make Past TimeSummary";
+"HistoryEditViewController_remove_desc_message"                    = "Removed the past sheet. Removed sheet will not be displayed on the main screen.";
+"HistoryEditViewController_add_past_year_month_title"              = "Add Past TimeSummary";
 "HistoryEditViewController_add_past_year_month_label_start"        = "Target Time：";
 "HistoryEditViewController_add_past_year_month_label"              = "Target Time：%@ / %@";
-"HistoryEditViewController_add_past_year_month_Alert_Message"      = "Make Past TimeSummary?";
+"HistoryEditViewController_add_past_year_month_Alert_Message"      = "Add Past TimeSummary?";
 "HistoryEditViewController_add_past_year_month_Alert_Message_Error_1"= "Already exists this TimeSummary";
-"HistoryEditViewController_add_past_year_month_Alert_Message_Error_2"= "Can't Make Future TimeSummary";
-
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_2"= "Can't Add Future TimeSummary";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_3"= "There is no TimeSummary to be removed";
 
 //SETTING
 "SettingViewController_navi_title"                                  = "Setting";

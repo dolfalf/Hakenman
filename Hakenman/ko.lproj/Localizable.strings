@@ -29,14 +29,15 @@
 "Common_navigation_backbutton_title" = "뒤로가기";
 "Common_navigation_closebutton_title" = "닫기";
 "Common_navigation_donebutton_title" = "확인";
-"Common_navigation_savebutton_title" = "저장";
+"Common_navigation_addbutton_title" = "작성";
+"Common_navigation_removebutton_title" = "삭제";
 
 "Common_alert_button_ok"        = "확인";
 "Common_alert_button_cancel"    = "취소";
 "Common_alert_button_yes"       = "예";
 "Common_alert_button_no"        = "아니오";
 "Common_alert_remove_message"       = "정말로 삭제하시겠습니까?";
-"Common_alert_add_sheet_message"    = "시트를 추가하시겠습니까?";
+"Common_alert_add_sheet_message"    = "시트를 작성하시겠습니까?";
 
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
@@ -64,9 +65,9 @@
 "MenuViewController_menu_item_delete_past_month_menu"   = "이전 데이타 삭제";
 
 //HISTORY_EDIT
-"HistoryEditViewController_title_add"                              = "과거근무표추가";
+"HistoryEditViewController_title_add"                              = "과거근무표작성";
 "HistoryEditViewController_title_remove"                           = "과거근무표삭제";
-"HistoryEditViewController_add_desc_message"                       = "과거근무표시트이력을 추가합니다. 추가된 시트는 메인화면에서 선택하여 편집할 수 있습니다.";
+"HistoryEditViewController_add_desc_message"                       = "과거근무표시트이력을 작성합니다. 작성된 시트는 메인화면에서 선택하여 편집할 수 있습니다.";
 "HistoryEditViewController_remove_desc_message"                    = "과거근무표시트이력을 삭제합니다. 삭제된 시트는 메인화면에서 표시되지 않습니다.";
 "HistoryEditViewController_add_past_year_month_title"              = "이전 데이터 작성";
 "HistoryEditViewController_add_past_year_month_label_start"        = "작성할 날짜：";
@@ -74,6 +75,7 @@
 "HistoryEditViewController_add_past_year_month_Alert_Message"      = "이 날짜로 데이터를 작성할까요?";
 "HistoryEditViewController_add_past_year_month_Alert_Message_Error_1"= "이미 데이터가 존재합니다";
 "HistoryEditViewController_add_past_year_month_Alert_Message_Error_2"= "현재보다 미래의 데이터는 작성할 수 없습니다";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_3"= "삭제할 데이터가 없습니다";
 
 //SETTING
 "SettingViewController_navi_title"                                  = "설정";
