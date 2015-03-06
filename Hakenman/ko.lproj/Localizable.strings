@@ -60,7 +60,7 @@
 
 //MENU
 "MenuViewController_navi_title"                         = "메뉴";
-"MenuViewController_menu_item_section_title"            = "";
+"MenuViewController_menu_item_section_title"            = "근무표 편집";
 "MenuViewController_menu_item_add_past_month_menu"      = "이전 데이타 작성";
 "MenuViewController_menu_item_delete_past_month_menu"   = "이전 데이타 삭제";
 

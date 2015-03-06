@@ -62,7 +62,7 @@
 
 //MENU
 "MenuViewController_navi_title"                         = "Menu";
-"MenuViewController_menu_item_section_title"            = "";
+"MenuViewController_menu_item_section_title"            = "Edit Worksheet";
 "MenuViewController_menu_item_add_past_month_menu"      = "Add Past TimeSummary";
 "MenuViewController_menu_item_delete_past_month_menu"   = "Remove Past TimeSummary";
 

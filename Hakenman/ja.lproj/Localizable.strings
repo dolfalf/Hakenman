@@ -60,7 +60,7 @@
 
 //MENU
 "MenuViewController_navi_title"                         = "メニュー";
-"MenuViewController_menu_item_section_title"            = "";
+"MenuViewController_menu_item_section_title"            = "勤務表編集";
 "MenuViewController_menu_item_add_past_month_menu"      = "過去のデータを作成";
 "MenuViewController_menu_item_delete_past_month_menu"   = "過去のデータを削除";
 
