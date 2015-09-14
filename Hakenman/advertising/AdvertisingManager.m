@@ -11,10 +11,17 @@
 
 static AdvertisingManager *_shardInstance;
 
-@interface AdvertisingManager() <ADBannerViewDelegate, GADBannerViewDelegate>
+@interface AdvertisingManager() <ADBannerViewDelegate
+#ifndef DISABLE_GOOLE_ADS
+, GADBannerViewDelegate
+#endif
+>
 
 @property (nonatomic, strong) ADBannerView *iadView;
+
+#ifndef DISABLE_GOOLE_ADS
 @property (nonatomic, strong) GADBannerView *gadView;
+#endif
 
 @end
 
@@ -35,6 +42,7 @@ static AdvertisingManager *_shardInstance;
         // create the GAdBannerView
         // 画面上部に標準サイズのビューを作成する
         // 利用可能な広告サイズの定数値は GADAdSize.h で説明されている
+#ifndef DISABLE_GOOLE_ADS
         _shardInstance.gadView = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
         _shardInstance.gadView.delegate = _shardInstance;
         // 広告ユニット ID を指定する
@@ -44,7 +52,7 @@ static AdvertisingManager *_shardInstance;
         // ビュー階層に追加する
         _shardInstance.gadView.rootViewController = [[UIApplication sharedApplication].windows objectAtIndex:0];
         [_shardInstance.gadView loadRequest:[GADRequest request]];
-        
+#endif
     });
     
     return _shardInstance;
@@ -54,8 +62,10 @@ static AdvertisingManager *_shardInstance;
     
     if (type == AdViewTypeIAd) {
         return _iadView;
+#ifndef DISABLE_GOOLE_ADS
     }else if(type == AdViewTypeGAd) {
         return _gadView;
+#endif
     }
     
     return nil;
@@ -83,6 +93,7 @@ static AdvertisingManager *_shardInstance;
     //    [_delegate iAdLoadFail];
 }
 
+#ifndef DISABLE_GOOLE_ADS
 #pragma mark - GAD Delegate
 
 /// Called when an ad request loaded an ad. This is a good opportunity to add this view to the
@@ -98,5 +109,5 @@ static AdvertisingManager *_shardInstance;
 - (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error{
     DLog(@"google admob receive Failed - %@", [error localizedDescription]);
 }
-
+#endif
 @end

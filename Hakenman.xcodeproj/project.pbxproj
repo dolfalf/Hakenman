@@ -91,7 +91,6 @@
 		3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3CC18DD75310062B07A /* KJViewController.m */; };
 		3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3DC18DD75FD0062B07A /* TopViewController.m */; };
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
-		3D28B88A1AA48379005FAD32 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D28B8891AA48379005FAD32 /* GoogleMobileAds.framework */; };
 		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
 		3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */; };
 /* End PBXBuildFile section */
@@ -260,7 +259,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D28B88A1AA48379005FAD32 /* GoogleMobileAds.framework in Frameworks */,
 				3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */,
 				1C3442F01A0F439800367BF4 /* StoreKit.framework in Frameworks */,
 				1C9BAAAD19C1E6D30076A79C /* Accounts.framework in Frameworks */,
@@ -959,7 +957,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Hakenman/advertising/GoogleMobileAdsSdkiOS-7.0.0",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
@@ -968,7 +965,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Hakenman/advertising/GoogleMobileAdsSdkiOS-6.12.2",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -990,7 +986,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Hakenman/advertising/GoogleMobileAdsSdkiOS-7.0.0",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
@@ -999,7 +994,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/Hakenman/advertising/GoogleMobileAdsSdkiOS-6.12.2",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

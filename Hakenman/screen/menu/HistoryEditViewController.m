@@ -91,8 +91,11 @@
 
     //AD Banner.
     AdvertisingManager *mgr = [AdvertisingManager sharedADBannerView];
-    [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
-    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
+    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
+    _structureTopBannerView.hidden = YES;   //広告しないため、隠す
+#ifndef DISABLE_GOOLE_ADS
+    [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
+#endif
     
 }
 
