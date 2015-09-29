@@ -7,6 +7,8 @@
 //
 
 #import "DBManager.h"
+#import <UIKit/UIKit.h>
+#import "NSUserDefaults+Setting.h"
 
 @implementation DBManager
 
@@ -33,7 +35,7 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
@@ -78,10 +80,12 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"hakenModel.sqlite"];
-    
     NSError *error = nil;
+    NSDictionary *storeOptions = @{ NSSQLitePragmasOption : @{ @"journal_mode" : @"WAL" } };
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error]) {
+        
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -105,8 +109,54 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
+    }else {
+
+#if 1
+        //한번 실행되면 다시 실행안되게 처리할 필요가 있음.
+        //iOS8.2이상 체크.
+        if ([NSUserDefaults isWatchMigration] == NO
+            && [self isEqualAndOlderVersion:@"1.3.0"] == YES
+            && [self iOSVersion] >= 8200) {
+
+            //migration처리
+            NSPersistentStore   *sourceStore        = nil;
+            NSPersistentStore   *destinationStore   = nil;
+            
+            NSURL *storeURL = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.kjcode.dolfalf.hakenman"]
+                               URLByAppendingPathComponent:@"hakenModel.sqlite"];
+            
+            //migration
+            NSURL *oldStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                                          inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"hakenModel.sqlite"];
+            
+            sourceStore = [_persistentStoreCoordinator persistentStoreForURL:oldStoreURL];
+            if (sourceStore != nil){
+                // Perform the migration
+                destinationStore = [_persistentStoreCoordinator migratePersistentStore:sourceStore toURL:storeURL options:storeOptions withType:NSSQLiteStoreType error:&error];
+                if (destinationStore == nil){
+                    // Handle the migration error
+                } else {
+                    // You can now remove the old data at oldStoreURL
+                    // Note that you should do this using the NSFileCoordinator/NSFilePresenter APIs, and you should remove the other files
+                    // described in QA1809 as well.
+                    NSError *error = nil;
+                    
+                    //remove
+                    [[NSFileManager defaultManager] removeItemAtURL:oldStoreURL error:&error];
+                    if (error) {
+                        NSLog(@"older coredata remove error.   %@, %@", error, [error userInfo]);
+                        abort();
+                    }
+                    
+                    //migration success. set flag.
+                    [NSUserDefaults watchMigrationFinished];
+                }
+            }
+        }
+#endif
+        
     }
     
     return _persistentStoreCoordinator;
@@ -117,7 +167,46 @@
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
+    //마이그레이션이 끝나면 로드하는 디비를 바꿔줘야함.
+    if ([NSUserDefaults isWatchMigration] == YES
+        && [self isEqualAndOlderVersion:@"1.3.0"] == YES
+        && [self iOSVersion] >= 8200) {
+        
+        return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.kjcode.dolfalf.hakenman"];
+    }
+    
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
 }
 
+- (BOOL)isEqualAndOlderVersion:(NSString *)ver {
+    
+    //version1.0.2->102にして比較
+    NSArray *v_arrays = [ver componentsSeparatedByString:@"."];
+    if ([v_arrays count] == 3) {
+        int num_ver = [v_arrays[0] intValue] * 100
+        + [v_arrays[1] intValue] * 10
+        + [v_arrays[2] intValue] * 1;
+        
+        NSArray *c_arrays = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]componentsSeparatedByString:@"."];
+        
+        int curr_num_ver = [c_arrays[0] intValue] * 100
+        + [c_arrays[1] intValue] * 10
+        + [c_arrays[2] intValue] * 1;
+        
+        NSLog(@"check version:[%d], current version[%d]", num_ver, curr_num_ver);
+        if (num_ver <= curr_num_ver) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (int)iOSVersion {
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *version = [NSString stringWithFormat:@"%.0f", [device.systemVersion floatValue] * 1000];
+    
+    return [version intValue];
+}
 @end

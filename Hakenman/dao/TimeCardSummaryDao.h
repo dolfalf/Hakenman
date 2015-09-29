@@ -22,6 +22,8 @@
 //MARK: 特定のTimeCardSummaryを削除
 - (void)removeTimeCardSummaryTable:(NSString *)yyyymm;
 
+- (float)getWorkTime:(NSDate *)st endTime:(NSDate *)et;
+
 #ifdef RECOVERY_CODE_ENABLE
 //MARK:リカバリーのため臨時的に使うメソッド
 - (void)recoveryTimeCardSummaryTable;

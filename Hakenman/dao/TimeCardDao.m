@@ -207,7 +207,7 @@
     NSDate *current_date = [NSDate date];
     NSString *todayString = [current_date yyyyMMddHHmmssString];
     NSString *weekDateString = [((NSDate *)[current_date dateByAddingTimeInterval:-week_day]) yyyyMMddHHmmssString];
-    DLog(@"weekDateString[%@] todayString[%@]",weekDateString, todayString);
+    NSLog(@"weekDateString[%@] todayString[%@]",weekDateString, todayString);
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"start_time >= %@ AND start_time < %@", weekDateString, todayString];    //条件指定
     [self.fetchRequest setPredicate:pred];
@@ -224,7 +224,7 @@
     [self.fetchRequest setEntity:entity];
     
     NSString *dayString = [dt yyyyMMddString];
-    DLog(@"dayString[%@]",dayString);
+    NSLog(@"dayString[%@]",dayString);
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_yyyymmdd == %@", dayString];    //条件指定
     [self.fetchRequest setPredicate:pred];
@@ -294,7 +294,7 @@
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
 
     
-    DLog(@"出力結果:%@", fetchedObjects);
+//    NSLog(@"出力結果:%@", fetchedObjects);
     
     return fetchedObjects;
 }

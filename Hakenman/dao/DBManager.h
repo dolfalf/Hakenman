@@ -20,5 +20,4 @@
 
 + (id)sharedDBManager;
 
-
 @end

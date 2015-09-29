@@ -219,4 +219,19 @@
     [userDefaults synchronize];
 }
 
++ (BOOL)isWatchMigration {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"WatchMigrationKey" : @(NO)}];
+    
+    return [[userDefaults objectForKey:@"WatchMigrationKey"] boolValue];
+}
+
++ (void)watchMigrationFinished {
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:@(YES) forKey:@"WatchMigrationKey"];
+    
+    [userDefaults synchronize];
+}
+
 @end

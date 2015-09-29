@@ -93,6 +93,25 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
 		3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */; };
+		5F1BFEDC1BA7D1C400C06059 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEDB1BA7D1C400C06059 /* InterfaceController.m */; };
+		5F1BFEDF1BA7D1C400C06059 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEDE1BA7D1C400C06059 /* NotificationController.m */; };
+		5F1BFEE21BA7D1C400C06059 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEE11BA7D1C400C06059 /* GlanceController.m */; };
+		5F1BFEE41BA7D1C400C06059 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F1BFEE31BA7D1C400C06059 /* Images.xcassets */; };
+		5F1BFEE81BA7D1C400C06059 /* Hakenman WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 5F1BFEE71BA7D1C400C06059 /* Hakenman WatchKit App.app */; };
+		5F1BFEF01BA7D1C400C06059 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1BFEEE1BA7D1C400C06059 /* Interface.storyboard */; };
+		5F1BFEF21BA7D1C400C06059 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F1BFEF11BA7D1C400C06059 /* Images.xcassets */; };
+		5F1BFEF51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5F2BC5F21BB90588000BECB2 /* hakenModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FD118B8AB740095C418 /* hakenModel.xcdatamodeld */; };
+		5F2BC5F31BB90593000BECB2 /* FileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB23E1942EDD900CD922E /* FileData.m */; };
+		5F2BC5F41BB90596000BECB2 /* SiteInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB2441942EDD900CD922E /* SiteInfo.m */; };
+		5F2BC5F51BB90599000BECB2 /* MailContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB2411942EDD900CD922E /* MailContent.m */; };
+		5F2BC5F61BB9059B000BECB2 /* TimeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CC8AE195D4A8D00F64041 /* TimeCard.m */; };
+		5F2BC5F71BB9059D000BECB2 /* TimeCardSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CC8B1195D4A8D00F64041 /* TimeCardSummary.m */; };
+		5F2BC5FB1BB90A0C000BECB2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
+		5F2BC5FC1BB911C2000BECB2 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1C18DD4521000E4FF3 /* DBManager.m */; };
+		5F2BC6001BB9128D000BECB2 /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2518DD690C000E4FF3 /* ModelDao.m */; };
+		5F2BC6011BB91291000BECB2 /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
+		5F2BC6081BB914B0000BECB2 /* TimeCardSummaryDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB254194315DB00CD922E /* TimeCardSummaryDao.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +122,35 @@
 			remoteGlobalIDString = 3B469F9718B89D3A0095C418;
 			remoteInfo = Hakenman;
 		};
+		5F1BFEE91BA7D1C400C06059 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B469F9018B89D3A0095C418 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F1BFEE61BA7D1C400C06059;
+			remoteInfo = "Hakenman WatchKit App";
+		};
+		5F1BFEF31BA7D1C400C06059 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B469F9018B89D3A0095C418 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F1BFED41BA7D1C400C06059;
+			remoteInfo = "Hakenman WatchKit Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5F1BFEFC1BA7D1C400C06059 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5F1BFEF51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1C1B827E1A0DD4A800E7FB4A /* CsvExportProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvExportProtocol.h; sourceTree = "<group>"; };
@@ -251,6 +298,22 @@
 		3DC90F3D1A87BA5C008A42BF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3DC90F401A87BA8B008A42BF /* AdvertisingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdvertisingManager.h; path = advertising/AdvertisingManager.h; sourceTree = "<group>"; };
 		3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdvertisingManager.m; path = advertising/AdvertisingManager.m; sourceTree = "<group>"; };
+		5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hakenman.entitlements; sourceTree = "<group>"; };
+		5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hakenman WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F1BFED81BA7D1C400C06059 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F1BFED91BA7D1C400C06059 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		5F1BFEDA1BA7D1C400C06059 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		5F1BFEDB1BA7D1C400C06059 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		5F1BFEDD1BA7D1C400C06059 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		5F1BFEDE1BA7D1C400C06059 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		5F1BFEE01BA7D1C400C06059 /* GlanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
+		5F1BFEE11BA7D1C400C06059 /* GlanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlanceController.m; sourceTree = "<group>"; };
+		5F1BFEE31BA7D1C400C06059 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5F1BFEE71BA7D1C400C06059 /* Hakenman WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hakenman WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F1BFEED1BA7D1C400C06059 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F1BFEEF1BA7D1C400C06059 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		5F1BFEF11BA7D1C400C06059 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5F1BFEFD1BA7D21700C06059 /* Hakenman WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hakenman WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		F572CE3580F6449BBEA9BF3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -289,6 +352,14 @@
 				3B469FBB18B89D3A0095C418 /* XCTest.framework in Frameworks */,
 				3B469FBD18B89D3A0095C418 /* UIKit.framework in Frameworks */,
 				3B469FBC18B89D3A0095C418 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F1BFED21BA7D1C400C06059 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F2BC5FB1BB90A0C000BECB2 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +487,8 @@
 			children = (
 				3B469FA118B89D3A0095C418 /* Hakenman */,
 				3B469FC018B89D3A0095C418 /* HakenmanTests */,
+				5F1BFED61BA7D1C400C06059 /* Hakenman WatchKit Extension */,
+				5F1BFEEB1BA7D1C400C06059 /* Hakenman WatchKit App */,
 				3B469F9A18B89D3A0095C418 /* Frameworks */,
 				3B469F9918B89D3A0095C418 /* Products */,
 				C3ED541724320CFD6231CCC5 /* Pods */,
@@ -427,6 +500,8 @@
 			children = (
 				3B469F9818B89D3A0095C418 /* Hakenman.app */,
 				3B469FB918B89D3A0095C418 /* HakenmanTests.xctest */,
+				5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */,
+				5F1BFEE71BA7D1C400C06059 /* Hakenman WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -466,6 +541,7 @@
 		3B469FA118B89D3A0095C418 /* Hakenman */ = {
 			isa = PBXGroup;
 			children = (
+				5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */,
 				3DC90F3F1A87BA68008A42BF /* advertising */,
 				3B8FA71618DDEFB900A1182E /* const.h */,
 				3B469FAA18B89D3A0095C418 /* AppDelegate.h */,
@@ -616,6 +692,49 @@
 			name = advertising;
 			sourceTree = "<group>";
 		};
+		5F1BFED61BA7D1C400C06059 /* Hakenman WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5F1BFEFD1BA7D21700C06059 /* Hakenman WatchKit Extension.entitlements */,
+				5F1BFEDA1BA7D1C400C06059 /* InterfaceController.h */,
+				5F1BFEDB1BA7D1C400C06059 /* InterfaceController.m */,
+				5F1BFEDD1BA7D1C400C06059 /* NotificationController.h */,
+				5F1BFEDE1BA7D1C400C06059 /* NotificationController.m */,
+				5F1BFEE01BA7D1C400C06059 /* GlanceController.h */,
+				5F1BFEE11BA7D1C400C06059 /* GlanceController.m */,
+				5F1BFEE31BA7D1C400C06059 /* Images.xcassets */,
+				5F1BFED71BA7D1C400C06059 /* Supporting Files */,
+			);
+			path = "Hakenman WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		5F1BFED71BA7D1C400C06059 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F1BFED81BA7D1C400C06059 /* Info.plist */,
+				5F1BFED91BA7D1C400C06059 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F1BFEEB1BA7D1C400C06059 /* Hakenman WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				5F1BFEEE1BA7D1C400C06059 /* Interface.storyboard */,
+				5F1BFEF11BA7D1C400C06059 /* Images.xcassets */,
+				5F1BFEEC1BA7D1C400C06059 /* Supporting Files */,
+			);
+			path = "Hakenman WatchKit App";
+			sourceTree = "<group>";
+		};
+		5F1BFEEC1BA7D1C400C06059 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F1BFEED1BA7D1C400C06059 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		C3ED541724320CFD6231CCC5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,10 +756,12 @@
 				3B469F9518B89D3A0095C418 /* Frameworks */,
 				3B469F9618B89D3A0095C418 /* Resources */,
 				E4FFF997B8BF4FFBB8FED2AB /* Copy Pods Resources */,
+				5F1BFEFC1BA7D1C400C06059 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5F1BFEF41BA7D1C400C06059 /* PBXTargetDependency */,
 			);
 			name = Hakenman;
 			productName = Hakenman;
@@ -665,6 +786,39 @@
 			productReference = 3B469FB918B89D3A0095C418 /* HakenmanTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5F1BFED41BA7D1C400C06059 /* Hakenman WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F1BFEF91BA7D1C400C06059 /* Build configuration list for PBXNativeTarget "Hakenman WatchKit Extension" */;
+			buildPhases = (
+				5F1BFED11BA7D1C400C06059 /* Sources */,
+				5F1BFED21BA7D1C400C06059 /* Frameworks */,
+				5F1BFED31BA7D1C400C06059 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F1BFEEA1BA7D1C400C06059 /* PBXTargetDependency */,
+			);
+			name = "Hakenman WatchKit Extension";
+			productName = "Hakenman WatchKit Extension";
+			productReference = 5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		5F1BFEE61BA7D1C400C06059 /* Hakenman WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F1BFEF61BA7D1C400C06059 /* Build configuration list for PBXNativeTarget "Hakenman WatchKit App" */;
+			buildPhases = (
+				5F1BFEE51BA7D1C400C06059 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hakenman WatchKit App";
+			productName = "Hakenman WatchKit App";
+			productReference = 5F1BFEE71BA7D1C400C06059 /* Hakenman WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -676,9 +830,26 @@
 				TargetAttributes = {
 					3B469F9718B89D3A0095C418 = {
 						DevelopmentTeam = Y8RKPBJ3Y3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					3B469FB818B89D3A0095C418 = {
 						TestTargetID = 3B469F9718B89D3A0095C418;
+					};
+					5F1BFED41BA7D1C400C06059 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = Y8RKPBJ3Y3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					5F1BFEE61BA7D1C400C06059 = {
+						CreatedOnToolsVersion = 6.2;
 					};
 				};
 			};
@@ -699,6 +870,8 @@
 			targets = (
 				3B469F9718B89D3A0095C418 /* Hakenman */,
 				3B469FB818B89D3A0095C418 /* HakenmanTests */,
+				5F1BFED41BA7D1C400C06059 /* Hakenman WatchKit Extension */,
+				5F1BFEE61BA7D1C400C06059 /* Hakenman WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -730,6 +903,24 @@
 				1C9643A21A32AB6C005452CB /* NanumBarunGothicBold.ttf in Resources */,
 				3B469FC518B89D3A0095C418 /* InfoPlist.strings in Resources */,
 				1C9643A11A32AB6C005452CB /* NanumBarunGothic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F1BFED31BA7D1C400C06059 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F1BFEE41BA7D1C400C06059 /* Images.xcassets in Resources */,
+				5F1BFEE81BA7D1C400C06059 /* Hakenman WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F1BFEE51BA7D1C400C06059 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F1BFEF01BA7D1C400C06059 /* Interface.storyboard in Resources */,
+				5F1BFEF21BA7D1C400C06059 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +1022,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5F1BFED11BA7D1C400C06059 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F2BC5F51BB90599000BECB2 /* MailContent.m in Sources */,
+				5F2BC6011BB91291000BECB2 /* TimeCardDao.m in Sources */,
+				5F2BC5F41BB90596000BECB2 /* SiteInfo.m in Sources */,
+				5F2BC5F31BB90593000BECB2 /* FileData.m in Sources */,
+				5F2BC5F71BB9059D000BECB2 /* TimeCardSummary.m in Sources */,
+				5F1BFEDF1BA7D1C400C06059 /* NotificationController.m in Sources */,
+				5F1BFEDC1BA7D1C400C06059 /* InterfaceController.m in Sources */,
+				5F1BFEE21BA7D1C400C06059 /* GlanceController.m in Sources */,
+				5F2BC5F61BB9059B000BECB2 /* TimeCard.m in Sources */,
+				5F2BC5F21BB90588000BECB2 /* hakenModel.xcdatamodeld in Sources */,
+				5F2BC5FC1BB911C2000BECB2 /* DBManager.m in Sources */,
+				5F2BC6001BB9128D000BECB2 /* ModelDao.m in Sources */,
+				5F2BC6081BB914B0000BECB2 /* TimeCardSummaryDao.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -838,6 +1049,16 @@
 			isa = PBXTargetDependency;
 			target = 3B469F9718B89D3A0095C418 /* Hakenman */;
 			targetProxy = 3B469FBE18B89D3A0095C418 /* PBXContainerItemProxy */;
+		};
+		5F1BFEEA1BA7D1C400C06059 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F1BFEE61BA7D1C400C06059 /* Hakenman WatchKit App */;
+			targetProxy = 5F1BFEE91BA7D1C400C06059 /* PBXContainerItemProxy */;
+		};
+		5F1BFEF41BA7D1C400C06059 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F1BFED41BA7D1C400C06059 /* Hakenman WatchKit Extension */;
+			targetProxy = 5F1BFEF31BA7D1C400C06059 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -870,6 +1091,14 @@
 				3D2980681987B66900018BAD /* ko */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		5F1BFEEE1BA7D1C400C06059 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F1BFEEF1BA7D1C400C06059 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -951,8 +1180,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -968,7 +1198,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "805f54ed-a9bc-4088-8bcb-0d91b05948ba";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -980,8 +1210,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -997,7 +1228,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "805f54ed-a9bc-4088-8bcb-0d91b05948ba";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1043,6 +1274,90 @@
 			};
 			name = Release;
 		};
+		5F1BFEF71BA7D1C400C06059 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IBSC_MODULE = Hakenman_WatchKit_Extension;
+				INFOPLIST_FILE = "Hakenman WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		5F1BFEF81BA7D1C400C06059 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IBSC_MODULE = Hakenman_WatchKit_Extension;
+				INFOPLIST_FILE = "Hakenman WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		5F1BFEFA1BA7D1C400C06059 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit Extension/Hakenman WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Hakenman WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5F1BFEFB1BA7D1C400C06059 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit Extension/Hakenman WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Hakenman WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1069,6 +1384,24 @@
 			buildConfigurations = (
 				3B469FCE18B89D3A0095C418 /* Debug */,
 				3B469FCF18B89D3A0095C418 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F1BFEF61BA7D1C400C06059 /* Build configuration list for PBXNativeTarget "Hakenman WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F1BFEF71BA7D1C400C06059 /* Debug */,
+				5F1BFEF81BA7D1C400C06059 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F1BFEF91BA7D1C400C06059 /* Build configuration list for PBXNativeTarget "Hakenman WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F1BFEFA1BA7D1C400C06059 /* Debug */,
+				5F1BFEFB1BA7D1C400C06059 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

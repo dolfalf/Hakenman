@@ -44,4 +44,8 @@
 + (void)setReportMailContent:(NSString *)value;
 
 
+//AppleWatch Migration flag
++ (BOOL)isWatchMigration;
++ (void)watchMigrationFinished;
+
 @end
