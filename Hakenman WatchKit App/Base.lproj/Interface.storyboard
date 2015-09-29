@@ -1,26 +1,200 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6724" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Monthly.-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider=""/>
+                <controller identifier="InterfaceController" title="Monthly." id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <table alignment="left" id="nCl-9b-nLt">
+                            <items>
+                                <tableRow identifier="MonthlyTableRow" id="bSz-ys-Xgi" customClass="MonthlyWorkTableRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="8gv-83-LlE">
+                                        <items>
+                                            <group width="0.40000000000000002" alignment="left" id="B5K-4j-QZq" userLabel="Group - month">
+                                                <items>
+                                                    <label width="1" height="1" alignment="left" text="9月" id="UaI-22-o3L"/>
+                                                </items>
+                                            </group>
+                                            <group width="0.70000000000000007" height="1" alignment="left" layout="vertical" id="fdL-ML-dbJ" userLabel="Group - work">
+                                                <items>
+                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" id="TVe-lj-Xb7" userLabel="Group - time">
+                                                        <items>
+                                                            <label alignment="left" text="WT." id="Ypj-Uz-2VZ">
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            </label>
+                                                            <label alignment="left" text="123時間" id="Zql-hV-rcv">
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <separator alignment="left" id="8DT-h2-Wj7"/>
+                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" id="ZNg-z9-UK0" userLabel="Group - day">
+                                                        <items>
+                                                            <label alignment="left" text="WD." id="Unp-Dl-xdf">
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            </label>
+                                                            <label alignment="left" text="12日" id="rfZ-Pb-SrD">
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                            <label alignment="left" text="Label" id="kZe-q8-P4b"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="monthLabel" destination="UaI-22-o3L" id="ES9-5f-b7C"/>
+                                        <outlet property="workDayLabel" destination="rfZ-Pb-SrD" id="NlT-ox-M6v"/>
+                                        <outlet property="workDayTitleLabel" destination="Unp-Dl-xdf" id="SjS-jh-Obs"/>
+                                        <outlet property="workTimeLabel" destination="Zql-hV-rcv" id="zH0-3R-Eak"/>
+                                        <outlet property="workTimeTitleLabel" destination="Ypj-Uz-2VZ" id="3B9-Ss-N4g"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="monthlyWorkTable" destination="nCl-9b-nLt" id="Z3t-mV-V4H"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="235" y="347"/>
+        </scene>
+        <!--Daily.-->
+        <scene sceneID="ohH-Ys-sw6">
+            <objects>
+                <controller identifier="DetailInterfaceController" title="Daily." id="JKc-fQ-MF3" customClass="DetailInterfaceController">
+                    <items>
+                        <group width="1" height="14" alignment="left" id="ss8-3x-PYa">
+                            <items>
+                                <label width="1" height="1" alignment="left" text="9月の勤務時間192時間" textAlignment="center" id="LCD-P1-wRa">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </group>
+                        <table alignment="left" id="75k-DG-4Kk">
+                            <items>
+                                <tableRow identifier="DailyTableRow" id="IiY-ZY-o3Z" customClass="DailyWorkTableRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="4eW-91-w9D">
+                                        <items>
+                                            <group width="0.20000000000000004" height="1" alignment="left" layout="vertical" id="B0t-Tx-ejh">
+                                                <items>
+                                                    <label alignment="left" text="9/1" id="kUj-LX-TSJ">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </label>
+                                                    <label alignment="left" text="月" id="Utu-Dj-NaM">
+                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <group width="0.79999999999999993" height="1" heightAdjustment="-10" alignment="left" verticalAlignment="center" layout="vertical" id="GQW-Ha-9lg">
+                                                <items>
+                                                    <group width="1" height="0.5" alignment="left" id="w2p-Iy-LOs">
+                                                        <items>
+                                                            <imageView width="10" height="10" alignment="left" id="jxe-Rl-AEy"/>
+                                                            <label alignment="left" text="09:30" id="tQ5-IF-ElI">
+                                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                            </label>
+                                                            <imageView width="10" height="10" alignment="left" id="rRJ-db-m2g"/>
+                                                            <label alignment="left" text="17:50" id="kHP-f1-Zbp">
+                                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group width="1" height="0.5" alignment="left" id="9sV-Ye-FOv">
+                                                        <items>
+                                                            <label width="1" height="1" alignment="left" text="テストテストテストテストです。" id="Nfl-D6-Oc2">
+                                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="dateLabel" destination="kUj-LX-TSJ" id="WWf-n0-E6k"/>
+                                        <outlet property="endTimeLabel" destination="kHP-f1-Zbp" id="8Fd-Gq-h5S"/>
+                                        <outlet property="memoLabel" destination="Nfl-D6-Oc2" id="hCm-3n-bAV"/>
+                                        <outlet property="startTimeLabel" destination="tQ5-IF-ElI" id="kZG-Oi-PbE"/>
+                                        <outlet property="weekLabel" destination="Utu-Dj-NaM" id="Vvv-Lc-Y0y"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="dailyWorkTable" destination="75k-DG-4Kk" id="WJE-bg-QMl"/>
+                        <outlet property="totalWorkTimeLabel" destination="LCD-P1-wRa" id="V6h-z4-g3v"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="444" y="347"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
             <objects>
-                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModuleProvider="">
+                <glanceController spacing="0.0" topTemplateType="groupLeftSmall" id="0uZ-2p-rRc" customClass="GlanceController">
                     <items>
-                        <group alignment="left" id="t8f-Gd-c4y"/>
-                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                        <group alignment="left" id="t8f-Gd-c4y">
+                            <items>
+                                <imageView width="1" height="1" alignment="left" id="QWe-nv-Oa7"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Hakenman" id="kLl-Dx-aU8"/>
+                        <label alignment="left" id="SHB-eF-N6O"/>
+                        <label alignment="left" id="F41-YN-Ys7"/>
+                        <group alignment="left" layout="vertical" id="uCw-4Q-Ouw">
+                            <items>
+                                <group width="1" height="0.40000000000000002" alignment="left" id="EwF-2w-R7M">
+                                    <items>
+                                        <group width="0.5" alignment="left" layout="vertical" id="AS2-Ks-Kpu">
+                                            <items>
+                                                <label alignment="left" text="9月の勤務時間" id="udQ-FO-Dwg">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="left" text="239時間" id="gw8-Cn-6ff">
+                                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                                </label>
+                                            </items>
+                                        </group>
+                                        <group width="0.5" alignment="left" layout="vertical" id="1dn-ce-whV">
+                                            <items>
+                                                <label alignment="left" text="出勤時間まで" id="SDA-J9-sRm">
+                                                    <fontDescription key="font" type="system" pointSize="10"/>
+                                                </label>
+                                                <label alignment="left" text="27分" id="pDS-49-OtU">
+                                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                                </label>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.59999999999999998" alignment="left" layout="vertical" id="PZq-Zz-RjG">
+                                    <items>
+                                        <imageView width="1" height="50" alignment="left" id="ewi-6y-aE1"/>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="graphImage" destination="ewi-6y-aE1" id="O8c-Et-kGd"/>
+                        <outlet property="iconImage" destination="QWe-nv-Oa7" id="2Nj-Nc-rX1"/>
+                        <outlet property="monthlyWorkTimeLabel" destination="gw8-Cn-6ff" id="Nxo-yR-Esg"/>
+                        <outlet property="monthlyWorkTimeTitleLabel" destination="udQ-FO-Dwg" id="qjr-Ng-7HA"/>
+                        <outlet property="titleLabel" destination="kLl-Dx-aU8" id="1uo-Fb-pBC"/>
+                        <outlet property="workStartLabel" destination="pDS-49-OtU" id="cgb-Xb-Smz"/>
+                        <outlet property="workStartTitleLabel" destination="SDA-J9-sRm" id="GwC-PK-mOC"/>
+                    </connections>
                 </glanceController>
             </objects>
             <point key="canvasLocation" x="235" y="672"/>
@@ -44,9 +218,10 @@
         <!--Notification Controller-->
         <scene sceneID="KIl-fV-djm">
             <objects>
-                <controller id="gdX-wl-uQE" customClass="NotificationController" customModuleProvider=""/>
+                <controller id="gdX-wl-uQE" customClass="NotificationController"/>
             </objects>
             <point key="canvasLocation" x="553" y="1001"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

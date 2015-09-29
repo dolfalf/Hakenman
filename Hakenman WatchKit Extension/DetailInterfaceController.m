@@ -1,26 +1,26 @@
 //
-//  InterfaceController.m
-//  Hakenman WatchKit Extension
+//  DetailInterfaceController.m
+//  Hakenman
 //
-//  Created by lee jaeeun on 2015/09/15.
+//  Created by lee jaeeun on 2015/09/29.
 //  Copyright (c) 2015年 kjcode. All rights reserved.
 //
 
-#import "InterfaceController.h"
-#import "MonthlyWorkTableRowController.h"
+#import "DetailInterfaceController.h"
+#import "DailyWorkTableRowController.h"
 
-@interface InterfaceController()
+@interface DetailInterfaceController()
 
-@property (nonatomic, weak) IBOutlet WKInterfaceTable *monthlyWorkTable;
-
+@property (nonatomic, weak) IBOutlet WKInterfaceTable *dailyWorkTable;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *totalWorkTimeLabel;
 @end
 
 
-@implementation InterfaceController
+@implementation DetailInterfaceController
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-
+    
     // Configure interface objects here.
     [self loadTableData];
 }
@@ -35,28 +35,27 @@
     [super didDeactivate];
 }
 
-
 #pragma mark - table methods
 - (void)loadTableData {
     
     NSArray *fruitNames = @[@"Apple", @"Orange", @"Banana"];
     
-    [_monthlyWorkTable setNumberOfRows:fruitNames.count withRowType:@"MonthlyTableRow"];
+    [_dailyWorkTable setNumberOfRows:fruitNames.count withRowType:@"DailyTableRow"];
     
     [fruitNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
         
-        MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
+        DailyWorkTableRowController *row = [_dailyWorkTable rowControllerAtIndex:idx];
         
-        [row.workDayTitleLabel setText:name];
-        [row.workTimeTitleLabel setText:[NSString stringWithFormat:@"%d", (int)idx]];
+        [row.startTimeLabel setText:name];
+        [row.endTimeLabel setText:[NSString stringWithFormat:@"%d", (int)idx]];
         
     }];
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
-    NSLog(@"%s", __FUNCTION__);
     
-    [self pushControllerWithName:@"DetailInterfaceController" context:nil];
+    NSLog(@"pressed...");
+    
 }
 
 @end

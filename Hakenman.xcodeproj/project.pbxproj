@@ -93,6 +93,9 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
 		3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */; };
+		5F084C971BBA52C300AF5FDF /* DetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C961BBA52C300AF5FDF /* DetailInterfaceController.m */; };
+		5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C991BBA593900AF5FDF /* MonthlyWorkTableRowController.m */; };
+		5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C9C1BBA594900AF5FDF /* DailyWorkTableRowController.m */; };
 		5F1BFEDC1BA7D1C400C06059 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEDB1BA7D1C400C06059 /* InterfaceController.m */; };
 		5F1BFEDF1BA7D1C400C06059 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEDE1BA7D1C400C06059 /* NotificationController.m */; };
 		5F1BFEE21BA7D1C400C06059 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEE11BA7D1C400C06059 /* GlanceController.m */; };
@@ -298,6 +301,12 @@
 		3DC90F3D1A87BA5C008A42BF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3DC90F401A87BA8B008A42BF /* AdvertisingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdvertisingManager.h; path = advertising/AdvertisingManager.h; sourceTree = "<group>"; };
 		3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdvertisingManager.m; path = advertising/AdvertisingManager.m; sourceTree = "<group>"; };
+		5F084C951BBA52C300AF5FDF /* DetailInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInterfaceController.h; sourceTree = "<group>"; };
+		5F084C961BBA52C300AF5FDF /* DetailInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInterfaceController.m; sourceTree = "<group>"; };
+		5F084C981BBA593900AF5FDF /* MonthlyWorkTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyWorkTableRowController.h; sourceTree = "<group>"; };
+		5F084C991BBA593900AF5FDF /* MonthlyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyWorkTableRowController.m; sourceTree = "<group>"; };
+		5F084C9B1BBA594900AF5FDF /* DailyWorkTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyWorkTableRowController.h; sourceTree = "<group>"; };
+		5F084C9C1BBA594900AF5FDF /* DailyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyWorkTableRowController.m; sourceTree = "<group>"; };
 		5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hakenman.entitlements; sourceTree = "<group>"; };
 		5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hakenman WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F1BFED81BA7D1C400C06059 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -698,10 +707,16 @@
 				5F1BFEFD1BA7D21700C06059 /* Hakenman WatchKit Extension.entitlements */,
 				5F1BFEDA1BA7D1C400C06059 /* InterfaceController.h */,
 				5F1BFEDB1BA7D1C400C06059 /* InterfaceController.m */,
-				5F1BFEDD1BA7D1C400C06059 /* NotificationController.h */,
-				5F1BFEDE1BA7D1C400C06059 /* NotificationController.m */,
+				5F084C981BBA593900AF5FDF /* MonthlyWorkTableRowController.h */,
+				5F084C991BBA593900AF5FDF /* MonthlyWorkTableRowController.m */,
+				5F084C951BBA52C300AF5FDF /* DetailInterfaceController.h */,
+				5F084C961BBA52C300AF5FDF /* DetailInterfaceController.m */,
+				5F084C9B1BBA594900AF5FDF /* DailyWorkTableRowController.h */,
+				5F084C9C1BBA594900AF5FDF /* DailyWorkTableRowController.m */,
 				5F1BFEE01BA7D1C400C06059 /* GlanceController.h */,
 				5F1BFEE11BA7D1C400C06059 /* GlanceController.m */,
+				5F1BFEDD1BA7D1C400C06059 /* NotificationController.h */,
+				5F1BFEDE1BA7D1C400C06059 /* NotificationController.m */,
 				5F1BFEE31BA7D1C400C06059 /* Images.xcassets */,
 				5F1BFED71BA7D1C400C06059 /* Supporting Files */,
 			);
@@ -1026,12 +1041,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */,
 				5F2BC5F51BB90599000BECB2 /* MailContent.m in Sources */,
+				5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */,
 				5F2BC6011BB91291000BECB2 /* TimeCardDao.m in Sources */,
 				5F2BC5F41BB90596000BECB2 /* SiteInfo.m in Sources */,
 				5F2BC5F31BB90593000BECB2 /* FileData.m in Sources */,
 				5F2BC5F71BB9059D000BECB2 /* TimeCardSummary.m in Sources */,
 				5F1BFEDF1BA7D1C400C06059 /* NotificationController.m in Sources */,
+				5F084C971BBA52C300AF5FDF /* DetailInterfaceController.m in Sources */,
 				5F1BFEDC1BA7D1C400C06059 /* InterfaceController.m in Sources */,
 				5F1BFEE21BA7D1C400C06059 /* GlanceController.m in Sources */,
 				5F2BC5F61BB9059B000BECB2 /* TimeCard.m in Sources */,

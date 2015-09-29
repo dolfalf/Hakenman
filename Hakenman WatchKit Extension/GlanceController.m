@@ -11,6 +11,16 @@
 
 @interface GlanceController()
 
+@property (nonatomic, weak) IBOutlet WKInterfaceImage *iconImage;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *titleLabel;
+
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *monthlyWorkTimeTitleLabel;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *monthlyWorkTimeLabel;
+
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *workStartTitleLabel;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *workStartLabel;
+
+@property (nonatomic, weak) IBOutlet WKInterfaceImage *graphImage;
 @end
 
 
