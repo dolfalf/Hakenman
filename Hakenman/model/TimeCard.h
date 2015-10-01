@@ -21,6 +21,6 @@
 @property (nonatomic, retain) NSNumber * t_week;
 @property (nonatomic, retain) NSNumber * t_year;
 @property (nonatomic, retain) NSNumber * t_yyyymmdd;
-@property (nonatomic, retain) NSNumber * workday_flag;
+@property (nonatomic, retain) NSNumber * workday_flag;  //NO:休日,YES:勤務日
 
 @end

@@ -12,6 +12,7 @@
 
 @interface MonthlyWorkTableRowController : NSObject
 
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *yearLabel;
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *monthLabel;
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *workTimeTitleLabel;
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *workTimeLabel;

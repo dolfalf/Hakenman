@@ -15,9 +15,12 @@
                                 <tableRow identifier="MonthlyTableRow" id="bSz-ys-Xgi" customClass="MonthlyWorkTableRowController">
                                     <group key="rootItem" width="1" alignment="left" id="8gv-83-LlE">
                                         <items>
-                                            <group width="0.40000000000000002" alignment="left" id="B5K-4j-QZq" userLabel="Group - month">
+                                            <group width="0.40000000000000002" alignment="left" layout="vertical" id="B5K-4j-QZq" userLabel="Group - month">
                                                 <items>
-                                                    <label width="1" height="1" alignment="left" text="9月" id="UaI-22-o3L"/>
+                                                    <label width="1" height="0.29999999999999999" alignment="left" text="2002年" id="k4p-iu-vmq">
+                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    </label>
+                                                    <label width="1" height="0.59999999999999998" alignment="left" text="9月" id="UaI-22-o3L"/>
                                                 </items>
                                             </group>
                                             <group width="0.70000000000000007" height="1" alignment="left" layout="vertical" id="fdL-ML-dbJ" userLabel="Group - work">
@@ -54,6 +57,7 @@
                                         <outlet property="workDayTitleLabel" destination="Unp-Dl-xdf" id="SjS-jh-Obs"/>
                                         <outlet property="workTimeLabel" destination="Zql-hV-rcv" id="zH0-3R-Eak"/>
                                         <outlet property="workTimeTitleLabel" destination="Ypj-Uz-2VZ" id="3B9-Ss-N4g"/>
+                                        <outlet property="yearLabel" destination="k4p-iu-vmq" id="tOe-If-YoG"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -179,7 +183,7 @@
                                 </group>
                                 <group width="1" height="0.59999999999999998" alignment="left" layout="vertical" id="PZq-Zz-RjG">
                                     <items>
-                                        <imageView width="1" height="50" alignment="left" id="ewi-6y-aE1"/>
+                                        <imageView width="130" height="50" alignment="center" verticalAlignment="center" id="ewi-6y-aE1"/>
                                     </items>
                                 </group>
                             </items>

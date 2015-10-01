@@ -8,11 +8,14 @@
 
 #import "InterfaceController.h"
 #import "MonthlyWorkTableRowController.h"
+#import "TimeCardSummaryDao.h"
+#import "NSDate+Helper.h"
 
 @interface InterfaceController()
 
 @property (nonatomic, weak) IBOutlet WKInterfaceTable *monthlyWorkTable;
 
+@property (nonatomic, strong) NSArray *dataSource;
 @end
 
 
@@ -39,24 +42,46 @@
 #pragma mark - table methods
 - (void)loadTableData {
     
-    NSArray *fruitNames = @[@"Apple", @"Orange", @"Banana"];
+    NSMutableArray *items = [NSMutableArray new];
     
-    [_monthlyWorkTable setNumberOfRows:fruitNames.count withRowType:@"MonthlyTableRow"];
+    //サマリーからデータを持ってくる
+    TimeCardSummaryDao *summaryDao = [[TimeCardSummaryDao alloc] init];
+    NSDate *today = [NSDate date];
+    NSDate *lastYear = [today addMonth:-1];
+    NSDate *oneYearsAgo = (NSDate *)[lastYear dateByAddingTimeInterval:(60*60*24*365 *-1)];
     
-    [fruitNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
+    NSLog(@"oneYearsAgo[%@] today[%@]",oneYearsAgo, lastYear);
+    
+    [items addObjectsFromArray:[summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString]
+                                                       EndMonth:[lastYear yyyyMMString] ascending:NO]];
+    
+    
+    [_monthlyWorkTable setNumberOfRows:items.count withRowType:@"MonthlyTableRow"];
+    
+    [items enumerateObjectsUsingBlock:^(TimeCardSummary *model, NSUInteger idx, BOOL *stop) {
         
         MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
         
-        [row.workDayTitleLabel setText:name];
-        [row.workTimeTitleLabel setText:[NSString stringWithFormat:@"%d", (int)idx]];
+        NSString *yearString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(0, 4)];
+        NSString *monthString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(4, 2)];
+        
+        [row.yearLabel setText:yearString];
+        [row.monthLabel setText:monthString];
+        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Days.", [model.workdays intValue]]];
+        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Hour.", [model.workTime intValue]]];
         
     }];
+    
+    self.dataSource = items;
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
     NSLog(@"%s", __FUNCTION__);
     
-    [self pushControllerWithName:@"DetailInterfaceController" context:nil];
+    TimeCardSummary *summaryModel = [_dataSource objectAtIndex:rowIndex];
+    
+    NSString *selected_date = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
+    [self pushControllerWithName:@"DetailInterfaceController" context:selected_date];
 }
 
 @end

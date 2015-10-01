@@ -115,6 +115,8 @@
 		5F2BC6001BB9128D000BECB2 /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2518DD690C000E4FF3 /* ModelDao.m */; };
 		5F2BC6011BB91291000BECB2 /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
 		5F2BC6081BB914B0000BECB2 /* TimeCardSummaryDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB254194315DB00CD922E /* TimeCardSummaryDao.m */; };
+		5F7C2B121BBBB9AE0025F370 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
+		5F7C2B141BBBBAEB0025F370 /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1041,6 +1043,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F7C2B141BBBBAEB0025F370 /* NSUserDefaults+Setting.m in Sources */,
 				5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */,
 				5F2BC5F51BB90599000BECB2 /* MailContent.m in Sources */,
 				5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */,
@@ -1050,6 +1053,7 @@
 				5F2BC5F71BB9059D000BECB2 /* TimeCardSummary.m in Sources */,
 				5F1BFEDF1BA7D1C400C06059 /* NotificationController.m in Sources */,
 				5F084C971BBA52C300AF5FDF /* DetailInterfaceController.m in Sources */,
+				5F7C2B121BBBB9AE0025F370 /* NSDate+Helper.m in Sources */,
 				5F1BFEDC1BA7D1C400C06059 /* InterfaceController.m in Sources */,
 				5F1BFEE21BA7D1C400C06059 /* GlanceController.m in Sources */,
 				5F2BC5F61BB9059B000BECB2 /* TimeCard.m in Sources */,
