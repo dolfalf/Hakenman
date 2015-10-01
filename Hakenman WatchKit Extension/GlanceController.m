@@ -33,6 +33,8 @@
 
     // Configure interface objects here.
     
+    
+    //그래프
     [self drawGraphView];
 }
 
@@ -47,6 +49,11 @@
 }
 
 #pragma mark - private methods
+- (void)loadScreenData {
+    
+}
+
+#pragma mark - draw methods
 - (void)drawGraphView {
     
     //http://d.hatena.ne.jp/shu223/20150714/1436875676
@@ -157,7 +164,6 @@
     [_graphImage setImage:uiimage];
     
 }
-
 
 - (void)drawline:(CGContextRef)ctx lineWidth:(float)lineWidth color:(UIColor *)color points:(NSArray *)points {
     

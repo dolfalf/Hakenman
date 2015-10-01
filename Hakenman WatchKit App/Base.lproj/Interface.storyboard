@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
     </dependencies>
     <scenes>
         <!--Monthly.-->
@@ -15,40 +15,65 @@
                                 <tableRow identifier="MonthlyTableRow" id="bSz-ys-Xgi" customClass="MonthlyWorkTableRowController">
                                     <group key="rootItem" width="1" alignment="left" id="8gv-83-LlE">
                                         <items>
-                                            <group width="0.40000000000000002" alignment="left" layout="vertical" id="B5K-4j-QZq" userLabel="Group - month">
+                                            <group width="0.34999999999999998" height="1" alignment="left" layout="vertical" radius="6" id="B5K-4j-QZq" userLabel="Group - month">
                                                 <items>
-                                                    <label width="1" height="0.29999999999999999" alignment="left" text="2002年" id="k4p-iu-vmq">
-                                                        <fontDescription key="font" type="system" pointSize="12"/>
-                                                    </label>
-                                                    <label width="1" height="0.59999999999999998" alignment="left" text="9月" id="UaI-22-o3L"/>
-                                                </items>
-                                            </group>
-                                            <group width="0.70000000000000007" height="1" alignment="left" layout="vertical" id="fdL-ML-dbJ" userLabel="Group - work">
-                                                <items>
-                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" id="TVe-lj-Xb7" userLabel="Group - time">
+                                                    <group width="1" height="0.40000000000000002" alignment="center" verticalAlignment="center" id="gys-wA-oIs">
                                                         <items>
-                                                            <label alignment="left" text="WT." id="Ypj-Uz-2VZ">
-                                                                <fontDescription key="font" type="system" pointSize="14"/>
-                                                            </label>
-                                                            <label alignment="left" text="123時間" id="Zql-hV-rcv">
-                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            <label width="1" height="1" alignment="left" text="2014" textAlignment="center" id="k4p-iu-vmq">
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
                                                             </label>
                                                         </items>
+                                                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </group>
-                                                    <separator alignment="left" id="8DT-h2-Wj7"/>
-                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" id="ZNg-z9-UK0" userLabel="Group - day">
+                                                    <group width="1" height="0.59999999999999998" alignment="center" verticalAlignment="center" id="mQF-xh-MVs">
                                                         <items>
-                                                            <label alignment="left" text="WD." id="Unp-Dl-xdf">
-                                                                <fontDescription key="font" type="system" pointSize="14"/>
-                                                            </label>
-                                                            <label alignment="left" text="12日" id="rfZ-Pb-SrD">
-                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            <label width="1" height="1" alignment="center" verticalAlignment="center" text="12" textAlignment="center" id="UaI-22-o3L">
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="font" type="boldSystem" pointSize="20"/>
                                                             </label>
                                                         </items>
                                                     </group>
                                                 </items>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </group>
-                                            <label alignment="left" text="Label" id="kZe-q8-P4b"/>
+                                            <group width="0.69999999999999996" height="1" alignment="right" verticalAlignment="center" layout="vertical" id="fdL-ML-dbJ" userLabel="Group - work">
+                                                <items>
+                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" verticalAlignment="center" id="TVe-lj-Xb7" userLabel="Group - time">
+                                                        <items>
+                                                            <group width="0.40000000000000002" height="1" alignment="left" radius="4" id="xye-Im-MPY">
+                                                                <items>
+                                                                    <label alignment="center" verticalAlignment="center" text="時間" textAlignment="center" id="Ypj-Uz-2VZ">
+                                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
+                                                                    </label>
+                                                                </items>
+                                                                <color key="backgroundColor" red="0.078431372550000003" green="0.72549019609999998" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </group>
+                                                            <label width="0.59999999999999998" height="1" alignment="left" text="123時間" textAlignment="right" id="Zql-hV-rcv">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <separator alignment="center" verticalAlignment="center" alpha="0.20000000000000001" id="8DT-h2-Wj7">
+                                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </separator>
+                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" verticalAlignment="center" id="ZNg-z9-UK0" userLabel="Group - day">
+                                                        <items>
+                                                            <group width="0.40000000000000002" height="1" alignment="left" radius="4" id="6FZ-wZ-mfQ">
+                                                                <items>
+                                                                    <label alignment="center" verticalAlignment="center" text="日数" textAlignment="center" id="Unp-Dl-xdf">
+                                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
+                                                                    </label>
+                                                                </items>
+                                                                <color key="backgroundColor" red="0.078431372550000003" green="0.72549019609999998" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </group>
+                                                            <label width="0.59999999999999998" height="1" alignment="left" text="12日" textAlignment="right" id="rfZ-Pb-SrD">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
                                         </items>
                                     </group>
                                     <connections>
@@ -77,7 +102,7 @@
                     <items>
                         <group width="1" height="14" alignment="left" id="ss8-3x-PYa">
                             <items>
-                                <label width="1" height="1" alignment="left" text="9月の勤務時間192時間" textAlignment="center" id="LCD-P1-wRa">
+                                <label width="1" height="1" alignment="left" text="9月の勤務表(169時間)" textAlignment="center" id="LCD-P1-wRa">
                                     <fontDescription key="font" type="system" pointSize="12"/>
                                 </label>
                             </items>
@@ -86,35 +111,38 @@
                         <table alignment="left" id="75k-DG-4Kk">
                             <items>
                                 <tableRow identifier="DailyTableRow" id="IiY-ZY-o3Z" customClass="DailyWorkTableRowController">
-                                    <group key="rootItem" width="1" alignment="left" id="4eW-91-w9D">
+                                    <group key="rootItem" width="1" alignment="left" spacing="0.0" id="4eW-91-w9D">
                                         <items>
-                                            <group width="0.20000000000000004" height="1" alignment="left" layout="vertical" id="B0t-Tx-ejh">
+                                            <group width="0.20000000000000001" height="1" alignment="left" layout="vertical" id="B0t-Tx-ejh">
                                                 <items>
-                                                    <label alignment="left" text="9/1" id="kUj-LX-TSJ">
-                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    <label width="1" height="0.40000000000000002" alignment="left" text="月" textAlignment="center" id="Utu-Dj-NaM">
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
                                                     </label>
-                                                    <label alignment="left" text="月" id="Utu-Dj-NaM">
-                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    <label width="1" height="0.59999999999999998" alignment="left" text="30" textAlignment="center" id="kUj-LX-TSJ">
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
                                                     </label>
                                                 </items>
                                             </group>
-                                            <group width="0.79999999999999993" height="1" heightAdjustment="-10" alignment="left" verticalAlignment="center" layout="vertical" id="GQW-Ha-9lg">
+                                            <separator alignment="left" alpha="0.20000000000000001" id="xlp-Sm-pmC">
+                                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </separator>
+                                            <group width="0.80000000000000004" widthAdjustment="-5" height="1" heightAdjustment="-10" alignment="right" verticalAlignment="center" layout="vertical" id="GQW-Ha-9lg">
                                                 <items>
                                                     <group width="1" height="0.5" alignment="left" id="w2p-Iy-LOs">
                                                         <items>
-                                                            <imageView width="10" height="10" alignment="left" id="jxe-Rl-AEy"/>
-                                                            <label alignment="left" text="09:30" id="tQ5-IF-ElI">
-                                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                            <imageView width="10" height="10" alignment="left" verticalAlignment="center" image="start_mark" id="jxe-Rl-AEy"/>
+                                                            <label alignment="left" verticalAlignment="center" text="09:30" id="tQ5-IF-ElI">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
                                                             </label>
-                                                            <imageView width="10" height="10" alignment="left" id="rRJ-db-m2g"/>
-                                                            <label alignment="left" text="17:50" id="kHP-f1-Zbp">
-                                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                            <imageView width="10" height="10" alignment="left" verticalAlignment="center" image="end_mark" id="rRJ-db-m2g"/>
+                                                            <label alignment="left" verticalAlignment="center" text="17:50" id="kHP-f1-Zbp">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
                                                             </label>
                                                         </items>
                                                     </group>
                                                     <group width="1" height="0.5" alignment="left" id="9sV-Ye-FOv">
                                                         <items>
-                                                            <label width="1" height="1" alignment="left" text="テストテストテストテストです。" id="Nfl-D6-Oc2">
+                                                            <label width="1" height="1" alignment="left" text="テストテストテストテストです。" textAlignment="left" id="Nfl-D6-Oc2">
                                                                 <fontDescription key="font" type="system" pointSize="10"/>
                                                             </label>
                                                         </items>
@@ -161,21 +189,21 @@
                                     <items>
                                         <group width="0.5" alignment="left" layout="vertical" id="AS2-Ks-Kpu">
                                             <items>
-                                                <label alignment="left" text="9月の勤務時間" id="udQ-FO-Dwg">
-                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                <label alignment="left" text="9月の勤務時間" textAlignment="center" id="udQ-FO-Dwg">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="10"/>
                                                 </label>
-                                                <label alignment="left" text="239時間" id="gw8-Cn-6ff">
-                                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                                <label alignment="center" verticalAlignment="center" text="239時間" id="gw8-Cn-6ff">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
                                                 </label>
                                             </items>
                                         </group>
                                         <group width="0.5" alignment="left" layout="vertical" id="1dn-ce-whV">
                                             <items>
-                                                <label alignment="left" text="出勤時間まで" id="SDA-J9-sRm">
-                                                    <fontDescription key="font" type="system" pointSize="10"/>
+                                                <label alignment="left" text="出勤時間まで" textAlignment="center" id="SDA-J9-sRm">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="10"/>
                                                 </label>
-                                                <label alignment="left" text="27分" id="pDS-49-OtU">
-                                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                                <label alignment="center" verticalAlignment="center" text="27分" id="pDS-49-OtU">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
                                                 </label>
                                             </items>
                                         </group>
