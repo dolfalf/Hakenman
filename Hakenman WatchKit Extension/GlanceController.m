@@ -10,6 +10,13 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "TimeCardDao.h"
 #import "NSDate+Helper.h"
+#import "WatchUtil.h"
+
+#define SET_DOT_GRAPH_CELL(obj, no, sz, col)    \
+    NSMutableAttributedString *txt##no = [[NSMutableAttributedString alloc] initWithString:@"■"]; \
+    [txt##no addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:sz] range:NSMakeRange(0, txt##no.length)]; \
+    [txt##no addAttribute:NSForegroundColorAttributeName value:[UIColor col] range:NSMakeRange(0, txt##no.length)]; \
+    [obj setAttributedText:txt##no];
 
 @interface GlanceController()
 
@@ -23,6 +30,19 @@
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *workStartLabel;
 
 @property (nonatomic, weak) IBOutlet WKInterfaceImage *graphImage;
+
+//watchOS1.0のため
+@property (nonatomic, weak) IBOutlet WKInterfaceGroup *dotGraphGroup;
+
+//@property (nonatomic, strong) IBOutletCollection(WKInterfaceLabel) NSArray *dotCell; できない。。。
+@property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_1;
+@property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_2;
+@property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_3;
+@property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_4;
+@property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_5;
+@property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_6;
+@property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_7;
+
 @end
 
 
@@ -34,8 +54,17 @@
     // Configure interface objects here.
     
     
-    //그래프
-    [self drawGraphView];
+    //그래프표시. 버전이 2.0이상
+    if ([WatchUtil wathcOSVersion] >= 200) {
+        [_graphImage setHidden:NO];
+        [_dotGraphGroup setHidden:YES];
+        [self drawGraphView:CGSizeMake(130.f, 50.f)];
+    }else {
+        //ラベル表示
+        [_graphImage setHidden:YES];
+        [_dotGraphGroup setHidden:NO];
+    }
+    
 }
 
 - (void)willActivate {
@@ -53,20 +82,77 @@
     
 }
 
+#pragma mark - dotGraphGroup
+- (void)drawDotGraphView {
+    
+    //initialize
+    NSMutableArray *dotCells = [NSMutableArray new];
+    [dotCells addObject:_dotCell_1];
+    [dotCells addObject:_dotCell_2];
+    [dotCells addObject:_dotCell_3];
+    [dotCells addObject:_dotCell_4];
+    [dotCells addObject:_dotCell_5];
+    [dotCells addObject:_dotCell_6];
+    [dotCells addObject:_dotCell_7];
+    
+    TimeCardDao *dao = [TimeCardDao new];
+    NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate date]];
+    
+    //최대값 구함.
+    float max_worktime = 8.f;  //default
+    NSMutableArray *graph_data = [NSMutableArray new];
+    
+    for (TimeCard *card in weekTimeCards) {
+        NSTimeInterval t = [[NSDate convDate2String:card.end_time]
+                            timeIntervalSinceDate:[NSDate convDate2String:card.start_time]];
+        
+        float duration = (float)t - [card.rest_time floatValue];
+        float work_time = (duration / (60*60)) - [card.rest_time floatValue];
+        
+        if (max_worktime < work_time) {
+            max_worktime = work_time;
+        }
+        
+        [graph_data addObject:@(work_time)];
+    }
+    
+    
+    //라벨그래프? 그리기
+    for (int c=0;c<dotCells.count;c++) {
+        
+        WKInterfaceLabel *lbl = dotCells[c];
+        [lbl setHidden:NO];
+        
+        if (c > graph_data.count -1) {
+            [lbl setHidden:YES];
+        }
+    }
+    
+    
+    for (NSNumber *card in graph_data) {
+        graph_data
+    }
+    
+    SET_DOT_GRAPH_CELL(dotCells[0], 1, 17.f, blueColor);
+
+
+    
+}
+
 #pragma mark - draw methods
-- (void)drawGraphView {
+- (void)drawGraphView:(CGSize)size {
     
     //http://d.hatena.ne.jp/shu223/20150714/1436875676
     
     // Create a graphics context
     //fix size.
-    float g_width = 130*2.f;
-    float g_height = 50*2.f;
+    float g_width = size.width * 2.f;
+    float g_height = size.height * 2.f;
     
     float margin = 4.f;
     
-    CGSize size = CGSizeMake(g_width, g_height);
-    UIGraphicsBeginImageContext(size);
+    CGSize retina_size = CGSizeMake(g_width, g_height);
+    UIGraphicsBeginImageContext(retina_size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //배경칠하기

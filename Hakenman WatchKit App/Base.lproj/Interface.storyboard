@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
         <!--Monthly.-->
@@ -212,6 +212,31 @@
                                 <group width="1" height="0.59999999999999998" alignment="left" layout="vertical" id="PZq-Zz-RjG">
                                     <items>
                                         <imageView width="130" height="50" alignment="center" verticalAlignment="center" id="ewi-6y-aE1"/>
+                                        <group width="1" height="1" alignment="center" id="7lA-hb-rms">
+                                            <items>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="l2N-bh-Csg">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="UvU-3K-Jnd">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="IwO-Dc-SW9">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="8HC-Ni-jb7">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="LMy-AD-f0X">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="Qgx-U4-ik3">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="U7M-ML-Msh">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                            </items>
+                                        </group>
                                     </items>
                                 </group>
                             </items>
@@ -219,6 +244,14 @@
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                     <connections>
+                        <outlet property="dotCell_1" destination="l2N-bh-Csg" id="YLy-en-KBH"/>
+                        <outlet property="dotCell_2" destination="UvU-3K-Jnd" id="9JP-Bj-s3w"/>
+                        <outlet property="dotCell_3" destination="IwO-Dc-SW9" id="uoU-mg-sS7"/>
+                        <outlet property="dotCell_4" destination="8HC-Ni-jb7" id="LUi-Gu-qpd"/>
+                        <outlet property="dotCell_5" destination="LMy-AD-f0X" id="829-BZ-7xW"/>
+                        <outlet property="dotCell_6" destination="Qgx-U4-ik3" id="mJY-ls-cCx"/>
+                        <outlet property="dotCell_7" destination="U7M-ML-Msh" id="wO3-cg-JSB"/>
+                        <outlet property="dotGraphGroup" destination="7lA-hb-rms" id="mPl-dM-Nqq"/>
                         <outlet property="graphImage" destination="ewi-6y-aE1" id="O8c-Et-kGd"/>
                         <outlet property="iconImage" destination="QWe-nv-Oa7" id="2Nj-Nc-rX1"/>
                         <outlet property="monthlyWorkTimeLabel" destination="gw8-Cn-6ff" id="Nxo-yR-Esg"/>

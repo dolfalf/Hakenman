@@ -96,6 +96,7 @@
 		5F084C971BBA52C300AF5FDF /* DetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C961BBA52C300AF5FDF /* DetailInterfaceController.m */; };
 		5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C991BBA593900AF5FDF /* MonthlyWorkTableRowController.m */; };
 		5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C9C1BBA594900AF5FDF /* DailyWorkTableRowController.m */; };
+		5F0E403B1BBE4E24009FD1CB /* WatchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0E403A1BBE4E24009FD1CB /* WatchUtil.m */; };
 		5F1BFEDC1BA7D1C400C06059 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEDB1BA7D1C400C06059 /* InterfaceController.m */; };
 		5F1BFEDF1BA7D1C400C06059 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEDE1BA7D1C400C06059 /* NotificationController.m */; };
 		5F1BFEE21BA7D1C400C06059 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFEE11BA7D1C400C06059 /* GlanceController.m */; };
@@ -309,6 +310,8 @@
 		5F084C991BBA593900AF5FDF /* MonthlyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyWorkTableRowController.m; sourceTree = "<group>"; };
 		5F084C9B1BBA594900AF5FDF /* DailyWorkTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyWorkTableRowController.h; sourceTree = "<group>"; };
 		5F084C9C1BBA594900AF5FDF /* DailyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyWorkTableRowController.m; sourceTree = "<group>"; };
+		5F0E40391BBE4E24009FD1CB /* WatchUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchUtil.h; sourceTree = "<group>"; };
+		5F0E403A1BBE4E24009FD1CB /* WatchUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchUtil.m; sourceTree = "<group>"; };
 		5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hakenman.entitlements; sourceTree = "<group>"; };
 		5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hakenman WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F1BFED81BA7D1C400C06059 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -707,6 +710,8 @@
 			isa = PBXGroup;
 			children = (
 				5F1BFEFD1BA7D21700C06059 /* Hakenman WatchKit Extension.entitlements */,
+				5F0E40391BBE4E24009FD1CB /* WatchUtil.h */,
+				5F0E403A1BBE4E24009FD1CB /* WatchUtil.m */,
 				5F1BFEDA1BA7D1C400C06059 /* InterfaceController.h */,
 				5F1BFEDB1BA7D1C400C06059 /* InterfaceController.m */,
 				5F084C981BBA593900AF5FDF /* MonthlyWorkTableRowController.h */,
@@ -1047,6 +1052,7 @@
 				5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */,
 				5F2BC5F51BB90599000BECB2 /* MailContent.m in Sources */,
 				5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */,
+				5F0E403B1BBE4E24009FD1CB /* WatchUtil.m in Sources */,
 				5F2BC6011BB91291000BECB2 /* TimeCardDao.m in Sources */,
 				5F2BC5F41BB90596000BECB2 /* SiteInfo.m in Sources */,
 				5F2BC5F31BB90593000BECB2 /* FileData.m in Sources */,
