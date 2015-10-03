@@ -130,7 +130,7 @@
     
     
     for (NSNumber *card in graph_data) {
-        graph_data
+        graph_data;
     }
     
     SET_DOT_GRAPH_CELL(dotCells[0], 1, 17.f, blueColor);
