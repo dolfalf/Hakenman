@@ -149,7 +149,7 @@
     float g_width = size.width * 2.f;
     float g_height = size.height * 2.f;
     
-    float margin = 4.f;
+    float margin = 16.f;
     
     CGSize retina_size = CGSizeMake(g_width, g_height);
     UIGraphicsBeginImageContext(retina_size);
@@ -157,7 +157,7 @@
     
     //배경칠하기
     CGContextBeginPath(context);
-    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] colorWithAlphaComponent:0.2].CGColor);
+    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] colorWithAlphaComponent:0.1].CGColor);
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, g_width , g_height) cornerRadius:10.f];
     [path fill];
     CGContextFillPath(context);
@@ -170,8 +170,8 @@
         NSValue *start_pt = [NSValue valueWithCGPoint:CGPointMake(0 + margin, line_y)];
         NSValue *end_pt = [NSValue valueWithCGPoint:CGPointMake(g_width - margin, line_y)];
         
-        [self drawline:context lineWidth:1.f
-                 color:[[UIColor whiteColor] colorWithAlphaComponent:0.6f]
+        [self drawline:context lineWidth:0.5f
+                 color:[[UIColor whiteColor] colorWithAlphaComponent:0.2f]
                 points:@[start_pt, end_pt]];
     }
 
@@ -196,6 +196,8 @@
     //데이터 그래프 그리기
     NSMutableArray *data_points = [NSMutableArray new];
     int data_count = 0;
+    CGPoint max_point = CGPointZero;
+    
     for (TimeCard *card in weekTimeCards) {
         NSTimeInterval t = [[NSDate convDate2String:card.end_time]
                             timeIntervalSinceDate:[NSDate convDate2String:card.start_time]];
@@ -209,6 +211,11 @@
         [data_points addObject:[NSValue valueWithCGPoint:CGPointMake(data_x, data_y)]];
         
         data_count++;
+        
+        if (max_worktime == work_time) {
+            //max label point
+            max_point = CGPointMake(data_x, data_y);
+        }
     }
     
     [self drawline:context lineWidth:2.f color:[UIColor whiteColor] points:data_points];
@@ -222,23 +229,24 @@
     }
     
     //text
-    NSString *t = @"あいう";
-    UIColor *color = [UIColor redColor];
-    UIColor *bcolor = [UIColor blueColor];
-    NSDictionary *textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:12.f],
-                                     NSBackgroundColorAttributeName:bcolor,
-                                     NSForegroundColorAttributeName:color};
-    
-    NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
-    drawingContext.minimumScaleFactor = 0.5; // Half the font size
-    
-    [t drawWithRect:CGRectMake(0.0, 0.0, g_width, g_height)
-                 options:NSStringDrawingUsesLineFragmentOrigin
-              attributes:textAttributes
-                 context:drawingContext];
-
-    
-    
+    if (max_point.x > 0 && max_point.y > 0) {
+        
+        NSString *t = [NSString stringWithFormat:@"%.2f", max_worktime];
+        UIColor *color = [UIColor whiteColor];
+        UIColor *bcolor = [UIColor clearColor];
+        NSDictionary *textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:12.f],
+                                         NSBackgroundColorAttributeName:bcolor,
+                                         NSForegroundColorAttributeName:color};
+        
+        NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
+        drawingContext.minimumScaleFactor = 0.5; // Half the font size
+        
+        [t drawWithRect:CGRectMake(max_point.x, max_point.y - 16.f, g_width, g_height)
+                options:NSStringDrawingUsesLineFragmentOrigin
+             attributes:textAttributes
+                context:drawingContext];
+        
+    }
     
     // Convert to UIImage
     CGImageRef cgimage = CGBitmapContextCreateImage(context);

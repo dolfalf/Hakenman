@@ -138,6 +138,7 @@
         [row.dateLabel setText:dict[@"day"]];
         [row.weekLabel setText:dict[@"week"]];
         
+        BOOL isWorkData = NO;
         if (dict[@"workData"] != nil) {
             
             if (dict[@"workData"][@"workday_flag"] != nil
@@ -152,7 +153,20 @@
                 
                 NSString *remark = dict[@"workData"][@"remark"];
                 [row.memoLabel setText:(remark==nil?@"":remark)];
+                isWorkData = YES;
             }
+        }
+        
+        if (isWorkData == NO) {
+            //dlqfur데이타 없음.
+            NSString *start_time = dict[@"workData"][@"start_time"];
+            [row.startTimeLabel setText:(start_time==nil?@"":start_time)];
+            
+            NSString *end_time = dict[@"workData"][@"end_time"];
+            [row.endTimeLabel setText:(end_time==nil?@"":end_time)];
+            
+            NSString *remark = dict[@"workData"][@"remark"];
+            [row.memoLabel setText:(remark==nil?@"":remark)];
         }
     }];
 }
