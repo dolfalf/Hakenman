@@ -184,4 +184,9 @@
 "OpenSourceLicenseViewController_navi_title"    = "オープンライセンス";
 "AppInformationViewController_navi_title"       = "KJCodeについて";
 
-//tmp
+////////////////////////////////////////////////////////////////////////////////////
+//Watch
+"Watch_Glance_Time_Title"        = "今月の勤務時間";
+"Watch_Glance_Minute_Title"      = "出勤時間まで、";
+"Watch_Glance_Time_Unit"        = "時間";
+"Watch_Glance_Minute_Unit"      = "分前";

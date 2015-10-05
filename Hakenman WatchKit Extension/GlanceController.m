@@ -9,13 +9,16 @@
 #import "GlanceController.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import "TimeCardDao.h"
+#import "TimeCardSummaryDao.h"
 #import "NSDate+Helper.h"
 #import "WatchUtil.h"
+#import "UIColor+Helper.h"
+#import "NSUserDefaults+Setting.h"
 
 #define SET_DOT_GRAPH_CELL(obj, no, sz, col)    \
     NSMutableAttributedString *txt##no = [[NSMutableAttributedString alloc] initWithString:@"■"]; \
     [txt##no addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:sz] range:NSMakeRange(0, txt##no.length)]; \
-    [txt##no addAttribute:NSForegroundColorAttributeName value:[UIColor col] range:NSMakeRange(0, txt##no.length)]; \
+    [txt##no addAttribute:NSForegroundColorAttributeName value:col range:NSMakeRange(0, txt##no.length)]; \
     [obj setAttributedText:txt##no];
 
 @interface GlanceController()
@@ -43,18 +46,37 @@
 @property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_6;
 @property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_7;
 
+@property (nonatomic, strong) NSString *remainTimeString;    //출근시간까지 남은시간
+@property (nonatomic, assign) NSTimer *loadTimer;
 @end
 
 
 @implementation GlanceController
 
+#pragma setter
+- (void)setLoadTimer:(NSTimer *)newTimer {
+    [_loadTimer invalidate];
+    _loadTimer = newTimer;
+}
+
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
 
     // Configure interface objects here.
+    self.remainTimeString = @"- ";
+    [self.monthlyWorkTimeTitleLabel setText:LOCALIZE(@"Watch_Glance_Time_Title")];
+    [self.workStartTitleLabel setText:LOCALIZE(@"Watch_Glance_Minute_Title")];
     
+}
+
+- (void)willActivate {
+    // This method is called when watch view controller is about to be visible to user
+    [super willActivate];
+    
+    [self loadScreenData];
     
     //그래프표시. 버전이 2.0이상
+    //    if (0) {
     if ([WatchUtil wathcOSVersion] >= 200) {
         [_graphImage setHidden:NO];
         [_dotGraphGroup setHidden:YES];
@@ -63,27 +85,158 @@
         //ラベル表示
         [_graphImage setHidden:YES];
         [_dotGraphGroup setHidden:NO];
+        [self drawDotGraphView];
     }
     
-}
-
-- (void)willActivate {
-    // This method is called when watch view controller is about to be visible to user
-    [super willActivate];
+    //出勤時間チェック開始
+    [self startLoadTimer];
 }
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
+    
+    self.loadTimer = nil;
+    
+}
+
+#pragma mark - timer
+- (void)startLoadTimer {
+    
+    if (_loadTimer != nil) {
+        return;
+    }
+    
+    self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:20.f
+                                                      target:self
+                                                    selector:@selector(updateRemainTime)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    
+    //最初は直接に実行する
+    [self updateRemainTime];
 }
 
 #pragma mark - private methods
+- (void)updateRemainTime {
+    
+    //今日の日付から
+    NSDate *current_time = [NSDate date];
+    NSInteger calc_minute = 0;
+        
+    //出勤時間までの時間を計算
+    NSArray *timeArray = [[NSUserDefaults workStartTimeForWatch] componentsSeparatedByString:@":"];
+    NSDate *workStartTime = [current_time getTimeOfMonth:[timeArray[0] intValue]
+                                                  mimute:[timeArray[1] intValue]];
+    
+    NSTimeInterval t = [current_time timeIntervalSinceDate:workStartTime];
+    calc_minute = (int)(t / 60);
+    
+    NSLog(@"calc_minute:%ld",(long)calc_minute);
+    
+    //表示対象外
+    if (calc_minute < -120 || calc_minute > 0) {
+        self.remainTimeString = @"- ";
+        return;
+    }
+    
+    //休日の場合
+    if ([current_time getWeekday] == weekSatDay || [current_time getWeekday] == weekSunday) {
+        self.remainTimeString = @"- ";
+        return;
+    }
+    
+    self.remainTimeString = [NSString stringWithFormat:@"%d", (int)calc_minute];
+    
+    [self loadScreenData];
+}
+
+- (float)totalWorkTime {
+    
+    //MARK:累計計算メソッド
+    float display_total_time = 0.f;
+    
+    TimeCardDao *dao = [TimeCardDao new];
+    NSDate *dt = [NSDate date];
+    NSArray *items = [dao fetchModelYear:[dt getYear] month:[dt getMonth]];
+    for (TimeCard *tm in items) {
+        
+        NSDate *startTimeFromCore = [NSDate convDate2String:tm.start_time];
+        NSDate *endTimeFromCore = [NSDate convDate2String:tm.end_time];
+        float workTimeFromCore = [TimeCardSummaryDao getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [tm.rest_time floatValue];
+        
+        if (tm.start_time == nil || [tm.start_time isEqualToString:@""] == YES
+            || tm.end_time == nil || [tm.end_time isEqualToString:@""] == YES) {
+            continue;
+        }
+        
+        if ([tm.workday_flag boolValue] == NO) {
+            workTimeFromCore = 0.f;
+        }
+        
+        display_total_time = display_total_time + workTimeFromCore;
+    }
+    
+    return display_total_time;
+    
+}
+
 - (void)loadScreenData {
+    
+    NSString *total_work_time = [NSString stringWithFormat:@"%d", (int)[self totalWorkTime]];
+    NSString *work_time_unit = LOCALIZE(@"Watch_Glance_Time_Unit");
+    
+    NSMutableAttributedString *attrTimeString = [[NSMutableAttributedString alloc] initWithString:
+                                             [NSString stringWithFormat:@"%@%@", total_work_time, work_time_unit]];
+                                             
+    [attrTimeString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
+                       range:NSMakeRange(0, total_work_time.length)];
+    
+    [attrTimeString addAttribute:NSForegroundColorAttributeName
+                       value:[UIColor whiteColor]
+                       range:NSMakeRange(0, total_work_time.length)];
+    
+    
+    [attrTimeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
+                       range:NSMakeRange(total_work_time.length, work_time_unit.length)];
+    
+    [attrTimeString addAttribute:NSForegroundColorAttributeName
+                       value:[UIColor whiteColor]
+                       range:NSMakeRange(total_work_time.length, work_time_unit.length)];
+    
+    [_monthlyWorkTimeLabel setAttributedText:attrTimeString];
+    
+    
+    NSString *work_remain_time = _remainTimeString;
+    NSString *work_min_unit = LOCALIZE(@"Watch_Glance_Minute_Unit");
+    
+    NSMutableAttributedString *attrMinuteString = [[NSMutableAttributedString alloc] initWithString:
+                                                   [NSString stringWithFormat:@"%@%@", work_remain_time, work_min_unit]];
+    
+    [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
+                       range:NSMakeRange(0, work_remain_time.length)];
+    
+    [attrMinuteString addAttribute:NSForegroundColorAttributeName
+                       value:[UIColor whiteColor]
+                       range:NSMakeRange(0, work_remain_time.length)];
+    
+    
+    [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
+                       range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
+    
+    [attrMinuteString addAttribute:NSForegroundColorAttributeName
+                       value:[UIColor whiteColor]
+                       range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
+    
+    [_workStartLabel setAttributedText:attrMinuteString];
+    
     
 }
 
 #pragma mark - dotGraphGroup
 - (void)drawDotGraphView {
+    
+    [_dotGraphGroup setBackgroundColor:[[UIColor HKMBlueColor] colorWithAlphaComponent:0.4f]];
     
     //initialize
     NSMutableArray *dotCells = [NSMutableArray new];
@@ -128,14 +281,11 @@
         }
     }
     
-    
-    for (NSNumber *card in graph_data) {
-        graph_data;
+    for (int no=0;no<graph_data.count;no++) {
+        float val = [graph_data[no] floatValue];
+        
+        SET_DOT_GRAPH_CELL(dotCells[no], no, 10.f+ val, [[UIColor whiteColor] colorWithAlphaComponent:0.5f]);
     }
-    
-    SET_DOT_GRAPH_CELL(dotCells[0], 1, 17.f, blueColor);
-
-
     
 }
 
@@ -157,7 +307,7 @@
     
     //배경칠하기
     CGContextBeginPath(context);
-    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] colorWithAlphaComponent:0.1].CGColor);
+    CGContextSetFillColorWithColor(context, [[UIColor HKMBlueColor] colorWithAlphaComponent:0.4f].CGColor);
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, g_width , g_height) cornerRadius:10.f];
     [path fill];
     CGContextFillPath(context);
@@ -206,8 +356,8 @@
         float work_time = (duration / (60*60)) - [card.rest_time floatValue];
         
         //좌표로 변환
-        float data_x = ((g_width/weekTimeCards.count) * data_count) + margin;
-        float data_y = (g_height - (g_height*work_time)/max_worktime) + margin;
+        float data_x = (((g_width - margin*2.f)/weekTimeCards.count) * data_count) + margin;
+        float data_y = ((g_height - margin*2.f) - ((g_height - margin*2.f)*work_time)/max_worktime) + margin;
         [data_points addObject:[NSValue valueWithCGPoint:CGPointMake(data_x, data_y)]];
         
         data_count++;

@@ -95,8 +95,8 @@
     for (TimeCard *tm in timecards) {
         if([tm.workday_flag isEqual:@1] == YES) {
             total_workday++;
-           float duration = [self getWorkTime:[NSDate convDate2String:tm.start_time]
-                                 endTime:[NSDate convDate2String:tm.end_time]];
+           float duration = [TimeCardSummaryDao getWorkTime:[NSDate convDate2String:tm.start_time]
+                                                    endTime:[NSDate convDate2String:tm.end_time]];
 
             duration = duration - [tm.rest_time floatValue];
             
@@ -175,8 +175,8 @@
             for (TimeCard *tm in timecards) {
                 if([tm.workday_flag isEqual:@1] == YES) {
                     total_workday++;
-                    float duration = [self getWorkTime:[NSDate convDate2String:tm.start_time]
-                                               endTime:[NSDate convDate2String:tm.end_time]];
+                    float duration = [TimeCardSummaryDao getWorkTime:[NSDate convDate2String:tm.start_time]
+                                                             endTime:[NSDate convDate2String:tm.end_time]];
                     
                     duration = duration - [tm.rest_time floatValue];
                     total_workTime = total_workTime + duration;
@@ -199,7 +199,7 @@
     
 }
 
-- (float)getWorkTime:(NSDate *)st endTime:(NSDate *)et {
++ (float)getWorkTime:(NSDate *)st endTime:(NSDate *)et {
     
     //start_time & end_time 語尾の桁数を００に変換
     

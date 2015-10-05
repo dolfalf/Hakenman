@@ -17,9 +17,11 @@
 + (void)setTimeKubun:(NSInteger)value;
 
 + (NSString *)workStartTime;
++ (NSString *)workStartTimeForWatch;
 + (void)setWorkStartTime:(NSString *)value;
 
 + (NSString *)workEndTime;
++ (NSString *)workEndTimeForWatch;
 + (void)setWorkEndTime:(NSString *)value;
 
 + (NSInteger)displayWorkSheet;

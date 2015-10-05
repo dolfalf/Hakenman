@@ -9,6 +9,8 @@
 #import "NSUserDefaults+Setting.h"
 #import "const.h"
 
+#define SHARED_GRUOP_ID    @"group.com.kjcode.dolfalf.hakemnan"
+
 @implementation NSUserDefaults (Setting)
 
 + (BOOL)readWelcomePage {
@@ -80,10 +82,23 @@
 
 + (NSString *)workStartTime {
     
+    NSDictionary *init_value = @{@"WorkStartTimeKey" : @"09:00"};
+    
     NSUserDefaults *userDefaults = [self standardUserDefaults];
-    [userDefaults registerDefaults:@{@"WorkStartTimeKey" : @"09:00"}];
+    [userDefaults registerDefaults:init_value];
     
     return [userDefaults objectForKey:@"WorkStartTimeKey"] ;
+}
+
+//AppleWatch対応
++ (NSString *)workStartTimeForWatch {
+    
+    NSDictionary *init_value = @{@"WorkStartTimeKey" : @"09:00"};
+    
+    NSUserDefaults *watch_ud = [[NSUserDefaults alloc] initWithSuiteName:SHARED_GRUOP_ID];
+    [watch_ud registerDefaults:init_value];
+    
+    return [watch_ud objectForKey:@"WorkStartTimeKey"] ;
 }
 
 + (void)setWorkStartTime:(NSString *)value {
@@ -91,21 +106,47 @@
     NSUserDefaults *userDefaults = [self standardUserDefaults];
     [userDefaults setObject:value forKey:@"WorkStartTimeKey"];
     
+    //AppleWatch対応
+    NSUserDefaults *watch_ud = [[NSUserDefaults alloc] initWithSuiteName:SHARED_GRUOP_ID];
+    [watch_ud setObject:value forKey:@"WorkStartTimeKey"];
+    
     [userDefaults synchronize];
 }
 
 + (NSString *)workEndTime {
     
+    NSDictionary *init_value = @{@"WorkEndTimeKey" : @"17:50"};
+    
     NSUserDefaults *userDefaults = [self standardUserDefaults];
-    [userDefaults registerDefaults:@{@"WorkEndTimeKey" : @"17:50"}];
+    [userDefaults registerDefaults:init_value];
+    
+    //AppleWatch対応
+    NSUserDefaults *watch_ud = [[NSUserDefaults alloc] initWithSuiteName:SHARED_GRUOP_ID];
+    [watch_ud registerDefaults:init_value];
     
     return [userDefaults objectForKey:@"WorkEndTimeKey"];
+    
+}
+
++ (NSString *)workEndTimeForWatch {
+    
+    NSDictionary *init_value = @{@"WorkEndTimeKey" : @"17:50"};
+    
+    //AppleWatch対応
+    NSUserDefaults *watch_ud = [[NSUserDefaults alloc] initWithSuiteName:SHARED_GRUOP_ID];
+    [watch_ud registerDefaults:init_value];
+    
+    return [watch_ud objectForKey:@"WorkEndTimeKey"];
 }
 
 + (void)setWorkEndTime:(NSString *)value {
     
     NSUserDefaults *userDefaults = [self standardUserDefaults];
     [userDefaults setObject:value forKey:@"WorkEndTimeKey"];
+    
+    //AppleWatch対応
+    NSUserDefaults *watch_ud = [[NSUserDefaults alloc] initWithSuiteName:SHARED_GRUOP_ID];
+    [watch_ud setObject:value forKey:@"WorkEndTimeKey"];
     
     [userDefaults synchronize];
 }

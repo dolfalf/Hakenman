@@ -44,8 +44,10 @@
         [application registerUserNotificationSettings:notificationSettings];
         [application registerForRemoteNotifications];
     } else {
+#if 0
         //before iOS7
         [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+#endif
     }
     
 #ifdef TEST_FLIGHT_ENABLE

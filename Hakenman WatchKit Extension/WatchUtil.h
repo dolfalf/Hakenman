@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+#define LOCALIZE(s)     NSLocalizedString(s, nil)
+
+typedef enum {
+    weekSunday = 1,
+    weekMonday,
+    weekTueDay,
+    weekWedDay,
+    weekThuDay,
+    weekFriDay,
+    weekSatDay
+} weekday;
+
 @interface WatchUtil : NSObject
 
 + (int)wathcOSVersion;

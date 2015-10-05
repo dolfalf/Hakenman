@@ -113,7 +113,7 @@
     
     // 現在の日付(NSDate)から年と月をintで取得
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:today];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:today];
     
 #if __LP64__
     long todayYear  = components.year;   // 現在の年を取得

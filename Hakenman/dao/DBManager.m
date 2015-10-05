@@ -144,7 +144,7 @@
                     NSError *error = nil;
                     
                     //remove
-                    [[NSFileManager defaultManager] removeItemAtURL:oldStoreURL error:&error];
+//                    [[NSFileManager defaultManager] removeItemAtURL:oldStoreURL error:&error];
                     if (error) {
                         NSLog(@"older coredata remove error.   %@, %@", error, [error userInfo]);
                         abort();
@@ -167,6 +167,7 @@
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
+#if 1
     //마이그레이션이 끝나면 로드하는 디비를 바꿔줘야함.
     if ([NSUserDefaults isWatchMigration] == YES
         && [self isEqualAndOlderVersion:@"1.3.0"] == YES
@@ -174,7 +175,7 @@
         
         return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.kjcode.dolfalf.hakenman"];
     }
-    
+#endif
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
 }

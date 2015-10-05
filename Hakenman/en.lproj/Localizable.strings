@@ -186,3 +186,9 @@
 "OpenSourceLicenseViewController_navi_title"    = "Open license";
 "AppInformationViewController_navi_title"       = "About KJCode";
 
+////////////////////////////////////////////////////////////////////////////////////
+//Watch
+"Watch_Glance_Time_Title"        = "This month's WH.";
+"Watch_Glance_Minute_Title"      = "Start WT.";
+"Watch_Glance_Time_Unit"        = "Hour";
+"Watch_Glance_Minute_Unit"      = "min";

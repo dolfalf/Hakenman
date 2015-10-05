@@ -37,7 +37,7 @@
 
 - (int)getLastday {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSRange range = [cal rangeOfUnit:NSDayCalendarUnit inUnit:NSCalendarUnitMonth forDate:self];
+    NSRange range = [cal rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
     return (int)range.length;
 }
 
