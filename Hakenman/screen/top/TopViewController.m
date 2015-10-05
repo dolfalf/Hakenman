@@ -114,8 +114,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
         for (int i=1; i <= 31; i++) {
             TimeCard *model = [timeCardDao createModel];
             //20140301090000
-            model.start_time = [NSString stringWithFormat:@"20140%d%02d090000",j,i];
-            model.end_time = [NSString stringWithFormat:@"20140%d%02d1%d0000",j,i, rand()%9];
+            //start_time:[20141005090000], end_time:[20151005140000]
+            model.start_time = [NSString stringWithFormat:@"2015%02d%02d090000",j,i];
+            model.end_time = [NSString stringWithFormat:@"2015%02d%02d1%d0000",j,i, rand()%9];
             model.t_year = @([[model.start_time substringWithRange:NSMakeRange(0, 4)] intValue]);
             model.t_month = @([[model.start_time substringWithRange:NSMakeRange(4, 2)] intValue]);
             model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
@@ -132,7 +133,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     for (int j=3; j < 9; j++) {
         TimeCardSummary *model = [timeCardSummaryDao createModel];
-        model.t_yyyymm = @([[NSString stringWithFormat:@"20140%d",j] intValue]);
+        model.t_yyyymm = @([[NSString stringWithFormat:@"20150%d",j] intValue]);
         
         model.workTime = @160;
         model.summary_type = @1;

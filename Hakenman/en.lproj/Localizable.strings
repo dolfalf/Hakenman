@@ -192,3 +192,6 @@
 "Watch_Glance_Minute_Title"      = "Start WT.";
 "Watch_Glance_Time_Unit"        = "Hour";
 "Watch_Glance_Minute_Unit"      = "min";
+
+"Watch_Top_Nodata_Message"  = "Working data does not exist.";
+"Watch_Detail_Day_Title"      = "Total WT:";

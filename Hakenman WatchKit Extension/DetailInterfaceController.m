@@ -11,6 +11,7 @@
 #import "NSDate+Helper.h"
 #import "TimeCardDao.h"
 #import "const.h"
+#import "WatchUtil.h"
 
 @interface DetailInterfaceController()
 
@@ -31,6 +32,10 @@
     self.sheetDate = [NSDate convDate2ShortString:yyyymm];
     
     // Configure interface objects here.
+    [_totalWorkTimeLabel setText:[NSString stringWithFormat:@"%@%d(%@)",
+                                  LOCALIZE(@"Watch_Detail_Day_Title"),
+                                  (int)[WatchUtil totalWorkTime],
+                                  yyyymm]];
     [self loadTableData];
 }
 
@@ -135,8 +140,8 @@
 //        dict[@"year"] = @([_sheetDate getYear]);
 //        dict[@"month"] = @([_sheetDate getMonth]);
         
-        [row.dateLabel setText:dict[@"day"]];
-        [row.weekLabel setText:dict[@"week"]];
+        [row.dateLabel setText:[NSString stringWithFormat:@"%02d",[dict[@"day"] intValue]]];
+        [row.weekLabel setText:[WatchUtil weekdayString:[dict[@"week"] intValue]]];
         
         BOOL isWorkData = NO;
         if (dict[@"workData"] != nil) {

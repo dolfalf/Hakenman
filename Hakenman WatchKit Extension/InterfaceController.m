@@ -10,10 +10,12 @@
 #import "MonthlyWorkTableRowController.h"
 #import "TimeCardSummaryDao.h"
 #import "NSDate+Helper.h"
+#import "WatchUtil.h"
 
 @interface InterfaceController()
 
 @property (nonatomic, weak) IBOutlet WKInterfaceTable *monthlyWorkTable;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *nodataLabel;
 
 @property (nonatomic, strong) NSArray *dataSource;
 @end
@@ -55,8 +57,18 @@
     [items addObjectsFromArray:[summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString]
                                                        EndMonth:[lastYear yyyyMMString] ascending:NO]];
     
-    
     [_monthlyWorkTable setNumberOfRows:items.count withRowType:@"MonthlyTableRow"];
+    
+    if (items == nil || items.count == 0) {
+        [_monthlyWorkTable setHidden:YES];
+        [_nodataLabel setHidden:NO];
+        [_nodataLabel setText:LOCALIZE(@"Watch_Top_Nodata_Message")];
+        return;
+    }else {
+        [_monthlyWorkTable setHidden:NO];
+        [_nodataLabel setHidden:YES];
+        [_nodataLabel setText:LOCALIZE(@"")];
+    }
     
     [items enumerateObjectsUsingBlock:^(TimeCardSummary *model, NSUInteger idx, BOOL *stop) {
         

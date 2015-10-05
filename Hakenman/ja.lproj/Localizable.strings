@@ -190,3 +190,6 @@
 "Watch_Glance_Minute_Title"      = "出勤時間まで、";
 "Watch_Glance_Time_Unit"        = "時間";
 "Watch_Glance_Minute_Unit"      = "分前";
+
+"Watch_Top_Nodata_Message"  = "データが存在しません。";
+"Watch_Detail_Day_Title"    = "月の勤務時間:";

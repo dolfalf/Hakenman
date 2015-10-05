@@ -10,6 +10,10 @@
             <objects>
                 <controller identifier="InterfaceController" title="Monthly." id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
+                        <label width="1" height="1" alignment="center" verticalAlignment="center" hidden="YES" textAlignment="center" numberOfLines="0" id="3uU-u8-LjH">
+                            <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="12"/>
+                        </label>
                         <table alignment="left" id="nCl-9b-nLt">
                             <items>
                                 <tableRow identifier="MonthlyTableRow" id="bSz-ys-Xgi" customClass="MonthlyWorkTableRowController">
@@ -90,6 +94,7 @@
                     </items>
                     <connections>
                         <outlet property="monthlyWorkTable" destination="nCl-9b-nLt" id="Z3t-mV-V4H"/>
+                        <outlet property="nodataLabel" destination="3uU-u8-LjH" id="g07-B0-xVm"/>
                     </connections>
                 </controller>
             </objects>

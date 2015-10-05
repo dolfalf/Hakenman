@@ -190,3 +190,6 @@
 "Watch_Glance_Minute_Title"      = "출근시간까지";
 "Watch_Glance_Time_Unit"        = "시간";
 "Watch_Glance_Minute_Unit"      = "분전";
+
+"Watch_Top_Nodata_Message"      = "데이타가 존재하지 않습니다.";
+"Watch_Detail_Day_Title"        = "월달근무시간:";
