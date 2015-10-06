@@ -15,4 +15,5 @@
 + (float)totalWorkTime;
 + (NSString *)weekdayString:(int)weekday;
 + (NSString *)monthString:(int)month;
++ (NSString *)timeString:(NSString *)str;
 @end

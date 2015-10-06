@@ -38,10 +38,10 @@
         [self setTitle:[WatchUtil monthString:month]];
     }
     
-    [_totalWorkTimeLabel setText:[NSString stringWithFormat:@"%@%d(%@)",
+    [_totalWorkTimeLabel setText:[NSString stringWithFormat:@"%@ %d%@",
                                   LOCALIZE(@"Watch_Detail_Day_Title"),
                                   (int)[WatchUtil totalWorkTime],
-                                  yyyymm]];
+                                  LOCALIZE(@"Watch_Glance_Time_Unit")]];
     [self loadTableData];
 }
 
@@ -102,7 +102,7 @@
         //取り出した結果のデータ(資料型)  fetchとして取り出した結果
         for (TimeCard *tm in models) {
             //DBに保存されている値を日付単位で検索、表示する日付にあたる値が出るとその値をrightDataModelに入れる
-            NSString *compareStringToday = [NSString stringWithFormat:@"%@%.2d%.2d", dayItems[@"yearData"], [_sheetDate getMonth], i];
+            NSString *compareStringToday = [NSString stringWithFormat:@"%@%.2d%.2d", dayItems[@"year"], [_sheetDate getMonth], i];
             NSString *compareStringCore = [NSString stringWithFormat:@"%@", tm.t_yyyymmdd];
             
             if ([compareStringToday isEqualToString:compareStringCore]) {
@@ -157,27 +157,33 @@
                 
                 //営業日のみセット
                 NSString *start_time = dict[@"workData"][@"start_time"];
-                [row.startTimeLabel setText:(start_time==nil?@"":start_time)];
+                [row.startTimeLabel setText:[WatchUtil timeString:start_time]];
                 
                 NSString *end_time = dict[@"workData"][@"end_time"];
-                [row.endTimeLabel setText:(end_time==nil?@"":end_time)];
+                [row.endTimeLabel setText:[WatchUtil timeString:end_time]];
                 
                 NSString *remark = dict[@"workData"][@"remark"];
                 [row.memoLabel setText:(remark==nil?@"":remark)];
                 isWorkData = YES;
             }
+            
+            
         }
         
         if (isWorkData == NO) {
-            //dlqfur데이타 없음.
-            NSString *start_time = dict[@"workData"][@"start_time"];
-            [row.startTimeLabel setText:(start_time==nil?@"":start_time)];
-            
-            NSString *end_time = dict[@"workData"][@"end_time"];
-            [row.endTimeLabel setText:(end_time==nil?@"":end_time)];
-            
-            NSString *remark = dict[@"workData"][@"remark"];
-            [row.memoLabel setText:(remark==nil?@"":remark)];
+            //데이타 없음.
+            [row.startTimeLabel setText:@"--:--"];
+            [row.endTimeLabel setText:@"--:--"];
+            [row.memoLabel setText:@""];
+        }
+        
+        int weekday = [dict[@"week"] intValue];
+        if (weekday == weekSatDay) {
+            [row.weekLabel setTextColor:[UIColor HKMBlueColor]];
+            [row.dateLabel setTextColor:[UIColor HKMBlueColor]];
+        }else if(weekday == weekSunday) {
+            [row.weekLabel setTextColor:[UIColor redColor]];
+            [row.dateLabel setTextColor:[UIColor redColor]];
         }
     }];
 }

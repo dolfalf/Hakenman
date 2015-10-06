@@ -127,4 +127,18 @@
     return str;
 }
 
++ (NSString *)timeString:(NSString *)str {
+    
+    //yyyymmddHHmmss
+    
+    if (str == nil || str.length != 14) {
+        return @"--:--";
+    }
+    
+    NSString *hour = [str substringWithRange:NSMakeRange(8, 2)];
+    NSString *min = [str substringWithRange:NSMakeRange(10, 2)];
+    
+    return [NSString stringWithFormat:@"%@:%@", hour, min];
+}
+
 @end
