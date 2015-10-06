@@ -27,6 +27,8 @@
     [super awakeWithContext:context];
 
     // Configure interface objects here.
+    [self setTitle:LOCALIZE(@"Watch_Top_Title")];
+    
     [self loadTableData];
 }
 

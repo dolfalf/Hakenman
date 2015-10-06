@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Monthly.-->
+        <!--InterfaceController-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="InterfaceController" title="Monthly." id="AgC-eL-Hgc" customClass="InterfaceController">
+                <controller identifier="InterfaceController" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
                         <label width="1" height="1" alignment="center" verticalAlignment="center" hidden="YES" textAlignment="center" numberOfLines="0" id="3uU-u8-LjH">
                             <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,7 +51,7 @@
                                                                         <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
                                                                     </label>
                                                                 </items>
-                                                                <color key="backgroundColor" red="0.078431372550000003" green="0.72549019609999998" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             </group>
                                                             <label width="0.59999999999999998" height="1" alignment="left" text="123時間" textAlignment="right" id="Zql-hV-rcv">
                                                                 <fontDescription key="font" type="system" pointSize="12"/>
@@ -69,7 +69,7 @@
                                                                         <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
                                                                     </label>
                                                                 </items>
-                                                                <color key="backgroundColor" red="0.078431372550000003" green="0.72549019609999998" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             </group>
                                                             <label width="0.59999999999999998" height="1" alignment="left" text="12日" textAlignment="right" id="rfZ-Pb-SrD">
                                                                 <fontDescription key="font" type="system" pointSize="12"/>
@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="235" y="347"/>
         </scene>
-        <!--Daily.-->
+        <!--DetailInterfaceController-->
         <scene sceneID="ohH-Ys-sw6">
             <objects>
-                <controller identifier="DetailInterfaceController" title="Daily." id="JKc-fQ-MF3" customClass="DetailInterfaceController">
+                <controller identifier="DetailInterfaceController" id="JKc-fQ-MF3" customClass="DetailInterfaceController">
                     <items>
                         <group width="1" height="14" alignment="left" id="ss8-3x-PYa">
                             <items>

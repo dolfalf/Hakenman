@@ -186,6 +186,21 @@
 
 ////////////////////////////////////////////////////////////////////////////////////
 //Watch
+"Common_month_1" = "１月";
+"Common_month_2" = "２月";
+"Common_month_3" = "３月";
+"Common_month_4" = "４月";
+"Common_month_5" = "５月";
+"Common_month_6" = "６月";
+"Common_month_7" = "７月";
+"Common_month_8" = "８月";
+"Common_month_9" = "９月";
+"Common_month_10" = "１０月";
+"Common_month_11" = "１１月";
+"Common_month_12" = "１２月";
+
+"Watch_Top_Title"           = "勤務表";
+
 "Watch_Glance_Time_Title"        = "今月の勤務時間";
 "Watch_Glance_Minute_Title"      = "出勤時間まで、";
 "Watch_Glance_Time_Unit"        = "時間";

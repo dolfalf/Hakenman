@@ -81,4 +81,50 @@
     return weekString;
 }
 
++ (NSString *)monthString:(int)month {
+    
+    NSString *str = nil;
+    
+    switch (month) {
+        case 1:
+            str = LOCALIZE(@"Common_month_1");
+            break;
+        case 2:
+            str = LOCALIZE(@"Common_month_2");
+            break;
+        case 3:
+            str = LOCALIZE(@"Common_month_3");
+            break;
+        case 4:
+            str = LOCALIZE(@"Common_month_4");
+            break;
+        case 5:
+            str = LOCALIZE(@"Common_month_5");
+            break;
+        case 6:
+            str = LOCALIZE(@"Common_month_6");
+            break;
+        case 7:
+            str = LOCALIZE(@"Common_month_7");
+            break;
+        case 8:
+            str = LOCALIZE(@"Common_month_8");
+            break;
+        case 9:
+            str = LOCALIZE(@"Common_month_9");
+            break;
+        case 10:
+            str = LOCALIZE(@"Common_month_10");
+            break;
+        case 11:
+            str = LOCALIZE(@"Common_month_11");
+            break;
+        case 12:
+            str = LOCALIZE(@"Common_month_12");
+            break;
+    }
+    
+    return str;
+}
+
 @end

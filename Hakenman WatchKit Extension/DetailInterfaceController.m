@@ -28,10 +28,16 @@
     [super awakeWithContext:context];
     
     //set param.
-    NSString *yyyymm = [NSString stringWithFormat:@"%@01",context];
-    self.sheetDate = [NSDate convDate2ShortString:yyyymm];
+    NSString *yyyymm = [NSString stringWithFormat:@"%@",context];
+    NSString *yyyymmdd = [NSString stringWithFormat:@"%@01",context];
+    self.sheetDate = [NSDate convDate2ShortString:yyyymmdd];
     
     // Configure interface objects here.
+    if (yyyymm !=nil && yyyymm.length==6) {
+        int month = [[yyyymm substringWithRange:NSMakeRange(4, 2)] intValue];
+        [self setTitle:[WatchUtil monthString:month]];
+    }
+    
     [_totalWorkTimeLabel setText:[NSString stringWithFormat:@"%@%d(%@)",
                                   LOCALIZE(@"Watch_Detail_Day_Title"),
                                   (int)[WatchUtil totalWorkTime],

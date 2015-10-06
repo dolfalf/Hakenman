@@ -14,4 +14,5 @@
 + (int)wathcOSVersion;
 + (float)totalWorkTime;
 + (NSString *)weekdayString:(int)weekday;
++ (NSString *)monthString:(int)month;
 @end
