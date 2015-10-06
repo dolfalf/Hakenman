@@ -38,6 +38,8 @@
         [self setTitle:[WatchUtil monthString:month]];
     }
     
+    //TODO:TotalWorkTime이라는건 현재 달의 전체 시간을 말하는건가요?
+    // 만약 선택한 달의 전체 시간이라면 (int)[WatchUtil totalWorkTime]에 달을 지정하는 인자값을 만들어줄 필요가 있을 듯
     [_totalWorkTimeLabel setText:[NSString stringWithFormat:@"%@ %d%@",
                                   LOCALIZE(@"Watch_Detail_Day_Title"),
                                   (int)[WatchUtil totalWorkTime],

@@ -28,13 +28,13 @@
 
     // Configure interface objects here.
     [self setTitle:LOCALIZE(@"Watch_Top_Title")];
-    
-    [self loadTableData];
 }
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    
+    [self loadTableData];
 }
 
 - (void)didDeactivate {
@@ -81,8 +81,8 @@
         
         [row.yearLabel setText:yearString];
         [row.monthLabel setText:monthString];
-        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Days.", [model.workdays intValue]]];
-        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Hour.", [model.workTime intValue]]];
+        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [model.workTime intValue]]];
+        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [model.workdays intValue]]];
         
     }];
     
