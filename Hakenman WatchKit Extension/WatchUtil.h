@@ -12,7 +12,7 @@
 @interface WatchUtil : NSObject
 
 + (int)wathcOSVersion;
-+ (float)totalWorkTime;
++ (float)totalWorkTime:(NSString *)yyyymm;
 + (NSString *)weekdayString:(int)weekday;
 + (NSString *)monthString:(int)month;
 + (NSString *)timeString:(NSString *)str;

@@ -200,6 +200,8 @@
 "Common_month_12" = "12월";
 
 "Watch_Top_Title"           = "근무표";
+"Watch_Top_Worktime_Title"  = "시간";
+"Watch_Top_Workday_Title"    = "일수";
 
 "Watch_Glance_Time_Title"        = "이번달근무시간";
 "Watch_Glance_Minute_Title"      = "출근시간까지";

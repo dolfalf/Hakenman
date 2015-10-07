@@ -200,6 +200,8 @@
 "Common_month_12" = "１２月";
 
 "Watch_Top_Title"           = "勤務表";
+"Watch_Top_Worktime_Title"  = "時間";
+"Watch_Top_Workday_Title"    = "日数";
 
 "Watch_Glance_Time_Title"        = "今月の勤務時間";
 "Watch_Glance_Minute_Title"      = "出勤時間まで、";

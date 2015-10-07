@@ -201,7 +201,9 @@
 "Common_month_11" = "November";
 "Common_month_12" = "December";
 
-"Watch_Top_Title"           = "WorkSheet";
+"Watch_Top_Title"           = "Sheet";
+"Watch_Top_Worktime_Title"  = "Time";
+"Watch_Top_Workday_Title"    = "Days";
 
 "Watch_Glance_Time_Title"        = "This month's WH.";
 "Watch_Glance_Minute_Title"      = "Start WT.";

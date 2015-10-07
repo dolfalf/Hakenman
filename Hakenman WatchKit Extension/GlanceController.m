@@ -107,7 +107,7 @@
         return;
     }
     
-    self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:20.f
+    self.loadTimer = [NSTimer scheduledTimerWithTimeInterval:10.f
                                                       target:self
                                                     selector:@selector(updateRemainTime)
                                                     userInfo:nil
@@ -146,14 +146,16 @@
         return;
     }
     
-    self.remainTimeString = [NSString stringWithFormat:@"%d", (int)calc_minute];
+    self.remainTimeString = [NSString stringWithFormat:@"%d", (int)calc_minute*-1];
     
     [self loadScreenData];
 }
 
 - (void)loadScreenData {
     
-    NSString *total_work_time = [NSString stringWithFormat:@"%d", (int)[WatchUtil totalWorkTime]];
+    NSDate *dt = [NSDate date];
+    NSString *yyyymm = [NSString stringWithFormat:@"%d%02d", [dt getYear], [dt getMonth]];
+    NSString *total_work_time = [NSString stringWithFormat:@"%d", (int)[WatchUtil totalWorkTime:yyyymm]];
     NSString *work_time_unit = LOCALIZE(@"Watch_Glance_Time_Unit");
     
     NSMutableAttributedString *attrTimeString = [[NSMutableAttributedString alloc] initWithString:

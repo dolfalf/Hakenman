@@ -8,6 +8,7 @@
 
 #import "InterfaceController.h"
 #import "MonthlyWorkTableRowController.h"
+#import "TimeCardDao.h"
 #import "TimeCardSummaryDao.h"
 #import "NSDate+Helper.h"
 #import "WatchUtil.h"
@@ -48,8 +49,13 @@
     
     NSMutableArray *items = [NSMutableArray new];
     
+    //現在月を持ってくる
+    TimeCardSummary *curr_summary = [self currentMonthSummary];
+    [items addObject:curr_summary];
+    
     //サマリーからデータを持ってくる
     TimeCardSummaryDao *summaryDao = [[TimeCardSummaryDao alloc] init];
+    
     NSDate *today = [NSDate date];
     NSDate *lastYear = [today addMonth:-1];
     NSDate *oneYearsAgo = (NSDate *)[lastYear dateByAddingTimeInterval:(60*60*24*365 *-1)];
@@ -84,6 +90,9 @@
         [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [model.workTime intValue]]];
         [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [model.workdays intValue]]];
         
+        //title
+        [row.workTimeTitleLabel setText:LOCALIZE(@"Watch_Top_Worktime_Title")];
+        [row.workDayTitleLabel setText:LOCALIZE(@"Watch_Top_Workday_Title")];
     }];
     
     self.dataSource = items;
@@ -96,6 +105,40 @@
     
     NSString *selected_date = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
     [self pushControllerWithName:@"DetailInterfaceController" context:selected_date];
+}
+
+#pragma mark - private methods
+- (TimeCardSummary *)currentMonthSummary {
+    
+    NSDate *today = [NSDate date];
+    TimeCardDao *cardDao = [[TimeCardDao alloc] init];
+    NSArray *timecards = [cardDao fetchModelYear:[today getYear] month:[today getMonth]];
+    TimeCardSummary *current_month = [[[TimeCardSummaryDao alloc] init] createModel];
+    
+    int total_workday = 0;
+    float total_workTime = 0.f;
+    for (TimeCard *tm in timecards) {
+        if([tm.workday_flag isEqual:@1] == YES) {
+            total_workday++;
+            float duration = [TimeCardSummaryDao getWorkTime:[NSDate convDate2String:tm.start_time]
+                                                     endTime:[NSDate convDate2String:tm.end_time]];
+            
+            duration = duration - [tm.rest_time floatValue];
+            
+            total_workTime = total_workTime + duration;
+        }
+    }
+    
+    NSLog(@"TimeCard calc-> totalWorkTime:%f, totalWorkDay:%d",total_workTime,total_workday);
+    
+    NSString *yyyymm = [NSString stringWithFormat:@"%d%2d", [today getYear], [today getMonth]];
+    current_month.workTime = @(total_workTime);
+    current_month.workdays = @(total_workday);
+    current_month.summary_type = @1; //not used
+    current_month.t_yyyymm = @([yyyymm intValue]);
+    current_month.remark = @""; //not used
+
+    return current_month;
 }
 
 @end

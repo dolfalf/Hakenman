@@ -18,13 +18,18 @@
     return [[UIDevice currentDevice].systemVersion floatValue] * 1000;
 }
 
-+ (float)totalWorkTime {
++ (float)totalWorkTime:(NSString *)yyyymm {
     
     float display_total_time = 0.f;
     
+    if (yyyymm == nil || yyyymm.length != 6) {
+        return display_total_time;
+    }
+    
     TimeCardDao *dao = [TimeCardDao new];
-    NSDate *dt = [NSDate date];
-    NSArray *items = [dao fetchModelYear:[dt getYear] month:[dt getMonth]];
+    NSArray *items = [dao fetchModelYear:[[yyyymm substringWithRange:NSMakeRange(0, 4)] intValue]
+                                   month:[[yyyymm substringWithRange:NSMakeRange(4, 2)] intValue]];
+    
     for (TimeCard *tm in items) {
         
         NSDate *startTimeFromCore = [NSDate convDate2String:tm.start_time];
