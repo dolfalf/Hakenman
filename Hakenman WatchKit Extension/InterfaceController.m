@@ -18,7 +18,7 @@
 @property (nonatomic, weak) IBOutlet WKInterfaceTable *monthlyWorkTable;
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *nodataLabel;
 
-@property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
 
@@ -47,27 +47,28 @@
 #pragma mark - table methods
 - (void)loadTableData {
     
-    NSMutableArray *items = [NSMutableArray new];
+    self.dataSource = [NSMutableArray new];
     
     //現在月を持ってくる
+#if 0
     TimeCardSummary *curr_summary = [self currentMonthSummary];
-    [items addObject:curr_summary];
-    
+    [_dataSource addObject:curr_summary];
+#endif
     //サマリーからデータを持ってくる
     TimeCardSummaryDao *summaryDao = [[TimeCardSummaryDao alloc] init];
     
     NSDate *today = [NSDate date];
-    NSDate *lastYear = [today addMonth:-1];
+    NSDate *lastYear = [today addMonth:0];
     NSDate *oneYearsAgo = (NSDate *)[lastYear dateByAddingTimeInterval:(60*60*24*365 *-1)];
     
     NSLog(@"oneYearsAgo[%@] today[%@]",oneYearsAgo, lastYear);
     
-    [items addObjectsFromArray:[summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString]
+    [_dataSource addObjectsFromArray:[summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString]
                                                        EndMonth:[lastYear yyyyMMString] ascending:NO]];
     
-    [_monthlyWorkTable setNumberOfRows:items.count withRowType:@"MonthlyTableRow"];
+    [_monthlyWorkTable setNumberOfRows:_dataSource.count withRowType:@"MonthlyTableRow"];
     
-    if (items == nil || items.count == 0) {
+    if (_dataSource == nil || _dataSource.count == 0) {
         [_monthlyWorkTable setHidden:YES];
         [_nodataLabel setHidden:NO];
         [_nodataLabel setText:LOCALIZE(@"Watch_Top_Nodata_Message")];
@@ -78,7 +79,26 @@
         [_nodataLabel setText:LOCALIZE(@"")];
     }
     
-    [items enumerateObjectsUsingBlock:^(TimeCardSummary *model, NSUInteger idx, BOOL *stop) {
+    for (int idx=0;idx<_dataSource.count;idx++) {
+        
+        TimeCardSummary *model = _dataSource[idx];
+        
+        MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
+        
+        NSString *yearString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(0, 4)];
+        NSString *monthString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(4, 2)];
+        
+        [row.yearLabel setText:yearString];
+        [row.monthLabel setText:monthString];
+        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [model.workTime intValue]]];
+        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [model.workdays intValue]]];
+        
+        //title
+        [row.workTimeTitleLabel setText:LOCALIZE(@"Watch_Top_Worktime_Title")];
+        [row.workDayTitleLabel setText:LOCALIZE(@"Watch_Top_Workday_Title")];
+    }
+#if 0
+    [_dataSource enumerateObjectsUsingBlock:^(TimeCardSummary *model, NSUInteger idx, BOOL *stop) {
         
         MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
         
@@ -94,8 +114,7 @@
         [row.workTimeTitleLabel setText:LOCALIZE(@"Watch_Top_Worktime_Title")];
         [row.workDayTitleLabel setText:LOCALIZE(@"Watch_Top_Workday_Title")];
     }];
-    
-    self.dataSource = items;
+#endif
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
