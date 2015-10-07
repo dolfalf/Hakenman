@@ -12,7 +12,7 @@
 #import <UIKit/UIDocumentInteractionController.h>
 #import "NSUserDefaults+Setting.h"
 #import "NSDate+Helper.h"
-#import "Util.h"
+#import "Util+Document.h"
 #import "TimeCardDao.h"
 #import "TimeCardSummaryDao.h"
 

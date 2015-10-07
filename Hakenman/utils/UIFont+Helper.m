@@ -14,20 +14,20 @@
 
 + (UIFont *)nanumFontOfSize:(CGFloat)fontSize {
     
-    if ([Util isJanpaneseLanguage] == NO) {
-        return [UIFont fontWithName:@"NanumBarunGothic" size:fontSize];
-    }else {
+//    if ([Util isJanpaneseLanguage] == NO) {
+//        return [UIFont fontWithName:@"NanumBarunGothic" size:fontSize];
+//    }else {
         return [UIFont systemFontOfSize:fontSize];
-    }
+//    }
     
 }
 
 + (UIFont *)boldNanumFontOfSize:(CGFloat)fontSize {
-    if ([Util isJanpaneseLanguage] == NO) {
-        return [UIFont fontWithName:@"NanumBarunGothicBold" size:fontSize];
-    }else {
+//    if ([Util isJanpaneseLanguage] == NO) {
+//        return [UIFont fontWithName:@"NanumBarunGothicBold" size:fontSize];
+//    }else {
         return [UIFont boldSystemFontOfSize:fontSize];
-    }
+//    }
 }
 
 @end

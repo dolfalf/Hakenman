@@ -9,6 +9,7 @@
 #import "DBManager.h"
 #import <UIKit/UIKit.h>
 #import "NSUserDefaults+Setting.h"
+//#import "Util.h"
 
 @implementation DBManager
 
@@ -53,7 +54,7 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return _managedObjectContext;
@@ -117,8 +118,7 @@
         //한번 실행되면 다시 실행안되게 처리할 필요가 있음.
         //iOS8.2이상 체크.
         if ([NSUserDefaults isWatchMigration] == NO
-            && [self isEqualAndOlderVersion:@"1.3.0"] == YES
-            && [self iOSVersion] >= 8200) {
+            && [self isEqualAndOlderVersion:@"1.3.0"] == YES) {
 
             //migration처리
             NSPersistentStore   *sourceStore        = nil;
@@ -170,8 +170,7 @@
 #if 1
     //마이그레이션이 끝나면 로드하는 디비를 바꿔줘야함.
     if ([NSUserDefaults isWatchMigration] == YES
-        && [self isEqualAndOlderVersion:@"1.3.0"] == YES
-        && [self iOSVersion] >= 8200) {
+        && [self isEqualAndOlderVersion:@"1.3.0"] == YES) {
         
         return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.kjcode.dolfalf.hakenman"];
     }
@@ -204,10 +203,4 @@
     return NO;
 }
 
-- (int)iOSVersion {
-    UIDevice *device = [UIDevice currentDevice];
-    NSString *version = [NSString stringWithFormat:@"%.0f", [device.systemVersion floatValue] * 1000];
-    
-    return [version intValue];
-}
 @end

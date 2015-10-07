@@ -16,7 +16,7 @@
 #import "LeftTableViewData.h"
 #import "RightTableViewData.h"
 #import "TimeCard.h"
-#import "Util.h"
+#import "Util+Document.h"
 
 #import <UIKit/UIDocumentInteractionController.h>
 
