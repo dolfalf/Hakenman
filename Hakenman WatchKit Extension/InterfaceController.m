@@ -50,9 +50,9 @@
     self.dataSource = [NSMutableArray new];
     
     //現在月を持ってくる
-#if 0
-    TimeCardSummary *curr_summary = [self currentMonthSummary];
-    [_dataSource addObject:curr_summary];
+#if 1
+    NSDictionary *current_items = [self currentMonthSummaryItems];
+    [_dataSource addObject:current_items];
 #endif
     //サマリーからデータを持ってくる
     TimeCardSummaryDao *summaryDao = [[TimeCardSummaryDao alloc] init];
@@ -63,8 +63,18 @@
     
     NSLog(@"oneYearsAgo[%@] today[%@]",oneYearsAgo, lastYear);
     
-    [_dataSource addObjectsFromArray:[summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString]
-                                                       EndMonth:[lastYear yyyyMMString] ascending:NO]];
+    NSArray *summary_items = [summaryDao fetchModelStartMonth:[oneYearsAgo yyyyMMString]
+                                                     EndMonth:[lastYear yyyyMMString] ascending:NO];
+    
+    for (int s=0; s<summary_items.count; s++) {
+        TimeCardSummary *ts = summary_items[s];
+        
+        [_dataSource addObject:@{@"workTime":ts.workTime,
+                                 @"workdays":ts.workdays,
+                                 @"summary_type":@(1),
+                                 @"t_yyyymm":ts.t_yyyymm,
+                                 @"remark":@""}];
+    }
     
     [_monthlyWorkTable setNumberOfRows:_dataSource.count withRowType:@"MonthlyTableRow"];
     
@@ -81,58 +91,39 @@
     
     for (int idx=0;idx<_dataSource.count;idx++) {
         
-        TimeCardSummary *model = _dataSource[idx];
+        NSDictionary *dict = _dataSource[idx];
         
         MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
         
-        NSString *yearString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(0, 4)];
-        NSString *monthString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(4, 2)];
+        NSString *yearString = [[dict[@"t_yyyymm"] stringValue] substringWithRange:NSMakeRange(0, 4)];
+        NSString *monthString = [[dict[@"t_yyyymm"] stringValue] substringWithRange:NSMakeRange(4, 2)];
         
         [row.yearLabel setText:yearString];
         [row.monthLabel setText:monthString];
-        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [model.workTime intValue]]];
-        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [model.workdays intValue]]];
+        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [dict[@"workTime"] intValue]]];
+        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [dict[@"workdays"] intValue]]];
         
         //title
         [row.workTimeTitleLabel setText:LOCALIZE(@"Watch_Top_Worktime_Title")];
         [row.workDayTitleLabel setText:LOCALIZE(@"Watch_Top_Workday_Title")];
     }
-#if 0
-    [_dataSource enumerateObjectsUsingBlock:^(TimeCardSummary *model, NSUInteger idx, BOOL *stop) {
-        
-        MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
-        
-        NSString *yearString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(0, 4)];
-        NSString *monthString = [[model.t_yyyymm stringValue] substringWithRange:NSMakeRange(4, 2)];
-        
-        [row.yearLabel setText:yearString];
-        [row.monthLabel setText:monthString];
-        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [model.workTime intValue]]];
-        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [model.workdays intValue]]];
-        
-        //title
-        [row.workTimeTitleLabel setText:LOCALIZE(@"Watch_Top_Worktime_Title")];
-        [row.workDayTitleLabel setText:LOCALIZE(@"Watch_Top_Workday_Title")];
-    }];
-#endif
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
     NSLog(@"%s", __FUNCTION__);
     
-    TimeCardSummary *summaryModel = [_dataSource objectAtIndex:rowIndex];
+    NSDictionary *dict = [_dataSource objectAtIndex:rowIndex];
     
-    NSString *selected_date = [NSString stringWithFormat:@"%@", summaryModel.t_yyyymm];
+    NSString *selected_date = [NSString stringWithFormat:@"%@", dict[@"t_yyyymm"]];
     [self pushControllerWithName:@"DetailInterfaceController" context:selected_date];
 }
 
 #pragma mark - private methods
-- (TimeCardSummary *)currentMonthSummary {
+- (NSDictionary *)currentMonthSummaryItems {
     
     NSDate *today = [NSDate date];
     TimeCardDao *cardDao = [[TimeCardDao alloc] init];
     NSArray *timecards = [cardDao fetchModelYear:[today getYear] month:[today getMonth]];
-    TimeCardSummary *current_month = [[[TimeCardSummaryDao alloc] init] createModel];
     
     int total_workday = 0;
     float total_workTime = 0.f;
@@ -151,13 +142,12 @@
     NSLog(@"TimeCard calc-> totalWorkTime:%f, totalWorkDay:%d",total_workTime,total_workday);
     
     NSString *yyyymm = [NSString stringWithFormat:@"%d%2d", [today getYear], [today getMonth]];
-    current_month.workTime = @(total_workTime);
-    current_month.workdays = @(total_workday);
-    current_month.summary_type = @1; //not used
-    current_month.t_yyyymm = @([yyyymm intValue]);
-    current_month.remark = @""; //not used
 
-    return current_month;
+    return @{@"workTime":@(total_workTime),
+             @"workdays":@(total_workday),
+             @"summary_type":@(1),
+             @"t_yyyymm":@([yyyymm intValue]),
+             @"remark":@""};
 }
 
 @end

@@ -11,6 +11,9 @@
 #import "NSUserDefaults+Setting.h"
 //#import "Util.h"
 
+NSString * const kMigrationVersion = @"1.3.0";
+NSString * const kGroupIdentifier = @"group.com.kjcode.dolfalf.hakenman";
+
 @implementation DBManager
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -118,13 +121,13 @@
         //한번 실행되면 다시 실행안되게 처리할 필요가 있음.
         //iOS8.2이상 체크.
         if ([NSUserDefaults isWatchMigration] == NO
-            && [self isEqualAndOlderVersion:@"1.3.0"] == YES) {
+            && [self isEqualAndOlderVersion:kMigrationVersion] == YES) {
 
             //migration처리
             NSPersistentStore   *sourceStore        = nil;
             NSPersistentStore   *destinationStore   = nil;
             
-            NSURL *storeURL = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.kjcode.dolfalf.hakenman"]
+            NSURL *storeURL = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupIdentifier]
                                URLByAppendingPathComponent:@"hakenModel.sqlite"];
             
             //migration
@@ -170,9 +173,9 @@
 #if 1
     //마이그레이션이 끝나면 로드하는 디비를 바꿔줘야함.
     if ([NSUserDefaults isWatchMigration] == YES
-        && [self isEqualAndOlderVersion:@"1.3.0"] == YES) {
+        && [self isEqualAndOlderVersion:kMigrationVersion] == YES) {
         
-        return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.kjcode.dolfalf.hakenman"];
+        return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupIdentifier];
     }
 #endif
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
