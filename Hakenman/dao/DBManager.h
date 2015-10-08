@@ -20,4 +20,7 @@
 
 + (id)sharedDBManager;
 
+//
+- (void)migrateStore;
+
 @end

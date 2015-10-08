@@ -9,7 +9,6 @@
 #import "DBManager.h"
 #import <UIKit/UIKit.h>
 #import "NSUserDefaults+Setting.h"
-//#import "Util.h"
 
 NSString * const kMigrationVersion = @"1.3.0";
 NSString * const kGroupIdentifier = @"group.com.kjcode.dolfalf.hakenman";
@@ -85,10 +84,9 @@ NSString * const kGroupIdentifier = @"group.com.kjcode.dolfalf.hakenman";
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"hakenModel.sqlite"];
     NSError *error = nil;
-    NSDictionary *storeOptions = @{ NSSQLitePragmasOption : @{ @"journal_mode" : @"WAL" } };
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         
         /*
          Replace this implementation with code to handle the error appropriately.
@@ -115,51 +113,6 @@ NSString * const kGroupIdentifier = @"group.com.kjcode.dolfalf.hakenman";
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
-    }else {
-
-#if 1
-        //한번 실행되면 다시 실행안되게 처리할 필요가 있음.
-        //iOS8.2이상 체크.
-        if ([NSUserDefaults isWatchMigration] == NO
-            && [self isEqualAndOlderVersion:kMigrationVersion] == YES) {
-
-            //migration처리
-            NSPersistentStore   *sourceStore        = nil;
-            NSPersistentStore   *destinationStore   = nil;
-            
-            NSURL *storeURL = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupIdentifier]
-                               URLByAppendingPathComponent:@"hakenModel.sqlite"];
-            
-            //migration
-            NSURL *oldStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                                                          inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"hakenModel.sqlite"];
-            
-            sourceStore = [_persistentStoreCoordinator persistentStoreForURL:oldStoreURL];
-            if (sourceStore != nil){
-                // Perform the migration
-                destinationStore = [_persistentStoreCoordinator migratePersistentStore:sourceStore toURL:storeURL options:storeOptions withType:NSSQLiteStoreType error:&error];
-                if (destinationStore == nil){
-                    // Handle the migration error
-                } else {
-                    // You can now remove the old data at oldStoreURL
-                    // Note that you should do this using the NSFileCoordinator/NSFilePresenter APIs, and you should remove the other files
-                    // described in QA1809 as well.
-                    NSError *error = nil;
-                    
-                    //remove
-//                    [[NSFileManager defaultManager] removeItemAtURL:oldStoreURL error:&error];
-                    if (error) {
-                        NSLog(@"older coredata remove error.   %@, %@", error, [error userInfo]);
-                        abort();
-                    }
-                    
-                    //migration success. set flag.
-                    [NSUserDefaults watchMigrationFinished];
-                }
-            }
-        }
-#endif
-        
     }
     
     return _persistentStoreCoordinator;
@@ -170,40 +123,38 @@ NSString * const kGroupIdentifier = @"group.com.kjcode.dolfalf.hakenman";
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-#if 1
     //마이그레이션이 끝나면 로드하는 디비를 바꿔줘야함.
-    if ([NSUserDefaults isWatchMigration] == YES
-        && [self isEqualAndOlderVersion:kMigrationVersion] == YES) {
-        
+    if ([NSUserDefaults isWatchMigration] == YES) {
         return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupIdentifier];
     }
-#endif
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
 }
 
-- (BOOL)isEqualAndOlderVersion:(NSString *)ver {
+#pragma mark - Migrating the Store File
+- (void)migrateStore {
     
-    //version1.0.2->102にして比較
-    NSArray *v_arrays = [ver componentsSeparatedByString:@"."];
-    if ([v_arrays count] == 3) {
-        int num_ver = [v_arrays[0] intValue] * 100
-        + [v_arrays[1] intValue] * 10
-        + [v_arrays[2] intValue] * 1;
-        
-        NSArray *c_arrays = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]componentsSeparatedByString:@"."];
-        
-        int curr_num_ver = [c_arrays[0] intValue] * 100
-        + [c_arrays[1] intValue] * 10
-        + [c_arrays[2] intValue] * 1;
-        
-        NSLog(@"check version:[%d], current version[%d]", num_ver, curr_num_ver);
-        if (num_ver <= curr_num_ver) {
-            return YES;
-        }
-    }
+    // migrate current store from one URL to another
+    // write out the current store URL before the migration
+    NSURL *storeURL = [self.persistentStoreCoordinator.persistentStores.lastObject URL];
+    NSLog(@"Current Store URL (before migration): %@", [storeURL description]);
     
-    return NO;
+    // grab the current store
+    NSPersistentStore *currentStore = self.persistentStoreCoordinator.persistentStores.lastObject;
+    
+    // create a new URL
+    NSURL *newStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                                  inDomains:NSUserDomainMask] lastObject]
+                          URLByAppendingPathComponent:@"hakenModel.sqlite"];
+    
+    // setup new options dictionary if necessary
+    
+    // migrate current store to new URL
+    [self.persistentStoreCoordinator migratePersistentStore:currentStore toURL:newStoreURL options:nil withType:NSSQLiteStoreType error:nil];
+    
+    // and to check we're on the new store, write out tha URL again
+    storeURL = [self.persistentStoreCoordinator.persistentStores.lastObject URL];
+    NSLog(@"Current Store URL (after migration): %@", [storeURL description]);
+
 }
 
 @end
