@@ -67,7 +67,7 @@
     //create instance.
     [AdvertisingManager sharedADBannerView];
     
-    
+#if 1
     //REMARK: Migration
     if ([self isEqualAndOlderVersion:@"1.3.0"] == YES
         && [NSUserDefaults isWatchMigration] == NO) {
@@ -77,6 +77,7 @@
         //migration success. set flag.
         [NSUserDefaults watchMigrationFinished];
     }
+#endif
     
     return YES;
 }

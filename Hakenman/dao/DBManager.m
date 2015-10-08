@@ -141,9 +141,9 @@ NSString * const kGroupIdentifier = @"group.com.kjcode.dolfalf.hakenman";
     // grab the current store
     NSPersistentStore *currentStore = self.persistentStoreCoordinator.persistentStores.lastObject;
     
+    
     // create a new URL
-    NSURL *newStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                                                  inDomains:NSUserDomainMask] lastObject]
+    NSURL *newStoreURL = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupIdentifier]
                           URLByAppendingPathComponent:@"hakenModel.sqlite"];
     
     // setup new options dictionary if necessary
