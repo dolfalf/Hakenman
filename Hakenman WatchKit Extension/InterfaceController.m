@@ -29,6 +29,10 @@
 
     // Configure interface objects here.
     [self setTitle:LOCALIZE(@"Watch_Top_Title")];
+    
+    
+//    NSString *str = [[[WatchService alloc] init] hoge];
+//    NSLog(@"%@", str);
 }
 
 - (void)willActivate {
