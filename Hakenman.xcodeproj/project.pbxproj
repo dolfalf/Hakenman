@@ -15,7 +15,6 @@
 		1C22AF0819C1D783004196EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0719C1D783004196EC /* MobileCoreServices.framework */; };
 		1C22AF0A19C1D790004196EC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0919C1D790004196EC /* Security.framework */; };
 		1C22AF0E19C1D7A9004196EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0D19C1D7A9004196EC /* SystemConfiguration.framework */; };
-		1C3442F01A0F439800367BF4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3442EF1A0F439800367BF4 /* StoreKit.framework */; };
 		1C3442F31A0F43C100367BF4 /* KJStoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3442F21A0F43C100367BF4 /* KJStoreProductViewController.m */; };
 		1C8A759C1A944D6200852CFE /* HistoryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A759B1A944D6200852CFE /* HistoryEditViewController.m */; };
 		1C8A75A81A9451FC00852CFE /* MonthWorkingCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75A11A9451FC00852CFE /* MonthWorkingCalendarViewController.m */; };
@@ -118,9 +117,10 @@
 		5F2BC6081BB914B0000BECB2 /* TimeCardSummaryDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB254194315DB00CD922E /* TimeCardSummaryDao.m */; };
 		5F7C2B121BBBB9AE0025F370 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
 		5F7C2B141BBBBAEB0025F370 /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
-		BB9D31D61BC7654500B2F053 /* Util+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9D31D51BC7654500B2F053 /* Util+Document.m */; settings = {ASSET_TAGS = (); }; };
-		BB9D31D71BC77FD000B2F053 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B782547195EC69E003D408D /* UIColor+Helper.m */; settings = {ASSET_TAGS = (); }; };
-		BB9D31D81BC77FF800B2F053 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; settings = {ASSET_TAGS = (); }; };
+		BB7FE5731BD0D4A3000875ED /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7FE5721BD0D4A3000875ED /* StoreKit.framework */; };
+		BB9D31D61BC7654500B2F053 /* Util+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9D31D51BC7654500B2F053 /* Util+Document.m */; };
+		BB9D31D71BC77FD000B2F053 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B782547195EC69E003D408D /* UIColor+Helper.m */; };
+		BB9D31D81BC77FF800B2F053 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,7 +171,6 @@
 		1C22AF0719C1D783004196EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1C22AF0919C1D790004196EC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1C22AF0D19C1D7A9004196EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1C3442EF1A0F439800367BF4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1C3442F11A0F43C100367BF4 /* KJStoreProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJStoreProductViewController.h; sourceTree = "<group>"; };
 		1C3442F21A0F43C100367BF4 /* KJStoreProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJStoreProductViewController.m; sourceTree = "<group>"; };
 		1C3461AD1A0CFBA100CD046F /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
@@ -331,6 +330,8 @@
 		5F1BFEEF1BA7D1C400C06059 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		5F1BFEF11BA7D1C400C06059 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F1BFEFD1BA7D21700C06059 /* Hakenman WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hakenman WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		BB44E59C1BC7913D00F22386 /* Hakenman WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hakenman WatchKit App.entitlements"; sourceTree = "<group>"; };
+		BB7FE5721BD0D4A3000875ED /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BB9D31D41BC7654500B2F053 /* Util+Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Util+Document.h"; sourceTree = "<group>"; };
 		BB9D31D51BC7654500B2F053 /* Util+Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Util+Document.m"; sourceTree = "<group>"; };
 		F572CE3580F6449BBEA9BF3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -342,13 +343,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */,
-				1C3442F01A0F439800367BF4 /* StoreKit.framework in Frameworks */,
 				1C9BAAAD19C1E6D30076A79C /* Accounts.framework in Frameworks */,
 				1C9BAAAB19C1E69C0076A79C /* Bolts.framework in Frameworks */,
 				1C9BAAA919C1E6620076A79C /* Social.framework in Frameworks */,
 				1C22AF0E19C1D7A9004196EC /* SystemConfiguration.framework in Frameworks */,
 				1C22AF0A19C1D790004196EC /* Security.framework in Frameworks */,
 				1C22AF0819C1D783004196EC /* MobileCoreServices.framework in Frameworks */,
+				BB7FE5731BD0D4A3000875ED /* StoreKit.framework in Frameworks */,
 				1C22AF0619C1D779004196EC /* libz.dylib in Frameworks */,
 				1C22AF0419C1D764004196EC /* CoreLocation.framework in Frameworks */,
 				1C22AF0219C1D755004196EC /* CFNetwork.framework in Frameworks */,
@@ -530,9 +531,9 @@
 		3B469F9A18B89D3A0095C418 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB7FE5721BD0D4A3000875ED /* StoreKit.framework */,
 				3D28B8891AA48379005FAD32 /* GoogleMobileAds.framework */,
 				3DC90F3D1A87BA5C008A42BF /* iAd.framework */,
-				1C3442EF1A0F439800367BF4 /* StoreKit.framework */,
 				1C3461AF1A0CFE6400CD046F /* libPods-GoogleAnalytics-iOS-SDK.a */,
 				1C3461AD1A0CFBA100CD046F /* libPods-GoogleAnalytics-iOS-SDK.a */,
 				1C9BAAAC19C1E6D30076A79C /* Accounts.framework */,
@@ -749,6 +750,7 @@
 		5F1BFEEB1BA7D1C400C06059 /* Hakenman WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				BB44E59C1BC7913D00F22386 /* Hakenman WatchKit App.entitlements */,
 				5F1BFEEE1BA7D1C400C06059 /* Interface.storyboard */,
 				5F1BFEF11BA7D1C400C06059 /* Images.xcassets */,
 				5F1BFEEC1BA7D1C400C06059 /* Supporting Files */,
@@ -863,6 +865,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 						};
 					};
 					3B469FB818B89D3A0095C418 = {
@@ -880,6 +885,11 @@
 					5F1BFEE61BA7D1C400C06059 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = Y8RKPBJ3Y3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -899,9 +909,9 @@
 			projectRoot = "";
 			targets = (
 				3B469F9718B89D3A0095C418 /* Hakenman */,
-				3B469FB818B89D3A0095C418 /* HakenmanTests */,
 				5F1BFED41BA7D1C400C06059 /* Hakenman WatchKit Extension */,
 				5F1BFEE61BA7D1C400C06059 /* Hakenman WatchKit App */,
+				3B469FB818B89D3A0095C418 /* HakenmanTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1220,8 +1230,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YONGSUK KIM (33RF55B85H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YONGSUK KIM (33RF55B85H)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1231,7 +1241,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
@@ -1239,7 +1249,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6e8391b9-4f77-4cdf-88d2-c57bc68ec91e";
+				PROVISIONING_PROFILE = "4fcdf6f8-f0e7-4935-8c35-1049e6dd3cfa";
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1252,8 +1263,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YONGSUK KIM (33RF55B85H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YONGSUK KIM (33RF55B85H)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1263,15 +1274,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6e8391b9-4f77-4cdf-88d2-c57bc68ec91e";
+				PROVISIONING_PROFILE = "4fcdf6f8-f0e7-4935-8c35-1049e6dd3cfa";
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1322,8 +1334,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit App/Hakenman WatchKit App.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YONGSUK KIM (33RF55B85H)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1335,8 +1347,9 @@
 				INFOPLIST_FILE = "Hakenman WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d509f346-1cb4-4529-ab96-144fb609fc44";
+				PROVISIONING_PROFILE = "7ba4e3a0-433c-4157-9b13-a842f915bda2";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -1348,8 +1361,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit App/Hakenman WatchKit App.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YONGSUK KIM (33RF55B85H)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1359,7 +1372,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d509f346-1cb4-4529-ab96-144fb609fc44";
+				PROVISIONING_PROFILE = "7ba4e3a0-433c-4157-9b13-a842f915bda2";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -1371,8 +1384,7 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit Extension/Hakenman WatchKit Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YONGSUK KIM (Y8RKPBJ3Y3)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1384,8 +1396,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "c768018c-fee5-4e1b-8f7d-2e3e706569b7";
+				PROVISIONING_PROFILE = "c0b801d0-2f93-402b-a46b-7cb387fadf34";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1395,8 +1409,7 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit Extension/Hakenman WatchKit Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YONGSUK KIM (Y8RKPBJ3Y3)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1406,7 +1419,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "c768018c-fee5-4e1b-8f7d-2e3e706569b7";
+				PROVISIONING_PROFILE = "c0b801d0-2f93-402b-a46b-7cb387fadf34";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
