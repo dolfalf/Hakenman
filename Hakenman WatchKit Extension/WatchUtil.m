@@ -8,8 +8,8 @@
 
 #import "WatchUtil.h"
 #import <WatchKit/WatchKit.h>
-#import "TimeCardDao.h"
-#import "TimeCardSummaryDao.h"
+#import "TimeCardDaoForWatch.h"
+#import "TimeCardSummaryDaoForWatch.h"
 #import "NSDate+Helper.h"
 
 @implementation WatchUtil
@@ -26,7 +26,7 @@
         return display_total_time;
     }
     
-    TimeCardDao *dao = [TimeCardDao new];
+    TimeCardDaoForWatch *dao = [TimeCardDaoForWatch new];
     NSArray *items = [dao fetchModelYear:[[yyyymm substringWithRange:NSMakeRange(0, 4)] intValue]
                                    month:[[yyyymm substringWithRange:NSMakeRange(4, 2)] intValue]];
     
@@ -34,7 +34,7 @@
         
         NSDate *startTimeFromCore = [NSDate convDate2String:tm.start_time];
         NSDate *endTimeFromCore = [NSDate convDate2String:tm.end_time];
-        float workTimeFromCore = [TimeCardSummaryDao getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [tm.rest_time floatValue];
+        float workTimeFromCore = [TimeCardSummaryDaoForWatch getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [tm.rest_time floatValue];
         
         if (tm.start_time == nil || [tm.start_time isEqualToString:@""] == YES
             || tm.end_time == nil || [tm.end_time isEqualToString:@""] == YES) {

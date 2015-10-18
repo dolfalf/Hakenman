@@ -8,8 +8,8 @@
 
 #import "GlanceController.h"
 #import <CoreGraphics/CoreGraphics.h>
-#import "TimeCardDao.h"
-#import "TimeCardSummaryDao.h"
+#import "TimeCardDaoForWatch.h"
+#import "TimeCardSummaryDaoForWatch.h"
 #import "NSDate+Helper.h"
 #import "WatchUtil.h"
 #import "UIColor+Helper.h"
@@ -220,7 +220,7 @@
     [dotCells addObject:_dotCell_6];
     [dotCells addObject:_dotCell_7];
     
-    TimeCardDao *dao = [TimeCardDao new];
+    TimeCardDaoForWatch *dao = [TimeCardDaoForWatch new];
     NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate date]];
     
     //최대값 구함.
@@ -298,7 +298,7 @@
     }
 
     
-    TimeCardDao *dao = [TimeCardDao new];
+    TimeCardDaoForWatch *dao = [TimeCardDaoForWatch new];
     NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate date]];
     
     //최대값 구함.

@@ -325,6 +325,8 @@
     }
     self.completionHandler = nil;
     
+    [DBManager syncDBFileToWatch];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }

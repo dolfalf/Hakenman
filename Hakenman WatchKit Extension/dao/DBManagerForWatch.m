@@ -1,19 +1,17 @@
 //
-//  DBManager.m
+//  DBManagerForWatch.m
 //  Hakenman
 //
 //  Created by Lee jaeeun on 2014/03/22.
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
-#import "DBManager.h"
+#import "DBManagerForWatch.h"
 #import <UIKit/UIKit.h>
 #import "NSUserDefaults+Setting.h"
-#import <WatchConnectivity/WatchConnectivity.h>
-
 //#import "Util.h"
 
-@implementation DBManager
+@implementation DBManagerForWatch
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -38,7 +36,6 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
@@ -50,9 +47,6 @@
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
@@ -78,17 +72,21 @@
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
+    BOOL isFinishedStoreURL = [NSUserDefaults isFinishedStoreURL];
+    NSURL *storeURL;
+    if (isFinishedStoreURL == YES) {
+        storeURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite"];
+    }
+    else{
+        storeURL =[[self applicationDocumentsDirectory]URLByAppendingPathComponent:@"hakenModel.sqlite"];
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"hakenModel.sqlite"];
     NSError *error = nil;
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
     NSDictionary *storeOptions = @{ NSSQLitePragmasOption : @{ @"journal_mode" : @"WAL" } };
     
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error]) {
-        
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -115,6 +113,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+
     return _persistentStoreCoordinator;
 }
 
@@ -123,43 +122,7 @@
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
+    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.kjcode.dolfalf.hakenman"];
 }
 
-- (BOOL)isEqualAndOlderVersion:(NSString *)ver {
-    
-    //version1.0.2->102にして比較
-    NSArray *v_arrays = [ver componentsSeparatedByString:@"."];
-    if ([v_arrays count] == 3) {
-        int num_ver = [v_arrays[0] intValue] * 100
-        + [v_arrays[1] intValue] * 10
-        + [v_arrays[2] intValue] * 1;
-        
-        NSArray *c_arrays = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]componentsSeparatedByString:@"."];
-        
-        int curr_num_ver = [c_arrays[0] intValue] * 100
-        + [c_arrays[1] intValue] * 10
-        + [c_arrays[2] intValue] * 1;
-        
-        NSLog(@"check version:[%d], current version[%d]", num_ver, curr_num_ver);
-        if (num_ver <= curr_num_ver) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
-+(void)syncDBFileToWatch{
-    if ([WCSession isSupported]) {
-        // create a new URL
-        NSURL *newStoreURL1 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite"];
-        NSURL *newStoreURL2 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-shm"];
-        NSURL *newStoreURL3 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-wal"];
-        [[WCSession defaultSession]transferFile:newStoreURL3 metadata:nil];
-        [[WCSession defaultSession]transferFile:newStoreURL2 metadata:nil];
-        [[WCSession defaultSession]transferFile:newStoreURL1 metadata:nil];
-    }
-}
 @end

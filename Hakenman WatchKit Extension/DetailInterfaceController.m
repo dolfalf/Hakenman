@@ -9,7 +9,7 @@
 #import "DetailInterfaceController.h"
 #import "DailyWorkTableRowController.h"
 #import "NSDate+Helper.h"
-#import "TimeCardDao.h"
+#import "TimeCardDaoForWatch.h"
 #import "const.h"
 #import "WatchUtil.h"
 
@@ -74,7 +74,7 @@
     //終わる日時にあわせて繰り返す
     
     //right
-    TimeCardDao *dao = [TimeCardDao new];
+    TimeCardDaoForWatch *dao = [TimeCardDaoForWatch new];
     
     NSArray *models = [dao fetchModelYear:[_sheetDate getYear] month:[_sheetDate getMonth]];
     

@@ -1,5 +1,5 @@
 //
-//  DBManager.h
+//  DBManagerForWatch.h
 //  Hakenman
 //
 //  Created by Lee jaeeun on 2014/03/22.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface DBManager : NSObject
+@interface DBManagerForWatch : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -19,8 +19,5 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 + (id)sharedDBManager;
-
-//connectivity
-+ (void)syncDBFileToWatch;
 
 @end

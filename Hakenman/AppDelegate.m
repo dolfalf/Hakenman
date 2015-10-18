@@ -65,6 +65,13 @@
     
     //create instance.
     [AdvertisingManager sharedADBannerView];
+
+    //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
+    if ([WCSession isSupported]) {
+        WCSession *session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
     
     return YES;
 }
@@ -77,7 +84,9 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    [DBManager syncDBFileToWatch];
+    
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -87,6 +96,12 @@
     
     //MARK: TimeCardSummaryを更新する
     [[TimeCardSummaryDao new] updateTimeCardSummaryTableAll];
+}
+
+/** Called on the sending side after the file transfer has successfully completed or failed with an error. Will be called on next launch if the sender was not running when the transfer finished. */
+- (void)session:(WCSession *)session didFinishFileTransfer:(WCSessionFileTransfer *)fileTransfer error:(nullable NSError *)error{
+    //파일 전송 세션 결과 표시
+    NSLog(@"%s: session = %@ fileTransfer = %@ error = %@", __func__, session, fileTransfer, error);
     
 }
 
@@ -111,6 +126,31 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     [PFPush handlePush:userInfo];
+}
+
+#pragma mark - migration helper methods
+- (BOOL)isEqualAndOlderVersion:(NSString *)ver {
+    
+    //version1.0.2->102にして比較
+    NSArray *v_arrays = [ver componentsSeparatedByString:@"."];
+    if ([v_arrays count] == 3) {
+        int num_ver = [v_arrays[0] intValue] * 100
+        + [v_arrays[1] intValue] * 10
+        + [v_arrays[2] intValue] * 1;
+        
+        NSArray *c_arrays = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]componentsSeparatedByString:@"."];
+        
+        int curr_num_ver = [c_arrays[0] intValue] * 100
+        + [c_arrays[1] intValue] * 10
+        + [c_arrays[2] intValue] * 1;
+        
+        NSLog(@"check version:[%d], current version[%d]", num_ver, curr_num_ver);
+        if (num_ver <= curr_num_ver) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

@@ -275,4 +275,19 @@
     [userDefaults synchronize];
 }
 
++ (void)watchStoreURLFinished{
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    
+    [userDefaults setObject:@(YES) forKey:@"WatchStoreURLKey"];
+    
+    [userDefaults synchronize];
+}
+
++ (BOOL)isFinishedStoreURL{
+    
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    
+    return [[userDefaults objectForKey:@"WatchStoreURLKey"]boolValue];
+}
 @end

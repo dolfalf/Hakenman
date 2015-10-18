@@ -87,8 +87,6 @@
 		3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; };
 		3B8FA72318DDF59400A1182E /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
 		3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1C18DD4521000E4FF3 /* DBManager.m */; };
-		3B9CEA2018DD458F000E4FF3 /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
-		3B9CEA2618DD690C000E4FF3 /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2518DD690C000E4FF3 /* ModelDao.m */; };
 		3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3C318DD737C0062B07A /* Setting.storyboard */; };
 		3BC0E3CA18DD74D80062B07A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3C918DD74D80062B07A /* SettingViewController.m */; };
 		3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3CC18DD75310062B07A /* KJViewController.m */; };
@@ -96,6 +94,14 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
 		3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */; };
+		3DE1E82F1BD269C700FB5AFD /* DBManagerForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E82D1BD269C700FB5AFD /* DBManagerForWatch.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E83A1BD2727400FB5AFD /* ModelDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8301BD2727400FB5AFD /* ModelDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E83B1BD2727400FB5AFD /* TimeCardDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8311BD2727400FB5AFD /* TimeCardDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E83C1BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8331BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E83D1BD2727400FB5AFD /* FileDataDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8351BD2727400FB5AFD /* FileDataDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E83E1BD2727400FB5AFD /* MailContentsDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8371BD2727400FB5AFD /* MailContentsDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; settings = {ASSET_TAGS = (); }; };
 		5F084C971BBA52C300AF5FDF /* DetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C961BBA52C300AF5FDF /* DetailInterfaceController.m */; };
 		5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C991BBA593900AF5FDF /* MonthlyWorkTableRowController.m */; };
 		5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C9C1BBA594900AF5FDF /* DailyWorkTableRowController.m */; };
@@ -115,10 +121,6 @@
 		5F2BC5F61BB9059B000BECB2 /* TimeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CC8AE195D4A8D00F64041 /* TimeCard.m */; };
 		5F2BC5F71BB9059D000BECB2 /* TimeCardSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CC8B1195D4A8D00F64041 /* TimeCardSummary.m */; };
 		5F2BC5FB1BB90A0C000BECB2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
-		5F2BC5FC1BB911C2000BECB2 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1C18DD4521000E4FF3 /* DBManager.m */; };
-		5F2BC6001BB9128D000BECB2 /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA2518DD690C000E4FF3 /* ModelDao.m */; };
-		5F2BC6011BB91291000BECB2 /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
-		5F2BC6081BB914B0000BECB2 /* TimeCardSummaryDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8CB254194315DB00CD922E /* TimeCardSummaryDao.m */; };
 		5F7C2B121BBBB9AE0025F370 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
 		5F7C2B141BBBBAEB0025F370 /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
 /* End PBXBuildFile section */
@@ -304,8 +306,6 @@
 		3B9CEA1C18DD4521000E4FF3 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		3B9CEA1E18DD458F000E4FF3 /* TimeCardDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCardDao.h; sourceTree = "<group>"; };
 		3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCardDao.m; sourceTree = "<group>"; };
-		3B9CEA2418DD690C000E4FF3 /* ModelDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDao.h; sourceTree = "<group>"; };
-		3B9CEA2518DD690C000E4FF3 /* ModelDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDao.m; sourceTree = "<group>"; };
 		3BC0E3C318DD737C0062B07A /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		3BC0E3C818DD74D80062B07A /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		3BC0E3C918DD74D80062B07A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
@@ -321,6 +321,20 @@
 		3DC90F3D1A87BA5C008A42BF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3DC90F401A87BA8B008A42BF /* AdvertisingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdvertisingManager.h; path = advertising/AdvertisingManager.h; sourceTree = "<group>"; };
 		3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdvertisingManager.m; path = advertising/AdvertisingManager.m; sourceTree = "<group>"; };
+		3DE1E82D1BD269C700FB5AFD /* DBManagerForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManagerForWatch.m; path = dao/DBManagerForWatch.m; sourceTree = "<group>"; };
+		3DE1E82E1BD269C700FB5AFD /* DBManagerForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManagerForWatch.h; path = dao/DBManagerForWatch.h; sourceTree = "<group>"; };
+		3DE1E8301BD2727400FB5AFD /* ModelDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelDaoForWatch.m; path = dao/ModelDaoForWatch.m; sourceTree = "<group>"; };
+		3DE1E8311BD2727400FB5AFD /* TimeCardDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeCardDaoForWatch.m; path = dao/TimeCardDaoForWatch.m; sourceTree = "<group>"; };
+		3DE1E8321BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeCardSummaryDaoForWatch.h; path = dao/TimeCardSummaryDaoForWatch.h; sourceTree = "<group>"; };
+		3DE1E8331BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeCardSummaryDaoForWatch.m; path = dao/TimeCardSummaryDaoForWatch.m; sourceTree = "<group>"; };
+		3DE1E8341BD2727400FB5AFD /* FileDataDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileDataDaoForWatch.h; path = dao/FileDataDaoForWatch.h; sourceTree = "<group>"; };
+		3DE1E8351BD2727400FB5AFD /* FileDataDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileDataDaoForWatch.m; path = dao/FileDataDaoForWatch.m; sourceTree = "<group>"; };
+		3DE1E8361BD2727400FB5AFD /* MailContentsDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MailContentsDaoForWatch.h; path = dao/MailContentsDaoForWatch.h; sourceTree = "<group>"; };
+		3DE1E8371BD2727400FB5AFD /* MailContentsDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MailContentsDaoForWatch.m; path = dao/MailContentsDaoForWatch.m; sourceTree = "<group>"; };
+		3DE1E8381BD2727400FB5AFD /* ModelDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelDaoForWatch.h; path = dao/ModelDaoForWatch.h; sourceTree = "<group>"; };
+		3DE1E8391BD2727400FB5AFD /* TimeCardDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeCardDaoForWatch.h; path = dao/TimeCardDaoForWatch.h; sourceTree = "<group>"; };
+		3DE1E8401BD275ED00FB5AFD /* ModelDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDao.h; sourceTree = "<group>"; };
+		3DE1E8411BD275ED00FB5AFD /* ModelDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDao.m; sourceTree = "<group>"; };
 		5F084C951BBA52C300AF5FDF /* DetailInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInterfaceController.h; sourceTree = "<group>"; };
 		5F084C961BBA52C300AF5FDF /* DetailInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInterfaceController.m; sourceTree = "<group>"; };
 		5F084C981BBA593900AF5FDF /* MonthlyWorkTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyWorkTableRowController.h; sourceTree = "<group>"; };
@@ -650,8 +664,8 @@
 			children = (
 				3B9CEA1B18DD4521000E4FF3 /* DBManager.h */,
 				3B9CEA1C18DD4521000E4FF3 /* DBManager.m */,
-				3B9CEA2418DD690C000E4FF3 /* ModelDao.h */,
-				3B9CEA2518DD690C000E4FF3 /* ModelDao.m */,
+				3DE1E8401BD275ED00FB5AFD /* ModelDao.h */,
+				3DE1E8411BD275ED00FB5AFD /* ModelDao.m */,
 				3B9CEA1E18DD458F000E4FF3 /* TimeCardDao.h */,
 				3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */,
 				3B8CB253194315DB00CD922E /* TimeCardSummaryDao.h */,
@@ -725,9 +739,29 @@
 			name = advertising;
 			sourceTree = "<group>";
 		};
+		3DE1E82C1BD2698D00FB5AFD /* dao */ = {
+			isa = PBXGroup;
+			children = (
+				3DE1E8381BD2727400FB5AFD /* ModelDaoForWatch.h */,
+				3DE1E8301BD2727400FB5AFD /* ModelDaoForWatch.m */,
+				3DE1E8391BD2727400FB5AFD /* TimeCardDaoForWatch.h */,
+				3DE1E8311BD2727400FB5AFD /* TimeCardDaoForWatch.m */,
+				3DE1E8321BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.h */,
+				3DE1E8331BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m */,
+				3DE1E8341BD2727400FB5AFD /* FileDataDaoForWatch.h */,
+				3DE1E8351BD2727400FB5AFD /* FileDataDaoForWatch.m */,
+				3DE1E8361BD2727400FB5AFD /* MailContentsDaoForWatch.h */,
+				3DE1E8371BD2727400FB5AFD /* MailContentsDaoForWatch.m */,
+				3DE1E82E1BD269C700FB5AFD /* DBManagerForWatch.h */,
+				3DE1E82D1BD269C700FB5AFD /* DBManagerForWatch.m */,
+			);
+			name = dao;
+			sourceTree = "<group>";
+		};
 		5F1BFED61BA7D1C400C06059 /* Hakenman WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3DE1E82C1BD2698D00FB5AFD /* dao */,
 				5F1BFEFD1BA7D21700C06059 /* Hakenman WatchKit Extension.entitlements */,
 				5F0E40391BBE4E24009FD1CB /* WatchUtil.h */,
 				5F0E403A1BBE4E24009FD1CB /* WatchUtil.m */,
@@ -1013,7 +1047,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B9CEA2618DD690C000E4FF3 /* ModelDao.m in Sources */,
 				1C8A75A81A9451FC00852CFE /* MonthWorkingCalendarViewController.m in Sources */,
 				1C79E3831BC55D7500B78E45 /* Util+Document.m in Sources */,
 				1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */,
@@ -1024,6 +1057,7 @@
 				1C8A75AE1A94528300852CFE /* BorderLabel.m in Sources */,
 				3B6AFEDE18E6857100501C94 /* Util.m in Sources */,
 				3B340F3E18DD99FE008F6E1E /* MenuViewController.m in Sources */,
+				3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */,
 				3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */,
 				3B8CB23F1942EDD900CD922E /* FileData.m in Sources */,
 				3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */,
@@ -1036,6 +1070,7 @@
 				1C8A75AB1A9451FC00852CFE /* WorkingDayCell.m in Sources */,
 				1C8A75AA1A9451FC00852CFE /* WorkingCalendarView.m in Sources */,
 				3B469FA818B89D3A0095C418 /* main.m in Sources */,
+				3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */,
 				1C8A759C1A944D6200852CFE /* HistoryEditViewController.m in Sources */,
 				3B6CC8B8195D5D1200F64041 /* StoryboardUtil.m in Sources */,
 				3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */,
@@ -1058,7 +1093,6 @@
 				3B8CB2421942EDD900CD922E /* MailContent.m in Sources */,
 				3B6AFEEA18E69C6300501C94 /* MailContentsDao.m in Sources */,
 				3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */,
-				3B9CEA2018DD458F000E4FF3 /* TimeCardDao.m in Sources */,
 				3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */,
 				3B8CB255194315DB00CD922E /* TimeCardSummaryDao.m in Sources */,
 			);
@@ -1077,15 +1111,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F7C2B141BBBBAEB0025F370 /* NSUserDefaults+Setting.m in Sources */,
+				3DE1E82F1BD269C700FB5AFD /* DBManagerForWatch.m in Sources */,
 				5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */,
 				5F2BC5F51BB90599000BECB2 /* MailContent.m in Sources */,
 				5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */,
+				3DE1E83B1BD2727400FB5AFD /* TimeCardDaoForWatch.m in Sources */,
+				3DE1E83A1BD2727400FB5AFD /* ModelDaoForWatch.m in Sources */,
 				5F0E403B1BBE4E24009FD1CB /* WatchUtil.m in Sources */,
-				5F2BC6011BB91291000BECB2 /* TimeCardDao.m in Sources */,
 				5F2BC5F41BB90596000BECB2 /* SiteInfo.m in Sources */,
 				5F2BC5F31BB90593000BECB2 /* FileData.m in Sources */,
 				5F2BC5F71BB9059D000BECB2 /* TimeCardSummary.m in Sources */,
 				5F1BFEDF1BA7D1C400C06059 /* NotificationController.m in Sources */,
+				3DE1E83E1BD2727400FB5AFD /* MailContentsDaoForWatch.m in Sources */,
 				5F084C971BBA52C300AF5FDF /* DetailInterfaceController.m in Sources */,
 				5F17DF111BC24D760077CD19 /* UIColor+Helper.m in Sources */,
 				5F7C2B121BBBB9AE0025F370 /* NSDate+Helper.m in Sources */,
@@ -1093,9 +1130,8 @@
 				5F1BFEE21BA7D1C400C06059 /* GlanceController.m in Sources */,
 				5F2BC5F61BB9059B000BECB2 /* TimeCard.m in Sources */,
 				5F2BC5F21BB90588000BECB2 /* hakenModel.xcdatamodeld in Sources */,
-				5F2BC5FC1BB911C2000BECB2 /* DBManager.m in Sources */,
-				5F2BC6001BB9128D000BECB2 /* ModelDao.m in Sources */,
-				5F2BC6081BB914B0000BECB2 /* TimeCardSummaryDao.m in Sources */,
+				3DE1E83D1BD2727400FB5AFD /* FileDataDaoForWatch.m in Sources */,
+				3DE1E83C1BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,7 +1394,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00a660b3-7491-48f6-9be9-a0077340ccb4";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1383,7 +1419,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00a660b3-7491-48f6-9be9-a0077340ccb4";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;

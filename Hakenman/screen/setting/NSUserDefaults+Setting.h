@@ -50,4 +50,7 @@
 + (BOOL)isWatchMigration;
 + (void)watchMigrationFinished;
 
++ (void)watchStoreURLFinished;
++ (BOOL)isFinishedStoreURL;
+
 @end
