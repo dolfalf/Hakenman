@@ -10,6 +10,8 @@
 #import "DBManager.h"
 #import "TimeCardSummaryDao.h"
 #import <Parse/Parse.h>
+#import "NSUserDefaults+Setting.h"
+#import "Util.h"
 
 @implementation AppDelegate
 
@@ -72,6 +74,22 @@
         session.delegate = self;
         [session activateSession];
     }
+    
+#if 1
+    
+    //REMARK: Migration
+    if ([Util iOSVersion] >= (8.2*1000)) {
+        
+        if ([self isEqualAndOlderVersion:@"1.3.0"] == YES
+            && [NSUserDefaults isWatchMigration] == NO) {
+            
+            [[DBManager sharedDBManager] migrateStore];
+            
+            //migration success. set flag.
+            [NSUserDefaults watchMigrationFinished];
+        }
+    }
+#endif
     
     return YES;
 }

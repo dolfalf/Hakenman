@@ -76,7 +76,7 @@
     [self loadScreenData];
     
     //그래프표시. 버전이 2.0이상
-    //    if (0) {
+//    if (0) {
     if ([WatchUtil wathcOSVersion] >= 200) {
         [_graphImage setHidden:NO];
         [_dotGraphGroup setHidden:YES];

@@ -51,9 +51,8 @@
 
 + (int)iOSVersion {
     UIDevice *device = [UIDevice currentDevice];
-    NSString *version = [NSString stringWithFormat:@"%.0f", [device.systemVersion floatValue] * 1000];
     
-    return [version intValue];
+    return (int)[device.systemVersion floatValue] * 1000;
 }
 
 + (NSString *)getDocumentPath {
