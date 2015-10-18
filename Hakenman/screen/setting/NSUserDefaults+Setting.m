@@ -261,20 +261,18 @@
 }
 
 + (BOOL)isWatchMigration {
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults registerDefaults:@{@"WatchMigrationKey" : @(NO)}];
     
-    //AppleWatch対応
-    NSUserDefaults *watch_ud = [[NSUserDefaults alloc] initWithSuiteName:SHARED_GRUOP_ID];
-    [watch_ud registerDefaults:@{@"WatchMigrationKey":@(NO)}];
-    
-    return [[watch_ud objectForKey:@"WatchMigrationKey"] boolValue];
+    return [[userDefaults objectForKey:@"WatchMigrationKey"] boolValue];
 }
 
 + (void)watchMigrationFinished {
     
-    NSUserDefaults *watch_ud = [[NSUserDefaults alloc] initWithSuiteName:SHARED_GRUOP_ID];
-    [watch_ud setObject:@(YES) forKey:@"WatchMigrationKey"];
+    NSUserDefaults *userDefaults = [self standardUserDefaults];
+    [userDefaults setObject:@(YES) forKey:@"WatchMigrationKey"];
     
-    [watch_ud synchronize];
+    [userDefaults synchronize];
 }
 
 + (void)watchStoreURLFinished{

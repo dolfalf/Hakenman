@@ -15,8 +15,7 @@
 @implementation WatchUtil
 
 + (int)wathcOSVersion {
-//    return [[WKInterfaceDevice currentDevice].systemVersion floatValue] * 1000;
-    return [[UIDevice currentDevice].systemVersion floatValue] * 1000;
+    return [[WKInterfaceDevice currentDevice].systemVersion floatValue] * 1000;
 }
 
 + (float)totalWorkTime:(NSString *)yyyymm {

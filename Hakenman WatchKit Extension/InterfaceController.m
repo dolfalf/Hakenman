@@ -12,9 +12,10 @@
 #import "TimeCardSummaryDaoForWatch.h"
 #import "NSDate+Helper.h"
 #import "WatchUtil.h"
-#import <WatchConnectivity/WatchConnectivity.h>
 #import "DBManagerForWatch.h"
 #import "NSUserDefaults+Setting.h"
+
+#import <WatchConnectivity/WatchConnectivity.h>
 
 @interface InterfaceController() <WCSessionDelegate>
 
@@ -221,14 +222,6 @@
     NSLog(@"%s: session = %@ fileTransfer = %@ error = %@", __func__, session, fileTransfer, error);
     
 }
-
-- (void)refreshCoreData{
-    
-    // Configure interface objects here.
-    self.managedObjectContext = [[DBManagerForWatch sharedDBManager]managedObjectContext];
-}
-
-
 
 @end
 
