@@ -104,12 +104,12 @@
     if (_summaryLabel == nil) {
         float margin = 16.f;
         self.summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin,
-                                                                      self.view.frame.size.height - 15.f,
+                                                                      self.calendarView.frame.size.height -44.f - 15.f,
                                                                       self.calendarView.frame.size.width - (margin*2),
                                                                       12.f)];
         HKM_INIT_LABLE(_summaryLabel, HKMFontTypeNanum, 12.f);
         _summaryLabel.textAlignment = NSTextAlignmentRight;
-        [self.view addSubview:_summaryLabel];
+        [self.calendarView addSubview:_summaryLabel];
     }
 
     NSArray *textString = [LOCALIZE(@"MonthWorkingCalendarViewController_total_work_time") componentsSeparatedByString:@"*"];
