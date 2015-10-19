@@ -35,12 +35,6 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     
-    //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
-    if ([WCSession isSupported]) {
-        WCSession *session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-    }
     // Configure interface objects here.
     [self setTitle:LOCALIZE(@"Watch_Top_Title")];
     
@@ -52,6 +46,15 @@
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    
+    //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
+    //와치앱이 시작되는 시점을 알수 없기 때문에 화면이 활성화되는 타이밍에서 세션을 체크해줘야함.
+    if ([WCSession isSupported]) {
+        WCSession *session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
+    
     [self loadTableData];
 }
 
