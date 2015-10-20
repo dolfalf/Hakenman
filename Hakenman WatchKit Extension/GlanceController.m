@@ -85,6 +85,9 @@
     
     [self loadScreenData];
     
+    //最初は直接に実行する
+    [self updateRemainTime];
+    
     //出勤時間チェック開始
     [self startLoadTimer];
 }
@@ -109,9 +112,6 @@
                                                     selector:@selector(updateRemainTime)
                                                     userInfo:nil
                                                      repeats:YES];
-    
-    //最初は直接に実行する
-    [self updateRemainTime];
 }
 
 #pragma mark - private methods
@@ -464,6 +464,7 @@
             NSLog(@"create file success >> %@", storeURL);
             if ([[storeURL relativeString] hasSuffix:@"hakenModel.sqlite"]) {
                 [NSUserDefaults watchStoreURLFinished];
+                [self updateRemainTime];
                 [self loadScreenData];
             }else{
                 
