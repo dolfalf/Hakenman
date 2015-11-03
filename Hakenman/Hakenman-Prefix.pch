@@ -36,3 +36,6 @@
 #else
 #define DLog(...)
 #endif
+
+//goole banner disabled.
+#define DISABLE_GOOLE_ADS

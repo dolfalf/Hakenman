@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+    </dependencies>
+    <scenes>
+        <!--InterfaceController-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="InterfaceController" id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <label width="1" height="1" alignment="center" verticalAlignment="center" hidden="YES" textAlignment="center" numberOfLines="0" id="3uU-u8-LjH">
+                            <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="12"/>
+                        </label>
+                        <table alignment="left" id="nCl-9b-nLt">
+                            <items>
+                                <tableRow identifier="MonthlyTableRow" id="bSz-ys-Xgi" customClass="MonthlyWorkTableRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="8gv-83-LlE">
+                                        <items>
+                                            <group width="0.34999999999999998" height="1" alignment="left" layout="vertical" radius="6" id="B5K-4j-QZq" userLabel="Group - month">
+                                                <items>
+                                                    <group width="1" height="0.40000000000000002" alignment="center" verticalAlignment="center" id="gys-wA-oIs">
+                                                        <items>
+                                                            <label width="1" height="1" alignment="left" text="-" textAlignment="center" id="k4p-iu-vmq">
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                        </items>
+                                                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </group>
+                                                    <group width="1" height="0.59999999999999998" alignment="center" verticalAlignment="center" id="mQF-xh-MVs">
+                                                        <items>
+                                                            <label width="1" height="1" alignment="center" verticalAlignment="center" text="-" textAlignment="center" id="UaI-22-o3L">
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="font" type="boldSystem" pointSize="20"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </group>
+                                            <group width="0.69999999999999996" height="1" alignment="right" verticalAlignment="center" layout="vertical" id="fdL-ML-dbJ" userLabel="Group - work">
+                                                <items>
+                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" verticalAlignment="center" id="TVe-lj-Xb7" userLabel="Group - time">
+                                                        <items>
+                                                            <group width="0.40000000000000002" height="1" alignment="left" radius="4" id="xye-Im-MPY">
+                                                                <items>
+                                                                    <label alignment="center" verticalAlignment="center" text="-" textAlignment="center" id="Ypj-Uz-2VZ">
+                                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
+                                                                    </label>
+                                                                </items>
+                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </group>
+                                                            <label width="0.59999999999999998" height="1" alignment="left" text="-" textAlignment="right" id="Zql-hV-rcv">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <separator alignment="center" verticalAlignment="center" alpha="0.20000000000000001" id="8DT-h2-Wj7">
+                                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </separator>
+                                                    <group width="1" height="0.5" heightAdjustment="-2" alignment="left" verticalAlignment="center" id="ZNg-z9-UK0" userLabel="Group - day">
+                                                        <items>
+                                                            <group width="0.40000000000000002" height="1" alignment="left" radius="4" id="6FZ-wZ-mfQ">
+                                                                <items>
+                                                                    <label alignment="center" verticalAlignment="center" text="-" textAlignment="center" id="Unp-Dl-xdf">
+                                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
+                                                                    </label>
+                                                                </items>
+                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </group>
+                                                            <label width="0.59999999999999998" height="1" alignment="left" text="-" textAlignment="right" id="rfZ-Pb-SrD">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="monthLabel" destination="UaI-22-o3L" id="ES9-5f-b7C"/>
+                                        <outlet property="workDayLabel" destination="rfZ-Pb-SrD" id="NlT-ox-M6v"/>
+                                        <outlet property="workDayTitleLabel" destination="Unp-Dl-xdf" id="SjS-jh-Obs"/>
+                                        <outlet property="workTimeLabel" destination="Zql-hV-rcv" id="zH0-3R-Eak"/>
+                                        <outlet property="workTimeTitleLabel" destination="Ypj-Uz-2VZ" id="3B9-Ss-N4g"/>
+                                        <outlet property="yearLabel" destination="k4p-iu-vmq" id="tOe-If-YoG"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="monthlyWorkTable" destination="nCl-9b-nLt" id="Z3t-mV-V4H"/>
+                        <outlet property="nodataLabel" destination="3uU-u8-LjH" id="g07-B0-xVm"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="347"/>
+        </scene>
+        <!--DetailInterfaceController-->
+        <scene sceneID="ohH-Ys-sw6">
+            <objects>
+                <controller identifier="DetailInterfaceController" id="JKc-fQ-MF3" customClass="DetailInterfaceController">
+                    <items>
+                        <group width="1" height="14" alignment="left" id="ss8-3x-PYa">
+                            <items>
+                                <label width="1" height="1" alignment="left" text="-" textAlignment="center" id="LCD-P1-wRa">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </group>
+                        <table alignment="left" id="75k-DG-4Kk">
+                            <items>
+                                <tableRow identifier="DailyTableRow" id="IiY-ZY-o3Z" customClass="DailyWorkTableRowController">
+                                    <group key="rootItem" width="1" alignment="left" spacing="0.0" id="4eW-91-w9D">
+                                        <items>
+                                            <group width="0.20000000000000001" height="1" alignment="left" layout="vertical" id="B0t-Tx-ejh">
+                                                <items>
+                                                    <label width="1" height="0.40000000000000002" alignment="left" text="-" textAlignment="center" id="Utu-Dj-NaM">
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
+                                                    </label>
+                                                    <label width="1" height="0.59999999999999998" alignment="left" text="-" textAlignment="center" id="kUj-LX-TSJ">
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <separator alignment="left" alpha="0.20000000000000001" id="xlp-Sm-pmC">
+                                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </separator>
+                                            <group width="0.80000000000000004" widthAdjustment="-5" height="1" heightAdjustment="-10" alignment="right" verticalAlignment="center" layout="vertical" id="GQW-Ha-9lg">
+                                                <items>
+                                                    <group width="1" height="0.5" alignment="left" id="w2p-Iy-LOs">
+                                                        <items>
+                                                            <imageView width="10" height="10" alignment="left" verticalAlignment="center" image="start_mark" id="jxe-Rl-AEy"/>
+                                                            <label alignment="left" verticalAlignment="center" text="--:--" id="tQ5-IF-ElI">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                            <imageView width="10" height="10" alignment="left" verticalAlignment="center" image="end_mark" id="rRJ-db-m2g"/>
+                                                            <label alignment="left" verticalAlignment="center" text="--:--" id="kHP-f1-Zbp">
+                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <group width="1" height="0.5" alignment="left" id="9sV-Ye-FOv">
+                                                        <items>
+                                                            <label width="1" height="1" alignment="left" text="-" textAlignment="left" id="Nfl-D6-Oc2">
+                                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="dateLabel" destination="kUj-LX-TSJ" id="WWf-n0-E6k"/>
+                                        <outlet property="endTimeLabel" destination="kHP-f1-Zbp" id="8Fd-Gq-h5S"/>
+                                        <outlet property="memoLabel" destination="Nfl-D6-Oc2" id="hCm-3n-bAV"/>
+                                        <outlet property="startTimeLabel" destination="tQ5-IF-ElI" id="kZG-Oi-PbE"/>
+                                        <outlet property="weekLabel" destination="Utu-Dj-NaM" id="Vvv-Lc-Y0y"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="dailyWorkTable" destination="75k-DG-4Kk" id="WJE-bg-QMl"/>
+                        <outlet property="totalWorkTimeLabel" destination="LCD-P1-wRa" id="V6h-z4-g3v"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="444" y="347"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="BOz-TT-tkC">
+            <objects>
+                <glanceController spacing="0.0" topTemplateType="groupLeftSmall" id="0uZ-2p-rRc" customClass="GlanceController">
+                    <items>
+                        <group alignment="left" id="t8f-Gd-c4y">
+                            <items>
+                                <imageView width="1" height="1" alignment="left" image="glance_icon" id="QWe-nv-Oa7"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Hakenman" id="kLl-Dx-aU8"/>
+                        <label alignment="left" id="SHB-eF-N6O"/>
+                        <label alignment="left" id="F41-YN-Ys7"/>
+                        <group alignment="left" layout="vertical" id="uCw-4Q-Ouw">
+                            <items>
+                                <group width="1" height="0.40000000000000002" alignment="left" id="EwF-2w-R7M">
+                                    <items>
+                                        <group width="0.5" alignment="left" layout="vertical" id="AS2-Ks-Kpu">
+                                            <items>
+                                                <label alignment="center" text="-" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="udQ-FO-Dwg">
+                                                    <fontDescription key="font" type="system" pointSize="10"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="center" text="-" minimumScaleFactor="0.80000000000000004" id="gw8-Cn-6ff">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
+                                                </label>
+                                            </items>
+                                        </group>
+                                        <group width="0.5" alignment="left" layout="vertical" id="1dn-ce-whV">
+                                            <items>
+                                                <label alignment="center" text="-" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="SDA-J9-sRm">
+                                                    <fontDescription key="font" type="system" pointSize="10"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="center" text="-" minimumScaleFactor="0.80000000000000004" id="pDS-49-OtU">
+                                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
+                                                </label>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.59999999999999998" alignment="left" layout="vertical" id="PZq-Zz-RjG">
+                                    <items>
+                                        <imageView width="130" height="50" alignment="center" verticalAlignment="center" id="ewi-6y-aE1"/>
+                                        <group width="1" height="1" alignment="center" radius="8" id="7lA-hb-rms">
+                                            <items>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="l2N-bh-Csg">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="UvU-3K-Jnd">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="IwO-Dc-SW9">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="8HC-Ni-jb7">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="LMy-AD-f0X">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="Qgx-U4-ik3">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="bottom" text="■" textAlignment="center" id="U7M-ML-Msh">
+                                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                                </label>
+                                            </items>
+                                            <edgeInsets key="margins" left="4" right="4" top="0.0" bottom="0.0"/>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="dotCell_1" destination="l2N-bh-Csg" id="YLy-en-KBH"/>
+                        <outlet property="dotCell_2" destination="UvU-3K-Jnd" id="9JP-Bj-s3w"/>
+                        <outlet property="dotCell_3" destination="IwO-Dc-SW9" id="uoU-mg-sS7"/>
+                        <outlet property="dotCell_4" destination="8HC-Ni-jb7" id="LUi-Gu-qpd"/>
+                        <outlet property="dotCell_5" destination="LMy-AD-f0X" id="829-BZ-7xW"/>
+                        <outlet property="dotCell_6" destination="Qgx-U4-ik3" id="mJY-ls-cCx"/>
+                        <outlet property="dotCell_7" destination="U7M-ML-Msh" id="wO3-cg-JSB"/>
+                        <outlet property="dotGraphGroup" destination="7lA-hb-rms" id="mPl-dM-Nqq"/>
+                        <outlet property="graphImage" destination="ewi-6y-aE1" id="O8c-Et-kGd"/>
+                        <outlet property="iconImage" destination="QWe-nv-Oa7" id="2Nj-Nc-rX1"/>
+                        <outlet property="monthlyWorkTimeLabel" destination="gw8-Cn-6ff" id="Nxo-yR-Esg"/>
+                        <outlet property="monthlyWorkTimeTitleLabel" destination="udQ-FO-Dwg" id="qjr-Ng-7HA"/>
+                        <outlet property="titleLabel" destination="kLl-Dx-aU8" id="1uo-Fb-pBC"/>
+                        <outlet property="workStartLabel" destination="pDS-49-OtU" id="cgb-Xb-Smz"/>
+                        <outlet property="workStartTitleLabel" destination="SDA-J9-sRm" id="GwC-PK-mOC"/>
+                    </connections>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="235" y="672"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="1001"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="1001"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+</document>

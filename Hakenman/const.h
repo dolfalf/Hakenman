@@ -25,6 +25,9 @@
 #define CGRectSetWidth(r, w)                CGRectMake(r.origin.x, r.origin.y, w, r.size.height)
 #define CGRectSetHeight(r, h)               CGRectMake(r.origin.x, r.origin.y, r.size.width, h)
 
+//OS8バージョン確認
+#define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
 typedef enum {
     weekSunday = 1,
     weekMonday,

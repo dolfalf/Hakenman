@@ -24,7 +24,7 @@
     UIPageControl *pageControl;
 }
 
-@property (nonatomic, strong) IFTTTAnimator *animator;
+//@property (nonatomic, strong) IFTTTAnimator *animator;
 
 //page01
 @property (nonatomic, strong) UIImageView *page01LogoImage;

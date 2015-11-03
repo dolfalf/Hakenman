@@ -17,9 +17,11 @@
 + (void)setTimeKubun:(NSInteger)value;
 
 + (NSString *)workStartTime;
++ (NSString *)workStartTimeForWatch;
 + (void)setWorkStartTime:(NSString *)value;
 
 + (NSString *)workEndTime;
++ (NSString *)workEndTimeForWatch;
 + (void)setWorkEndTime:(NSString *)value;
 
 + (NSInteger)displayWorkSheet;
@@ -43,5 +45,12 @@
 + (NSString *)reportMailContent;
 + (void)setReportMailContent:(NSString *)value;
 
+
+//AppleWatch Migration flag
++ (BOOL)isWatchMigration;
++ (void)watchMigrationFinished;
+
++ (void)watchStoreURLFinished;
++ (BOOL)isFinishedStoreURL;
 
 @end

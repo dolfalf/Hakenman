@@ -20,5 +20,7 @@
 
 + (id)sharedDBManager;
 
+//connectivity
++ (void)syncDBFileToWatch;
 
 @end

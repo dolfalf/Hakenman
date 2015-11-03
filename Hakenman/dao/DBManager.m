@@ -7,6 +7,11 @@
 //
 
 #import "DBManager.h"
+#import <UIKit/UIKit.h>
+#import "NSUserDefaults+Setting.h"
+#import <WatchConnectivity/WatchConnectivity.h>
+
+//#import "Util.h"
 
 @implementation DBManager
 
@@ -33,7 +38,7 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
@@ -51,7 +56,7 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return _managedObjectContext;
@@ -78,10 +83,12 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"hakenModel.sqlite"];
-    
     NSError *error = nil;
+    NSDictionary *storeOptions = @{ NSSQLitePragmasOption : @{ @"journal_mode" : @"WAL" } };
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error]) {
+        
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -105,10 +112,9 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 
@@ -118,6 +124,42 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
 }
 
+- (BOOL)isEqualAndOlderVersion:(NSString *)ver {
+    
+    //version1.0.2->102にして比較
+    NSArray *v_arrays = [ver componentsSeparatedByString:@"."];
+    if ([v_arrays count] == 3) {
+        int num_ver = [v_arrays[0] intValue] * 100
+        + [v_arrays[1] intValue] * 10
+        + [v_arrays[2] intValue] * 1;
+        
+        NSArray *c_arrays = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]componentsSeparatedByString:@"."];
+        
+        int curr_num_ver = [c_arrays[0] intValue] * 100
+        + [c_arrays[1] intValue] * 10
+        + [c_arrays[2] intValue] * 1;
+        
+        NSLog(@"check version:[%d], current version[%d]", num_ver, curr_num_ver);
+        if (num_ver <= curr_num_ver) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
++(void)syncDBFileToWatch{
+    if ([WCSession isSupported]) {
+        // create a new URL
+        NSURL *newStoreURL1 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite"];
+        NSURL *newStoreURL2 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-shm"];
+        NSURL *newStoreURL3 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-wal"];
+        [[WCSession defaultSession]transferFile:newStoreURL3 metadata:nil];
+        [[WCSession defaultSession]transferFile:newStoreURL2 metadata:nil];
+        [[WCSession defaultSession]transferFile:newStoreURL1 metadata:nil];
+    }
+}
 @end

@@ -28,9 +28,16 @@
 
 "Common_navigation_backbutton_title" = "戻る";
 "Common_navigation_closebutton_title" = "閉じる";
+"Common_navigation_donebutton_title" = "確認";
+"Common_navigation_addbutton_title" = "作成";
+"Common_navigation_removebutton_title" = "削除";
 
 "Common_alert_button_ok"        = "確認";
 "Common_alert_button_cancel"    = "キャンセル";
+"Common_alert_button_yes"       = "はい";
+"Common_alert_button_no"        = "いいえ";
+"Common_alert_remove_message"   = "本当に削除しますか。";
+"Common_alert_add_sheet_message"    = "シートを作成しますか。";
 
 //TOP
 "TopViewController_goWork_title" = "HakenMan";
@@ -52,9 +59,23 @@
 "TopViewController_tablecell_graph_desc_text"           = "最大７日分の勤務時間表示";
 
 //MENU
-"MenuViewController_menulist_month_working_table_title"     = "今月の勤務表";
-"MenuViewController_menulist_working_tablelist_title"       = "勤務表リスト";
-"MenuViewController_menulist_send_daily_mail_title"         = "日報送信";
+"MenuViewController_navi_title"                         = "メニュー";
+"MenuViewController_menu_item_section_title"            = "勤務表編集";
+"MenuViewController_menu_item_add_past_month_menu"      = "過去のデータを作成";
+"MenuViewController_menu_item_delete_past_month_menu"   = "過去のデータを削除";
+
+//HISTORY_EDIT
+"HistoryEditViewController_title_add"                              = "過去勤務表作成";
+"HistoryEditViewController_title_remove"                           = "過去勤務表削除";
+"HistoryEditViewController_add_desc_message"                       = "過去勤務表の履歴を作成します。作成されたシートはメイン画面で選択して編集することができます。";
+"HistoryEditViewController_remove_desc_message"                    = "過去勤務表の履歴を削除します。削除されたシートはメイン画面で表示されなくなります。";
+"HistoryEditViewController_add_past_year_month_title"              = "過去のデータを作成";
+"HistoryEditViewController_add_past_year_month_label_start"        = "作成日付：";
+"HistoryEditViewController_add_past_year_month_label"              = "作成日付：西暦%@年%@月";
+"HistoryEditViewController_add_past_year_month_Alert_Message"      = "この日付でデータを作りますか";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_1"= "既にデータが存在します";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_2"= "現在より未来のデータは作れません";
+"HistoryEditViewController_add_past_year_month_Alert_Message_Error_3"= "削除するデータがありません";
 
 //SETTING
 "SettingViewController_navi_title"                                  = "設定";
@@ -163,4 +184,29 @@
 "OpenSourceLicenseViewController_navi_title"    = "オープンライセンス";
 "AppInformationViewController_navi_title"       = "KJCodeについて";
 
-//tmp
+////////////////////////////////////////////////////////////////////////////////////
+//Watch
+"Common_month_1" = "１月";
+"Common_month_2" = "２月";
+"Common_month_3" = "３月";
+"Common_month_4" = "４月";
+"Common_month_5" = "５月";
+"Common_month_6" = "６月";
+"Common_month_7" = "７月";
+"Common_month_8" = "８月";
+"Common_month_9" = "９月";
+"Common_month_10" = "１０月";
+"Common_month_11" = "１１月";
+"Common_month_12" = "１２月";
+
+"Watch_Top_Title"           = "勤務表";
+"Watch_Top_Worktime_Title"  = "時間";
+"Watch_Top_Workday_Title"    = "日数";
+
+"Watch_Glance_Time_Title"        = "今月の勤務時間";
+"Watch_Glance_Minute_Title"      = "出勤時間まで、";
+"Watch_Glance_Time_Unit"        = "時間";
+"Watch_Glance_Minute_Unit"      = "分前";
+
+"Watch_Top_Nodata_Message"  = "データが存在しません。";
+"Watch_Detail_Day_Title"    = "月の勤務時間:";

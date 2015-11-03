@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CsvExportProtocol.h"
 
 @interface Util : NSObject
 
 //language
 + (BOOL)isJanpaneseLanguage;
 + (BOOL)is3_5inch;
++ (int)iOSVersion;
 
 //document
 + (NSString *)getDocumentPath;
@@ -33,11 +33,6 @@
 + (NSArray *)displayWorkSheetList;
 + (NSInteger)displayWorkSheetIndex:(NSString *)optionString;
 + (NSArray *)reportTitleList;
-
-//+ (void)sendMailWorkSheet:(id)owner append:(NSArray *)worksheets;
-+ (void)sendReportMailWorkSheet:(id)owner subject:(NSString *)subject toRecipient:(NSString *)toRecipient messageBody:(NSString *)body;
-
-+ (void)sendWorkSheetCsvfile:(id<CsvExportProtocol,UIDocumentInteractionControllerDelegate>)owner data:(NSArray *)worksheets;
 
 + (BOOL)olderThanVersion:(NSString *)ver;
 @end

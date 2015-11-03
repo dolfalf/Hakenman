@@ -9,7 +9,6 @@
 #import "TimeCardSummaryDao.h"
 #import "NSDate+Helper.h"
 #import "TimeCardDao.h"
-#import "Util.h"
 
 #define ENTITIY_NAME    @"TimeCardSummary"
 
@@ -85,7 +84,7 @@
 //        return;
 //    }
     
-    //DLog(@"%@",[yyyymm substringWithRange:NSMakeRange(0,4)]);
+    //NSLog(@"%@",[yyyymm substringWithRange:NSMakeRange(0,4)]);
     //統計を取得
     TimeCardDao *tcDao = [TimeCardDao new];
     NSArray *timecards = [tcDao fetchModelYear:[[yyyymm substringWithRange:NSMakeRange(0,4)] intValue]
@@ -96,8 +95,8 @@
     for (TimeCard *tm in timecards) {
         if([tm.workday_flag isEqual:@1] == YES) {
             total_workday++;
-           float duration = [Util getWorkTime:[NSDate convDate2String:tm.start_time]
-                                 endTime:[NSDate convDate2String:tm.end_time]];
+           float duration = [TimeCardSummaryDao getWorkTime:[NSDate convDate2String:tm.start_time]
+                                                    endTime:[NSDate convDate2String:tm.end_time]];
 
             duration = duration - [tm.rest_time floatValue];
             
@@ -105,7 +104,7 @@
         }
     }
     
-    DLog(@"TimeCard calc-> totalWorkTime:%f, totalWorkDay:%d",total_workTime,total_workday);
+    NSLog(@"TimeCard calc-> totalWorkTime:%f, totalWorkDay:%d",total_workTime,total_workday);
     
     NSArray *models = [self fetchModelMonth:yyyymm];
     if (models == nil || [models count] == 0) {
@@ -117,19 +116,33 @@
         model.t_yyyymm = @([yyyymm intValue]);  //REMARK: これが漏れたため全部０が設定されてしまった。
         model.remark = @""; //not used
         self.model = model; //これがなくてサマリーが更新しなかった。
-        DLog(@"サマリーデータを生成");
+//        NSLog(@"サマリーデータを生成");
     }else {
         //すでに存在すればパラメータの日付の情報を更新する。
         TimeCardSummary *model =[models objectAtIndex:0];
         model.workTime = @(total_workTime);
         model.workdays = @(total_workday);
         self.model = model; //これがなくてサマリーが更新しなかった。
-        DLog(@"サマリーデータを更新");
+        NSLog(@"サマリーデータを更新");
     }
     
     
     // insert or update
     [self insertModel];
+}
+
+- (void)removeTimeCardSummaryTable:(NSString *)yyyymm{
+    
+    NSArray *models = [self fetchModelMonth:yyyymm];
+    if (models == nil || [models count] == 0) {
+        //何もしない
+    }else {
+        //データを削除
+        for (TimeCardSummary *model in models) {
+            self.model = model;
+            [self deleteModel];
+        }
+    }
 }
 
 - (void)updateTimeCardSummaryTableAll {
@@ -162,8 +175,8 @@
             for (TimeCard *tm in timecards) {
                 if([tm.workday_flag isEqual:@1] == YES) {
                     total_workday++;
-                    float duration = [Util getWorkTime:[NSDate convDate2String:tm.start_time]
-                                               endTime:[NSDate convDate2String:tm.end_time]];
+                    float duration = [TimeCardSummaryDao getWorkTime:[NSDate convDate2String:tm.start_time]
+                                                             endTime:[NSDate convDate2String:tm.end_time]];
                     
                     duration = duration - [tm.rest_time floatValue];
                     total_workTime = total_workTime + duration;
@@ -180,9 +193,32 @@
             model.remark = @""; //not used
          
             [self insertModel];
-            DLog(@"%@ サマリー作成",yyyymmString);
+            NSLog(@"%@ サマリー作成",yyyymmString);
         }
     }
+    
+}
+
++ (float)getWorkTime:(NSDate *)st endTime:(NSDate *)et {
+    
+    //start_time & end_time 語尾の桁数を００に変換
+    
+    //合計時間の計算のため秒単位の語尾を「00」に固定
+    NSString *startStr = [st yyyyMMddHHmmssString];
+    startStr = [startStr stringByReplacingCharactersInRange:(NSMakeRange(12, 2)) withString:@"00"];
+    NSDate *convertStart = [NSDate convDate2String:startStr];
+    
+    NSString *endStr = [et yyyyMMddHHmmssString];
+    endStr = [endStr stringByReplacingCharactersInRange:(NSMakeRange(12, 2)) withString:@"00"];
+    NSDate *convertEnd = [NSDate convDate2String:endStr];
+    
+    NSTimeInterval since = [convertEnd timeIntervalSinceDate:convertStart];
+    
+    float resultSince1 = since/(60.f*60.f);
+    float resultSince2 = resultSince1 * 100.f;
+    float resultSince3 = ceilf(resultSince2);
+    float resultSince4 = resultSince3/100.f;
+    return resultSince4;
     
 }
 
@@ -202,7 +238,7 @@
         [self deleteModel];
     }
     
-    DLog(@"Recoveryのため、ゴミデータを削除しました。");
+    NSLog(@"Recoveryのため、ゴミデータを削除しました。");
 }
 #endif
 
