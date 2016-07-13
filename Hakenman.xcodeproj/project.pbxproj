@@ -17,11 +17,6 @@
 		1C22AF0E19C1D7A9004196EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0D19C1D7A9004196EC /* SystemConfiguration.framework */; };
 		1C3442F01A0F439800367BF4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3442EF1A0F439800367BF4 /* StoreKit.framework */; };
 		1C3442F31A0F43C100367BF4 /* KJStoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3442F21A0F43C100367BF4 /* KJStoreProductViewController.m */; };
-<<<<<<< HEAD
-		1C3461BC1A0D199100CD046F /* WorkingCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3461BB1A0D199100CD046F /* WorkingCalendarView.m */; };
-		1C588A2D19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C588A2C19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m */; };
-		1C588A3019FB651600DFDB4A /* WorkingDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C588A2F19FB651600DFDB4A /* WorkingDayCell.m */; };
-=======
 		1C79E37A1BC55A2800B78E45 /* Hakenman WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1C79E37D1BC55A2800B78E45 /* Hakenman WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5F1BFEE71BA7D1C400C06059 /* Hakenman WatchKit App.app */; };
 		1C79E3831BC55D7500B78E45 /* Util+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C79E3821BC55D7500B78E45 /* Util+Document.m */; settings = {ASSET_TAGS = (); }; };
@@ -39,7 +34,6 @@
 		1C8A75C21A9452AE00852CFE /* RightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75BC1A9452AE00852CFE /* RightTableViewCell.m */; };
 		1C8A75C31A9452AE00852CFE /* RightTableViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75BE1A9452AE00852CFE /* RightTableViewData.m */; };
 		1C8A75C61A9452CC00852CFE /* MonthWorkingTableEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75C51A9452CC00852CFE /* MonthWorkingTableEditViewController.m */; };
->>>>>>> 1.x
 		1C96439E1A32AB01005452CB /* NanumBarunGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C96439C1A32AB00005452CB /* NanumBarunGothic.ttf */; };
 		1C96439F1A32AB01005452CB /* NanumBarunGothicBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C96439D1A32AB00005452CB /* NanumBarunGothicBold.ttf */; };
 		1C9643A11A32AB6C005452CB /* NanumBarunGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C96439C1A32AB00005452CB /* NanumBarunGothic.ttf */; };
@@ -195,14 +189,6 @@
 		1C3442F21A0F43C100367BF4 /* KJStoreProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJStoreProductViewController.m; sourceTree = "<group>"; };
 		1C3461AD1A0CFBA100CD046F /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
 		1C3461AF1A0CFE6400CD046F /* libPods-GoogleAnalytics-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GoogleAnalytics-iOS-SDK.a"; path = "Pods/build/Debug-iphoneos/libPods-GoogleAnalytics-iOS-SDK.a"; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		1C3461BA1A0D199100CD046F /* WorkingCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingCalendarView.h; sourceTree = "<group>"; };
-		1C3461BB1A0D199100CD046F /* WorkingCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingCalendarView.m; sourceTree = "<group>"; };
-		1C588A2B19FB64A500DFDB4A /* MonthWorkingCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingCalendarViewController.h; sourceTree = "<group>"; };
-		1C588A2C19FB64A500DFDB4A /* MonthWorkingCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingCalendarViewController.m; sourceTree = "<group>"; };
-		1C588A2E19FB651600DFDB4A /* WorkingDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkingDayCell.h; sourceTree = "<group>"; };
-		1C588A2F19FB651600DFDB4A /* WorkingDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkingDayCell.m; sourceTree = "<group>"; };
-=======
 		1C79E3801BC55AFF00B78E45 /* Hakenman WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hakenman WatchKit App.entitlements"; sourceTree = "<group>"; };
 		1C79E3811BC55D7500B78E45 /* Util+Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Util+Document.h"; sourceTree = "<group>"; };
 		1C79E3821BC55D7500B78E45 /* Util+Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Util+Document.m"; sourceTree = "<group>"; };
@@ -234,7 +220,6 @@
 		1C8A75BE1A9452AE00852CFE /* RightTableViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewData.m; sourceTree = "<group>"; };
 		1C8A75C41A9452CC00852CFE /* MonthWorkingTableEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthWorkingTableEditViewController.h; sourceTree = "<group>"; };
 		1C8A75C51A9452CC00852CFE /* MonthWorkingTableEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthWorkingTableEditViewController.m; sourceTree = "<group>"; };
->>>>>>> 1.x
 		1C96439C1A32AB00005452CB /* NanumBarunGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothic.ttf; sourceTree = "<group>"; };
 		1C96439D1A32AB00005452CB /* NanumBarunGothicBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.ttf; sourceTree = "<group>"; };
 		1C9643A31A32AC1B005452CB /* UIFont+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Helper.h"; sourceTree = "<group>"; };
@@ -917,11 +902,7 @@
 		3B469F9018B89D3A0095C418 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-<<<<<<< HEAD
-				LastUpgradeCheck = 0610;
-=======
 				LastUpgradeCheck = 0700;
->>>>>>> 1.x
 				ORGANIZATIONNAME = kjcode;
 				TargetAttributes = {
 					3B469F9718B89D3A0095C418 = {
@@ -1005,8 +986,6 @@
 				1C9643A21A32AB6C005452CB /* NanumBarunGothicBold.ttf in Resources */,
 				3B469FC518B89D3A0095C418 /* InfoPlist.strings in Resources */,
 				1C9643A11A32AB6C005452CB /* NanumBarunGothic.ttf in Resources */,
-<<<<<<< HEAD
-=======
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,7 +1004,6 @@
 			files = (
 				5F1BFEF01BA7D1C400C06059 /* Interface.storyboard in Resources */,
 				5F1BFEF21BA7D1C400C06059 /* Images.xcassets in Resources */,
->>>>>>> 1.x
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1084,13 +1062,8 @@
 				3B8CB23F1942EDD900CD922E /* FileData.m in Sources */,
 				3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */,
 				3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */,
-<<<<<<< HEAD
-				3B65971A191767E40075AB24 /* RightTableViewCell.m in Sources */,
-				1C9643A51A32AC1B005452CB /* UIFont+Helper.m in Sources */,
-=======
 				1C9643A51A32AC1B005452CB /* UIFont+Helper.m in Sources */,
 				1C8A75C11A9452AE00852CFE /* MonthWorkingTableViewController.m in Sources */,
->>>>>>> 1.x
 				3B469FAC18B89D3A0095C418 /* AppDelegate.m in Sources */,
 				1C8A75BF1A9452AE00852CFE /* LeftTableViewCell.m in Sources */,
 				3B659711191759F00075AB24 /* NSDate+Helper.m in Sources */,
@@ -1304,10 +1277,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-<<<<<<< HEAD
-=======
 				ENABLE_BITCODE = NO;
->>>>>>> 1.x
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1339,10 +1309,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-<<<<<<< HEAD
-=======
 				ENABLE_BITCODE = NO;
->>>>>>> 1.x
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
