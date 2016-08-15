@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C7E0F0F516CF073E34CE4C /* libPods-Hakenman WatchKit App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0DCED2405B61DD31455D60 /* libPods-Hakenman WatchKit App.a */; };
 		1C22AEFD19C1D6FA004196EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AEFA19C1D6FA004196EC /* Parse.framework */; };
 		1C22AF0019C1D74A004196EC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AEFF19C1D74A004196EC /* AudioToolbox.framework */; };
 		1C22AF0219C1D755004196EC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0119C1D755004196EC /* CFNetwork.framework */; };
@@ -19,7 +20,7 @@
 		1C3442F31A0F43C100367BF4 /* KJStoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3442F21A0F43C100367BF4 /* KJStoreProductViewController.m */; };
 		1C79E37A1BC55A2800B78E45 /* Hakenman WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5F1BFED51BA7D1C400C06059 /* Hakenman WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1C79E37D1BC55A2800B78E45 /* Hakenman WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5F1BFEE71BA7D1C400C06059 /* Hakenman WatchKit App.app */; };
-		1C79E3831BC55D7500B78E45 /* Util+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C79E3821BC55D7500B78E45 /* Util+Document.m */; settings = {ASSET_TAGS = (); }; };
+		1C79E3831BC55D7500B78E45 /* Util+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C79E3821BC55D7500B78E45 /* Util+Document.m */; };
 		1C8A759C1A944D6200852CFE /* HistoryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A759B1A944D6200852CFE /* HistoryEditViewController.m */; };
 		1C8A75A81A9451FC00852CFE /* MonthWorkingCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75A11A9451FC00852CFE /* MonthWorkingCalendarViewController.m */; };
 		1C8A75A91A9451FC00852CFE /* RDVCalendarView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A75A31A9451FC00852CFE /* RDVCalendarView+Extension.m */; };
@@ -52,7 +53,6 @@
 		1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B119656935002446CB /* Tutorial.storyboard */; };
 		1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B419656952002446CB /* TutorialViewController.m */; };
 		1CF2D6FB1964D1240062B0C1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */; };
-		221759D631BC4F348C6890DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F572CE3580F6449BBEA9BF3B /* libPods.a */; };
 		3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B23F21318E6C48B00518106 /* LineGraphView.m */; };
 		3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B340F3A18DD99EF008F6E1E /* Menu.storyboard */; };
 		3B340F3E18DD99FE008F6E1E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B340F3D18DD99FE008F6E1E /* MenuViewController.m */; };
@@ -94,14 +94,14 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
 		3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */; };
-		3DE1E82F1BD269C700FB5AFD /* DBManagerForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E82D1BD269C700FB5AFD /* DBManagerForWatch.m */; settings = {ASSET_TAGS = (); }; };
-		3DE1E83A1BD2727400FB5AFD /* ModelDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8301BD2727400FB5AFD /* ModelDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
-		3DE1E83B1BD2727400FB5AFD /* TimeCardDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8311BD2727400FB5AFD /* TimeCardDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
-		3DE1E83C1BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8331BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
-		3DE1E83D1BD2727400FB5AFD /* FileDataDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8351BD2727400FB5AFD /* FileDataDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
-		3DE1E83E1BD2727400FB5AFD /* MailContentsDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8371BD2727400FB5AFD /* MailContentsDaoForWatch.m */; settings = {ASSET_TAGS = (); }; };
-		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; settings = {ASSET_TAGS = (); }; };
-		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; settings = {ASSET_TAGS = (); }; };
+		3DE1E82F1BD269C700FB5AFD /* DBManagerForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E82D1BD269C700FB5AFD /* DBManagerForWatch.m */; };
+		3DE1E83A1BD2727400FB5AFD /* ModelDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8301BD2727400FB5AFD /* ModelDaoForWatch.m */; };
+		3DE1E83B1BD2727400FB5AFD /* TimeCardDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8311BD2727400FB5AFD /* TimeCardDaoForWatch.m */; };
+		3DE1E83C1BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8331BD2727400FB5AFD /* TimeCardSummaryDaoForWatch.m */; };
+		3DE1E83D1BD2727400FB5AFD /* FileDataDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8351BD2727400FB5AFD /* FileDataDaoForWatch.m */; };
+		3DE1E83E1BD2727400FB5AFD /* MailContentsDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8371BD2727400FB5AFD /* MailContentsDaoForWatch.m */; };
+		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; };
+		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
 		5F084C971BBA52C300AF5FDF /* DetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C961BBA52C300AF5FDF /* DetailInterfaceController.m */; };
 		5F084C9A1BBA593900AF5FDF /* MonthlyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C991BBA593900AF5FDF /* MonthlyWorkTableRowController.m */; };
 		5F084C9D1BBA594900AF5FDF /* DailyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F084C9C1BBA594900AF5FDF /* DailyWorkTableRowController.m */; };
@@ -123,6 +123,9 @@
 		5F2BC5FB1BB90A0C000BECB2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
 		5F7C2B121BBBB9AE0025F370 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
 		5F7C2B141BBBBAEB0025F370 /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
+		8CEE9652259EC2BB06BAC47E /* libPods-Hakenman.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C818F210D0C40BEE42C79 /* libPods-Hakenman.a */; };
+		BEE2B38E7A14ACC48F151349 /* libPods-Hakenman WatchKit Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 740B5E478CA05ECCE4321A59 /* libPods-Hakenman WatchKit Extension.a */; };
+		E7B8E4DE12587E0226404E0F /* libPods-HakenmanTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70495933EFCDA757BC86E23D /* libPods-HakenmanTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,8 +245,8 @@
 		1CB7F8B419656952002446CB /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
 		1CBFDAA719793374001A51D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		2834EA20A72D32E2759FD016 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		3855FA515F94487752ABE36A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2C0DCED2405B61DD31455D60 /* libPods-Hakenman WatchKit App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hakenman WatchKit App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37842BC1787F6E92E24748EA /* Pods-HakenmanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B23F21218E6C48B00518106 /* LineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphView.h; sourceTree = "<group>"; };
 		3B23F21318E6C48B00518106 /* LineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraphView.m; sourceTree = "<group>"; };
 		3B340F3A18DD99EF008F6E1E /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
@@ -359,7 +362,16 @@
 		5F1BFEEF1BA7D1C400C06059 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		5F1BFEF11BA7D1C400C06059 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F1BFEFD1BA7D21700C06059 /* Hakenman WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hakenman WatchKit Extension.entitlements"; sourceTree = "<group>"; };
-		F572CE3580F6449BBEA9BF3B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		62D95D0BB61A0031AA856EA0 /* Pods-Hakenman WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchKit Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchKit Extension/Pods-Hakenman WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
+		6D278387FFD5B67DDD0FF72B /* Pods-HakenmanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.debug.xcconfig"; sourceTree = "<group>"; };
+		70495933EFCDA757BC86E23D /* libPods-HakenmanTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HakenmanTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		740B5E478CA05ECCE4321A59 /* libPods-Hakenman WatchKit Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hakenman WatchKit Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B02F674E69B0DFE863C5101 /* Pods-Hakenman WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchKit App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchKit App/Pods-Hakenman WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
+		9AFE1014FEF7FC26D0356375 /* Pods-Hakenman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.release.xcconfig"; sourceTree = "<group>"; };
+		C36B666D668408F9BB6FAF5B /* Pods-Hakenman WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchKit Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchKit Extension/Pods-Hakenman WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		C3D08C4A4091B370F50E15E8 /* Pods-Hakenman WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchKit App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchKit App/Pods-Hakenman WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
+		DD0C818F210D0C40BEE42C79 /* libPods-Hakenman.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hakenman.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2DCBFE231880611281E2B9C /* Pods-Hakenman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,7 +398,7 @@
 				3B469F9E18B89D3A0095C418 /* CoreGraphics.framework in Frameworks */,
 				3B469FA018B89D3A0095C418 /* UIKit.framework in Frameworks */,
 				3B469F9C18B89D3A0095C418 /* Foundation.framework in Frameworks */,
-				221759D631BC4F348C6890DE /* libPods.a in Frameworks */,
+				8CEE9652259EC2BB06BAC47E /* libPods-Hakenman.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +409,7 @@
 				3B469FBB18B89D3A0095C418 /* XCTest.framework in Frameworks */,
 				3B469FBD18B89D3A0095C418 /* UIKit.framework in Frameworks */,
 				3B469FBC18B89D3A0095C418 /* Foundation.framework in Frameworks */,
+				E7B8E4DE12587E0226404E0F /* libPods-HakenmanTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +418,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F2BC5FB1BB90A0C000BECB2 /* CoreData.framework in Frameworks */,
+				BEE2B38E7A14ACC48F151349 /* libPods-Hakenman WatchKit Extension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD67FD3AB27C777854BFEAD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C7E0F0F516CF073E34CE4C /* libPods-Hakenman WatchKit App.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +520,21 @@
 			path = tutorial;
 			sourceTree = "<group>";
 		};
+		35610F03F7694DE51A260BDD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2DCBFE231880611281E2B9C /* Pods-Hakenman.debug.xcconfig */,
+				9AFE1014FEF7FC26D0356375 /* Pods-Hakenman.release.xcconfig */,
+				C3D08C4A4091B370F50E15E8 /* Pods-Hakenman WatchKit App.debug.xcconfig */,
+				7B02F674E69B0DFE863C5101 /* Pods-Hakenman WatchKit App.release.xcconfig */,
+				C36B666D668408F9BB6FAF5B /* Pods-Hakenman WatchKit Extension.debug.xcconfig */,
+				62D95D0BB61A0031AA856EA0 /* Pods-Hakenman WatchKit Extension.release.xcconfig */,
+				6D278387FFD5B67DDD0FF72B /* Pods-HakenmanTests.debug.xcconfig */,
+				37842BC1787F6E92E24748EA /* Pods-HakenmanTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3B340F3818DD98CC008F6E1E /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,7 +575,7 @@
 				5F1BFEEB1BA7D1C400C06059 /* Hakenman WatchKit App */,
 				3B469F9A18B89D3A0095C418 /* Frameworks */,
 				3B469F9918B89D3A0095C418 /* Products */,
-				C3ED541724320CFD6231CCC5 /* Pods */,
+				35610F03F7694DE51A260BDD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -580,7 +617,10 @@
 				3B469F9D18B89D3A0095C418 /* CoreGraphics.framework */,
 				3B469F9F18B89D3A0095C418 /* UIKit.framework */,
 				3B469FBA18B89D3A0095C418 /* XCTest.framework */,
-				F572CE3580F6449BBEA9BF3B /* libPods.a */,
+				DD0C818F210D0C40BEE42C79 /* libPods-Hakenman.a */,
+				2C0DCED2405B61DD31455D60 /* libPods-Hakenman WatchKit App.a */,
+				740B5E478CA05ECCE4321A59 /* libPods-Hakenman WatchKit Extension.a */,
+				70495933EFCDA757BC86E23D /* libPods-HakenmanTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -811,15 +851,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C3ED541724320CFD6231CCC5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3855FA515F94487752ABE36A /* Pods.debug.xcconfig */,
-				2834EA20A72D32E2759FD016 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -827,12 +858,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B469FCA18B89D3A0095C418 /* Build configuration list for PBXNativeTarget "Hakenman" */;
 			buildPhases = (
-				76DCA8054B724053AE1ACDAA /* Check Pods Manifest.lock */,
+				96822679B3F82E5230B77C89 /* [CP] Check Pods Manifest.lock */,
 				3B469F9418B89D3A0095C418 /* Sources */,
 				3B469F9518B89D3A0095C418 /* Frameworks */,
 				3B469F9618B89D3A0095C418 /* Resources */,
-				E4FFF997B8BF4FFBB8FED2AB /* Copy Pods Resources */,
 				1C79E37F1BC55A2800B78E45 /* Embed Watch Content */,
+				7F9F96C6BC059AC526B202FD /* [CP] Embed Pods Frameworks */,
+				571EA6CC43C2936B3E909325 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -848,9 +880,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B469FCD18B89D3A0095C418 /* Build configuration list for PBXNativeTarget "HakenmanTests" */;
 			buildPhases = (
+				50147760D717630E64A79C6E /* [CP] Check Pods Manifest.lock */,
 				3B469FB518B89D3A0095C418 /* Sources */,
 				3B469FB618B89D3A0095C418 /* Frameworks */,
 				3B469FB718B89D3A0095C418 /* Resources */,
+				E3B775A19C5D55AD7170AAAE /* [CP] Embed Pods Frameworks */,
+				8889C6404A84536080570C46 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -866,9 +901,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F1BFEF91BA7D1C400C06059 /* Build configuration list for PBXNativeTarget "Hakenman WatchKit Extension" */;
 			buildPhases = (
+				4AC5402FA2EC838F88104FA4 /* [CP] Check Pods Manifest.lock */,
 				5F1BFED11BA7D1C400C06059 /* Sources */,
 				5F1BFED21BA7D1C400C06059 /* Frameworks */,
 				5F1BFED31BA7D1C400C06059 /* Resources */,
+				4B2715647E27D97A6052106B /* [CP] Embed Pods Frameworks */,
+				AEF4AAA254BBE4D484E1C6AB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -883,8 +921,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F1BFEF61BA7D1C400C06059 /* Build configuration list for PBXNativeTarget "Hakenman WatchKit App" */;
 			buildPhases = (
+				314F9E95C068B873814975EC /* [CP] Check Pods Manifest.lock */,
 				5F1BFEE51BA7D1C400C06059 /* Resources */,
 				1C79E37E1BC55A2800B78E45 /* Embed App Extensions */,
+				FD67FD3AB27C777854BFEAD8 /* Frameworks */,
+				23FD3CBAD0E34EADCD8F59B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1010,14 +1051,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		76DCA8054B724053AE1ACDAA /* Check Pods Manifest.lock */ = {
+		23FD3CBAD0E34EADCD8F59B4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman WatchKit App/Pods-Hakenman WatchKit App-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		314F9E95C068B873814975EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1025,19 +1081,139 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E4FFF997B8BF4FFBB8FED2AB /* Copy Pods Resources */ = {
+		4AC5402FA2EC838F88104FA4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4B2715647E27D97A6052106B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman WatchKit Extension/Pods-Hakenman WatchKit Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50147760D717630E64A79C6E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		571EA6CC43C2936B3E909325 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F9F96C6BC059AC526B202FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8889C6404A84536080570C46 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96822679B3F82E5230B77C89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AEF4AAA254BBE4D484E1C6AB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman WatchKit Extension/Pods-Hakenman WatchKit Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3B775A19C5D55AD7170AAAE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1270,7 +1446,7 @@
 		};
 		3B469FCB18B89D3A0095C418 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3855FA515F94487752ABE36A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E2DCBFE231880611281E2B9C /* Pods-Hakenman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1302,7 +1478,7 @@
 		};
 		3B469FCC18B89D3A0095C418 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2834EA20A72D32E2759FD016 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 9AFE1014FEF7FC26D0356375 /* Pods-Hakenman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1334,6 +1510,7 @@
 		};
 		3B469FCE18B89D3A0095C418 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D278387FFD5B67DDD0FF72B /* Pods-HakenmanTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hakenman.app/Hakenman";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1357,6 +1534,7 @@
 		};
 		3B469FCF18B89D3A0095C418 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37842BC1787F6E92E24748EA /* Pods-HakenmanTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hakenman.app/Hakenman";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1376,6 +1554,7 @@
 		};
 		5F1BFEF71BA7D1C400C06059 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3D08C4A4091B370F50E15E8 /* Pods-Hakenman WatchKit App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1404,6 +1583,7 @@
 		};
 		5F1BFEF81BA7D1C400C06059 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B02F674E69B0DFE863C5101 /* Pods-Hakenman WatchKit App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1429,6 +1609,7 @@
 		};
 		5F1BFEFA1BA7D1C400C06059 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C36B666D668408F9BB6FAF5B /* Pods-Hakenman WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit Extension/Hakenman WatchKit Extension.entitlements";
@@ -1458,6 +1639,7 @@
 		};
 		5F1BFEFB1BA7D1C400C06059 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62D95D0BB61A0031AA856EA0 /* Pods-Hakenman WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchKit Extension/Hakenman WatchKit Extension.entitlements";
