@@ -16,11 +16,7 @@
 #import "LeftTableViewData.h"
 #import "RightTableViewData.h"
 #import "TimeCard.h"
-<<<<<<< HEAD:Hakenman/screen/menu/MonthWorkingTableViewController.m
-#import "Util.h"
-=======
 #import "Util+Document.h"
->>>>>>> 1.x:Hakenman/screen/top/sheet/MonthWorkingTableViewController.m
 
 #import <UIKit/UIDocumentInteractionController.h>
 

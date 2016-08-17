@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XDZ-c7-IAH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XDZ-c7-IAH">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XDZ-c7-IAH">
-    <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
->>>>>>> 1.x
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Top View Controller-->
@@ -35,13 +28,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-<<<<<<< HEAD
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vmi-Vo-5fb" userLabel="View - calView">
-                                                    <rect key="frame" x="10" y="6" width="126" height="70"/>
-=======
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vmi-Vo-5fb" userLabel="View - calView">
                                                     <rect key="frame" x="10" y="5" width="126" height="70"/>
->>>>>>> 1.x
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qf-9S-tOH">
                                                             <rect key="frame" x="0.0" y="0.0" width="126" height="21"/>
@@ -78,13 +66,8 @@
                                                         <constraint firstAttribute="height" constant="70" id="l0E-pD-hB1"/>
                                                     </constraints>
                                                 </view>
-<<<<<<< HEAD
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xi-ZK-FDr" customClass="LineGraphView">
-                                                    <rect key="frame" x="10" y="84" width="277" height="53"/>
-=======
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xi-ZK-FDr" customClass="LineGraphView">
                                                     <rect key="frame" x="10" y="83" width="277" height="53"/>
->>>>>>> 1.x
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="277" id="W9R-gf-T7F"/>
@@ -94,13 +77,8 @@
                                                         <outlet property="delegate" destination="bsV-5l-7PG" id="3xg-7C-e9b"/>
                                                     </connections>
                                                 </view>
-<<<<<<< HEAD
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qe1-8i-LVO" userLabel="View - labelGroupView">
-                                                    <rect key="frame" x="144" y="6" width="143" height="70"/>
-=======
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qe1-8i-LVO" userLabel="View - labelGroupView">
                                                     <rect key="frame" x="144" y="5" width="143" height="70"/>
->>>>>>> 1.x
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="After time to work," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0l-46-P7c">
                                                             <rect key="frame" x="0.0" y="0.0" width="143" height="21"/>
@@ -416,7 +394,7 @@
                                                                     <rect key="frame" x="11" y="0.0" width="20" height="30"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -617,7 +595,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="nPH-Dl-eJU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTimeTableViewCell" id="lnO-LG-Mgl" customClass="EditTimeTableViewCell">
                                         <rect key="frame" x="0.0" y="50" width="320" height="44"/>
@@ -700,13 +678,5 @@
             <point key="canvasLocation" x="1661" y="110"/>
         </scene>
     </scenes>
-<<<<<<< HEAD
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
-=======
->>>>>>> 1.x
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

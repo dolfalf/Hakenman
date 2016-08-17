@@ -247,20 +247,10 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     _menuBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(5, 5, 35, 35)
                                                                             andWithType:PBFlatIconMenu];
 
-<<<<<<< HEAD
-#if 0
-=======
-
->>>>>>> 1.x
     [_menuBarButton addTarget:self action:@selector(gotoMenuButtonTouched:)
-            forControlEvents:UIControlEventTouchUpInside];
+             forControlEvents:UIControlEventTouchUpInside];
     
     [self.navigationController.navigationBar addSubview:_menuBarButton];
-<<<<<<< HEAD
-#endif
-=======
-
->>>>>>> 1.x
     
     _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
                                                          andWithType:PBFlatIconMore];
