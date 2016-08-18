@@ -29,7 +29,7 @@
 //８月データのリカバリー用
 #define RECOVERY_CODE_ENABLE
 
-//#define GENERATE_DUMMY_DATA
+#define GENERATE_DUMMY_DATA
 
 #ifdef DEBUG
 #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

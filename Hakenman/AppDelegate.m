@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "DBManager.h"
 #import "TimeCardSummaryDao.h"
+#import "TimeCardDao.h"
+#import "NSDate+Helper.h"
+
 #import <Parse/Parse.h>
 
 @implementation AppDelegate
@@ -64,9 +67,6 @@
     [[gai logger] setLogLevel:kGAILogLevelError]; // ログレベルを変えることができる
     [gai trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
 #endif
-    
-    //create instance.
-    [AdvertisingManager sharedADBannerView];
 
     //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
     if ([WCSession isSupported]) {
@@ -155,4 +155,51 @@
     return NO;
 }
 
+#pragma mark - WCSessionDelegate
+// Interactive Message
+- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message replyHandler:(nonnull void (^)(NSDictionary<NSString *,id> * __nonnull))replyHandler
+{
+    
+    NSString *command = message[@"command"];
+    NSDictionary *params = message[@"param"];
+    
+    if ([command isEqualToString:@"fetch_summary"]) {
+        
+        TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
+        NSArray *items = [timeCardSummaryDao fetchModelStartMonth:params[@"startMonth"]
+                                                         EndMonth:params[@"endMonth"]
+                                                        ascending:[params[@"ascending"] boolValue]];
+        
+        
+        //Dictionaryで変換
+        NSMutableArray *result_items = [NSMutableArray new];
+        for (TimeCardSummary *summary in items) {
+            NSDictionary *dict = [summary dictionaryWithValuesForKeys:[[[summary entity] attributesByName] allKeys]];
+            [result_items addObject:dict];
+        }
+        
+        replyHandler(@{@"data":result_items});
+        
+        return;
+    }
+    else if ([command isEqualToString:@"fetch_today_timecard"]) {
+        
+        NSDate *today = [NSDate date];
+        TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
+        NSArray *items = [timeCardDao fetchModelYear:[today getYear]
+                                               month:[today getMonth]];
+        
+        //Dictionaryで変換
+        NSMutableArray *result_items = [NSMutableArray new];
+        for (TimeCard *time_card in items) {
+            NSDictionary *dict = [time_card dictionaryWithValuesForKeys:[[[time_card entity] attributesByName] allKeys]];
+            [result_items addObject:dict];
+        }
+        
+        replyHandler(@{@"data":result_items});
+        
+        return;
+        
+    }
+}
 @end

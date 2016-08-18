@@ -146,4 +146,27 @@
     return [NSString stringWithFormat:@"%@:%@", hour, min];
 }
 
++ (float)getWorkTime:(NSDate *)startTime endTime:(NSDate *)endTime {
+    
+    //start_time & end_time 語尾の桁数を００に変換
+    
+    //合計時間の計算のため秒単位の語尾を「00」に固定
+    NSString *startStr = [startTime yyyyMMddHHmmssString];
+    startStr = [startStr stringByReplacingCharactersInRange:(NSMakeRange(12, 2)) withString:@"00"];
+    NSDate *convertStart = [NSDate convDate2String:startStr];
+    
+    NSString *endStr = [endTime yyyyMMddHHmmssString];
+    endStr = [endStr stringByReplacingCharactersInRange:(NSMakeRange(12, 2)) withString:@"00"];
+    NSDate *convertEnd = [NSDate convDate2String:endStr];
+    
+    NSTimeInterval since = [convertEnd timeIntervalSinceDate:convertStart];
+    
+    float resultSince1 = since/(60.f*60.f);
+    float resultSince2 = resultSince1 * 100.f;
+    float resultSince3 = ceilf(resultSince2);
+    float resultSince4 = resultSince3/100.f;
+    return resultSince4;
+    
+}
+
 @end

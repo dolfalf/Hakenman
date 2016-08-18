@@ -110,13 +110,17 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
 
     [timeCardDao deleteAllModel];
-    for (int j=3; j < 11; j++) {
-        for (int i=1; i <= 31; i++) {
+    
+    int month_begin = 1;
+    int month_end = 8;
+    
+    for (int month=month_begin; month < month_end; month++) {
+        for (int day=1; day <= 31; day++) {
             TimeCard *model = [timeCardDao createModel];
             //20140301090000
             //start_time:[20141005090000], end_time:[20151005140000]
-            model.start_time = [NSString stringWithFormat:@"2015%02d%02d090000",j,i];
-            model.end_time = [NSString stringWithFormat:@"2015%02d%02d1%d0000",j,i, rand()%9];
+            model.start_time = [NSString stringWithFormat:@"2016%02d%02d090000",month,day];
+            model.end_time = [NSString stringWithFormat:@"2016%02d%02d1%d0000",month,day, rand()%9];
             model.t_year = @([[model.start_time substringWithRange:NSMakeRange(0, 4)] intValue]);
             model.t_month = @([[model.start_time substringWithRange:NSMakeRange(4, 2)] intValue]);
             model.t_day = @([[model.start_time substringWithRange:NSMakeRange(6, 2)] intValue]);
@@ -131,9 +135,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     [timeCardSummaryDao deleteAllModel];
     
-    for (int j=3; j < 9; j++) {
+    for (int month=month_begin; month < month_end; month++) {
         TimeCardSummary *model = [timeCardSummaryDao createModel];
-        model.t_yyyymm = @([[NSString stringWithFormat:@"20150%d",j] intValue]);
+        model.t_yyyymm = @([[NSString stringWithFormat:@"20160%d",month] intValue]);
         
         model.workTime = @160;
         model.summary_type = @1;

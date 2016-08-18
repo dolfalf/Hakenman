@@ -16,4 +16,6 @@
 + (NSString *)weekdayString:(int)weekday;
 + (NSString *)monthString:(int)month;
 + (NSString *)timeString:(NSString *)str;
+
++ (float)getWorkTime:(NSDate *)startTime endTime:(NSDate *)endTime;
 @end

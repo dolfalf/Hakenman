@@ -91,11 +91,12 @@
 		3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3DC18DD75FD0062B07A /* TopViewController.m */; };
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
-		3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */; };
 		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; };
 		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
 		A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02519AC5BA12ADECAA47C7E0 /* Pods_HakenmanTests.framework */; };
 		AC506D4CD073C8753145A876 /* Pods_Hakenman_WatchOS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE135A9BF27E2D9F093947B5 /* Pods_Hakenman_WatchOS2.framework */; };
+		BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32C55F1D6456210032152C /* HKMConnectivityManager.m */; };
+		BB74DB921D65B66C00194D9A /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
 		BB9E96A01D6313C1009E2985 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB9E969E1D6313C1009E2985 /* Interface.storyboard */; };
 		BB9E96A21D6313C1009E2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E96A11D6313C1009E2985 /* Assets.xcassets */; };
 		BB9E96A91D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BB9E96A81D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -311,8 +312,6 @@
 		3D2980681987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D2980691987B66900018BAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DC90F3D1A87BA5C008A42BF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		3DC90F401A87BA8B008A42BF /* AdvertisingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdvertisingManager.h; path = advertising/AdvertisingManager.h; sourceTree = "<group>"; };
-		3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdvertisingManager.m; path = advertising/AdvertisingManager.m; sourceTree = "<group>"; };
 		3DE1E8401BD275ED00FB5AFD /* ModelDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDao.h; sourceTree = "<group>"; };
 		3DE1E8411BD275ED00FB5AFD /* ModelDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDao.m; sourceTree = "<group>"; };
 		4204BC92FB21F32EB9F60E6C /* Pods-HakenmanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -321,6 +320,8 @@
 		8764EE0D6C84B7CAEF3A41FC /* Pods-Hakenman WatchOS2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2/Pods-Hakenman WatchOS2.debug.xcconfig"; sourceTree = "<group>"; };
 		8A80E7E6EAEB6C02E2BCF686 /* Pods-HakenmanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.debug.xcconfig"; sourceTree = "<group>"; };
+		BB32C55E1D6456210032152C /* HKMConnectivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKMConnectivityManager.h; sourceTree = "<group>"; };
+		BB32C55F1D6456210032152C /* HKMConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMConnectivityManager.m; sourceTree = "<group>"; };
 		BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hakenman WatchOS2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9E969F1D6313C1009E2985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		BB9E96A11D6313C1009E2985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -599,7 +600,6 @@
 			isa = PBXGroup;
 			children = (
 				5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */,
-				3DC90F3F1A87BA68008A42BF /* advertising */,
 				3B8FA71618DDEFB900A1182E /* const.h */,
 				3B469FAA18B89D3A0095C418 /* AppDelegate.h */,
 				3B469FAB18B89D3A0095C418 /* AppDelegate.m */,
@@ -740,15 +740,6 @@
 			path = top;
 			sourceTree = "<group>";
 		};
-		3DC90F3F1A87BA68008A42BF /* advertising */ = {
-			isa = PBXGroup;
-			children = (
-				3DC90F401A87BA8B008A42BF /* AdvertisingManager.h */,
-				3DC90F631A87BA8B008A42BF /* AdvertisingManager.m */,
-			);
-			name = advertising;
-			sourceTree = "<group>";
-		};
 		6243A1B598E88492850202E0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,6 +785,8 @@
 				BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */,
 				BB9E96DA1D631507009E2985 /* WatchUtil.h */,
 				BB9E96DB1D631507009E2985 /* WatchUtil.m */,
+				BB32C55E1D6456210032152C /* HKMConnectivityManager.h */,
+				BB32C55F1D6456210032152C /* HKMConnectivityManager.m */,
 				BB9E96B81D6313C1009E2985 /* Assets.xcassets */,
 				BB9E96BA1D6313C1009E2985 /* Info.plist */,
 				BB9E96AD1D6313C1009E2985 /* Supporting Files */,
@@ -1234,7 +1227,6 @@
 				3B8CB2421942EDD900CD922E /* MailContent.m in Sources */,
 				3B6AFEEA18E69C6300501C94 /* MailContentsDao.m in Sources */,
 				3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */,
-				3DC90F661A87BA8B008A42BF /* AdvertisingManager.m in Sources */,
 				3B8CB255194315DB00CD922E /* TimeCardSummaryDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1252,8 +1244,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB9E96E01D631507009E2985 /* ModelDaoForWatch.m in Sources */,
+				BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */,
 				BB9E96E51D631507009E2985 /* MonthlyWorkTableRowController.m in Sources */,
 				BB9E96E31D631507009E2985 /* DetailInterfaceController.m in Sources */,
+				BB74DB921D65B66C00194D9A /* NSDate+Helper.m in Sources */,
 				BB9E96E11D631507009E2985 /* TimeCardDaoForWatch.m in Sources */,
 				BB9E96B41D6313C1009E2985 /* ExtensionDelegate.m in Sources */,
 				BB9E96E61D631507009E2985 /* WatchUtil.m in Sources */,

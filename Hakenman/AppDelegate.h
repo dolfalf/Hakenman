@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AdvertisingManager.h"
 #import <WatchConnectivity/WatchConnectivity.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, WCSessionDelegate>

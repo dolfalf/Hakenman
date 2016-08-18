@@ -14,7 +14,6 @@
 #import "TimeCardDao.h"
 #import "TimeCardSummaryDao.h"
 #import "MonthWorkingTableViewController.h"
-#import "AdvertisingManager.h"
 #import "UIFont+Helper.h"
 #import "Util.h"
 
@@ -42,8 +41,6 @@
 @property (nonatomic, weak) IBOutlet UIView *pickerContainerView;
 @property (nonatomic, weak) IBOutlet UILabel *descLabel;
 @property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
-@property (nonatomic, weak) IBOutlet UIView *structureTopBannerView;
-@property (nonatomic, weak) IBOutlet UIView *structureBottomBannerView;
 
 @end
 
@@ -89,10 +86,6 @@
     self.navigationItem.leftBarButtonItem.title = LOCALIZE(@"Common_navigation_backbutton_title");
     HKM_INIT_LABLE(_descLabel, HKMFontTypeNanum, _descLabel.font.pointSize);
 
-    //AD Banner.
-    AdvertisingManager *mgr = [AdvertisingManager sharedADBannerView];
-    [_structureBottomBannerView addSubview:[mgr getADBannerView:AdViewTypeIAd]];
-    _structureTopBannerView.hidden = YES;   //広告しないため、隠す
 #ifndef DISABLE_GOOLE_ADS
     [_structureTopBannerView addSubview:[mgr getADBannerView:AdViewTypeGAd]];
 #endif
