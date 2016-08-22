@@ -160,6 +160,8 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:
                          @"t_year == %@ AND t_month == %@ AND workday_flag == %@"
                          , @([dt getYear]), @([dt getMonth]),@(YES)];    //条件指定
+    
+    
     [self.fetchRequest setPredicate:pred];
     
     NSArray *mArray = [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];

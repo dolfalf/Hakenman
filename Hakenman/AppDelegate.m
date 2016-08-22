@@ -11,6 +11,8 @@
 #import "TimeCardSummaryDao.h"
 #import "TimeCardDao.h"
 #import "NSDate+Helper.h"
+#import "TimeCardSummary+NSDictionary.h"
+#import "TimeCard+NSDictionary.h"
 
 #import <Parse/Parse.h>
 
@@ -160,8 +162,10 @@
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message replyHandler:(nonnull void (^)(NSDictionary<NSString *,id> * __nonnull))replyHandler
 {
     
-    NSString *command = message[@"command"];
-    NSDictionary *params = message[@"param"];
+    NSDictionary *watch_message = message[@"watchapp"];
+    
+    NSString *command = watch_message[@"command"];
+    NSDictionary *params = watch_message[@"param"];
     
     if ([command isEqualToString:@"fetch_summary"]) {
         
@@ -174,7 +178,7 @@
         //Dictionaryで変換
         NSMutableArray *result_items = [NSMutableArray new];
         for (TimeCardSummary *summary in items) {
-            NSDictionary *dict = [summary dictionaryWithValuesForKeys:[[[summary entity] attributesByName] allKeys]];
+            NSDictionary *dict = [summary dictionary];
             [result_items addObject:dict];
         }
         
@@ -192,7 +196,7 @@
         //Dictionaryで変換
         NSMutableArray *result_items = [NSMutableArray new];
         for (TimeCard *time_card in items) {
-            NSDictionary *dict = [time_card dictionaryWithValuesForKeys:[[[time_card entity] attributesByName] allKeys]];
+            NSDictionary *dict = [time_card dictionary];
             [result_items addObject:dict];
         }
         
@@ -200,6 +204,41 @@
         
         return;
         
+    }
+    else if ([command isEqualToString:@"fetch_graph_date"]) {
+        
+        TimeCardDao *dao = [[TimeCardDao alloc] init];
+        NSString *dateString = params[@"date"];
+        
+        NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate convDate2String:dateString]];
+        
+        //Dictionaryで変換
+        NSMutableArray *result_items = [NSMutableArray new];
+        for (TimeCard *time_card in weekTimeCards) {
+            NSDictionary *dict = [time_card dictionary];
+            [result_items addObject:dict];
+        }
+        
+        replyHandler(@{@"data":result_items});
+        
+        return;
+    }
+    else if ([command isEqualToString:@"fetch_year_month"]) {
+        
+        TimeCardDao *dao = [TimeCardDao new];
+        NSArray *items = [dao fetchModelYear:[params[@"year"] intValue]
+                                       month:[params[@"month"] intValue]];
+        
+        //Dictionaryで変換
+        NSMutableArray *result_items = [NSMutableArray new];
+        for (TimeCard *time_card in items) {
+            NSDictionary *dict = [time_card dictionary];
+            [result_items addObject:dict];
+        }
+        
+        replyHandler(@{@"data":result_items});
+        
+        return;
     }
 }
 @end

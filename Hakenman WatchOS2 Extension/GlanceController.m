@@ -8,14 +8,12 @@
 
 #import "GlanceController.h"
 #import <CoreGraphics/CoreGraphics.h>
-#import "TimeCardDaoForWatch.h"
-#import "TimeCardSummaryDaoForWatch.h"
 #import "NSDate+Helper.h"
 #import "WatchUtil.h"
 #import "UIColor+Helper.h"
 #import "NSUserDefaults+Setting.h"
 
-#import <WatchConnectivity/WatchConnectivity.h>
+#import "HKMConnectivityManager.h"
 
 #define SET_DOT_GRAPH_CELL(obj, no, sz, col)    \
     NSMutableAttributedString *txt##no = [[NSMutableAttributedString alloc] initWithString:@"■"]; \
@@ -23,7 +21,7 @@
     [txt##no addAttribute:NSForegroundColorAttributeName value:col range:NSMakeRange(0, txt##no.length)]; \
     [obj setAttributedText:txt##no];
 
-@interface GlanceController() <WCSessionDelegate>
+@interface GlanceController()
 
 @property (nonatomic, weak) IBOutlet WKInterfaceImage *iconImage;
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *titleLabel;
@@ -75,13 +73,8 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
     
-    //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
-    //와치앱이 시작되는 시점을 알수 없기 때문에 화면이 활성화되는 타이밍에서 세션을 체크해줘야함.
-    if ([WCSession isSupported]) {
-        WCSession *session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-    }
+    HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
+    [mgr sessionConnect];
     
     [self loadScreenData];
     
@@ -152,56 +145,89 @@
     
     NSDate *dt = [NSDate date];
     NSString *yyyymm = [NSString stringWithFormat:@"%d%02d", [dt getYear], [dt getMonth]];
-    NSString *total_work_time = [NSString stringWithFormat:@"%d", (int)[WatchUtil totalWorkTime:yyyymm]];
     NSString *work_time_unit = LOCALIZE(@"Watch_Glance_Time_Unit");
     
-    NSMutableAttributedString *attrTimeString = [[NSMutableAttributedString alloc] initWithString:
-                                             [NSString stringWithFormat:@"%@%@", total_work_time, work_time_unit]];
-                                             
-    [attrTimeString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
-                       range:NSMakeRange(0, total_work_time.length)];
+    HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
     
-    [attrTimeString addAttribute:NSForegroundColorAttributeName
-                       value:[UIColor whiteColor]
-                       range:NSMakeRange(0, total_work_time.length)];
+    //TEST
+    //yyyymm = @"201607";
+    [mgr sendMessageYear:[yyyymm substringWithRange:NSMakeRange(0, 4)]
+                   month:[yyyymm substringWithRange:NSMakeRange(4, 2)]
+            replyHandler:^(NSDictionary *results) {
+                
+                float display_total_time = 0;
+                
+                NSArray *items = results[@"data"];
+                
+                for (NSDictionary *tm in items) {
+                    
+                    NSDate *startTimeFromCore = [NSDate convDate2String:tm[@"start_time"]];
+                    NSDate *endTimeFromCore = [NSDate convDate2String:tm[@"end_time"]];
+                    
+                    float workTimeFromCore = [WatchUtil getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [tm[@"rest_time"] floatValue];
+                    
+                    if (tm[@"start_time"] == nil || [tm[@"start_time"] isEqualToString:@""] == YES
+                        || tm[@"end_time"] == nil || [tm[@"end_time"] isEqualToString:@""] == YES) {
+                        continue;
+                    }
+                    
+                    if ([tm[@"workday_flag"] boolValue] == NO) {
+                        workTimeFromCore = 0.f;
+                    }
+                    
+                    display_total_time = display_total_time + workTimeFromCore;
+                }
+                
+                NSString *total_work_time = [NSString stringWithFormat:@"%d", (int)display_total_time];
+                
+                
+                NSMutableAttributedString *attrTimeString = [[NSMutableAttributedString alloc] initWithString:
+                                                             [NSString stringWithFormat:@"%@%@", total_work_time, work_time_unit]];
+                
+                [attrTimeString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
+                                       range:NSMakeRange(0, total_work_time.length)];
+                
+                [attrTimeString addAttribute:NSForegroundColorAttributeName
+                                       value:[UIColor whiteColor]
+                                       range:NSMakeRange(0, total_work_time.length)];
+                
+                
+                [attrTimeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
+                                       range:NSMakeRange(total_work_time.length, work_time_unit.length)];
+                
+                [attrTimeString addAttribute:NSForegroundColorAttributeName
+                                       value:[UIColor whiteColor]
+                                       range:NSMakeRange(total_work_time.length, work_time_unit.length)];
+                
+                [_monthlyWorkTimeLabel setAttributedText:attrTimeString];
+                
+                NSString *work_remain_time = _remainTimeString;
+                NSString *work_min_unit = LOCALIZE(@"Watch_Glance_Minute_Unit");
+                
+                NSMutableAttributedString *attrMinuteString = [[NSMutableAttributedString alloc] initWithString:
+                                                               [NSString stringWithFormat:@"%@%@", work_remain_time, work_min_unit]];
+                
+                [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
+                                         range:NSMakeRange(0, work_remain_time.length)];
+                
+                [attrMinuteString addAttribute:NSForegroundColorAttributeName
+                                         value:[UIColor whiteColor]
+                                         range:NSMakeRange(0, work_remain_time.length)];
+                
+                
+                [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
+                                         range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
+                
+                [attrMinuteString addAttribute:NSForegroundColorAttributeName
+                                         value:[UIColor whiteColor]
+                                         range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
+                
+                [_workStartLabel setAttributedText:attrMinuteString];
+                
+            }];
     
-    
-    [attrTimeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
-                       range:NSMakeRange(total_work_time.length, work_time_unit.length)];
-    
-    [attrTimeString addAttribute:NSForegroundColorAttributeName
-                       value:[UIColor whiteColor]
-                       range:NSMakeRange(total_work_time.length, work_time_unit.length)];
-    
-    [_monthlyWorkTimeLabel setAttributedText:attrTimeString];
-    
-    
-    NSString *work_remain_time = _remainTimeString;
-    NSString *work_min_unit = LOCALIZE(@"Watch_Glance_Minute_Unit");
-    
-    NSMutableAttributedString *attrMinuteString = [[NSMutableAttributedString alloc] initWithString:
-                                                   [NSString stringWithFormat:@"%@%@", work_remain_time, work_min_unit]];
-    
-    [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
-                       range:NSMakeRange(0, work_remain_time.length)];
-    
-    [attrMinuteString addAttribute:NSForegroundColorAttributeName
-                       value:[UIColor whiteColor]
-                       range:NSMakeRange(0, work_remain_time.length)];
-    
-    
-    [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
-                       range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
-    
-    [attrMinuteString addAttribute:NSForegroundColorAttributeName
-                       value:[UIColor whiteColor]
-                       range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
-    
-    [_workStartLabel setAttributedText:attrMinuteString];
-    
-    
+#if 1
     //그래프표시. 버전이 2.0이상
-    //    if (0) {
     if ([WatchUtil wathcOSVersion] >= 200) {
         [_graphImage setHidden:NO];
         [_dotGraphGroup setHidden:YES];
@@ -212,6 +238,7 @@
         [_dotGraphGroup setHidden:NO];
         [self drawDotGraphView];
     }
+#endif
     
 }
 
@@ -230,44 +257,48 @@
     [dotCells addObject:_dotCell_6];
     [dotCells addObject:_dotCell_7];
     
-    TimeCardDaoForWatch *dao = [TimeCardDaoForWatch new];
-    NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate date]];
+    HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
     
-    //최대값 구함.
-    float max_worktime = 8.f;  //default
-    NSMutableArray *graph_data = [NSMutableArray new];
-    
-    for (TimeCard *card in weekTimeCards) {
-        NSTimeInterval t = [[NSDate convDate2String:card.end_time]
-                            timeIntervalSinceDate:[NSDate convDate2String:card.start_time]];
+    [mgr sendMessageGraphDate:[[NSDate date] yyyyMMddHHmmssString] replyHandler:^(NSDictionary *results) {
+        NSArray *weekTimeCards = results[@"data"];
         
-        float duration = (float)t - [card.rest_time floatValue];
-        float work_time = (duration / (60*60)) - [card.rest_time floatValue];
+        //최대값 구함.
+        float max_worktime = 8.f;  //default
+        NSMutableArray *graph_data = [NSMutableArray new];
         
-        if (max_worktime < work_time) {
-            max_worktime = work_time;
+        for (NSDictionary *card in weekTimeCards) {
+            NSTimeInterval t = [[NSDate convDate2String:card[@"end_time"]]
+                                 timeIntervalSinceDate:[NSDate convDate2String:card[@"start_time"]]];
+            
+            float duration = (float)t - [card[@"rest_time"] floatValue];
+            float work_time = (duration / (60*60)) - [card[@"rest_time"] floatValue];
+            
+            if (max_worktime < work_time) {
+                max_worktime = work_time;
+            }
+            
+            [graph_data addObject:@(work_time)];
         }
         
-        [graph_data addObject:@(work_time)];
-    }
-    
-    
-    //라벨그래프? 그리기
-    for (int c=0;c<dotCells.count;c++) {
         
-        WKInterfaceLabel *lbl = dotCells[c];
-        [lbl setHidden:NO];
-        
-        if (c > graph_data.count -1) {
-            [lbl setHidden:YES];
+        //라벨그래프? 그리기
+        for (int c=0;c<dotCells.count;c++) {
+            
+            WKInterfaceLabel *lbl = dotCells[c];
+            [lbl setHidden:NO];
+            
+            if (c > graph_data.count -1) {
+                [lbl setHidden:YES];
+            }
         }
-    }
-    
-    for (int no=0;no<graph_data.count;no++) {
-        float val = [graph_data[no] floatValue];
         
-        SET_DOT_GRAPH_CELL(dotCells[no], no, 10.f+ val, [[UIColor whiteColor] colorWithAlphaComponent:0.5f]);
-    }
+        for (int no=0;no<graph_data.count;no++) {
+            float val = [graph_data[no] floatValue];
+            
+            SET_DOT_GRAPH_CELL(dotCells[no], no, 10.f+ val, [[UIColor whiteColor] colorWithAlphaComponent:0.5f]);
+        }
+        
+    }];
     
 }
 
@@ -307,87 +338,91 @@
                 points:@[start_pt, end_pt]];
     }
 
+    HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
     
-    TimeCardDaoForWatch *dao = [TimeCardDaoForWatch new];
-    NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate date]];
-    
-    //최대값 구함.
-    float max_worktime = 8.f;  //default
-    for (TimeCard *card in weekTimeCards) {
-        NSTimeInterval t = [[NSDate convDate2String:card.end_time]
-                            timeIntervalSinceDate:[NSDate convDate2String:card.start_time]];
+    NSDate *today = [NSDate date];
+    [mgr sendMessageGraphDate:[today yyyyMMddHHmmssString] replyHandler:^(NSDictionary *results) {
+        NSArray *weekTimeCards = results[@"data"];
         
-        float duration = (float)t - [card.rest_time floatValue];
-        float work_time = (duration / (60*60)) - [card.rest_time floatValue];
-        
-        if (max_worktime < work_time) {
-            max_worktime = work_time;
+        //최대값 구함.
+        float max_worktime = 8.f;  //default
+        for (NSDictionary *card in weekTimeCards) {
+            NSTimeInterval t = [[NSDate convDate2String:card[@"end_time"]]
+                                timeIntervalSinceDate:[NSDate convDate2String:card[@"start_time"]]];
+            
+            float duration = (float)t - [card[@"rest_time"] floatValue];
+            float work_time = (duration / (60*60)) - [card[@"rest_time"] floatValue];
+            
+            if (max_worktime < work_time) {
+                max_worktime = work_time;
+            }
         }
-    }
-    
-    //데이터 그래프 그리기
-    NSMutableArray *data_points = [NSMutableArray new];
-    int data_count = 0;
-    CGPoint max_point = CGPointZero;
-    
-    for (TimeCard *card in weekTimeCards) {
-        NSTimeInterval t = [[NSDate convDate2String:card.end_time]
-                            timeIntervalSinceDate:[NSDate convDate2String:card.start_time]];
         
-        float duration = (float)t - [card.rest_time floatValue];
-        float work_time = (duration / (60*60)) - [card.rest_time floatValue];
+        //데이터 그래프 그리기
+        NSMutableArray *data_points = [NSMutableArray new];
+        int data_count = 0;
+        CGPoint max_point = CGPointZero;
         
-        //좌표로 변환
-        float data_x = (((g_width - margin*2.f)/weekTimeCards.count) * data_count) + margin;
-        float data_y = ((g_height - margin*2.f) - ((g_height - margin*2.f)*work_time)/max_worktime) + margin;
-        [data_points addObject:[NSValue valueWithCGPoint:CGPointMake(data_x, data_y)]];
-        
-        data_count++;
-        
-        if (max_worktime == work_time) {
-            //max label point
-            max_point = CGPointMake(data_x, data_y);
+        for (NSDictionary *card in weekTimeCards) {
+            NSTimeInterval t = [[NSDate convDate2String:card[@"end_time"]]
+                                timeIntervalSinceDate:[NSDate convDate2String:card[@"start_time"]]];
+            
+            float duration = (float)t - [card[@"rest_time"] floatValue];
+            float work_time = (duration / (60*60)) - [card[@"rest_time"] floatValue];
+            
+            //좌표로 변환
+            float data_x = (((g_width - margin*2.f)/weekTimeCards.count) * data_count) + margin;
+            float data_y = ((g_height - margin*2.f) - ((g_height - margin*2.f)*work_time)/max_worktime) + margin;
+            [data_points addObject:[NSValue valueWithCGPoint:CGPointMake(data_x, data_y)]];
+            
+            data_count++;
+            
+            if (max_worktime == work_time) {
+                //max label point
+                max_point = CGPointMake(data_x, data_y);
+            }
         }
-    }
-    
-    [self drawline:context lineWidth:2.f color:[UIColor whiteColor] points:data_points];
-    
-    //circle
-    for (NSValue *val in data_points) {
         
-        //drawCircle
-        CGPoint pt = [val CGPointValue];
-        [self drawCircle:context size:8.f point:pt color:[UIColor whiteColor]];
-    }
-    
-    //text
-    if (max_point.x > 0 && max_point.y > 0) {
+        [self drawline:context lineWidth:2.f color:[UIColor whiteColor] points:data_points];
         
-        NSString *t = [NSString stringWithFormat:@"%.2f", max_worktime];
-        UIColor *color = [UIColor whiteColor];
-        UIColor *bcolor = [UIColor clearColor];
-        NSDictionary *textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:12.f],
-                                         NSBackgroundColorAttributeName:bcolor,
-                                         NSForegroundColorAttributeName:color};
+        //circle
+        for (NSValue *val in data_points) {
+            
+            //drawCircle
+            CGPoint pt = [val CGPointValue];
+            [self drawCircle:context size:8.f point:pt color:[UIColor whiteColor]];
+        }
         
-        NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
-        drawingContext.minimumScaleFactor = 0.5; // Half the font size
+        //text
+        if (max_point.x > 0 && max_point.y > 0) {
+            
+            NSString *t = [NSString stringWithFormat:@"%.2f", max_worktime];
+            UIColor *color = [UIColor whiteColor];
+            UIColor *bcolor = [UIColor clearColor];
+            NSDictionary *textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:12.f],
+                                             NSBackgroundColorAttributeName:bcolor,
+                                             NSForegroundColorAttributeName:color};
+            
+            NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
+            drawingContext.minimumScaleFactor = 0.5; // Half the font size
+            
+            [t drawWithRect:CGRectMake(max_point.x, max_point.y - 16.f, g_width, g_height)
+                    options:NSStringDrawingUsesLineFragmentOrigin
+                 attributes:textAttributes
+                    context:drawingContext];
+            
+        }
         
-        [t drawWithRect:CGRectMake(max_point.x, max_point.y - 16.f, g_width, g_height)
-                options:NSStringDrawingUsesLineFragmentOrigin
-             attributes:textAttributes
-                context:drawingContext];
+        // Convert to UIImage
+        CGImageRef cgimage = CGBitmapContextCreateImage(context);
+        UIImage *uiimage = [UIImage imageWithCGImage:cgimage];
         
-    }
-    
-    // Convert to UIImage
-    CGImageRef cgimage = CGBitmapContextCreateImage(context);
-    UIImage *uiimage = [UIImage imageWithCGImage:cgimage];
-    
-    // End the graphics context
-    UIGraphicsEndImageContext();
-    
-    [_graphImage setImage:uiimage];
+        // End the graphics context
+        UIGraphicsEndImageContext();
+        
+        [_graphImage setImage:uiimage];
+        
+    }];
     
 }
 
@@ -424,55 +459,6 @@
     
     CGContextFillPath(ctx);
     
-}
-
-#pragma mark - WCSessionDelegate
-
-- (void)sessionWatchStateDidChange:(WCSession *)session
-{
-    NSLog(@"%s: session = %@", __func__, session);
-}
-
-// Application Context
-- (void)session:(nonnull WCSession *)session didReceiveApplicationContext:(nonnull NSDictionary<NSString *,id> *)applicationContext
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"%s: session = %@", __func__, session);
-    });
-}
-
-// File Transfer
-- (void)session:(nonnull WCSession *)session didReceiveFile:(nonnull WCSessionFile *)file
-{
-    dispatch_async(dispatch_get_main_queue(),^{
-        
-        NSURL *storeURL;
-        NSString *fileURLStr = [[file fileURL] relativeString];
-        //3파일이 다 있지 않으면 코어데이터가 텅 빈 채로 저장됨
-        if ([fileURLStr hasSuffix:@".sqlite-wal"]) {
-            storeURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-wal"];
-        }else if ([fileURLStr hasSuffix:@".sqlite-shm"]) {
-            storeURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-shm"];
-        }else{
-            storeURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite"];
-        }
-        
-        NSData *data = [NSData dataWithContentsOfURL:[file fileURL]];
-        
-        BOOL result = [[NSFileManager defaultManager] createFileAtPath:[storeURL path] contents:data attributes:nil];
-        if (result) {
-            NSLog(@"create file success >> %@", storeURL);
-            if ([[storeURL relativeString] hasSuffix:@"hakenModel.sqlite"]) {
-                [NSUserDefaults watchStoreURLFinished];
-                [self updateRemainTime];
-                [self loadScreenData];
-            }else{
-                
-            }
-        } else {
-            NSLog(@"create file error");
-        }
-    });
 }
 
 @end

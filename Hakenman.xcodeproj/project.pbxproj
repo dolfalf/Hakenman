@@ -97,6 +97,8 @@
 		AC506D4CD073C8753145A876 /* Pods_Hakenman_WatchOS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE135A9BF27E2D9F093947B5 /* Pods_Hakenman_WatchOS2.framework */; };
 		BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32C55F1D6456210032152C /* HKMConnectivityManager.m */; };
 		BB74DB921D65B66C00194D9A /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
+		BB74DB961D65C77C00194D9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B469FA418B89D3A0095C418 /* InfoPlist.strings */; };
+		BB74DB971D65C77F00194D9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; };
 		BB9E96A01D6313C1009E2985 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB9E969E1D6313C1009E2985 /* Interface.storyboard */; };
 		BB9E96A21D6313C1009E2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E96A11D6313C1009E2985 /* Assets.xcassets */; };
 		BB9E96A91D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BB9E96A81D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -116,6 +118,10 @@
 		BB9E96E41D631507009E2985 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D71D631507009E2985 /* GlanceController.m */; };
 		BB9E96E51D631507009E2985 /* MonthlyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */; };
 		BB9E96E61D631507009E2985 /* WatchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96DB1D631507009E2985 /* WatchUtil.m */; };
+		BBB382AB1D6AD198007BFE88 /* TimeCard+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB382AA1D6AD198007BFE88 /* TimeCard+NSDictionary.m */; };
+		BBB382AE1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB382AD1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m */; };
+		BBCCB7311D67202C002CCA42 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B782547195EC69E003D408D /* UIColor+Helper.m */; };
+		BBCCB7321D672059002CCA42 /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
 		FCD2AB40E57CCF9632FC9B84 /* Pods_Hakenman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 123978ED3DF052032EF5662F /* Pods_Hakenman.framework */; };
 /* End PBXBuildFile section */
 
@@ -358,6 +364,10 @@
 		BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyWorkTableRowController.m; sourceTree = "<group>"; };
 		BB9E96DA1D631507009E2985 /* WatchUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchUtil.h; sourceTree = "<group>"; };
 		BB9E96DB1D631507009E2985 /* WatchUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchUtil.m; sourceTree = "<group>"; };
+		BBB382A91D6AD198007BFE88 /* TimeCard+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TimeCard+NSDictionary.h"; sourceTree = "<group>"; };
+		BBB382AA1D6AD198007BFE88 /* TimeCard+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TimeCard+NSDictionary.m"; sourceTree = "<group>"; };
+		BBB382AC1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TimeCardSummary+NSDictionary.h"; sourceTree = "<group>"; };
+		BBB382AD1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TimeCardSummary+NSDictionary.m"; sourceTree = "<group>"; };
 		C4862F26B893A7AF388C62F3 /* Pods-Hakenman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.release.xcconfig"; sourceTree = "<group>"; };
 		E6C2C74BF2BC0DC43AF78676 /* Pods-Hakenman WatchOS2 Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2 Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2 Extension/Pods-Hakenman WatchOS2 Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		FE135A9BF27E2D9F093947B5 /* Pods_Hakenman_WatchOS2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hakenman_WatchOS2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -656,8 +666,12 @@
 				3B8CB2411942EDD900CD922E /* MailContent.m */,
 				3B6CC8AD195D4A8D00F64041 /* TimeCard.h */,
 				3B6CC8AE195D4A8D00F64041 /* TimeCard.m */,
+				BBB382A91D6AD198007BFE88 /* TimeCard+NSDictionary.h */,
+				BBB382AA1D6AD198007BFE88 /* TimeCard+NSDictionary.m */,
 				3B6CC8B0195D4A8D00F64041 /* TimeCardSummary.h */,
 				3B6CC8B1195D4A8D00F64041 /* TimeCardSummary.m */,
+				BBB382AC1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.h */,
+				BBB382AD1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -769,18 +783,18 @@
 			isa = PBXGroup;
 			children = (
 				BB9E96C71D631507009E2985 /* dao */,
-				BB9E96AF1D6313C1009E2985 /* InterfaceController.h */,
-				BB9E96B01D6313C1009E2985 /* InterfaceController.m */,
 				BB9E96B21D6313C1009E2985 /* ExtensionDelegate.h */,
 				BB9E96B31D6313C1009E2985 /* ExtensionDelegate.m */,
+				BB9E96D61D631507009E2985 /* GlanceController.h */,
+				BB9E96D71D631507009E2985 /* GlanceController.m */,
+				BB9E96AF1D6313C1009E2985 /* InterfaceController.h */,
+				BB9E96B01D6313C1009E2985 /* InterfaceController.m */,
 				BB9E96B51D6313C1009E2985 /* NotificationController.h */,
 				BB9E96B61D6313C1009E2985 /* NotificationController.m */,
 				BB9E96C51D631507009E2985 /* DailyWorkTableRowController.h */,
 				BB9E96C61D631507009E2985 /* DailyWorkTableRowController.m */,
 				BB9E96D41D631507009E2985 /* DetailInterfaceController.h */,
 				BB9E96D51D631507009E2985 /* DetailInterfaceController.m */,
-				BB9E96D61D631507009E2985 /* GlanceController.h */,
-				BB9E96D71D631507009E2985 /* GlanceController.m */,
 				BB9E96D81D631507009E2985 /* MonthlyWorkTableRowController.h */,
 				BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */,
 				BB9E96DA1D631507009E2985 /* WatchUtil.h */,
@@ -1003,6 +1017,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB9E96B91D6313C1009E2985 /* Assets.xcassets in Resources */,
+				BB74DB971D65C77F00194D9A /* Localizable.strings in Resources */,
+				BB74DB961D65C77C00194D9A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,6 +1215,7 @@
 				1C9643A51A32AC1B005452CB /* UIFont+Helper.m in Sources */,
 				1C8A75C11A9452AE00852CFE /* MonthWorkingTableViewController.m in Sources */,
 				3B469FAC18B89D3A0095C418 /* AppDelegate.m in Sources */,
+				BBB382AE1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m in Sources */,
 				1C8A75BF1A9452AE00852CFE /* LeftTableViewCell.m in Sources */,
 				3B659711191759F00075AB24 /* NSDate+Helper.m in Sources */,
 				1C8A75AB1A9451FC00852CFE /* WorkingDayCell.m in Sources */,
@@ -1210,6 +1227,7 @@
 				3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */,
 				1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */,
 				1C8A75A91A9451FC00852CFE /* RDVCalendarView+Extension.m in Sources */,
+				BBB382AB1D6AD198007BFE88 /* TimeCard+NSDictionary.m in Sources */,
 				1CB3063F196F845600D8BF54 /* NSError+Common.m in Sources */,
 				1C8A75C21A9452AE00852CFE /* RightTableViewCell.m in Sources */,
 				3B8CB24F1942EFC200CD922E /* TodayTableViewCell.m in Sources */,
@@ -1243,6 +1261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBCCB7321D672059002CCA42 /* NSUserDefaults+Setting.m in Sources */,
 				BB9E96E01D631507009E2985 /* ModelDaoForWatch.m in Sources */,
 				BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */,
 				BB9E96E51D631507009E2985 /* MonthlyWorkTableRowController.m in Sources */,
@@ -1254,6 +1273,7 @@
 				BB9E96DD1D631507009E2985 /* DBManagerForWatch.m in Sources */,
 				BB9E96DE1D631507009E2985 /* FileDataDaoForWatch.m in Sources */,
 				BB9E96DF1D631507009E2985 /* MailContentsDaoForWatch.m in Sources */,
+				BBCCB7311D67202C002CCA42 /* UIColor+Helper.m in Sources */,
 				BB9E96E21D631507009E2985 /* TimeCardSummaryDaoForWatch.m in Sources */,
 				BB9E96B11D6313C1009E2985 /* InterfaceController.m in Sources */,
 				BB9E96DC1D631507009E2985 /* DailyWorkTableRowController.m in Sources */,
@@ -1426,6 +1446,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7s armv7";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1461,6 +1482,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7s armv7";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1536,7 +1558,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -1563,7 +1585,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -1587,7 +1609,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -1611,7 +1633,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};

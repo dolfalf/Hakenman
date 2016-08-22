@@ -23,6 +23,7 @@
     dispatch_once(&once, ^{
         sharedManager = [[self alloc] init];
     });
+    
     return sharedManager;
 }
 
@@ -30,16 +31,23 @@
     self = [super init];
     
     if (self) {
-        //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
-        //와치앱이 시작되는 시점을 알수 없기 때문에 화면이 활성화되는 타이밍에서 세션을 체크해줘야함.
-        if ([WCSession isSupported]) {
-            WCSession *session = [WCSession defaultSession];
-            session.delegate = self;
-            [session activateSession];
-        }
+        
+        [self sessionConnect];
+        
     }
     
     return self;
+}
+
+- (void)sessionConnect {
+    
+    //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
+    //와치앱이 시작되는 시점을 알수 없기 때문에 화면이 활성화되는 타이밍에서 세션을 체크해줘야함.
+    if ([WCSession isSupported]) {
+        WCSession *session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
 }
 
 - (void)sendMessageSummaryModelStartMonth:(NSString *)startMonth endMonth:(NSString *)endMonth ascending:(BOOL)ascending replyHandler:(void (^)(NSDictionary *))handler {
@@ -54,10 +62,10 @@
     }
     
     //make param
-    NSDictionary *paramInfo = @{@"command":@"fetch_summary",
-                                @"param":@{@"startMonth":startMonth,
-                                           @"endMonth":endMonth,
-                                           @"ascending":@(ascending)}};
+    NSDictionary *paramInfo = @{@"watchapp":@{@"command":@"fetch_summary",
+                                              @"param":@{@"startMonth":startMonth,
+                                                         @"endMonth":endMonth,
+                                                         @"ascending":@(ascending)}}};
     
     
     [[WCSession defaultSession] sendMessage:paramInfo
@@ -69,7 +77,6 @@
                                            NSDictionary *results = replyHandler;
                                            
                                            if (handler) {
-                                               //result(NSDictionary)
                                                handler(results);
                                            }
                                        }
@@ -95,7 +102,7 @@
     }
     
     //make param
-    NSDictionary *paramInfo = @{@"command":@"fetch_today_timecard"};
+    NSDictionary *paramInfo = @{@"watchapp":@{@"command":@"fetch_today_timecard"}};
     
     [[WCSession defaultSession] sendMessage:paramInfo
                                replyHandler:^(NSDictionary *replyHandler) {
@@ -107,6 +114,83 @@
                                            
                                            if (handler) {
                                                //result(NSDictionary)
+                                               handler(results);
+                                           }
+                                       }
+                                   });
+                               }
+                               errorHandler:^(NSError *error) {
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       NSLog(@"error:%@",error);
+                                   });
+                               }
+     ];
+    
+}
+
+- (void)sendMessageGraphDate:(NSString *)dateString replyHandler:(void(^)(NSDictionary *))handler {
+    
+    NSLog(@"isReachable:[%d]", [[WCSession defaultSession] isReachable]);
+    
+    if (![[WCSession defaultSession] isReachable]) {
+        if (handler) {
+            handler(nil);
+        }
+        return;
+    }
+    
+    //make param
+    NSDictionary *paramInfo = @{@"watchapp":@{@"command":@"fetch_graph_date",
+                                              @"param":@{@"date":dateString}}};
+    
+    [[WCSession defaultSession] sendMessage:paramInfo
+                               replyHandler:^(NSDictionary *replyHandler) {
+                                   
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       
+                                       if (replyHandler) {
+                                           NSDictionary *results = replyHandler;
+                                           
+                                           if (handler) {
+                                               handler(results);
+                                           }
+                                       }
+                                   });
+                               }
+                               errorHandler:^(NSError *error) {
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       NSLog(@"error:%@",error);
+                                   });
+                               }
+     ];
+    
+}
+
+- (void)sendMessageYear:(NSString *)year month:(NSString *)month replyHandler:(void(^)(NSDictionary *))handler {
+    
+    NSLog(@"isReachable:[%d]", [[WCSession defaultSession] isReachable]);
+    
+    if (![[WCSession defaultSession] isReachable]) {
+        if (handler) {
+            handler(nil);
+        }
+        return;
+    }
+
+    //make param
+    NSDictionary *paramInfo = @{@"watchapp":@{@"command":@"fetch_year_month",
+                                              @"param":@{@"year":year,
+                                                         @"month":month}}};
+    
+    [[WCSession defaultSession] sendMessage:paramInfo
+                               replyHandler:^(NSDictionary *replyHandler) {
+                                   
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       
+                                       if (replyHandler) {
+                                           NSDictionary *results = replyHandler;
+                                           
+                                           if (handler) {
                                                handler(results);
                                            }
                                        }
@@ -160,7 +244,7 @@
         NSLog(@"%s: %@", __func__, message);
     });
     
-    replyHandler(@{@"reply" : @"OK"});
+//    replyHandler(@{@"reply" : @"OK"});
 }
 
 @end
