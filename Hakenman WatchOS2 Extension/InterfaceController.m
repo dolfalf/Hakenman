@@ -11,7 +11,6 @@
 #import "NSDate+Helper.h"
 #import "WatchUtil.h"
 #import "NSUserDefaults+Setting.h"
-
 #import "HKMConnectivityManager.h"
 
 @interface InterfaceController()
@@ -40,6 +39,8 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
     
+    [[HKMConnectivityManager sharedInstance] sessionConnect];
+    
     [self loadTableData];
 }
 
@@ -59,6 +60,22 @@
     NSDictionary *current_items = [self currentMonthSummaryItems];
     [_dataSource addObject:current_items];
 #endif
+
+    [self loadSheetData:@selector(sheetDataFinished:)];
+}
+
+- (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSDictionary *dict = [_dataSource objectAtIndex:rowIndex];
+    
+    NSString *selected_date = [NSString stringWithFormat:@"%@", dict[@"t_yyyymm"]];
+    [self pushControllerWithName:@"DetailInterfaceController" context:selected_date];
+}
+
+#pragma mark - private methods
+
+- (void)loadSheetData:(SEL)handler {
     
     //サマリーからデータを持ってくる
     HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
@@ -80,64 +97,61 @@
                                   
                                   NSArray *result_item = results[@"data"];
                                   
+                                  NSMutableArray *work_items = [NSMutableArray new];
+                                  
                                   for (int s=0; s<result_item.count; s++) {
                                       
                                       NSDictionary *summary_dict = result_item[s];
                                       
-                                      [_dataSource addObject:@{@"workTime":summary_dict[@"workTime"],
+                                      [work_items addObject:@{@"workTime":summary_dict[@"workTime"],
                                                                @"workdays":summary_dict[@"workdays"],
                                                                @"summary_type":@(1),
                                                                @"t_yyyymm":summary_dict[@"t_yyyymm"],
                                                                @"remark":@""}];
                                   }
                                   
-                                  [_monthlyWorkTable setNumberOfRows:_dataSource.count withRowType:@"MonthlyTableRow"];
+                                  [self performSelectorOnMainThread:handler withObject:work_items waitUntilDone:NO];
                                   
-                                  if (_dataSource == nil || _dataSource.count == 0) {
-                                      [_monthlyWorkTable setHidden:YES];
-                                      [_nodataLabel setHidden:NO];
-                                      [_nodataLabel setText:LOCALIZE(@"Watch_Top_Nodata_Message")];
-                                      return;
-                                  }else {
-                                      [_monthlyWorkTable setHidden:NO];
-                                      [_nodataLabel setHidden:YES];
-                                      [_nodataLabel setText:LOCALIZE(@"")];
-                                  }
-                                  
-                                  for (int idx=0;idx<_dataSource.count;idx++) {
-                                      
-                                      NSDictionary *dict = _dataSource[idx];
-                                      
-                                      MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
-                                      
-                                      NSString *yearString = [[dict[@"t_yyyymm"] stringValue] substringWithRange:NSMakeRange(0, 4)];
-                                      NSString *monthString = [[dict[@"t_yyyymm"] stringValue] substringWithRange:NSMakeRange(4, 2)];
-                                      
-                                      [row.yearLabel setText:yearString];
-                                      [row.monthLabel setText:monthString];
-                                      [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [dict[@"workTime"] intValue]]];
-                                      [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [dict[@"workdays"] intValue]]];
-                                      
-                                      //title
-                                      [row.workTimeTitleLabel setText:LOCALIZE(@"Watch_Top_Worktime_Title")];
-                                      [row.workDayTitleLabel setText:LOCALIZE(@"Watch_Top_Workday_Title")];
-                                  }
-    }];
-
-    
-    
+                              }];
 }
 
-- (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
-    NSLog(@"%s", __FUNCTION__);
+- (void)sheetDataFinished:(NSArray *)items {
     
-    NSDictionary *dict = [_dataSource objectAtIndex:rowIndex];
+    self.dataSource = [[NSMutableArray alloc] initWithArray:items];
     
-    NSString *selected_date = [NSString stringWithFormat:@"%@", dict[@"t_yyyymm"]];
-    [self pushControllerWithName:@"DetailInterfaceController" context:selected_date];
+    [_monthlyWorkTable setNumberOfRows:_dataSource.count withRowType:@"MonthlyTableRow"];
+    
+    if (_dataSource == nil || _dataSource.count == 0) {
+        [_monthlyWorkTable setHidden:YES];
+        [_nodataLabel setHidden:NO];
+        [_nodataLabel setText:LOCALIZE(@"Watch_Top_Nodata_Message")];
+        return;
+    }else {
+        [_monthlyWorkTable setHidden:NO];
+        [_nodataLabel setHidden:YES];
+        [_nodataLabel setText:LOCALIZE(@"")];
+    }
+    
+    for (int idx=0;idx<_dataSource.count;idx++) {
+        
+        NSDictionary *dict = _dataSource[idx];
+        
+        MonthlyWorkTableRowController *row = [_monthlyWorkTable rowControllerAtIndex:idx];
+        
+        NSString *yearString = [[dict[@"t_yyyymm"] stringValue] substringWithRange:NSMakeRange(0, 4)];
+        NSString *monthString = [[dict[@"t_yyyymm"] stringValue] substringWithRange:NSMakeRange(4, 2)];
+        
+        [row.yearLabel setText:yearString];
+        [row.monthLabel setText:monthString];
+        [row.workTimeLabel setText:[NSString stringWithFormat:@"%d Hour.", [dict[@"workTime"] intValue]]];
+        [row.workDayLabel setText:[NSString stringWithFormat:@"%d Days.", [dict[@"workdays"] intValue]]];
+        
+        //title
+        [row.workTimeTitleLabel setText:LOCALIZE(@"Watch_Top_Worktime_Title")];
+        [row.workDayTitleLabel setText:LOCALIZE(@"Watch_Top_Workday_Title")];
+    }
 }
 
-#pragma mark - private methods
 #if 0
 - (NSDictionary *)currentMonthSummaryItems {
     

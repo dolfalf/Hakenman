@@ -12,7 +12,6 @@
 #import "WatchUtil.h"
 #import "UIColor+Helper.h"
 #import "NSUserDefaults+Setting.h"
-
 #import "HKMConnectivityManager.h"
 
 #define SET_DOT_GRAPH_CELL(obj, no, sz, col)    \
@@ -73,8 +72,7 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
     
-    HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
-    [mgr sessionConnect];
+    [[HKMConnectivityManager sharedInstance] sessionConnect];
     
     [self loadScreenData];
     

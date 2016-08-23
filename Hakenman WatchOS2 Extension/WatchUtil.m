@@ -17,57 +17,6 @@
     return [[WKInterfaceDevice currentDevice].systemVersion floatValue] * 1000;
 }
 
-+ (float)totalWorkTime:(NSString *)yyyymm {
-    
-    return 0;
-#if 0
-    float display_total_time = 0;
-    
-    if (yyyymm == nil || yyyymm.length != 6) {
-        return display_total_time;
-    }
-    ////TODO: 두군데에서 불리는데 이거 Util클래스에서 빼서 각각 화면으로 옮겨야함.
-    
-    HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
-    
-    [mgr sendMessageYear:[yyyymm substringWithRange:NSMakeRange(0, 4)]
-                   month:[yyyymm substringWithRange:NSMakeRange(4, 2)]
-            replyHandler:^(NSDictionary *results) {
-                
-                float display_total_time = 0;
-                
-                NSArray *items = results[@"data"];
-                
-                for (NSDictionary *tm in items) {
-                    
-                    NSDate *startTimeFromCore = [NSDate convDate2String:tm[@"start_time"]];
-                    NSDate *endTimeFromCore = [NSDate convDate2String:tm[@"end_time"]];
-                    
-                    float workTimeFromCore = [WatchUtil getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [tm[@"rest_time"] floatValue];
-                    
-                    if (tm[@"start_time"] == nil || [tm[@"start_time"] isEqualToString:@""] == YES
-                        || tm[@"end_time"] == nil || [tm[@"end_time"] isEqualToString:@""] == YES) {
-                        continue;
-                    }
-                    
-                    if ([tm[@"workday_flag"] boolValue] == NO) {
-                        workTimeFromCore = 0.f;
-                    }
-                    
-                    display_total_time = display_total_time + workTimeFromCore;
-                }
-        
-        
-//        return display_total_time;
-    }];
-    
-    
-#endif
-    
-    
-    
-}
-
 + (NSString *)weekdayString:(int)weekday {
     //1 = Sunday, 2 = Monday, etc.
     
