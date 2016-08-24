@@ -28,8 +28,8 @@
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *monthlyWorkTimeTitleLabel;
 @property (nonatomic, weak) IBOutlet WKInterfaceLabel *monthlyWorkTimeLabel;
 
-@property (nonatomic, weak) IBOutlet WKInterfaceLabel *workStartTitleLabel;
-@property (nonatomic, weak) IBOutlet WKInterfaceLabel *workStartLabel;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *workDayTitleLabel;
+@property (nonatomic, weak) IBOutlet WKInterfaceLabel *workDayLabel;
 
 @property (nonatomic, weak) IBOutlet WKInterfaceImage *graphImage;
 
@@ -45,26 +45,33 @@
 @property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_6;
 @property (nonatomic, strong) IBOutlet WKInterfaceLabel *dotCell_7;
 
-@property (nonatomic, strong) NSString *remainTimeString;    //출근시간까지 남은시간
+//@property (nonatomic, strong) NSString *remainTimeString;    //출근시간까지 남은시간
+
+#if 0
 @property (nonatomic, assign) NSTimer *loadTimer;
+#endif
+
 @end
 
 
 @implementation GlanceController
 
 #pragma setter
+
+#if 0
 - (void)setLoadTimer:(NSTimer *)newTimer {
     [_loadTimer invalidate];
     _loadTimer = newTimer;
 }
+#endif
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
 
     // Configure interface objects here.
-    self.remainTimeString = @"- ";
+//    self.remainTimeString = @"- ";
     [self.monthlyWorkTimeTitleLabel setText:LOCALIZE(@"Watch_Glance_Time_Title")];
-    [self.workStartTitleLabel setText:LOCALIZE(@"Watch_Glance_Minute_Title")];
+    [self.workDayTitleLabel setText:LOCALIZE(@"Watch_Glance_Day_Title")];
     
 }
 
@@ -77,23 +84,30 @@
     [self loadScreenData];
     
     //最初は直接に実行する
-    [self updateRemainTime];
+//    [self updateRemainTime];
     
+    //그래프가 깜박거리고 그러지지 않아서 타이머 삭제
+#if 0
     //出勤時間チェック開始
     [self startLoadTimer];
+#endif
+    
 }
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
-    
+
+#if 0
     self.loadTimer = nil;
+#endif
     
 }
 
+#if 0
 #pragma mark - timer
 - (void)startLoadTimer {
-    
+
     if (_loadTimer != nil) {
         return;
     }
@@ -104,40 +118,41 @@
                                                     userInfo:nil
                                                      repeats:YES];
 }
+#endif
 
 #pragma mark - private methods
-- (void)updateRemainTime {
-    
-    //今日の日付から
-    NSDate *current_time = [NSDate date];
-    NSInteger calc_minute = 0;
-        
-    //出勤時間までの時間を計算
-    NSArray *timeArray = [[NSUserDefaults workStartTimeForWatch] componentsSeparatedByString:@":"];
-    NSDate *workStartTime = [current_time getTimeOfMonth:[timeArray[0] intValue]
-                                                  mimute:[timeArray[1] intValue]];
-    
-    NSTimeInterval t = [current_time timeIntervalSinceDate:workStartTime];
-    calc_minute = (int)(t / 60);
-    
-    NSLog(@"calc_minute:%ld",(long)calc_minute);
-    
-    //表示対象外
-    if (calc_minute < -120 || calc_minute > 0) {
-        self.remainTimeString = @"- ";
-        return;
-    }
-    
-    //休日の場合
-    if ([current_time getWeekday] == weekSatDay || [current_time getWeekday] == weekSunday) {
-        self.remainTimeString = @"- ";
-        return;
-    }
-    
-    self.remainTimeString = [NSString stringWithFormat:@"%d", (int)calc_minute*-1];
-    
-    [self loadScreenData];
-}
+//- (void)updateRemainTime {
+//    
+//    //今日の日付から
+//    NSDate *current_time = [NSDate date];
+//    NSInteger calc_minute = 0;
+//        
+//    //出勤時間までの時間を計算
+//    NSArray *timeArray = [[NSUserDefaults workStartTimeForWatch] componentsSeparatedByString:@":"];
+//    NSDate *workStartTime = [current_time getTimeOfMonth:[timeArray[0] intValue]
+//                                                  mimute:[timeArray[1] intValue]];
+//    
+//    NSTimeInterval t = [current_time timeIntervalSinceDate:workStartTime];
+//    calc_minute = (int)(t / 60);
+//    
+//    NSLog(@"calc_minute:%ld",(long)calc_minute);
+//    
+//    //表示対象外
+//    if (calc_minute < -120 || calc_minute > 0) {
+//        self.remainTimeString = @"- ";
+//        return;
+//    }
+//    
+//    //休日の場合
+//    if ([current_time getWeekday] == weekSatDay || [current_time getWeekday] == weekSunday) {
+//        self.remainTimeString = @"- ";
+//        return;
+//    }
+//    
+//    self.remainTimeString = [NSString stringWithFormat:@"%d", (int)calc_minute*-1];
+//    
+//    [self loadScreenData];
+//}
 
 - (void)loadScreenData {
     
@@ -199,28 +214,38 @@
                 
                 [_monthlyWorkTimeLabel setAttributedText:attrTimeString];
                 
-                NSString *work_remain_time = _remainTimeString;
-                NSString *work_min_unit = LOCALIZE(@"Watch_Glance_Minute_Unit");
+            }];
+    
+    
+    
+    [mgr sendMessageWorkDayYear:[yyyymm substringWithRange:NSMakeRange(0, 4)]
+                          month:[yyyymm substringWithRange:NSMakeRange(4, 2)]
+                   replyHandler:^(NSDictionary *results) {
                 
-                NSMutableAttributedString *attrMinuteString = [[NSMutableAttributedString alloc] initWithString:
-                                                               [NSString stringWithFormat:@"%@%@", work_remain_time, work_min_unit]];
+                       NSNumber *workDayCount = results[@"data"];
+                       
+                       NSString *work_day_unit = LOCALIZE(@"Watch_Glance_Day_Unit");
+                       NSString *work_day_count = [NSString stringWithFormat:@"%ld", (long)[workDayCount integerValue]];
                 
-                [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
-                                         range:NSMakeRange(0, work_remain_time.length)];
+                       NSMutableAttributedString *attrMinuteString = [[NSMutableAttributedString alloc] initWithString:
+                                                                      [NSString stringWithFormat:@"%@%@", work_day_count, work_day_unit]];
                 
-                [attrMinuteString addAttribute:NSForegroundColorAttributeName
-                                         value:[UIColor whiteColor]
-                                         range:NSMakeRange(0, work_remain_time.length)];
+                       [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20.f]
+                                         range:NSMakeRange(0, work_day_count.length)];
+                
+                       [attrMinuteString addAttribute:NSForegroundColorAttributeName
+                                                value:[UIColor whiteColor]
+                                                range:NSMakeRange(0, work_day_count.length)];
                 
                 
-                [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
-                                         range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
+                       [attrMinuteString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10.f]
+                                                range:NSMakeRange(work_day_count.length, work_day_unit.length)];
+                       
+                       [attrMinuteString addAttribute:NSForegroundColorAttributeName
+                                                value:[UIColor whiteColor]
+                                                range:NSMakeRange(work_day_count.length, work_day_unit.length)];
                 
-                [attrMinuteString addAttribute:NSForegroundColorAttributeName
-                                         value:[UIColor whiteColor]
-                                         range:NSMakeRange(work_remain_time.length, work_min_unit.length)];
-                
-                [_workStartLabel setAttributedText:attrMinuteString];
+                [_workDayLabel setAttributedText:attrMinuteString];
                 
             }];
     

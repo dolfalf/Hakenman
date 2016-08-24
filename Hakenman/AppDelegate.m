@@ -240,5 +240,15 @@
         
         return;
     }
+    else if ([command isEqualToString:@"fetch_work_day"]) {
+        
+        TimeCardDao *dao = [TimeCardDao new];
+        NSInteger workDayCount = [dao fetchModelWorkDayYear:[params[@"year"] intValue]
+                                                      month:[params[@"month"] intValue]];
+        
+        replyHandler(@{@"data":@(workDayCount)});
+        
+        return;
+    }
 }
 @end

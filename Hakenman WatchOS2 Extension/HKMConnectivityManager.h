@@ -18,4 +18,5 @@
 - (void)sendMessageTimeCardModel:(void(^)(NSDictionary *))handler;
 - (void)sendMessageGraphDate:(NSString *)dateString replyHandler:(void(^)(NSDictionary *))handler;
 - (void)sendMessageYear:(NSString *)year month:(NSString *)month replyHandler:(void(^)(NSDictionary *))handler;
+- (void)sendMessageWorkDayYear:(NSString *)year month:(NSString *)month replyHandler:(void(^)(NSDictionary *))handler;
 @end

@@ -204,9 +204,9 @@
 "Watch_Top_Workday_Title"    = "日数";
 
 "Watch_Glance_Time_Title"        = "今月の勤務時間";
-"Watch_Glance_Minute_Title"      = "出勤時間まで、";
+"Watch_Glance_Day_Title"        = "今月の勤務日";
 "Watch_Glance_Time_Unit"        = "時間";
-"Watch_Glance_Minute_Unit"      = "分前";
+"Watch_Glance_Day_Unit"         = "日";
 
 "Watch_Top_Nodata_Message"  = "データが存在しません。";
 "Watch_Detail_Day_Title"    = "月の勤務時間:";

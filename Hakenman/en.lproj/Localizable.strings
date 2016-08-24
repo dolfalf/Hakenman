@@ -206,9 +206,9 @@
 "Watch_Top_Workday_Title"    = "Days";
 
 "Watch_Glance_Time_Title"        = "This month's WH.";
-"Watch_Glance_Minute_Title"      = "Start WT.";
+"Watch_Glance_Day_Title"        = "This month's WD.";
 "Watch_Glance_Time_Unit"        = "Hour";
-"Watch_Glance_Minute_Unit"      = "min";
+"Watch_Glance_Day_Unit"      = "Day";
 
 "Watch_Top_Nodata_Message"  = "Working data does not exist.";
 "Watch_Detail_Day_Title"      = "Total WT:";

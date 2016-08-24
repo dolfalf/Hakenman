@@ -1398,7 +1398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 arm64 armv7s";
+				VALID_ARCHS = "armv7 arm64";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1431,7 +1431,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 arm64 armv7s";
+				VALID_ARCHS = "armv7 arm64";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};

@@ -263,8 +263,8 @@
                         <outlet property="monthlyWorkTimeLabel" destination="gw8-Cn-6ff" id="Nxo-yR-Esg"/>
                         <outlet property="monthlyWorkTimeTitleLabel" destination="udQ-FO-Dwg" id="qjr-Ng-7HA"/>
                         <outlet property="titleLabel" destination="kLl-Dx-aU8" id="1uo-Fb-pBC"/>
-                        <outlet property="workStartLabel" destination="pDS-49-OtU" id="cgb-Xb-Smz"/>
-                        <outlet property="workStartTitleLabel" destination="SDA-J9-sRm" id="GwC-PK-mOC"/>
+                        <outlet property="workDayLabel" destination="pDS-49-OtU" id="SEC-pO-Ime"/>
+                        <outlet property="workDayTitleLabel" destination="SDA-J9-sRm" id="kdY-0e-Xvw"/>
                     </connections>
                 </glanceController>
             </objects>

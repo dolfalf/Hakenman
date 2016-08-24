@@ -205,6 +205,45 @@
     
 }
 
+- (void)sendMessageWorkDayYear:(NSString *)year month:(NSString *)month replyHandler:(void(^)(NSDictionary *))handler {
+    
+    NSLog(@"isReachable:[%d]", [[WCSession defaultSession] isReachable]);
+    
+    if (![[WCSession defaultSession] isReachable]) {
+        if (handler) {
+            handler(nil);
+        }
+        return;
+    }
+    
+    //make param
+    NSDictionary *paramInfo = @{@"watchapp":@{@"command":@"fetch_work_day",
+                                              @"param":@{@"year":year,
+                                                         @"month":month}}};
+    
+    [[WCSession defaultSession] sendMessage:paramInfo
+                               replyHandler:^(NSDictionary *replyHandler) {
+                                   
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       
+                                       if (replyHandler) {
+                                           NSDictionary *results = replyHandler;
+                                           
+                                           if (handler) {
+                                               handler(results);
+                                           }
+                                       }
+                                   });
+                               }
+                               errorHandler:^(NSError *error) {
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       NSLog(@"error:%@",error);
+                                   });
+                               }
+     ];
+    
+}
+
 #pragma mark - WCSessionDelegate
 - (void)sessionWatchStateDidChange:(WCSession *)session
 {
