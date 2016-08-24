@@ -108,12 +108,6 @@
 		BB9E96B91D6313C1009E2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E96B81D6313C1009E2985 /* Assets.xcassets */; };
 		BB9E96BD1D6313C1009E2985 /* Hakenman WatchOS2.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */; };
 		BB9E96DC1D631507009E2985 /* DailyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96C61D631507009E2985 /* DailyWorkTableRowController.m */; };
-		BB9E96DD1D631507009E2985 /* DBManagerForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96C91D631507009E2985 /* DBManagerForWatch.m */; };
-		BB9E96DE1D631507009E2985 /* FileDataDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96CB1D631507009E2985 /* FileDataDaoForWatch.m */; };
-		BB9E96DF1D631507009E2985 /* MailContentsDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96CD1D631507009E2985 /* MailContentsDaoForWatch.m */; };
-		BB9E96E01D631507009E2985 /* ModelDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96CF1D631507009E2985 /* ModelDaoForWatch.m */; };
-		BB9E96E11D631507009E2985 /* TimeCardDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D11D631507009E2985 /* TimeCardDaoForWatch.m */; };
-		BB9E96E21D631507009E2985 /* TimeCardSummaryDaoForWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D31D631507009E2985 /* TimeCardSummaryDaoForWatch.m */; };
 		BB9E96E31D631507009E2985 /* DetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D51D631507009E2985 /* DetailInterfaceController.m */; };
 		BB9E96E41D631507009E2985 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D71D631507009E2985 /* GlanceController.m */; };
 		BB9E96E51D631507009E2985 /* MonthlyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */; };
@@ -344,18 +338,6 @@
 		BB9E96BA1D6313C1009E2985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB9E96C51D631507009E2985 /* DailyWorkTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyWorkTableRowController.h; sourceTree = "<group>"; };
 		BB9E96C61D631507009E2985 /* DailyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyWorkTableRowController.m; sourceTree = "<group>"; };
-		BB9E96C81D631507009E2985 /* DBManagerForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManagerForWatch.h; sourceTree = "<group>"; };
-		BB9E96C91D631507009E2985 /* DBManagerForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManagerForWatch.m; sourceTree = "<group>"; };
-		BB9E96CA1D631507009E2985 /* FileDataDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDataDaoForWatch.h; sourceTree = "<group>"; };
-		BB9E96CB1D631507009E2985 /* FileDataDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDataDaoForWatch.m; sourceTree = "<group>"; };
-		BB9E96CC1D631507009E2985 /* MailContentsDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailContentsDaoForWatch.h; sourceTree = "<group>"; };
-		BB9E96CD1D631507009E2985 /* MailContentsDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailContentsDaoForWatch.m; sourceTree = "<group>"; };
-		BB9E96CE1D631507009E2985 /* ModelDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDaoForWatch.h; sourceTree = "<group>"; };
-		BB9E96CF1D631507009E2985 /* ModelDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDaoForWatch.m; sourceTree = "<group>"; };
-		BB9E96D01D631507009E2985 /* TimeCardDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCardDaoForWatch.h; sourceTree = "<group>"; };
-		BB9E96D11D631507009E2985 /* TimeCardDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCardDaoForWatch.m; sourceTree = "<group>"; };
-		BB9E96D21D631507009E2985 /* TimeCardSummaryDaoForWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCardSummaryDaoForWatch.h; sourceTree = "<group>"; };
-		BB9E96D31D631507009E2985 /* TimeCardSummaryDaoForWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCardSummaryDaoForWatch.m; sourceTree = "<group>"; };
 		BB9E96D41D631507009E2985 /* DetailInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInterfaceController.h; sourceTree = "<group>"; };
 		BB9E96D51D631507009E2985 /* DetailInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInterfaceController.m; sourceTree = "<group>"; };
 		BB9E96D61D631507009E2985 /* GlanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
@@ -782,7 +764,6 @@
 		BB9E96AC1D6313C1009E2985 /* Hakenman WatchOS2 Extension */ = {
 			isa = PBXGroup;
 			children = (
-				BB9E96C71D631507009E2985 /* dao */,
 				BB9E96B21D6313C1009E2985 /* ExtensionDelegate.h */,
 				BB9E96B31D6313C1009E2985 /* ExtensionDelegate.m */,
 				BB9E96D61D631507009E2985 /* GlanceController.h */,
@@ -814,25 +795,6 @@
 				BB9E96AE1D6313C1009E2985 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BB9E96C71D631507009E2985 /* dao */ = {
-			isa = PBXGroup;
-			children = (
-				BB9E96C81D631507009E2985 /* DBManagerForWatch.h */,
-				BB9E96C91D631507009E2985 /* DBManagerForWatch.m */,
-				BB9E96CA1D631507009E2985 /* FileDataDaoForWatch.h */,
-				BB9E96CB1D631507009E2985 /* FileDataDaoForWatch.m */,
-				BB9E96CC1D631507009E2985 /* MailContentsDaoForWatch.h */,
-				BB9E96CD1D631507009E2985 /* MailContentsDaoForWatch.m */,
-				BB9E96CE1D631507009E2985 /* ModelDaoForWatch.h */,
-				BB9E96CF1D631507009E2985 /* ModelDaoForWatch.m */,
-				BB9E96D01D631507009E2985 /* TimeCardDaoForWatch.h */,
-				BB9E96D11D631507009E2985 /* TimeCardDaoForWatch.m */,
-				BB9E96D21D631507009E2985 /* TimeCardSummaryDaoForWatch.h */,
-				BB9E96D31D631507009E2985 /* TimeCardSummaryDaoForWatch.m */,
-			);
-			path = dao;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1262,19 +1224,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBCCB7321D672059002CCA42 /* NSUserDefaults+Setting.m in Sources */,
-				BB9E96E01D631507009E2985 /* ModelDaoForWatch.m in Sources */,
 				BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */,
 				BB9E96E51D631507009E2985 /* MonthlyWorkTableRowController.m in Sources */,
 				BB9E96E31D631507009E2985 /* DetailInterfaceController.m in Sources */,
 				BB74DB921D65B66C00194D9A /* NSDate+Helper.m in Sources */,
-				BB9E96E11D631507009E2985 /* TimeCardDaoForWatch.m in Sources */,
 				BB9E96B41D6313C1009E2985 /* ExtensionDelegate.m in Sources */,
 				BB9E96E61D631507009E2985 /* WatchUtil.m in Sources */,
-				BB9E96DD1D631507009E2985 /* DBManagerForWatch.m in Sources */,
-				BB9E96DE1D631507009E2985 /* FileDataDaoForWatch.m in Sources */,
-				BB9E96DF1D631507009E2985 /* MailContentsDaoForWatch.m in Sources */,
 				BBCCB7311D67202C002CCA42 /* UIColor+Helper.m in Sources */,
-				BB9E96E21D631507009E2985 /* TimeCardSummaryDaoForWatch.m in Sources */,
 				BB9E96B11D6313C1009E2985 /* InterfaceController.m in Sources */,
 				BB9E96DC1D631507009E2985 /* DailyWorkTableRowController.m in Sources */,
 				BB9E96B71D6313C1009E2985 /* NotificationController.m in Sources */,
@@ -1419,10 +1375,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
@@ -1445,7 +1398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1455,10 +1408,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4862F26B893A7AF388C62F3 /* Pods-Hakenman.release.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
@@ -1481,7 +1431,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};

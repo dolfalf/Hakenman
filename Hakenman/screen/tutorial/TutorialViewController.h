@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 kjcode. All rights reserved.
 //
 
-#import "IFTTTJazzHands.h"
+#import <JazzHands/IFTTTJazzHands.h>
 
 @interface TutorialViewController : IFTTTAnimatedScrollViewController <IFTTTAnimatedScrollViewControllerDelegate>
 

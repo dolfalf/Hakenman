@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
     <scenes>
         <!--InterfaceController-->
@@ -54,7 +54,7 @@
                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             </group>
                                                             <label width="0.59999999999999998" height="1" alignment="left" text="-" textAlignment="right" id="Zql-hV-rcv">
-                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                                <fontDescription key="font" type="system" pointSize="10"/>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -72,7 +72,7 @@
                                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             </group>
                                                             <label width="0.59999999999999998" height="1" alignment="left" text="-" textAlignment="right" id="rfZ-Pb-SrD">
-                                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                                <fontDescription key="font" type="system" pointSize="10"/>
                                                             </label>
                                                         </items>
                                                     </group>
@@ -121,10 +121,10 @@
                                             <group width="0.20000000000000001" height="1" alignment="left" layout="vertical" id="B0t-Tx-ejh">
                                                 <items>
                                                     <label width="1" height="0.40000000000000002" alignment="left" text="-" textAlignment="center" id="Utu-Dj-NaM">
-                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="12"/>
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="11"/>
                                                     </label>
                                                     <label width="1" height="0.59999999999999998" alignment="left" text="-" textAlignment="center" id="kUj-LX-TSJ">
-                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="13"/>
                                                     </label>
                                                 </items>
                                             </group>
