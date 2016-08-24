@@ -15,7 +15,8 @@ target 'Hakenman' do
   pod 'DJWActionSheet', '~> 1.0'
   pod 'RDVCalendarView'
   pod 'SVProgressHUD'
-
+  pod 'Appirater'
+  
   target 'HakenmanTests' do
     inherit! :search_paths
     # Pods for testing

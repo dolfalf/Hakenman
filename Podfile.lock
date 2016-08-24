@@ -1,4 +1,5 @@
 PODS:
+  - Appirater (2.0.5)
   - DJWActionSheet (1.0.4)
   - JazzHands (0.2.1)
   - PBFlatUI (1.1.0)
@@ -11,6 +12,7 @@ PODS:
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
+  - Appirater
   - DJWActionSheet (~> 1.0)
   - JazzHands (~> 0.1)
   - PBFlatUI (~> 1.1.0)
@@ -19,6 +21,7 @@ DEPENDENCIES:
   - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   DJWActionSheet: 2fe54b1298a7f0fe44462233752c76a530e0cd80
   JazzHands: d2343c3f2f9d70598d0cad8f521ce3893842a44a
   PBFlatUI: d797c6de1d28245287d695d74178dc75895d0bd9
@@ -28,6 +31,6 @@ SPEC CHECKSUMS:
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: d4f3d2e8acd7856f7af669e8bc640ef8e65f845c
+PODFILE CHECKSUM: cdd6980a0e78d113da02c39aab6d54fdfba23ba9
 
 COCOAPODS: 1.0.1

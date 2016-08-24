@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C22AEFD19C1D6FA004196EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AEFA19C1D6FA004196EC /* Parse.framework */; };
 		1C22AF0019C1D74A004196EC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AEFF19C1D74A004196EC /* AudioToolbox.framework */; };
 		1C22AF0219C1D755004196EC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0119C1D755004196EC /* CFNetwork.framework */; };
 		1C22AF0419C1D764004196EC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C22AF0319C1D763004196EC /* CoreLocation.framework */; };
@@ -90,7 +89,6 @@
 		3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3CC18DD75310062B07A /* KJViewController.m */; };
 		3BC0E3E018DD75FD0062B07A /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC0E3DC18DD75FD0062B07A /* TopViewController.m */; };
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
-		3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC90F3D1A87BA5C008A42BF /* iAd.framework */; };
 		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; };
 		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
 		A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02519AC5BA12ADECAA47C7E0 /* Pods_HakenmanTests.framework */; };
@@ -360,7 +358,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DC90F3E1A87BA5C008A42BF /* iAd.framework in Frameworks */,
 				1C3442F01A0F439800367BF4 /* StoreKit.framework in Frameworks */,
 				1C9BAAAD19C1E6D30076A79C /* Accounts.framework in Frameworks */,
 				1C9BAAAB19C1E69C0076A79C /* Bolts.framework in Frameworks */,
@@ -373,7 +370,6 @@
 				1C22AF0219C1D755004196EC /* CFNetwork.framework in Frameworks */,
 				1C22AF0019C1D74A004196EC /* AudioToolbox.framework in Frameworks */,
 				1CA7EF991967F1BD001772C9 /* QuartzCore.framework in Frameworks */,
-				1C22AEFD19C1D6FA004196EC /* Parse.framework in Frameworks */,
 				1CF2D6FB1964D1240062B0C1 /* MessageUI.framework in Frameworks */,
 				3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */,
 				3B469F9E18B89D3A0095C418 /* CoreGraphics.framework in Frameworks */,

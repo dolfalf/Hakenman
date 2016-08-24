@@ -14,7 +14,12 @@
 #import "TimeCardSummary+NSDictionary.h"
 #import "TimeCard+NSDictionary.h"
 
+#import <Appirater/Appirater.h>
+
+//Parse削除
+#ifdef PARSE_ENABLE
 #import <Parse/Parse.h>
+#endif
 
 @implementation AppDelegate
 
@@ -24,21 +29,26 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [UIApplication sharedApplication].statusBarHidden = NO;
 
-    
+
+#ifdef PARSE_ENABLE
     //TODO: Parseへrelease用認定証を登録する必要がある。
     //parseによるNotification登録
     [Parse setApplicationId:@"tXDVIqH5a5N9TPCJsIPmfJdW0HQDwBD46GN9Xdjv"
                   clientKey:@"u4O54cwrZHTIxrL2cn67T3hzXV0lmFHVq6mrqQac"];
+#endif
     
     
     //ja_JP
     NSLog(@"localeIdentifier: %@", [[NSLocale currentLocale] localeIdentifier]);
     
+#ifdef PARSE_ENABLE
     //言語別Notificationを通知するため
     PFInstallation *installation = [PFInstallation currentInstallation];
     [installation setObject:[[NSLocale currentLocale] localeIdentifier] forKey:@"locale"];
     [installation saveInBackground];
-
+#endif
+    
+    
     //iOS8 Notification対応
     //参照：
     // http://corinnekrych.blogspot.jp/2014/07/how-to-support-push-notification-for.html
@@ -70,6 +80,26 @@
     [gai trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
 #endif
 
+#if 0
+    //debug code.
+    [Appirater setAppId:@"904564831"];
+    [Appirater setDaysUntilPrompt:1];
+    [Appirater setUsesUntilPrompt:10];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:YES];
+#else
+    //release code.
+    [Appirater setAppId:@"904564831"];
+    [Appirater setDaysUntilPrompt:7];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
+#endif
+    
+    [Appirater appLaunched:YES];
+    
     //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
     if ([WCSession isSupported]) {
         WCSession *session = [WCSession defaultSession];
@@ -98,6 +128,8 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
+    [Appirater appEnteredForeground:YES];
+    
     //MARK: TimeCardSummaryを更新する
     [[TimeCardSummaryDao new] updateTimeCardSummaryTableAll];
 }
@@ -121,15 +153,19 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+#ifdef PARSE_ENABLE
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
+#endif
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
+#ifdef PARSE_ENABLE
     [PFPush handlePush:userInfo];
+#endif
+
 }
 
 #pragma mark - migration helper methods
