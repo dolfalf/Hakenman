@@ -118,8 +118,8 @@ enum {
         textCell.textField.font = [UIFont nanumFontOfSize:textCell.textField.font.pointSize];
     }
     
-    HKM_INIT_LABLE(cell.textLabel, HKMFontTypeNanum, cell.textLabel.font.pointSize-1.f);
-    HKM_INIT_LABLE(cell.detailTextLabel, HKMFontTypeNanum, cell.detailTextLabel.font.pointSize-1.f);
+    HKM_INIT_LABLE(cell.textLabel, HKMFontTypeNanum, cell.textLabel.font.pointSize);
+    HKM_INIT_LABLE(cell.detailTextLabel, HKMFontTypeNanum, cell.detailTextLabel.font.pointSize);
     
 }
 

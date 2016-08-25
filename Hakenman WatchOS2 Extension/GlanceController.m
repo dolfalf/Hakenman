@@ -330,41 +330,42 @@
     
     //http://d.hatena.ne.jp/shu223/20150714/1436875676
     
-    // Create a graphics context
-    //fix size.
-    float g_width = size.width * 2.f;
-    float g_height = size.height * 2.f;
-    
-    float margin = 16.f;
-    
-    CGSize retina_size = CGSizeMake(g_width, g_height);
-    UIGraphicsBeginImageContext(retina_size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    //배경칠하기
-    CGContextBeginPath(context);
-    CGContextSetFillColorWithColor(context, [[UIColor HKMBlueColor] colorWithAlphaComponent:0.4f].CGColor);
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, g_width , g_height) cornerRadius:10.f];
-    [path fill];
-    CGContextFillPath(context);
-    
-    //배경선 그리기 가로줄 4개
-    
-    for (int b_line=0; b_line<4; b_line++) {
-        
-        float line_y = g_height/(4+1)*(b_line+1);
-        NSValue *start_pt = [NSValue valueWithCGPoint:CGPointMake(0 + margin, line_y)];
-        NSValue *end_pt = [NSValue valueWithCGPoint:CGPointMake(g_width - margin, line_y)];
-        
-        [self drawline:context lineWidth:0.5f
-                 color:[[UIColor whiteColor] colorWithAlphaComponent:0.2f]
-                points:@[start_pt, end_pt]];
-    }
-
     HKMConnectivityManager *mgr = [HKMConnectivityManager sharedInstance];
     
     NSDate *today = [NSDate date];
     [mgr sendMessageGraphDate:[today yyyyMMddHHmmssString] replyHandler:^(NSDictionary *results) {
+        
+        // Create a graphics context
+        //fix size.
+        float g_width = size.width * 2.f;
+        float g_height = size.height * 2.f;
+        
+        float margin = 16.f;
+        
+        CGSize retina_size = CGSizeMake(g_width, g_height);
+        UIGraphicsBeginImageContext(retina_size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        //배경칠하기
+        CGContextBeginPath(context);
+        CGContextSetFillColorWithColor(context, [[UIColor HKMBlueColor] colorWithAlphaComponent:0.4f].CGColor);
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, g_width , g_height) cornerRadius:10.f];
+        [path fill];
+        CGContextFillPath(context);
+        
+        //배경선 그리기 가로줄 4개
+        for (int b_line=0; b_line<4; b_line++) {
+            
+            float line_y = g_height/(4+1)*(b_line+1);
+            NSValue *start_pt = [NSValue valueWithCGPoint:CGPointMake(0 + margin, line_y)];
+            NSValue *end_pt = [NSValue valueWithCGPoint:CGPointMake(g_width - margin, line_y)];
+            
+            [self drawline:context lineWidth:0.5f
+                     color:[[UIColor whiteColor] colorWithAlphaComponent:0.2f]
+                    points:@[start_pt, end_pt]];
+        }
+        
+        
         NSArray *weekTimeCards = results[@"data"];
         
         //최대값 구함.
@@ -444,6 +445,7 @@
         UIGraphicsEndImageContext();
         
         [_graphImage setImage:uiimage];
+        
         
     }];
     
