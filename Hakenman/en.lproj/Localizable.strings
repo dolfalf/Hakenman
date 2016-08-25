@@ -46,8 +46,9 @@
 "TopViewController_actionsheet_start_work_write" = "start job at the current time.";
 "TopViewController_actionsheet_end_work_write" = "finish job at the current time.";
 
-"TopViewController_tablecell_message_title" = "After time to work,";
-"TopViewController_tablecell_countdown_unit" = "Min.";
+"TopViewController_tablecell_work_tile" = "This month work info.";
+"TopViewController_tablecell_workday_unit" = "Day";
+"TopViewController_tablecell_worktime_unit" = "Hour";
 
 "TopViewController_tablecell_total_work_time_title" = "Work times";
 "TopViewController_tablecell_total_work_day_title" = "Work days";

@@ -10,6 +10,7 @@
 #import "NSDate+Helper.h"
 #import "const.h"
 #import "NSUserDefaults+Setting.h"
+#import "Util.h"
 
 #define ENTITIY_NAME    @"TimeCard"
 
@@ -129,6 +130,47 @@
     }
     
     return 0;
+    
+}
+
+- (double)fetchModelWorkTimeYear:(NSInteger)year month:(NSInteger)month {
+    
+    self.fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [self.fetchRequest setEntity:entity];
+    
+    //sort
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"t_yyyymmdd" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [self.fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"t_year = %@ AND t_month = %@ AND workday_flag == %@", @(year), @(month), @(YES)];
+    [self.fetchRequest setPredicate:pred];
+    
+    NSArray *result_items = [self.managedObjectContext executeFetchRequest:self.fetchRequest error:nil];
+    
+    double total_work_time = 0;
+    
+    for (TimeCard *tm in result_items) {
+        
+        NSDate *startTimeFromCore = [NSDate convDate2String:tm.start_time];
+        NSDate *endTimeFromCore = [NSDate convDate2String:tm.end_time];
+        float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [tm.rest_time floatValue];
+        
+        if (tm.start_time == nil || [tm.start_time isEqualToString:@""] == YES
+            || tm.end_time == nil || [tm.end_time isEqualToString:@""] == YES) {
+            continue;
+        }
+        
+        if ([tm.workday_flag boolValue] == NO) {
+            workTimeFromCore = 0.f;
+        }
+        
+        total_work_time = total_work_time + workTimeFromCore;
+    }
+    
+    return total_work_time;
     
 }
 

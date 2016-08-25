@@ -17,7 +17,10 @@
 
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month;
 - (NSArray *)fetchModelYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
+
 - (NSInteger)fetchModelWorkDayYear:(NSInteger)year month:(NSInteger)month;
+- (double)fetchModelWorkTimeYear:(NSInteger)year month:(NSInteger)month;
+
 - (NSArray *)fetchModelForCSVWithYear:(NSInteger)year month:(NSInteger)month;
 - (NSArray *)fetchModelGraphDate:(NSDate *)dt;
 - (TimeCard *)fetchModelWorkDate:(NSDate *)dt;

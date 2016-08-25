@@ -45,8 +45,9 @@
 "TopViewController_actionsheet_start_work_write" = "現在時間で出勤";
 "TopViewController_actionsheet_end_work_write" = "現在時間で退勤";
 
-"TopViewController_tablecell_message_title" = "出勤時間まで後、";
-"TopViewController_tablecell_countdown_unit" = "分";
+"TopViewController_tablecell_work_tile" = "今月の勤務状況";
+"TopViewController_tablecell_workday_unit" = "Day";
+"TopViewController_tablecell_worktime_unit" = "Hour";
 
 "TopViewController_tablecell_total_work_time_title" = "勤務時間";
 "TopViewController_tablecell_total_work_day_title" = "勤務日数";

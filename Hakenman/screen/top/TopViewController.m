@@ -23,6 +23,7 @@
 #import "MonthWorkingCalendarViewController.h"
 
 //#define TOPVIEWCONTROLLER_MENU_HIDDEN
+//#define TIMER_ENABLE
 
 NS_ENUM(NSInteger, tableCellType) {
     tableCellTypeToday = 0,
@@ -49,7 +50,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, weak) TodayTableViewCell *todayCell;
 @property (nonatomic, strong) UIActionSheet *writeActionSheet;
+
+#if TIMER_ENABLE
+//タイマーは使わない。
 @property (nonatomic, assign) NSTimer *loadTimer;
+#endif
 
 @property (nonatomic, strong) UIAlertView *writeWorkStartAlert;
 @property (nonatomic, strong) UIAlertView *writeWorkEndAlert;
@@ -62,10 +67,12 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 @implementation TopViewController
 
 #pragma setter
+#if TIMER_ENABLE
 - (void)setLoadTimer:(NSTimer *)newTimer {
 	[_loadTimer invalidate];
 	_loadTimer = newTimer;
 }
+#endif
 
 #pragma mark - life cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -177,8 +184,10 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
+#if TIMER_ENABLE
     //出勤時間チェック開始
     [self startLoadTimer];
+#endif
     
     [super viewDidAppear:animated];
 }
@@ -188,9 +197,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     _menuBarButton.hidden = YES;
     _settingBarButton.hidden = YES;
     self.navigationController.toolbarHidden = YES;
-    
+#if TIMER_ENABLE
     self.loadTimer = nil;
-    
+#endif
     [super viewWillDisappear:animated];
 }
 
@@ -213,6 +222,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 }
 
 #pragma mark - timer 
+#if TIMER_ENABLE
 - (void)startLoadTimer {
     
     if (_loadTimer != nil) {
@@ -228,8 +238,10 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     //最初は直接に実行する
     [self updateWorkTime:nil];
 }
+#endif
 
 #pragma mark - callback method
+#if TIMER_ENABLE
 - (void)updateWorkTime:(NSTimer *)tm {
     
     DLog(@"%s",__FUNCTION__);
@@ -238,6 +250,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
         [_todayCell updateWorkTime];
     }
 }
+#endif
 
 #pragma mark - override method
 - (void)initControls {
@@ -268,9 +281,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     //toolbar
     //#issue31対応
     self.navigationController.toolbar.backgroundColor = [UIColor HKMDarkblueColor];
-    
+
+#if TIMER_ENABLE
     //出勤時間チェック開始
     [self startLoadTimer];
+#endif
     
 }
 
@@ -468,7 +483,13 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
         
         TimeCardDao *dao = [TimeCardDao new];
         NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate date]];
-        [cell updateCell:cellMessageTypeWorkStart graphItems:weekTimeCards];
+        
+        NSDate *today = [NSDate date];
+        NSInteger work_day = [dao fetchModelWorkDayYear:[today getYear] month:[today getMonth]];
+        double work_time = [dao fetchModelWorkTimeYear:[today getYear] month:[today getMonth]];
+        
+        [cell updateCell:work_time workday:work_day graphItems:weekTimeCards];
+        
         return cell;
         
     }else if(indexPath.row >= tableCellTypeMonth) {

@@ -8,13 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, cellMessageType) {
-    cellMessageTypeWorkStart,
-    cellMessageTypeWorkEnd,
-};
-
 @interface TodayTableViewCell : UITableViewCell
 
-- (void)updateCell:(cellMessageType)messageType graphItems:(NSArray *)items;
-- (void)updateWorkTime;
+- (void)updateCell:(double)worktime workday:(NSInteger)workday graphItems:(NSArray *)items;
 @end

@@ -45,8 +45,9 @@
 "TopViewController_actionsheet_start_work_write" = "현재 시각으로 출근";
 "TopViewController_actionsheet_end_work_write" = "현재 시각으로 퇴근";
 
-"TopViewController_tablecell_message_title" = "출근시간까지 ";
-"TopViewController_tablecell_countdown_unit" = "분 남음";
+"TopViewController_tablecell_work_tile" = "이번달 근무정보";
+"TopViewController_tablecell_workday_unit" = "Day";
+"TopViewController_tablecell_worktime_unit" = "Hour";
 
 "TopViewController_tablecell_total_work_time_title" = "근무시간";
 "TopViewController_tablecell_total_work_day_title" = "근무일수";
