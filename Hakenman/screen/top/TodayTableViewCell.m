@@ -93,13 +93,13 @@
     monthLabel.text = [NSString stringWithFormat:@"%02d",[today getMonth]];
     dayLabel.text = [NSString stringWithFormat:@"%02d",[today getDay]];
     weekLabel.text = [Util weekdayString:[today getWeekday]];
-    
+
     switch ([today getWeekday]) {
         case weekSatDay:
             weekLabel.textColor = [UIColor HKMBlueColor];
             break;
         case weekSunday:
-            labelGroupView.hidden = YES;
+            weekLabel.textColor = [UIColor redColor];
             break;
         default:
             weekLabel.textColor = [UIColor grayColor];
