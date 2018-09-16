@@ -37,8 +37,6 @@ enum {
 @property (nonatomic, strong) RETableViewManager *reTableManager;
 @property (nonatomic, weak) IBOutlet UITableView *settingTableView;
 
-@property (nonatomic, strong) UIAlertView *deleteAlertview;
-
 - (IBAction)close:(id)sender;
 
 @end
@@ -413,38 +411,26 @@ enum {
                                        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
                                        
                                        DLog(@"initialize database: %@", item);
+                                       //iOS8
+                                       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:LOCALIZE(@"SettingViewController_database_init_alert_text") preferredStyle:UIAlertControllerStyleAlert];
                                        
-                                       if (IOS8) {
-                                           //iOS8
-                                           UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:LOCALIZE(@"SettingViewController_database_init_alert_text") preferredStyle:UIAlertControllerStyleAlert];
-                                           
-                                           UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                                                                                  style:UIAlertActionStyleCancel
-                                                                                                handler:^(UIAlertAction *action){
-                                                                                                    
-                                                                                                }];
-                                           
-                                           UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
-                                                                                              style:UIAlertActionStyleDefault
+                                       UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                                                              style:UIAlertActionStyleCancel
                                                                                             handler:^(UIAlertAction *action){
-                                                                                                [self deleteAllData];
-                                                                                                [self close:nil];
+                                                                                                
                                                                                             }];
-                                           
-                                           [alert addAction:actionCancel];
-                                           [alert addAction:actionOk];
-                                           
-                                           [self presentViewController:alert animated:YES completion:nil];
-                                       } else {
-                                           //before iOS7
-                                           weakSelf.deleteAlertview = [[UIAlertView alloc] initWithTitle:@""
-                                                                                                 message:LOCALIZE(@"SettingViewController_database_init_alert_text")
-                                                                                                delegate:weakSelf
-                                                                                       cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                                                                       otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
-                                           
-                                           [weakSelf.deleteAlertview show];
-                                       }
+                                       
+                                       UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
+                                                                                          style:UIAlertActionStyleDefault
+                                                                                        handler:^(UIAlertAction *action){
+                                                                                            [self deleteAllData];
+                                                                                            [self close:nil];
+                                                                                        }];
+                                       
+                                       [alert addAction:actionCancel];
+                                       [alert addAction:actionOk];
+                                       
+                                       [self presentViewController:alert animated:YES completion:nil];
                                    }]];
     
 #ifdef SEND_CSV_DOCUMENT_TEST_ENABLE
@@ -493,21 +479,6 @@ enum {
     }
     
     self.completionHandler = nil;
-}
-
-#pragma mark - UIAlertView delegate 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if ([alertView isEqual:_deleteAlertview] == YES) {
-        if (buttonIndex == alertView.cancelButtonIndex) {
-            //Cancel
-        }else {
-            //OK
-            [self deleteAllData];
-            [self close:nil];
-        }
-        
-    }
 }
 
 -(void)deleteAllData{
