@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '9.0'
   use_frameworks!
-  xcodeproj 'Hakenman.xcodeproj'
+  project 'Hakenman.xcodeproj'
 
 target 'Hakenman' do
   # Uncomment this line if you're using Swift or would like to use dynamic frameworks
@@ -11,7 +11,7 @@ target 'Hakenman' do
   pod 'RETableViewManager', '~> 1.5'
   pod 'PBFlatUI', '~> 1.1.0'
   #pod 'GoogleAnalytics-iOS-SDK', '3.0.2'
-  pod 'JazzHands', '~> 0.1'
+  pod 'JazzHands'
   pod 'DJWActionSheet', '~> 1.0'
   pod 'RDVCalendarView'
   pod 'SVProgressHUD'

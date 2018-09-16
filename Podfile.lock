@@ -14,11 +14,23 @@ PODS:
 DEPENDENCIES:
   - Appirater
   - DJWActionSheet (~> 1.0)
-  - JazzHands (~> 0.1)
+  - JazzHands
   - PBFlatUI (~> 1.1.0)
   - RDVCalendarView
   - RETableViewManager (~> 1.5)
   - SVProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Appirater
+    - DJWActionSheet
+    - JazzHands
+    - PBFlatUI
+    - RDVCalendarView
+    - REFormattedNumberField
+    - RETableViewManager
+    - REValidation
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
@@ -31,6 +43,6 @@ SPEC CHECKSUMS:
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: cdd6980a0e78d113da02c39aab6d54fdfba23ba9
+PODFILE CHECKSUM: 6354dd752c2157d99153744bdd80057a6073245d
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.5.3
