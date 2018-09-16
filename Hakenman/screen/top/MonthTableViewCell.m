@@ -41,6 +41,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     // Initialization code
     calContainerView.layer.cornerRadius = 5;
     calContainerView.layer.masksToBounds = YES;
