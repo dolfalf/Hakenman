@@ -72,7 +72,7 @@
     [indicator stopAnimating];
     
     if ( inType == UIWebViewNavigationTypeLinkClicked ) {
-        [[UIApplication sharedApplication] openURL:[inRequest URL]];
+        [[UIApplication sharedApplication] openURL:[inRequest URL] options:@{} completionHandler:nil];
         return NO;
     }
     
