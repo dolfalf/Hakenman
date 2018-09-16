@@ -29,7 +29,6 @@ typedef enum {
 
 @interface MonthWorkingTableEditViewController () {
     IBOutlet UIBarButtonItem *saveBarButton;
-    UIAlertView *clearTimeAlert;
 }
 
 @property (nonatomic, strong) RETableViewManager *reTableManager;
@@ -82,33 +81,19 @@ typedef enum {
     
     if ([[_startWtPickerItem.value convHHmmString] isEqualToString:[_endWtPickerItem.value convHHmmString]]){
         
-        if (IOS8) {
-            //iOS8
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                           message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_start_end_equals_alert")
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                                                   style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction *action){
-                                                                     
-                                                                 }];
-            
-            [alert addAction:actionCancel];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            //before iOS7
-            
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_start_end_equals_alert")
-                                                          delegate:self
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil];
-            
-            [alert show];
-        }
-
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                       message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_start_end_equals_alert")
+                                                                preferredStyle:UIAlertControllerStyleAlert];
         
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action){
+                                                                 
+                                                             }];
+        
+        [alert addAction:actionCancel];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
@@ -304,53 +289,31 @@ typedef enum {
     // Add a basic cell with disclosure indicator
     //
     
-    clearTimeAlert = [[UIAlertView alloc] initWithTitle:@"" message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_cleardate_alert") delegate:self cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel") otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
-    
     self.clearTimeCellItem = [RETableViewItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_cleardate_cell") accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
-        if (IOS8) {
-            //iOS8
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                           message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_cleardate_alert")
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                                                   style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction *action){
-                                                                     //clear cancel
-                                                                     [_clearTimeCellItem deselectRowAnimated:NO];
-                                                                 }];
-            
-            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
-                                                               style:UIAlertActionStyleDefault
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                       message:LOCALIZE(@"MonthWorkingTableEditViewController_edit_cleardate_alert")
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                               style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action){
-                                                                [self clearDate];
+                                                                 //clear cancel
+                                                                 [_clearTimeCellItem deselectRowAnimated:NO];
                                                              }];
-            
-            [alert addAction:actionCancel];
-            [alert addAction:actionOk];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            //before iOS7
-            
-            [clearTimeAlert show];
-        }
+        
+        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action){
+                                                             [self clearDate];
+                                                         }];
+        
+        [alert addAction:actionCancel];
+        [alert addAction:actionOk];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }];
     
     [section addItem:_clearTimeCellItem];
-}
-
-#pragma mark - UIAlertViewDelegate
-// Called when a button is clicked. The view will be automatically dismissed after this call returns
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (clearTimeAlert) {
-        if (buttonIndex == 1) {
-            [self clearDate];
-        }else{
-            //clear cancel
-            [_clearTimeCellItem deselectRowAnimated:NO];
-        }
-    }
 }
 
 

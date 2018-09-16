@@ -334,83 +334,46 @@
         message = LOCALIZE(@"Common_alert_remove_message");
     }
     
-    if (IOS8) {
-        //iOS8
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                       message:message
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alert setTitle:@""];
-        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_no")
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action){
-                                                                 
-                                                             }];
-        
-        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_yes")
-                                                           style:UIAlertActionStyleDefault
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert setTitle:@""];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_no")
+                                                           style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction *action){
-                                                             if (_editType == HistoryEditTypeAdd) {
-                                                                 [self _addThePast];
-                                                             }else if(_editType == HistoryEditTypeRemove) {
-                                                                 [self _removeThePast];
-                                                             }
                                                              
                                                          }];
-        
-        [alert addAction:actionCancel];
-        [alert addAction:actionOk];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        //before iOS7
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_no")
-                                              otherButtonTitles:LOCALIZE(@"Common_alert_button_yes"), nil];
-        [alert show];
-        
-    }
-}
-
-#pragma mark - UIAlertViewDelegate
-// Called when a button is clicked. The view will be automatically dismissed after this call returns
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        if (_editType == HistoryEditTypeAdd) {
-            [self _addThePast];
-        }else if(_editType == HistoryEditTypeRemove) {
-            [self _removeThePast];
-        }
-    }else{
-        return;
-    }
+    
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_yes")
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action){
+                                                         if (_editType == HistoryEditTypeAdd) {
+                                                             [self _addThePast];
+                                                         }else if(_editType == HistoryEditTypeRemove) {
+                                                             [self _removeThePast];
+                                                         }
+                                                         
+                                                     }];
+    
+    [alert addAction:actionCancel];
+    [alert addAction:actionOk];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)_showErrorAlertWithErrorMessage:(NSString *)errorMessage{
-    if (IOS8) {
-        //iOS8
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action){
-                                                                 
-                                                             }];
-        
-        [alert addAction:actionCancel];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        //before iOS7
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""                                                            message:errorMessage
-                                                       delegate:self
-                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                              otherButtonTitles:nil];
-        [alert show];
-        
-    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action){
+                                                             
+                                                         }];
+    
+    [alert addAction:actionCancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - picker helper methods
