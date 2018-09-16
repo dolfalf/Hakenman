@@ -91,6 +91,7 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; };
 		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
+		8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */; };
 		A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02519AC5BA12ADECAA47C7E0 /* Pods_HakenmanTests.framework */; };
 		AC506D4CD073C8753145A876 /* Pods_Hakenman_WatchOS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE135A9BF27E2D9F093947B5 /* Pods_Hakenman_WatchOS2.framework */; };
 		BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32C55F1D6456210032152C /* HKMConnectivityManager.m */; };
@@ -318,6 +319,7 @@
 		8764EE0D6C84B7CAEF3A41FC /* Pods-Hakenman WatchOS2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2/Pods-Hakenman WatchOS2.debug.xcconfig"; sourceTree = "<group>"; };
 		8A80E7E6EAEB6C02E2BCF686 /* Pods-HakenmanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.debug.xcconfig"; sourceTree = "<group>"; };
+		8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BB32C55E1D6456210032152C /* HKMConnectivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKMConnectivityManager.h; sourceTree = "<group>"; };
 		BB32C55F1D6456210032152C /* HKMConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMConnectivityManager.m; sourceTree = "<group>"; };
 		BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hakenman WatchOS2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -610,6 +612,7 @@
 				3B469FA718B89D3A0095C418 /* main.m */,
 				3B469FA918B89D3A0095C418 /* Hakenman-Prefix.pch */,
 				3B8FA71D18DDF17D00A1182E /* Localizable.strings */,
+				8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */,
 				3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */,
 				1C96439E1A32AB01005452CB /* NanumBarunGothic.ttf in Resources */,
+				8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */,
 				1CAAA2251966252400A053C7 /* license.html in Resources */,
 				3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */,
 				1C96439F1A32AB01005452CB /* NanumBarunGothicBold.ttf in Resources */,
@@ -1335,7 +1339,6 @@
 			baseConfigurationReference = 8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1366,7 +1369,6 @@
 			baseConfigurationReference = C4862F26B893A7AF388C62F3 /* Pods-Hakenman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

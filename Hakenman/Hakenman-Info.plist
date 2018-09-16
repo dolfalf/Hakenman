@@ -29,6 +29,8 @@
 		<string>NanumBarunGothic.ttf</string>
 		<string>NanumBarunGothicBold.ttf</string>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Top</string>
 	<key>UIRequiredDeviceCapabilities</key>
