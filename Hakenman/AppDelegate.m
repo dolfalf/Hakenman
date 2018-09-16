@@ -16,10 +16,14 @@
 
 #import <Appirater/Appirater.h>
 
+@import Firebase;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [FIRApp configure];
+    
     //ja_JP
     NSLog(@"localeIdentifier: %@", [[NSLocale currentLocale] localeIdentifier]);
     
