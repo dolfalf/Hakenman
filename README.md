@@ -1,6 +1,7 @@
-# Hakenman
+# HakenMan
 
-Hakenmanは派遣社員の勤務表作成サポートアプリです。
+HakenManは派遣社員やフリーランスの勤務表管理をサポートするアプリです。
+改善点などありましたら、ぜひPRお願いします。
 
 ## Features
 
@@ -13,7 +14,7 @@ Hakenmanは派遣社員の勤務表作成サポートアプリです。
 1. `git clone https://github.com/dolfalf/Hakenman.git`
 2. `cd Hakenman`
 3. `pod install` (requires [CocoaPods](https://cocoapods.org))
-4. Open `Hakenman.xcworkspace` in Xcode 7.0 or higher.
+4. Open `Hakenman.xcworkspace` in Xcode 9.0 or higher.
 
 ## License
 
