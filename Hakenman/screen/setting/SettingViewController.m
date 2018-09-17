@@ -347,7 +347,10 @@ enum {
     NSString *versionNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *buildNo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    RETableViewItem *versionItem = [RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_version_title")];
+    RETableViewItem *versionItem = [RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_version_title") accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+    }];
     versionItem.style = UITableViewCellStyleValue1;
     versionItem.detailLabelText = [NSString stringWithFormat:@"%@ (%@)",versionNo,buildNo];
     [appInfoSection addItem:versionItem];
@@ -360,29 +363,6 @@ enum {
         
         //遷移
         [StoryboardUtil gotoTutorialViewController:self animated:YES];
-    }]];
-    
-    //アプリについて
-    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_app_info_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
-        
-        __typeof (weakSelf) __strong strongSelf = weakSelf;
-        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
-        
-        //遷移
-        [StoryboardUtil gotoAppInformationViewController:self completion:^(id controller) {
-            //
-        }];
-    }]];
-    
-    //KJCode Apps
-    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_kjcode_apps_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
-        
-        __typeof (weakSelf) __strong strongSelf = weakSelf;
-        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
-        
-        [StoryboardUtil gotoKJCodeAppsViewController:self completion:^(id controller) {
-            //
-        }];
     }]];
     
     //Open source lisence
