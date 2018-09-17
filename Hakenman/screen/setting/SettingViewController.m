@@ -86,6 +86,8 @@ enum {
                ,LOCALIZE(@"SettingViewController_menulist_daily_mail_content_title")];
     
     closeButton.title = LOCALIZE(@"Common_navigation_closebutton_title");
+    
+    self.view.backgroundColor = self.settingTableView.backgroundColor;
 }
 
 #pragma mark - RETableView methods
@@ -105,6 +107,7 @@ enum {
     [self loadAppInfoSection];
     
     [self loadInitDataSection];
+    
 }
 
 - (void)tableView:(UITableView *)tableView willLayoutCellSubviews:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

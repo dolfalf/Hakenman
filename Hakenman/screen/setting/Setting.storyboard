@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lTa-Zo-Eur">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lTa-Zo-Eur">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--setting-->
         <scene sceneID="Fve-rU-GKw">
             <objects>
                 <viewController id="WTg-TP-bV3" customClass="SettingViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PnQ-pU-LII"/>
-                        <viewControllerLayoutGuide type="bottom" id="KB2-qA-xBg"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="liP-QL-2qd">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="pSO-wn-ic1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KB2-qA-xBg" firstAttribute="top" secondItem="pSO-wn-ic1" secondAttribute="bottom" id="5rx-Ef-NXv"/>
-                            <constraint firstItem="pSO-wn-ic1" firstAttribute="leading" secondItem="liP-QL-2qd" secondAttribute="leading" id="Ufd-Vu-17D"/>
-                            <constraint firstItem="pSO-wn-ic1" firstAttribute="top" secondItem="PnQ-pU-LII" secondAttribute="bottom" id="u7d-kf-OQm"/>
-                            <constraint firstAttribute="trailing" secondItem="pSO-wn-ic1" secondAttribute="trailing" id="vIK-Sk-dAe"/>
+                            <constraint firstItem="pSO-wn-ic1" firstAttribute="top" secondItem="SwM-Gc-365" secondAttribute="top" id="Eur-Ri-UbA"/>
+                            <constraint firstItem="pSO-wn-ic1" firstAttribute="leading" secondItem="SwM-Gc-365" secondAttribute="leading" id="Ufd-Vu-17D"/>
+                            <constraint firstItem="pSO-wn-ic1" firstAttribute="bottom" secondItem="SwM-Gc-365" secondAttribute="bottom" id="bWS-P7-C03"/>
+                            <constraint firstItem="SwM-Gc-365" firstAttribute="trailing" secondItem="pSO-wn-ic1" secondAttribute="trailing" id="vIK-Sk-dAe"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="SwM-Gc-365"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="setting" id="I7G-g2-edN">
@@ -53,7 +53,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lTa-Zo-Eur" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="78e-r9-jmQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -66,9 +66,4 @@
             <point key="canvasLocation" x="381" y="25"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
