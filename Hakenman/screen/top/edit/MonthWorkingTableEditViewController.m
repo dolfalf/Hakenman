@@ -298,7 +298,7 @@ typedef enum {
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action){
                                                                  //clear cancel
-                                                                 [_clearTimeCellItem deselectRowAnimated:NO];
+                                                                 [weakSelf.clearTimeCellItem deselectRowAnimated:NO];
                                                              }];
         
         UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")

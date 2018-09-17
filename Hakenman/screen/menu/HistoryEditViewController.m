@@ -334,6 +334,8 @@
         message = LOCALIZE(@"Common_alert_remove_message");
     }
     
+    __typeof (self) __weak weakSelf = self;
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -348,9 +350,9 @@
     UIAlertAction *actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_yes")
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action){
-                                                         if (_editType == HistoryEditTypeAdd) {
+                                                         if (weakSelf.editType == HistoryEditTypeAdd) {
                                                              [self _addThePast];
-                                                         }else if(_editType == HistoryEditTypeRemove) {
+                                                         }else if(weakSelf.editType == HistoryEditTypeRemove) {
                                                              [self _removeThePast];
                                                          }
                                                          
