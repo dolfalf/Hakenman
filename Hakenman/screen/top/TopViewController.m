@@ -39,7 +39,7 @@ NS_ENUM(NSInteger, actionsheetButtonType) {
 static NSString * const kTodayCellIdentifier = @"todayCellIdentifier";
 static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
-@interface TopViewController () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate> {
+@interface TopViewController () <MFMailComposeViewControllerDelegate> {
     
     IBOutlet UITableView *mainTableView;
     
@@ -49,15 +49,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, weak) TodayTableViewCell *todayCell;
-@property (nonatomic, strong) UIActionSheet *writeActionSheet;
 
 #if TIMER_ENABLE
 //タイマーは使わない。
 @property (nonatomic, assign) NSTimer *loadTimer;
 #endif
-
-@property (nonatomic, strong) UIAlertView *writeWorkStartAlert;
-@property (nonatomic, strong) UIAlertView *writeWorkEndAlert;
 
 - (IBAction)gotoMenuButtonTouched:(id)sender;
 - (IBAction)gotoSettingButtonTouched:(id)sender;
@@ -355,11 +351,11 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                               
                               if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
 
-                                  [self _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workstart_alertview_message") withTappedButtonIndex:actionsheetButtonTypeWriteStartTime withAlertView:self.writeWorkStartAlert];
+                                  [self _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workstart_alertview_message") withTappedButtonIndex:actionsheetButtonTypeWriteStartTime];
                                   
                               }else if(tappedButtonIndex == actionsheetButtonTypeWriteEndTime) {
                                   
-                                  [self _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workend_alertview_message") withTappedButtonIndex:actionsheetButtonTypeWriteEndTime withAlertView:self.writeWorkEndAlert];
+                                  [self _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workend_alertview_message") withTappedButtonIndex:actionsheetButtonTypeWriteEndTime];
                                   
                               }else if(tappedButtonIndex == actionsheetButtonTypeSendWorkReport) {
                                   
@@ -411,8 +407,6 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                               
                           }
                       }];
-    
-//    [_writeActionSheet showInView:self.navigationController.toolbar];
 }
 
 #pragma mark - private methods
@@ -584,65 +578,38 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     return;
 }
 
-#pragma mark - UIAlertView delegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex == alertView.cancelButtonIndex) {
-        return;
-    }
-    
-    if ([alertView isEqual:_writeWorkStartAlert] == YES) {
-        //出勤
-        [self _inputTheCurruntTimeWithStartOrEnd:YES];
-    }else if ([alertView isEqual:_writeWorkEndAlert] == YES) {
-        //退勤
-        [self _inputTheCurruntTimeWithStartOrEnd:NO];
-    }
-}
-
--(void)_checkInputCurruntTimeAlertWithMessage:(NSString*)message
-                        withTappedButtonIndex:(NSInteger)tappedButtonIndex
-                                withAlertView:(UIAlertView*)alert{
-
-    if (IOS8) {
-        //iOS8
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action){
-
-                                                             }];
-        
-        UIAlertAction *actionOk;
-        
-        if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
-           actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
-                                       style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction *action){
-                                         [self _inputTheCurruntTimeWithStartOrEnd:YES];
-                                     }];
-        }else if(tappedButtonIndex == actionsheetButtonTypeWriteEndTime){
-            actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
-                                                style:UIAlertActionStyleDefault
-                                              handler:^(UIAlertAction *action){
-                                                  [self _inputTheCurruntTimeWithStartOrEnd:NO];
-                                              }];
-        }
-        
-        [alert addAction:actionCancel];
-        [alert addAction:actionOk];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        //before iOS7
-        alert = [[UIAlertView alloc] initWithTitle:@""                                                            message:message
-                                                       delegate:self
-                                              cancelButtonTitle:LOCALIZE(@"Common_alert_button_cancel")
-                                              otherButtonTitles:LOCALIZE(@"Common_alert_button_ok"), nil];
-        [alert show];
-        
-    }
+#pragma mark - Alert Action
+- (void)_checkInputCurruntTimeAlertWithMessage:(NSString*)message
+                        withTappedButtonIndex:(NSInteger)tappedButtonIndex {
+	//iOS8
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+	
+	UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_cancel")
+														   style:UIAlertActionStyleCancel
+														 handler:^(UIAlertAction *action){
+															 
+														 }];
+	
+	UIAlertAction *actionOk;
+	
+	if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
+		actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
+											style:UIAlertActionStyleDefault
+										  handler:^(UIAlertAction *action){
+											  [self _inputTheCurruntTimeWithStartOrEnd:YES];
+										  }];
+	}else if(tappedButtonIndex == actionsheetButtonTypeWriteEndTime){
+		actionOk = [UIAlertAction actionWithTitle:LOCALIZE(@"Common_alert_button_ok")
+											style:UIAlertActionStyleDefault
+										  handler:^(UIAlertAction *action){
+											  [self _inputTheCurruntTimeWithStartOrEnd:NO];
+										  }];
+	}
+	
+	[alert addAction:actionCancel];
+	[alert addAction:actionOk];
+	
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)_inputTheCurruntTimeWithStartOrEnd:(BOOL)isStart{
