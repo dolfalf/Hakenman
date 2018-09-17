@@ -83,10 +83,6 @@
 
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-
-}
-
 #pragma mark - migration helper methods
 - (BOOL)isEqualAndOlderVersion:(NSString *)ver {
     
@@ -113,6 +109,10 @@
 }
 
 #pragma mark - WCSessionDelegate
+- (void)session:(WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
+    //TODO: 
+}
+
 // Interactive Message
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message replyHandler:(nonnull void (^)(NSDictionary<NSString *,id> * __nonnull))replyHandler
 {
@@ -205,5 +205,19 @@
         
         return;
     }
+}
+
+- (void)sessionDidBecomeInactive:(nonnull WCSession *)session {
+    //
+}
+
+
+- (void)sessionDidDeactivate:(nonnull WCSession *)session {
+    //
+}
+
+
+- (NSString *)sampletest {
+    return @"sampletest";
 }
 @end
