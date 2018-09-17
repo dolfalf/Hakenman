@@ -49,6 +49,10 @@
 		1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B119656935002446CB /* Tutorial.storyboard */; };
 		1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B419656952002446CB /* TutorialViewController.m */; };
 		1CF2D6FB1964D1240062B0C1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */; };
+		33F30C23214F460000B7F7AA /* HakenmanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F30C22214F460000B7F7AA /* HakenmanTests.swift */; };
+		33F30C24214F465500B7F7AA /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6AFEDD18E6857100501C94 /* Util.m */; };
+		33F30C29214F47E900B7F7AA /* Hakenman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F30C28214F47E900B7F7AA /* Hakenman.swift */; };
+		33F30C2A214F496F00B7F7AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FAB18B89D3A0095C418 /* AppDelegate.m */; };
 		38EFD60424EAF685D2D3FACC /* Pods_Hakenman_WatchOS2_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F97553F58128960243FD8B4 /* Pods_Hakenman_WatchOS2_Extension.framework */; };
 		3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B23F21318E6C48B00518106 /* LineGraphView.m */; };
 		3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B340F3A18DD99EF008F6E1E /* Menu.storyboard */; };
@@ -64,7 +68,6 @@
 		3B469FBC18B89D3A0095C418 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469F9B18B89D3A0095C418 /* Foundation.framework */; };
 		3B469FBD18B89D3A0095C418 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469F9F18B89D3A0095C418 /* UIKit.framework */; };
 		3B469FC518B89D3A0095C418 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B469FC318B89D3A0095C418 /* InfoPlist.strings */; };
-		3B469FC718B89D3A0095C418 /* HakenmanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FC618B89D3A0095C418 /* HakenmanTests.m */; };
 		3B469FD318B8AB740095C418 /* hakenModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FD118B8AB740095C418 /* hakenModel.xcdatamodeld */; };
 		3B469FE818B8B0420095C418 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B469FE718B8B0420095C418 /* CoreData.framework */; };
 		3B659711191759F00075AB24 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
@@ -91,8 +94,8 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; };
 		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
-		8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */; };
 		401DDE06214E789100FC6A7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401DDE05214E789100FC6A7F /* GoogleService-Info.plist */; };
+		8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */; };
 		A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02519AC5BA12ADECAA47C7E0 /* Pods_HakenmanTests.framework */; };
 		AC506D4CD073C8753145A876 /* Pods_Hakenman_WatchOS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE135A9BF27E2D9F093947B5 /* Pods_Hakenman_WatchOS2.framework */; };
 		BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32C55F1D6456210032152C /* HKMConnectivityManager.m */; };
@@ -236,6 +239,10 @@
 		1CBFDAA719793374001A51D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		1CF2D6FA1964D1240062B0C1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1F97553F58128960243FD8B4 /* Pods_Hakenman_WatchOS2_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hakenman_WatchOS2_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33F30C21214F460000B7F7AA /* HakenmanTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HakenmanTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		33F30C22214F460000B7F7AA /* HakenmanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HakenmanTests.swift; sourceTree = "<group>"; };
+		33F30C27214F47E800B7F7AA /* Hakenman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hakenman-Bridging-Header.h"; sourceTree = "<group>"; };
+		33F30C28214F47E900B7F7AA /* Hakenman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hakenman.swift; sourceTree = "<group>"; };
 		3B23F21218E6C48B00518106 /* LineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphView.h; sourceTree = "<group>"; };
 		3B23F21318E6C48B00518106 /* LineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraphView.m; sourceTree = "<group>"; };
 		3B340F3A18DD99EF008F6E1E /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
@@ -256,7 +263,6 @@
 		3B469FBA18B89D3A0095C418 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3B469FC218B89D3A0095C418 /* HakenmanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HakenmanTests-Info.plist"; sourceTree = "<group>"; };
 		3B469FC418B89D3A0095C418 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3B469FC618B89D3A0095C418 /* HakenmanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HakenmanTests.m; sourceTree = "<group>"; };
 		3B469FD218B8AB740095C418 /* hakenModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hakenModel.xcdatamodel; sourceTree = "<group>"; };
 		3B469FE718B8B0420095C418 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3B65970F191759F00075AB24 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
@@ -500,6 +506,15 @@
 			path = tutorial;
 			sourceTree = "<group>";
 		};
+		33F30C26214F47C500B7F7AA /* swift */ = {
+			isa = PBXGroup;
+			children = (
+				33F30C28214F47E900B7F7AA /* Hakenman.swift */,
+				33F30C27214F47E800B7F7AA /* Hakenman-Bridging-Header.h */,
+			);
+			path = swift;
+			sourceTree = "<group>";
+		};
 		3B340F3818DD98CC008F6E1E /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +617,7 @@
 				3B340F3818DD98CC008F6E1E /* utils */,
 				3B469FA218B89D3A0095C418 /* Supporting Files */,
 				1C96439B1A32AB00005452CB /* res */,
+				33F30C26214F47C500B7F7AA /* swift */,
 			);
 			path = Hakenman;
 			sourceTree = "<group>";
@@ -622,8 +638,9 @@
 		3B469FC018B89D3A0095C418 /* HakenmanTests */ = {
 			isa = PBXGroup;
 			children = (
-				3B469FC618B89D3A0095C418 /* HakenmanTests.m */,
 				3B469FC118B89D3A0095C418 /* Supporting Files */,
+				33F30C22214F460000B7F7AA /* HakenmanTests.swift */,
+				33F30C21214F460000B7F7AA /* HakenmanTests-Bridging-Header.h */,
 			);
 			path = HakenmanTests;
 			sourceTree = "<group>";
@@ -890,6 +907,7 @@
 				TargetAttributes = {
 					3B469F9718B89D3A0095C418 = {
 						DevelopmentTeam = Y8RKPBJ3Y3;
+						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -897,6 +915,7 @@
 						};
 					};
 					3B469FB818B89D3A0095C418 = {
+						LastSwiftMigration = 0940;
 						TestTargetID = 3B469F9718B89D3A0095C418;
 					};
 					BB9E969B1D6313C1009E2985 = {
@@ -1116,6 +1135,7 @@
 				3BC0E3CD18DD75310062B07A /* KJViewController.m in Sources */,
 				3B8CB23F1942EDD900CD922E /* FileData.m in Sources */,
 				3B9CEA1D18DD4521000E4FF3 /* DBManager.m in Sources */,
+				33F30C29214F47E900B7F7AA /* Hakenman.swift in Sources */,
 				3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */,
 				1C9643A51A32AC1B005452CB /* UIFont+Helper.m in Sources */,
 				1C8A75C11A9452AE00852CFE /* MonthWorkingTableViewController.m in Sources */,
@@ -1158,7 +1178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B469FC718B89D3A0095C418 /* HakenmanTests.m in Sources */,
+				33F30C2A214F496F00B7F7AA /* AppDelegate.m in Sources */,
+				33F30C23214F460000B7F7AA /* HakenmanTests.swift in Sources */,
+				33F30C24214F465500B7F7AA /* Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1347,6 +1369,7 @@
 			baseConfigurationReference = 8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1361,12 +1384,16 @@
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hakenman/swift/Hakenman-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1377,6 +1404,7 @@
 			baseConfigurationReference = C4862F26B893A7AF388C62F3 /* Pods-Hakenman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1391,12 +1419,15 @@
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hakenman/swift/Hakenman-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1406,7 +1437,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4204BC92FB21F32EB9F60E6C /* Pods-HakenmanTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hakenman.app/Hakenman";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1420,8 +1453,12 @@
 				);
 				INFOPLIST_FILE = "HakenmanTests/HakenmanTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kj-code.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HakenmanTests/HakenmanTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1431,7 +1468,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A80E7E6EAEB6C02E2BCF686 /* Pods-HakenmanTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hakenman.app/Hakenman";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1441,8 +1480,11 @@
 				GCC_PREFIX_HEADER = "Hakenman/Hakenman-Prefix.pch";
 				INFOPLIST_FILE = "HakenmanTests/HakenmanTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kj-code.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HakenmanTests/HakenmanTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
