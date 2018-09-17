@@ -165,6 +165,7 @@
     lbl.text = text;
     HKM_INIT_LABLE(lbl, HKMFontTypeNanum, sz);  //font
     [lbl sizeToFit];
+    lbl.lineBreakMode = NSLineBreakByCharWrapping;
     lbl.textAlignment = NSTextAlignmentLeft;
     lbl.frame = CGRectMake(pt.x, pt.y, lbl.frame.size.width, lbl.frame.size.height);
     [self.scrollView addSubview:lbl];
@@ -176,6 +177,7 @@
     lbl.text = text;
     HKM_INIT_LABLE(lbl, HKMFontTypeNanum, sz);  //font
     [lbl sizeToFit];
+    lbl.lineBreakMode = NSLineBreakByCharWrapping;
     lbl.textAlignment = NSTextAlignmentLeft;
     lbl.center = self.view.center;
     [self.scrollView addSubview:lbl];
@@ -340,6 +342,8 @@
                                             _page01SubtitleLabel.frame.size.height);
     
     
+    const CGFloat titleLabelPosY = 50.f;
+    
     //Page02
     self.page02TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
     _page02TitleLabel.numberOfLines = 1;
@@ -347,18 +351,20 @@
                         text:LOCALIZE(@"TutorialViewController_page2_title")
                     fontSize:TITLE_FONT_SIZE];
     
-    _page02TitleLabel.frame = CGRectMake(timeForPage(2) + _page02TitleLabel.frame.origin.x,
-                                            30.f,
+    _page02TitleLabel.frame = CGRectMake(timeForPage(2) + (self.view.frame.size.width / 2.f - _page02TitleLabel.frame.size.width / 2.f),
+                                            titleLabelPosY,
                                             _page02TitleLabel.frame.size.width,
                                             _page02TitleLabel.frame.size.height);
     
     self.page02DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page02DescLabel.numberOfLines = 10;
     _page02DescLabel.textColor = [UIColor grayColor];
+    
     [self addPageLabel:_page02DescLabel
                   text:LOCALIZE(@"TutorialViewController_page2_desc_label")
               fontSize:DESC_FONT_SIZE
-                 point:CGPointMake(timeForPage(2)+10.f, 70.f)];
+                 point:CGPointMake(timeForPage(2)+(self.view.frame.size.width / 2.f - _page02DescLabel.frame.size.width / 2.f),
+                                   _page02TitleLabel.frame.origin.y + _page02TitleLabel.frame.size.height + 16.f)];
     
     self.page02ScreenShotImage = [self languageWithImage:@"page02_screenshot"];
     _page02ScreenShotImage.layer.cornerRadius = 5.f;
@@ -376,8 +382,8 @@
                         text:LOCALIZE(@"TutorialViewController_page3_title")
                     fontSize:TITLE_FONT_SIZE];
 
-    _page03TitleLabel.frame = CGRectMake(timeForPage(3) + _page03TitleLabel.frame.origin.x,
-                                         30.f,
+    _page03TitleLabel.frame = CGRectMake(timeForPage(3) + (self.view.frame.size.width / 2.f - _page03TitleLabel.frame.size.width / 2.f),
+                                         titleLabelPosY,
                                          _page03TitleLabel.frame.size.width,
                                          _page03TitleLabel.frame.size.height);
     
@@ -387,7 +393,8 @@
     [self addPageLabel:_page03DescLabel
                   text:LOCALIZE(@"TutorialViewController_page3_desc_label")
               fontSize:DESC_FONT_SIZE
-                 point:CGPointMake(timeForPage(3)+10.f, 70.f)];
+                 point:CGPointMake(timeForPage(3)+(self.view.frame.size.width / 2.f - _page03DescLabel.frame.size.width / 2.f),
+                                   _page03TitleLabel.frame.origin.y + _page03TitleLabel.frame.size.height + 16.f)];
 
     
     self.page03ScreenShotImage = [self languageWithImage:@"page03_screenshot"];
@@ -404,8 +411,8 @@
                         text:LOCALIZE(@"TutorialViewController_page4_title")
                     fontSize:TITLE_FONT_SIZE];
     
-    _page04TitleLabel.frame = CGRectMake(timeForPage(4) + _page04TitleLabel.frame.origin.x,
-                                         25.f,
+    _page04TitleLabel.frame = CGRectMake(timeForPage(4) + (self.view.frame.size.width / 2.f - _page04TitleLabel.frame.size.width / 2.f),
+                                         titleLabelPosY,
                                          _page04TitleLabel.frame.size.width,
                                          _page04TitleLabel.frame.size.height);
     
@@ -415,7 +422,8 @@
     [self addPageLabel:_page04DescLabel
                   text:LOCALIZE(@"TutorialViewController_page4_desc_label")
               fontSize:DESC_FONT_SIZE
-            point:CGPointMake(timeForPage(4)+10.f, 70.f)];
+                 point:CGPointMake(timeForPage(4)+(self.view.frame.size.width / 2.f - _page04DescLabel.frame.size.width / 2.f),
+                                   _page04TitleLabel.frame.origin.y + _page04TitleLabel.frame.size.height + 16.f)];
 
     
     self.page04ScreenShotImage = [self languageWithImage:@"page04_screenshot"];
@@ -433,7 +441,7 @@
                     fontSize:TITLE_FONT_SIZE];
     
     _page05TitleLabel.frame = CGRectMake(timeForPage(5) + _page05TitleLabel.frame.origin.x,
-                                         _page05TitleLabel.frame.origin.y-100.f,
+                                         titleLabelPosY,
                                          _page05TitleLabel.frame.size.width,
                                          _page05TitleLabel.frame.size.height);
     
@@ -443,17 +451,21 @@
     [self addPageLabel:_page05DescLabel
                   text:LOCALIZE(@"TutorialViewController_page5_desc_label")
               fontSize:DESC_FONT_SIZE
-                 point:CGPointMake(timeForPage(5)+10.f, _page05TitleLabel.frame.origin.y + 50.f)];
+                 point:CGPointMake(timeForPage(5)+(self.view.frame.size.width / 2.f - _page05DescLabel.frame.size.width / 2.f),
+                                   _page05TitleLabel.frame.origin.y + _page05TitleLabel.frame.size.height + 16.f)];
     
-    self.startButton = [[PBFlatButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    const CGSize startButtonSize = CGSizeMake(300.f, 44.f);
+    
+    self.startButton = [[PBFlatButton alloc] initWithFrame:CGRectMake(0, 0, startButtonSize.width, startButtonSize.height)];
     _startButton.mainColor = [UIColor HKMBlueColor];
+    _startButton.titleLabel.font = [UIFont systemFontOfSize:20.f];
     [_startButton setBackgroundColor:[UIColor HKMBlueColor]];
     [_startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_startButton setTitle:LOCALIZE(@"TutorialViewController_page5_start_button") forState:UIControlStateNormal];
     HKM_INIT_LABLE(_startButton.titleLabel, HKMFontTypeNanum, _startButton.titleLabel.font.pointSize);
     
     _startButton.center = self.view.center;
-    _startButton.frame = CGRectOffset(_startButton.frame,timeForPage(5), 44);
+    _startButton.frame = CGRectOffset(_startButton.frame,timeForPage(5), startButtonSize.height);
     [_startButton addTarget:self action:@selector(startButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:_startButton];
     

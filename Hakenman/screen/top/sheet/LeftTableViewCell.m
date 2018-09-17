@@ -24,6 +24,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     // Initialization code
     remarkFlagView.layer.cornerRadius = 5;
     remarkFlagView.layer.masksToBounds = YES;

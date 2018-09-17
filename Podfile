@@ -16,6 +16,7 @@ target 'Hakenman' do
   pod 'RDVCalendarView'
   pod 'SVProgressHUD'
   pod 'Appirater'
+  pod 'Firebase/Core'
   
   target 'HakenmanTests' do
     inherit! :search_paths

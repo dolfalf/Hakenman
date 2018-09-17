@@ -20,7 +20,6 @@
 @property (nonatomic, strong) RETableViewManager *reTableManager;
 @property (nonatomic, weak) IBOutlet UITableView *menuTableView;
 @property (nonatomic, assign) HistoryEditType selectedEditType;
-@property (nonatomic, strong) UIAlertView *deleteAlertview;
 
 - (IBAction)close:(id)sender;
 

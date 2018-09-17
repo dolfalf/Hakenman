@@ -91,6 +91,8 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; };
 		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
+		8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */; };
+		401DDE06214E789100FC6A7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401DDE05214E789100FC6A7F /* GoogleService-Info.plist */; };
 		A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02519AC5BA12ADECAA47C7E0 /* Pods_HakenmanTests.framework */; };
 		AC506D4CD073C8753145A876 /* Pods_Hakenman_WatchOS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE135A9BF27E2D9F093947B5 /* Pods_Hakenman_WatchOS2.framework */; };
 		BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32C55F1D6456210032152C /* HKMConnectivityManager.m */; };
@@ -312,12 +314,14 @@
 		3DC90F3D1A87BA5C008A42BF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3DE1E8401BD275ED00FB5AFD /* ModelDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDao.h; sourceTree = "<group>"; };
 		3DE1E8411BD275ED00FB5AFD /* ModelDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDao.m; sourceTree = "<group>"; };
+		401DDE05214E789100FC6A7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4204BC92FB21F32EB9F60E6C /* Pods-HakenmanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hakenman.entitlements; sourceTree = "<group>"; };
 		7B24E10E8E5679C929C92664 /* Pods-Hakenman WatchOS2 Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2 Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2 Extension/Pods-Hakenman WatchOS2 Extension.release.xcconfig"; sourceTree = "<group>"; };
 		8764EE0D6C84B7CAEF3A41FC /* Pods-Hakenman WatchOS2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2/Pods-Hakenman WatchOS2.debug.xcconfig"; sourceTree = "<group>"; };
 		8A80E7E6EAEB6C02E2BCF686 /* Pods-HakenmanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.debug.xcconfig"; sourceTree = "<group>"; };
+		8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BB32C55E1D6456210032152C /* HKMConnectivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKMConnectivityManager.h; sourceTree = "<group>"; };
 		BB32C55F1D6456210032152C /* HKMConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMConnectivityManager.m; sourceTree = "<group>"; };
 		BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hakenman WatchOS2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -610,6 +614,7 @@
 				3B469FA718B89D3A0095C418 /* main.m */,
 				3B469FA918B89D3A0095C418 /* Hakenman-Prefix.pch */,
 				3B8FA71D18DDF17D00A1182E /* Localizable.strings */,
+				8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -753,6 +758,7 @@
 				BB9E969E1D6313C1009E2985 /* Interface.storyboard */,
 				BB9E96A11D6313C1009E2985 /* Assets.xcassets */,
 				BB9E96A31D6313C1009E2985 /* Info.plist */,
+				401DDE05214E789100FC6A7F /* GoogleService-Info.plist */,
 			);
 			path = "Hakenman WatchOS2";
 			sourceTree = "<group>";
@@ -879,7 +885,7 @@
 		3B469F9018B89D3A0095C418 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = kjcode;
 				TargetAttributes = {
 					3B469F9718B89D3A0095C418 = {
@@ -930,10 +936,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				401DDE06214E789100FC6A7F /* GoogleService-Info.plist in Resources */,
 				3B469FB418B89D3A0095C418 /* Images.xcassets in Resources */,
 				1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */,
 				3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */,
 				1C96439E1A32AB01005452CB /* NanumBarunGothic.ttf in Resources */,
+				8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */,
 				1CAAA2251966252400A053C7 /* license.html in Resources */,
 				3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */,
 				1C96439F1A32AB01005452CB /* NanumBarunGothicBold.ttf in Resources */,
@@ -1022,6 +1030,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Appirater/Appirater.framework",
 				"${BUILT_PRODUCTS_DIR}/DJWActionSheet/DJWActionSheet.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JazzHands/JazzHands.framework",
 				"${BUILT_PRODUCTS_DIR}/PBFlatUI/PBFlatUI.framework",
 				"${BUILT_PRODUCTS_DIR}/RDVCalendarView/RDVCalendarView.framework",
@@ -1029,11 +1038,13 @@
 				"${BUILT_PRODUCTS_DIR}/RETableViewManager/RETableViewManager.framework",
 				"${BUILT_PRODUCTS_DIR}/REValidation/REValidation.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Appirater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJWActionSheet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JazzHands.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBFlatUI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RDVCalendarView.framework",
@@ -1041,6 +1052,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RETableViewManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/REValidation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1244,12 +1256,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1295,12 +1309,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1331,7 +1347,6 @@
 			baseConfigurationReference = 8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1352,7 +1367,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7s armv7 arm64";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1363,7 +1377,6 @@
 			baseConfigurationReference = C4862F26B893A7AF388C62F3 /* Pods-Hakenman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1384,7 +1397,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7s armv7 arm64";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1411,7 +1423,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kj-code.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1433,7 +1444,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kj-code.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -1461,7 +1471,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -1488,7 +1498,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -1512,7 +1522,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -1536,7 +1546,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
