@@ -22,3 +22,5 @@ Hakenmanは派遣社員の勤務表作成サポートアプリです。
 ## AppStore
 
 https://itunes.apple.com/jp/app/hakenman/id904564831?mt=8
+
+#test add

@@ -12,4 +12,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, WCSessionDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+- (NSString *)sampletest;
 @end

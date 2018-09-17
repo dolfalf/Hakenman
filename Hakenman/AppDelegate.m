@@ -206,4 +206,8 @@
         return;
     }
 }
+
+- (NSString *)sampletest {
+    return @"sampletest";
+}
 @end
