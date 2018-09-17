@@ -233,6 +233,8 @@
 - (void)calendarView:(RDVCalendarView *)calendarView didSelectCellAtIndex:(NSInteger)index {
     [calendarView deselectDayCellAtIndex:index animated:YES];
     
+    __typeof (self) __weak weakSelf = self;
+    
     _selectedIndex = index;
     
     //編集画面へ遷移
@@ -243,11 +245,11 @@
         //param
         LeftTableViewData *param = [LeftTableViewData new];
         
-        param.yearData = @([_sheetDate getYear]);
-        param.monthData = @([_sheetDate getMonth]);
+        param.yearData = @([weakSelf.sheetDate getYear]);
+        param.monthData = @([weakSelf.sheetDate getMonth]);
         param.dayData = @((int)index + 1);
-        param.weekData = @([_sheetDate getWeekday]);
-        param.workFlag = @(([_sheetDate getWeekday] == weekSatDay || [_sheetDate getWeekday] == weekSunday)?NO:YES);
+        param.weekData = @([weakSelf.sheetDate getWeekday]);
+        param.workFlag = @(([weakSelf.sheetDate getWeekday] == weekSatDay || [weakSelf.sheetDate getWeekday] == weekSunday)?NO:YES);
         
         ((MonthWorkingTableEditViewController *)controller).showData = param;
     }];
