@@ -83,10 +83,6 @@
 
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-
-}
-
 #pragma mark - migration helper methods
 - (BOOL)isEqualAndOlderVersion:(NSString *)ver {
     
@@ -210,6 +206,16 @@
         return;
     }
 }
+
+- (void)sessionDidBecomeInactive:(nonnull WCSession *)session {
+    //
+}
+
+
+- (void)sessionDidDeactivate:(nonnull WCSession *)session {
+    //
+}
+
 
 - (NSString *)sampletest {
     return @"sampletest";
