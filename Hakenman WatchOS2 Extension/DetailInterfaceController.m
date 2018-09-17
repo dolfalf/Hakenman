@@ -65,6 +65,8 @@
     //終わる日時にあわせて繰り返す
     NSString *yyyymm = [NSString stringWithFormat:@"%d%02d", [_sheetDate getYear], [_sheetDate getMonth]];
     
+    __typeof (self) __weak weakSelf = self;
+    
     [mgr sendMessageYear:[yyyymm substringWithRange:NSMakeRange(0, 4)]
                    month:[yyyymm substringWithRange:NSMakeRange(4, 2)]
             replyHandler:^(NSDictionary *results) {
@@ -78,9 +80,9 @@
                 NSArray *result_item = results[@"data"];
                 
                 //sheetDateからその月の最後の日を算出（何日で終わるのか）
-                int lastDay = [_sheetDate getLastday];
+                int lastDay = [weakSelf.sheetDate getLastday];
                 //sheetDateからその日の曜日を算出
-                int weekDay = [_sheetDate getWeekday];
+                int weekDay = [weakSelf.sheetDate getWeekday];
                 //休日か否かを取る
                 NSNumber *workFlag = [NSNumber numberWithBool:YES];
                 
@@ -101,8 +103,8 @@
                         workFlag = [NSNumber numberWithBool:YES];
                     }
                     
-                    dayItems[@"year"] = @([_sheetDate getYear]);
-                    dayItems[@"month"] = @([_sheetDate getMonth]);
+                    dayItems[@"year"] = @([weakSelf.sheetDate getYear]);
+                    dayItems[@"month"] = @([weakSelf.sheetDate getMonth]);
                     dayItems[@"day"] = leftDates;
                     dayItems[@"week"] = leftWeeks;
                     dayItems[@"workFlag"] = workFlag;
@@ -111,7 +113,7 @@
                     //取り出した結果のデータ(資料型)  fetchとして取り出した結果
                     for (NSDictionary *tm in result_item) {
                         //DBに保存されている値を日付単位で検索、表示する日付にあたる値が出るとその値をrightDataModelに入れる
-                        NSString *compareStringToday = [NSString stringWithFormat:@"%@%.2d%.2d", dayItems[@"year"], [_sheetDate getMonth], i];
+                        NSString *compareStringToday = [NSString stringWithFormat:@"%@%.2d%.2d", dayItems[@"year"], [weakSelf.sheetDate getMonth], i];
                         NSString *compareStringCore = [NSString stringWithFormat:@"%@", tm[@"t_yyyymmdd"]];
                         
                         if ([compareStringToday isEqualToString:compareStringCore]) {
@@ -145,9 +147,11 @@
     
     [_dailyWorkTable setNumberOfRows:dayItems.count withRowType:@"DailyTableRow"];
     
+    __typeof (self) __weak weakSelf = self;
+    
     [dayItems enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
         
-        DailyWorkTableRowController *row = [_dailyWorkTable rowControllerAtIndex:idx];
+        DailyWorkTableRowController *row = [weakSelf.dailyWorkTable rowControllerAtIndex:idx];
         
         [row.dateLabel setText:[NSString stringWithFormat:@"%02d",[dict[@"day"] intValue]]];
         [row.weekLabel setText:[WatchUtil weekdayString:[dict[@"week"] intValue]]];

@@ -245,9 +245,12 @@
 }
 
 #pragma mark - WCSessionDelegate
-- (void)sessionWatchStateDidChange:(WCSession *)session
-{
-    NSLog(@"%s: session = %@", __func__, session);
+- (void)session:(WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"%s: session = %@", __func__, session);
+        
+    });
 }
 
 // Application Context
