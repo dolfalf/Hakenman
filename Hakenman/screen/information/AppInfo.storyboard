@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oSU-SX-vi3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oSU-SX-vi3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--App Information View Controller-->
         <scene sceneID="MOa-xF-pNs">
             <objects>
                 <viewController storyboardIdentifier="AppInformationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oSU-SX-vi3" customClass="AppInformationViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fFY-oe-DRL"/>
-                        <viewControllerLayoutGuide type="bottom" id="gcs-yl-MWk"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="apU-1U-Odn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ReM-kn-9jy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="oSU-SX-vi3" id="FJ2-cd-qDW"/>
                                 </connections>
@@ -29,13 +29,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gcs-yl-MWk" firstAttribute="top" secondItem="ReM-kn-9jy" secondAttribute="bottom" id="3jx-k0-w1a"/>
+                            <constraint firstItem="xht-od-fGL" firstAttribute="bottom" secondItem="ReM-kn-9jy" secondAttribute="bottom" id="3jx-k0-w1a"/>
                             <constraint firstItem="ReM-kn-9jy" firstAttribute="top" secondItem="apU-1U-Odn" secondAttribute="top" id="KRi-bp-0do"/>
-                            <constraint firstItem="ReM-kn-9jy" firstAttribute="leading" secondItem="apU-1U-Odn" secondAttribute="leading" id="ez1-K4-kD0"/>
-                            <constraint firstAttribute="trailing" secondItem="ReM-kn-9jy" secondAttribute="trailing" id="sxs-da-Na7"/>
+                            <constraint firstItem="ReM-kn-9jy" firstAttribute="leading" secondItem="xht-od-fGL" secondAttribute="leading" id="ez1-K4-kD0"/>
+                            <constraint firstItem="xht-od-fGL" firstAttribute="trailing" secondItem="ReM-kn-9jy" secondAttribute="trailing" id="sxs-da-Na7"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="xht-od-fGL"/>
                     </view>
                     <connections>
                         <outlet property="descriptionWebview" destination="ReM-kn-9jy" id="ncn-ra-ouh"/>
@@ -50,30 +51,26 @@
         <scene sceneID="oEy-ku-lPo">
             <objects>
                 <viewController storyboardIdentifier="OpenSourceLicenseViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IuD-Cb-2PE" customClass="OpenSourceLicenseViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EiJ-PR-Ghl"/>
-                        <viewControllerLayoutGuide type="bottom" id="nrt-wd-j6a"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uR2-Xe-tn9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsT-WP-Mc5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="IuD-Cb-2PE" id="x4u-IM-hxB"/>
                                 </connections>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="TsT-WP-Mc5" firstAttribute="leading" secondItem="uR2-Xe-tn9" secondAttribute="leading" id="3Of-54-58H"/>
+                            <constraint firstItem="TsT-WP-Mc5" firstAttribute="leading" secondItem="9dz-lO-JVC" secondAttribute="leading" id="3Of-54-58H"/>
                             <constraint firstItem="TsT-WP-Mc5" firstAttribute="top" secondItem="uR2-Xe-tn9" secondAttribute="top" id="SnY-fK-5Ot"/>
-                            <constraint firstItem="nrt-wd-j6a" firstAttribute="top" secondItem="TsT-WP-Mc5" secondAttribute="bottom" id="vzB-hw-hq1"/>
-                            <constraint firstAttribute="trailing" secondItem="TsT-WP-Mc5" secondAttribute="trailing" id="xH8-7s-ks1"/>
+                            <constraint firstItem="9dz-lO-JVC" firstAttribute="bottom" secondItem="TsT-WP-Mc5" secondAttribute="bottom" id="vzB-hw-hq1"/>
+                            <constraint firstItem="9dz-lO-JVC" firstAttribute="trailing" secondItem="TsT-WP-Mc5" secondAttribute="trailing" id="xH8-7s-ks1"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="9dz-lO-JVC"/>
                     </view>
                     <connections>
                         <outlet property="licenseWebview" destination="TsT-WP-Mc5" id="J8Z-Pk-OB1"/>
@@ -83,10 +80,35 @@
             </objects>
             <point key="canvasLocation" x="476" y="-59"/>
         </scene>
+        <!--Privacy Policy View Controller-->
+        <scene sceneID="Zu5-lQ-TbU">
+            <objects>
+                <viewController storyboardIdentifier="PrivacyPolicyVC" id="QJT-Br-VoT" customClass="PrivacyPolicyViewController" customModule="Hakenman" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D1K-ib-7n3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hpt-wr-gRx">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Hpt-wr-gRx" firstAttribute="leading" secondItem="d7H-Uk-Dzy" secondAttribute="leading" id="BfZ-FB-sCH"/>
+                            <constraint firstItem="Hpt-wr-gRx" firstAttribute="top" secondItem="d7H-Uk-Dzy" secondAttribute="top" id="aG5-rQ-5Yo"/>
+                            <constraint firstItem="d7H-Uk-Dzy" firstAttribute="trailing" secondItem="Hpt-wr-gRx" secondAttribute="trailing" id="oV8-wY-qQz"/>
+                            <constraint firstItem="d7H-Uk-Dzy" firstAttribute="bottom" secondItem="Hpt-wr-gRx" secondAttribute="bottom" id="zSb-y2-1jc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="d7H-Uk-Dzy"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentWebView" destination="Hpt-wr-gRx" id="MHU-tB-aUA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a2A-PR-fhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="919" y="-60"/>
+        </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

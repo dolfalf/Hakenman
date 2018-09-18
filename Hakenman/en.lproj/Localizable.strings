@@ -131,6 +131,7 @@
 "SettingViewController_app_info_title"             = "About KJCode";
 "SettingViewController_kjcode_apps_title"          = "KJCode Apps";
 "SettingViewController_open_lisence_title"         = "Open lisence";
+"SettingViewController_privacy_apps_title"         = "Privacy Policy";
 
 "SettingViewController_database_init_title"         = "Remove Data";
 "SettingViewController_database_init_alert_text"    = "Are you sure Remove Data?";
@@ -186,6 +187,9 @@
 //ETC
 "OpenSourceLicenseViewController_navi_title"    = "Open license";
 "AppInformationViewController_navi_title"       = "About KJCode";
+
+"PrivarcyPolicyViewController_navi_title"       = "Privacy Policy";
+"PrivarcyPolicyViewController_url_file"       = "privarcy_policy_en";
 
 ////////////////////////////////////////////////////////////////////////////////////
 //Watch

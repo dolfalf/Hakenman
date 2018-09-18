@@ -28,3 +28,7 @@ typedef NS_ENUM(NSInteger, HKMFontType) {
 + (UIFont *)boldNanumFontOfSize:(CGFloat)fontSize;
 
 @end
+
+@interface UIFont (Wrapper)
++ (void)setNaviTitleFont:(UIFont *)font;
+@end

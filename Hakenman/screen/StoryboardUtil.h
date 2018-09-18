@@ -20,4 +20,5 @@
 + (void)gotoOpenLicenseViewController:(id)owner completion:(void(^)(id))completion;
 + (void)gotoKJCodeAppsViewController:(id)owner completion:(void(^)(id))completion;
 
++ (void)gotoPrivacyPolicyViewController:(id)owner completion:(void(^)(id))completion;
 @end

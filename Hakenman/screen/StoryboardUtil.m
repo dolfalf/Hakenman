@@ -99,4 +99,16 @@
     completion(pvc);
 }
 
++ (void)gotoPrivacyPolicyViewController:(id)owner completion:(void(^)(id))completion {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"AppInfo" bundle:nil];
+    UIViewController *controller = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"PrivacyPolicyVC"];
+    
+    if (completion) {
+        completion(controller);
+    }
+    
+    [((UIViewController *)owner).navigationController pushViewController:controller animated:YES];
+}
+
 @end

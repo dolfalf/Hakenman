@@ -129,6 +129,7 @@
 "SettingViewController_app_info_title"             = "KJCodeについて";
 "SettingViewController_kjcode_apps_title"          = "KJCode アプリ紹介";
 "SettingViewController_open_lisence_title"         = "オープンライセンス";
+"SettingViewController_privacy_apps_title"          = "プライバシーポリシー";
 
 "SettingViewController_database_init_title"         = "データ削除";
 "SettingViewController_database_init_alert_text"    = "データを削除しますか？";
@@ -184,7 +185,8 @@
 //その他
 "OpenSourceLicenseViewController_navi_title"    = "オープンライセンス";
 "AppInformationViewController_navi_title"       = "KJCodeについて";
-
+"PrivarcyPolicyViewController_navi_title"       = "プライバシーポリシー";
+"PrivarcyPolicyViewController_url_file"       = "privarcy_policy_ja";
 ////////////////////////////////////////////////////////////////////////////////////
 //Watch
 "Common_month_1" = "１月";
