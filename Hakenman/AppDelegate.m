@@ -14,7 +14,9 @@
 #import "TimeCardSummary+NSDictionary.h"
 #import "TimeCard+NSDictionary.h"
 
-#import <Appirater/Appirater.h>
+#import <StoreKit/StoreKit.h>
+
+static NSInteger const kAppLaunchCount = 10;
 
 @import Firebase;
 
@@ -55,7 +57,9 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
-    [Appirater appEnteredForeground:YES];
+    if (![self isAlreadyDisplayed]) {
+        [self requestReview];
+    }
     
     //MARK: TimeCardSummaryを更新する
     [[TimeCardSummaryDao new] updateTimeCardSummaryTableAll];
@@ -216,6 +220,45 @@
     //
 }
 
+- (void)requestReview {
+    
+    NSInteger count = [self applicationLaunchCounting];
+    
+    if (count != kAppLaunchCount) {
+        return;
+    }
+    
+    [self showReviewAlert];
+}
+
+- (void)showReviewAlert
+{
+    [SKStoreReviewController requestReview];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[AppDelegate userdefaultKeyisAlreadyDisplayed]];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[AppDelegate userdefaultKeyisRequestReview]];
+}
+
+- (NSInteger)applicationLaunchCounting
+{
+    NSString *key  = [AppDelegate userdefaultKeyisRequestReview];
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    [[NSUserDefaults standardUserDefaults] setInteger:count +=1 forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    return count;
+}
+
+- (BOOL)isAlreadyDisplayed {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:[AppDelegate userdefaultKeyisAlreadyDisplayed]];
+}
+
++ (NSString *)userdefaultKeyisRequestReview {
+    return @"requestReview";
+}
+
+
++ (NSString *)userdefaultKeyisAlreadyDisplayed {
+    return @"alreadyDisplayed";
+}
 
 - (NSString *)sampletest {
     return @"sampletest";
