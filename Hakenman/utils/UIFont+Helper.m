@@ -33,3 +33,11 @@
 }
 
 @end
+
+@implementation UIFont (Wrapper)
+
++ (void)setNaviTitleFont:(UIFont *)font {
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:font}];
+}
+@end

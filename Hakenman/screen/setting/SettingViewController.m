@@ -376,6 +376,16 @@ enum {
         }];
     }]];
     
+    //Privarcy Policy
+    [appInfoSection addItem:[RETableViewItem itemWithTitle:LOCALIZE(@"SettingViewController_privacy_apps_title") accessoryType:UITableViewCellAccessoryDisclosureIndicator selectionHandler:^(RETableViewItem *item) {
+        
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        [strongSelf.settingTableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        
+        //遷移
+        [StoryboardUtil gotoPrivacyPolicyViewController:self completion:nil];
+    }]];
+    
 }
 
 - (void)loadInitDataSection {
