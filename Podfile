@@ -15,7 +15,6 @@ target 'Hakenman' do
   pod 'DJWActionSheet', '~> 1.0'
   pod 'RDVCalendarView'
   pod 'SVProgressHUD'
-  pod 'Appirater'
   pod 'Firebase/Core'
   
   target 'HakenmanTests' do

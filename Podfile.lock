@@ -1,5 +1,4 @@
 PODS:
-  - Appirater (2.0.5)
   - DJWActionSheet (1.0.4)
   - Firebase/Core (4.8.2):
     - FirebaseAnalytics (= 4.0.9)
@@ -32,7 +31,6 @@ PODS:
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
-  - Appirater
   - DJWActionSheet (~> 1.0)
   - Firebase/Core
   - JazzHands
@@ -43,7 +41,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Appirater
     - DJWActionSheet
     - Firebase
     - FirebaseAnalytics
@@ -60,7 +57,6 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
-  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   DJWActionSheet: 2fe54b1298a7f0fe44462233752c76a530e0cd80
   Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
   FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
@@ -76,6 +72,6 @@ SPEC CHECKSUMS:
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 5db78b5cb4940aa1e9433c5e0ad330c567b05941
+PODFILE CHECKSUM: 0970466719332fa40a4abc69835d5ab71d4a0f1a
 
 COCOAPODS: 1.5.3
