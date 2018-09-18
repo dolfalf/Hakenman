@@ -327,6 +327,8 @@
 		40323512215119E000AE9A94 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		403235142151215B00AE9A94 /* privarcy_policy_ko.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privarcy_policy_ko.html; sourceTree = "<group>"; };
 		403235152151215C00AE9A94 /* privarcy_policy_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privarcy_policy_en.html; sourceTree = "<group>"; };
+		4032351821512C1600AE9A94 /* Hakenman WatchOS2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hakenman WatchOS2.entitlements"; sourceTree = "<group>"; };
+		4032351921512C1A00AE9A94 /* Hakenman WatchOS2 Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hakenman WatchOS2 Extension.entitlements"; sourceTree = "<group>"; };
 		4204BC92FB21F32EB9F60E6C /* Pods-HakenmanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hakenman.entitlements; sourceTree = "<group>"; };
 		7B24E10E8E5679C929C92664 /* Pods-Hakenman WatchOS2 Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2 Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2 Extension/Pods-Hakenman WatchOS2 Extension.release.xcconfig"; sourceTree = "<group>"; };
@@ -779,6 +781,7 @@
 		BB9E969D1D6313C1009E2985 /* Hakenman WatchOS2 */ = {
 			isa = PBXGroup;
 			children = (
+				4032351821512C1600AE9A94 /* Hakenman WatchOS2.entitlements */,
 				BB9E969E1D6313C1009E2985 /* Interface.storyboard */,
 				BB9E96A11D6313C1009E2985 /* Assets.xcassets */,
 				BB9E96A31D6313C1009E2985 /* Info.plist */,
@@ -790,6 +793,7 @@
 		BB9E96AC1D6313C1009E2985 /* Hakenman WatchOS2 Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4032351921512C1A00AE9A94 /* Hakenman WatchOS2 Extension.entitlements */,
 				BB9E96B21D6313C1009E2985 /* ExtensionDelegate.h */,
 				BB9E96B31D6313C1009E2985 /* ExtensionDelegate.m */,
 				BB9E96AF1D6313C1009E2985 /* InterfaceController.h */,
@@ -926,10 +930,20 @@
 					BB9E969B1D6313C1009E2985 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = Y8RKPBJ3Y3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					BB9E96A71D6313C1009E2985 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = Y8RKPBJ3Y3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1382,6 +1396,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1417,6 +1432,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1505,6 +1521,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2/Hakenman WatchOS2.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1533,6 +1550,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2/Hakenman WatchOS2.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1560,6 +1578,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2 Extension/Hakenman WatchOS2 Extension.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1585,6 +1604,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2 Extension/Hakenman WatchOS2 Extension.entitlements";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
