@@ -18,6 +18,8 @@
     IBOutlet BorderLabel *endTimeLabel;
     IBOutlet BorderLabel *workTimeLabel;
     IBOutlet BorderLabel *worktotalLabel;
+    IBOutlet BorderLabel *workTimeMinuteLabel;
+    IBOutlet BorderLabel *worktotalMinuteLabel;
 }
 
 

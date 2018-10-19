@@ -47,6 +47,8 @@
         endTimeLabel.text = @"";
         workTimeLabel.text = @"";
         worktotalLabel.text = @"";
+        workTimeMinuteLabel.text = @"";
+        worktotalMinuteLabel.text = @"";
     }else{
         NSDate *startTimeFromCore = [NSDate convDate2String:model.start_time];
         NSDate *endTimeFromCore = [NSDate convDate2String:model.end_time];
@@ -56,17 +58,23 @@
             endTimeLabel.text = [Util weekStatusTimeString:endTimeFromCore];
             workTimeLabel.text = @"";
             worktotalLabel.text = @"";
+            workTimeMinuteLabel.text = @"";
+            worktotalMinuteLabel.text = @"";
         }else if (model.end_time == nil) {
             startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
             endTimeLabel.text = @"";
             workTimeLabel.text = @"";
             worktotalLabel.text = @"";
+            workTimeMinuteLabel.text = @"";
+            worktotalMinuteLabel.text = @"";
         }else{
             if ([model.workday_flag boolValue] == NO) {
                 startTimeLabel.text = @"-";
                 endTimeLabel.text = @"-";
                 workTimeLabel.text = @"-";
                 worktotalLabel.text = @"-";
+                workTimeMinuteLabel.text = @"-";
+                worktotalMinuteLabel.text = @"-";
             }else {
                 float workTimeFromCore = [Util getWorkTime:startTimeFromCore endTime:endTimeFromCore] - [model.rest_time floatValue];
                 startTimeLabel.text = [Util weekStatusTimeString:startTimeFromCore];
@@ -80,6 +88,10 @@
                     workTimeLabel.textColor = [UIColor blackColor];
                 }
                 workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
+                
+                //HACK: 誤差が発生する計算になるが、そもそもCoreDataに時間で保存したため、仕方ない。改善すべき箇所
+                workTimeMinuteLabel.text = [NSString stringWithFormat:@"%ld",(long)(workTimeFromCore*60.f)];
+                worktotalMinuteLabel.text = [NSString stringWithFormat:@"%ld", (long)(model.total_time*60.f)];
             }
         }
     }

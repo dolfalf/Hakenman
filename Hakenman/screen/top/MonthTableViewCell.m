@@ -20,6 +20,7 @@
     IBOutlet UILabel *workTimeLabel;
     IBOutlet UILabel *workTimeTitleLabel;
     IBOutlet UILabel *workTimeUnit;
+    IBOutlet UILabel *workTimeMinuteLabel;
     
     IBOutlet UILabel *workdayLabel;
     IBOutlet UILabel *workdayTitleLabel;
@@ -84,6 +85,7 @@
     workdayLabel.text = [NSString stringWithFormat:@"%d", [model.workdays intValue]];
     workTimeLabel.text = [NSString stringWithFormat:@"%d", [model.workTime intValue]];
     
+    workTimeMinuteLabel.text = [NSString stringWithFormat:@"%ld minute.", (long)([model.workTime floatValue] * 60.f)];
 }
 
 @end

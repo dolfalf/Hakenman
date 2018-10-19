@@ -464,7 +464,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == tableCellTypeToday) {
-        return 140.0f;
+        return 170.0f;
     }else {
         return 80.0f;
     }

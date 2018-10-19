@@ -161,7 +161,7 @@
 "MonthWorkingTableViewController_workingday_label_text"                   = "휴";
 "MonthWorkingTableViewController_starttime_label_text"                   = "출근시간";
 "MonthWorkingTableViewController_endtime_label_text"                   = "퇴근시간";
-"MonthWorkingTableViewController_worktime_label_text"                   = "시간";
+"MonthWorkingTableViewController_worktime_label_text"                   = "시간\분";
 "MonthWorkingTableViewController_total_label_text"                   = "합계";
 
 //MONTH_WORK_EDIT_TABLE

@@ -35,6 +35,7 @@
     IBOutlet UILabel *monthWorkTitleLabel;
     IBOutlet UILabel *monthWorkTimeLabel;
     IBOutlet UILabel *monthWorkTimeUnitLabel;
+    IBOutlet UILabel *monthWorkTimeMinuteLabel;
     IBOutlet UILabel *monthWorkDayLabel;
     IBOutlet UILabel *monthWorkDayUnitLabel;
 }
@@ -110,6 +111,8 @@
     monthWorkTimeLabel.text = [NSString stringWithFormat:@"%.1f", worktime];
     monthWorkDayLabel.text = [NSString stringWithFormat:@"%ld", (long)workday];
 
+    monthWorkTimeMinuteLabel.text = [NSString stringWithFormat:@"%ld minute.", (long)(worktime*60.f)];
+    
     self.graphItems = items;
     
 }

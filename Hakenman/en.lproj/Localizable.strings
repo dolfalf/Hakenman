@@ -163,8 +163,8 @@
 "MonthWorkingTableViewController_workingday_label_text"                   = "W";
 "MonthWorkingTableViewController_starttime_label_text"                   = "ST";
 "MonthWorkingTableViewController_endtime_label_text"                   = "ET";
-"MonthWorkingTableViewController_worktime_label_text"                   = "WT";
-"MonthWorkingTableViewController_total_label_text"                   = "TT";
+"MonthWorkingTableViewController_worktime_label_text"                   = "W.hour\nW.min ";
+"MonthWorkingTableViewController_total_label_text"                   = "TT ";
 
 //MONTH_WORK_EDIT_TABLE
 "MonthWorkingTableEditViewController_edit_navi_title"       = "%04d. %02d. %02d";
