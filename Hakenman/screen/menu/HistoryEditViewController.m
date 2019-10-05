@@ -162,14 +162,13 @@
     // PickerViewの初期の選択値を設定
     // componentが行番号、selectRowが列番号
     //英語の場合は日付の表示が逆順
-    if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
-        [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
+    if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+        [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
         [self.pickerView selectRow:rowOfTodayYear inComponent:0 animated:YES];
         [self.pickerView selectRow:rowOfTodayMonth inComponent:2 animated:YES];
     }else{
         [self.pickerView selectRow:rowOfTodayMonth inComponent:0 animated:YES];
         [self.pickerView selectRow:rowOfTodayYear inComponent:2 animated:YES];
-        
     }
 }
 
@@ -434,13 +433,23 @@
     
     switch (component) {
         case 0:
-            width = width*4.f;
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                width = width*4.f;
+            }else{
+                width = width*2.f;
+            }
             break;
         case 1:
             width = width;
             break;
         case 2:
-            width = width*2.f;
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                width = width*2.f;
+            }else{
+                width = width*4.f;
+            }
             break;
     }
     
@@ -464,11 +473,21 @@
 
     switch (component) {
         case 0: // 年(1列目)の場合(配列と同じように0から始まる)
-            return [_years count];   // 年のデータ数を返す
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                return [_years count];  // 年のデータ数を返す
+            }else{
+                return [_months count]; // 月のデータ数を返す
+            }
         case 1:
             return 1;
         case 2: // 月(2列目)の場合
-            return [_months count]; // 月のデータ数を返す
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                return [_months count]; // 月のデータ数を返す
+            }else{
+                return [_years count];  // 年のデータ数を返す
+            }
     }
     
     return 0;
@@ -480,11 +499,21 @@
 
     switch (component) {
         case 0: // 年(1列目)の場合(配列と同じように0から始まる)
-            return [_years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                return [_years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
+            }else{
+                return [_months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
+            }
         case 1:
             return @"/";
         case 2: // 月(2列目)の場合
-            return [_months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                return [_months objectAtIndex:row];  // 月のデータの列に対応した文字列を返す
+            }else{
+                return [_years objectAtIndex:row];   // 年のデータの列に対応した文字列を返す
+            }
     }
     
     return nil;
@@ -510,9 +539,16 @@
     switch (component) {
         case 0: // 年(1列目)の場合(配列と同じように0から始まる)
         {
-            // 年のデータの列に対応した文字列を返す
-            lbl.frame = CGRectMake(0, 0, width*4.f, 80.f);
-            lbl.text = [_years objectAtIndex:row];
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                // 年のデータの列に対応した文字列を返す
+                lbl.frame = CGRectMake(0, 0, width*4.f, 80.f);
+                lbl.text = [_years objectAtIndex:row];
+            }else{
+                // 月のデータの列に対応した文字列を返す
+                lbl.frame = CGRectMake(0, 0, width*2.f, 80.f);
+                lbl.text = [_months objectAtIndex:row];
+            }
             break;
         }
         case 1:
@@ -522,9 +558,16 @@
             
         case 2: // 月(3列目)の場合
         {
-            // 月のデータの列に対応した文字列を返す
-            lbl.frame = CGRectMake(0, 0, width*2.f, 80.f);
-            lbl.text = [_months objectAtIndex:row];
+            if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+                [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+                // 月のデータの列に対応した文字列を返す
+                lbl.frame = CGRectMake(0, 0, width*2.f, 80.f);
+                lbl.text = [_months objectAtIndex:row];
+            }else{
+                // 年のデータの列に対応した文字列を返す
+                lbl.frame = CGRectMake(0, 0, width*4.f, 80.f);
+                lbl.text = [_years objectAtIndex:row];
+            }
             break;
         }
     }
@@ -540,14 +583,30 @@
     
 #if __LP64__
     // PickerViewの選択されている年と月の列番号を取得
-    long rowOfYear  = (long)[pickerView selectedRowInComponent:0]; // 年を取得
-    long rowOfMonth = (long)[pickerView selectedRowInComponent:2]; // 月を取得
+    long rowOfYear;
+    long rowOfMonth;
+    if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+        [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+        rowOfYear = (long)[pickerView selectedRowInComponent:0]; // 年を取得
+        rowOfMonth = (long)[pickerView selectedRowInComponent:2]; // 月を取得
+        }else{
+        rowOfMonth = (long)[pickerView selectedRowInComponent:0]; // 年を取得
+        rowOfYear = (long)[pickerView selectedRowInComponent:2]; // 月を取得
+    }
     editPastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] integerValue];
     editPastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] integerValue];
 #else
     // PickerViewの選択されている年と月の列番号を取得
-    int rowOfYear  = (int)[pickerView selectedRowInComponent:0]; // 年を取得
-    int rowOfMonth = (int)[pickerView selectedRowInComponent:2]; // 月を取得
+    int rowOfYear;
+    int rowOfMonth;
+    if ([[self checkCurrentLanguage]hasPrefix:@"ja"]||
+        [[self checkCurrentLanguage]hasPrefix:@"ko"]) {
+        rowOfYear = (long)[pickerView selectedRowInComponent:0]; // 年を取得
+        rowOfMonth = (long)[pickerView selectedRowInComponent:2]; // 月を取得
+    }else{
+        rowOfMonth = (long)[pickerView selectedRowInComponent:0]; // 年を取得
+        rowOfYear = (long)[pickerView selectedRowInComponent:2]; // 月を取得
+    }
     editPastYear = [[NSString stringWithFormat:@"%@", [_years objectAtIndex:rowOfYear]] intValue];
     editPastMonth = [[NSString stringWithFormat:@"%@", [_months objectAtIndex:rowOfMonth]] intValue];
 #endif
