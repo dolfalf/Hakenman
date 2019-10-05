@@ -161,16 +161,8 @@
     
     // PickerViewの初期の選択値を設定
     // componentが行番号、selectRowが列番号
-    //英語の場合は日付の表示が逆順
-    if ([[self checkCurrentLanguage]isEqualToString:@"ja"]||
-        [[self checkCurrentLanguage]isEqualToString:@"kr"]) {
-        [self.pickerView selectRow:rowOfTodayYear inComponent:0 animated:YES];
-        [self.pickerView selectRow:rowOfTodayMonth inComponent:2 animated:YES];
-    }else{
-        [self.pickerView selectRow:rowOfTodayMonth inComponent:0 animated:YES];
-        [self.pickerView selectRow:rowOfTodayYear inComponent:2 animated:YES];
-        
-    }
+    [self.pickerView selectRow:rowOfTodayYear inComponent:0 animated:YES];
+    [self.pickerView selectRow:rowOfTodayMonth inComponent:2 animated:YES];
 }
 
 - (void)_addThePast{
