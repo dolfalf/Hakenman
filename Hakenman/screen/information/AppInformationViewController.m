@@ -42,8 +42,6 @@
     [indicator startAnimating];
     
     [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ABOUT_URL]]];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"kjcodeInfo" ofType:@"html"];
-//    [descriptionWebview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

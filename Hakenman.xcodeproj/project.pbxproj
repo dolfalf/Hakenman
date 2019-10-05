@@ -43,7 +43,6 @@
 		1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA21F1966224300A053C7 /* AppInformationViewController.m */; };
 		1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */; };
 		1CAAA2251966252400A053C7 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2241966252400A053C7 /* license.html */; };
-		1CAAA2271966261300A053C7 /* kjcodeInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2261966261300A053C7 /* kjcodeInfo.html */; };
 		1CB3063F196F845600D8BF54 /* NSError+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB3063E196F845600D8BF54 /* NSError+Common.m */; };
 		1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B119656935002446CB /* Tutorial.storyboard */; };
 		1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B419656952002446CB /* TutorialViewController.m */; };
@@ -185,7 +184,6 @@
 		1CAAA2211966225900A053C7 /* OpenSourceLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSourceLicenseViewController.h; sourceTree = "<group>"; };
 		1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSourceLicenseViewController.m; sourceTree = "<group>"; };
 		1CAAA2241966252400A053C7 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
-		1CAAA2261966261300A053C7 /* kjcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = kjcodeInfo.html; sourceTree = "<group>"; };
 		1CB3063D196F845600D8BF54 /* NSError+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Common.h"; sourceTree = "<group>"; };
 		1CB3063E196F845600D8BF54 /* NSError+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Common.m"; sourceTree = "<group>"; };
 		1CB7F8B119656935002446CB /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
@@ -409,7 +407,6 @@
 				403235152151215C00AE9A94 /* privarcy_policy_en.html */,
 				403235142151215B00AE9A94 /* privarcy_policy_ko.html */,
 				403235102151170400AE9A94 /* privarcy_policy_ja.html */,
-				1CAAA2261966261300A053C7 /* kjcodeInfo.html */,
 			);
 			path = information;
 			sourceTree = "<group>";
@@ -523,7 +520,6 @@
 				3B8FA71618DDEFB900A1182E /* const.h */,
 				3B469FAA18B89D3A0095C418 /* AppDelegate.h */,
 				3B469FAB18B89D3A0095C418 /* AppDelegate.m */,
-				3B6AFEEE18E69DF800501C94 /* dummy */,
 				3B9CEA1A18DD44F9000E4FF3 /* dao */,
 				3B469FD018B8AB3E0095C418 /* model */,
 				3BC0E3B418DD72CE0062B07A /* screen */,
@@ -587,13 +583,6 @@
 				BBB382AD1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		3B6AFEEE18E69DF800501C94 /* dummy */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = dummy;
 			sourceTree = "<group>";
 		};
 		3B9CEA1A18DD44F9000E4FF3 /* dao */ = {
@@ -789,7 +778,6 @@
 				3B469FA618B89D3A0095C418 /* InfoPlist.strings in Resources */,
 				3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */,
 				1CAAA21D1966222C00A053C7 /* AppInfo.storyboard in Resources */,
-				1CAAA2271966261300A053C7 /* kjcodeInfo.html in Resources */,
 				3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
