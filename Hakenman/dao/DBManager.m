@@ -9,7 +9,6 @@
 #import "DBManager.h"
 #import <UIKit/UIKit.h>
 #import "NSUserDefaults+Setting.h"
-#import <WatchConnectivity/WatchConnectivity.h>
 
 //#import "Util.h"
 
@@ -149,17 +148,5 @@
     }
     
     return NO;
-}
-
-+(void)syncDBFileToWatch{
-    if ([WCSession isSupported]) {
-        // create a new URL
-        NSURL *newStoreURL1 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite"];
-        NSURL *newStoreURL2 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-shm"];
-        NSURL *newStoreURL3 = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]URLByAppendingPathComponent:@"hakenModel.sqlite-wal"];
-        [[WCSession defaultSession]transferFile:newStoreURL3 metadata:nil];
-        [[WCSession defaultSession]transferFile:newStoreURL2 metadata:nil];
-        [[WCSession defaultSession]transferFile:newStoreURL1 metadata:nil];
-    }
 }
 @end

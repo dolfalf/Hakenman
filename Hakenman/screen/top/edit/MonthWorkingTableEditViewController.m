@@ -137,8 +137,6 @@ typedef enum {
     TimeCardSummaryDao *summaryDao = [TimeCardSummaryDao new];
     [summaryDao updatedTimeCardSummaryTable:[NSString stringWithFormat:@"%d%.2d", [_showData.yearData intValue], [_showData.monthData intValue]]];
     
-    [DBManager syncDBFileToWatch];
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -331,11 +329,8 @@ typedef enum {
 
     [dao clearTimeCardWithYear:[_showData.yearData intValue] month:[_showData.monthData intValue] day:[_showData.dayData intValue]];
     
-    
     TimeCardSummaryDao *summaryDao = [TimeCardSummaryDao new];
     [summaryDao updatedTimeCardSummaryTable:[NSString stringWithFormat:@"%d%.2d", [_showData.yearData intValue], [_showData.monthData intValue]]];
-    
-    [DBManager syncDBFileToWatch];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

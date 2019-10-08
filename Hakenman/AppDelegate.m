@@ -18,23 +18,13 @@
 
 static NSInteger const kAppLaunchCount = 10;
 
-@import Firebase;
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [FIRApp configure];
-    
+
     //ja_JP
     NSLog(@"localeIdentifier: %@", [[NSLocale currentLocale] localeIdentifier]);
-    
-    //전제조건 : iphone, applewatch 상호간 세션 활성화가 되어있어야 함
-    if ([WCSession isSupported]) {
-        WCSession *session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-    }
     
     return YES;
 }
@@ -47,8 +37,6 @@ static NSInteger const kAppLaunchCount = 10;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [DBManager syncDBFileToWatch];
-    
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -63,13 +51,6 @@ static NSInteger const kAppLaunchCount = 10;
     
     //MARK: TimeCardSummaryを更新する
     [[TimeCardSummaryDao new] updateTimeCardSummaryTableAll];
-}
-
-/** Called on the sending side after the file transfer has successfully completed or failed with an error. Will be called on next launch if the sender was not running when the transfer finished. */
-- (void)session:(WCSession *)session didFinishFileTransfer:(WCSessionFileTransfer *)fileTransfer error:(nullable NSError *)error{
-    //파일 전송 세션 결과 표시
-    NSLog(@"%s: session = %@ fileTransfer = %@ error = %@", __func__, session, fileTransfer, error);
-    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -110,114 +91,6 @@ static NSInteger const kAppLaunchCount = 10;
     }
     
     return NO;
-}
-
-#pragma mark - WCSessionDelegate
-- (void)session:(WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
-    //TODO: 
-}
-
-// Interactive Message
-- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message replyHandler:(nonnull void (^)(NSDictionary<NSString *,id> * __nonnull))replyHandler
-{
-    
-    NSDictionary *watch_message = message[@"watchapp"];
-    
-    NSString *command = watch_message[@"command"];
-    NSDictionary *params = watch_message[@"param"];
-    
-    if ([command isEqualToString:@"fetch_summary"]) {
-        
-        TimeCardSummaryDao *timeCardSummaryDao = [[TimeCardSummaryDao alloc] init];
-        NSArray *items = [timeCardSummaryDao fetchModelStartMonth:params[@"startMonth"]
-                                                         EndMonth:params[@"endMonth"]
-                                                        ascending:[params[@"ascending"] boolValue]];
-        
-        
-        //Dictionaryで変換
-        NSMutableArray *result_items = [NSMutableArray new];
-        for (TimeCardSummary *summary in items) {
-            NSDictionary *dict = [summary dictionary];
-            [result_items addObject:dict];
-        }
-        
-        replyHandler(@{@"data":result_items});
-        
-        return;
-    }
-    else if ([command isEqualToString:@"fetch_today_timecard"]) {
-        
-        NSDate *today = [NSDate date];
-        TimeCardDao *timeCardDao = [[TimeCardDao alloc] init];
-        NSArray *items = [timeCardDao fetchModelYear:[today getYear]
-                                               month:[today getMonth]];
-        
-        //Dictionaryで変換
-        NSMutableArray *result_items = [NSMutableArray new];
-        for (TimeCard *time_card in items) {
-            NSDictionary *dict = [time_card dictionary];
-            [result_items addObject:dict];
-        }
-        
-        replyHandler(@{@"data":result_items});
-        
-        return;
-        
-    }
-    else if ([command isEqualToString:@"fetch_graph_date"]) {
-        
-        TimeCardDao *dao = [[TimeCardDao alloc] init];
-        NSString *dateString = params[@"date"];
-        
-        NSArray *weekTimeCards = [dao fetchModelGraphDate:[NSDate convDate2String:dateString]];
-        
-        //Dictionaryで変換
-        NSMutableArray *result_items = [NSMutableArray new];
-        for (TimeCard *time_card in weekTimeCards) {
-            NSDictionary *dict = [time_card dictionary];
-            [result_items addObject:dict];
-        }
-        
-        replyHandler(@{@"data":result_items});
-        
-        return;
-    }
-    else if ([command isEqualToString:@"fetch_year_month"]) {
-        
-        TimeCardDao *dao = [TimeCardDao new];
-        NSArray *items = [dao fetchModelYear:[params[@"year"] intValue]
-                                       month:[params[@"month"] intValue]];
-        
-        //Dictionaryで変換
-        NSMutableArray *result_items = [NSMutableArray new];
-        for (TimeCard *time_card in items) {
-            NSDictionary *dict = [time_card dictionary];
-            [result_items addObject:dict];
-        }
-        
-        replyHandler(@{@"data":result_items});
-        
-        return;
-    }
-    else if ([command isEqualToString:@"fetch_work_day"]) {
-        
-        TimeCardDao *dao = [TimeCardDao new];
-        NSInteger workDayCount = [dao fetchModelWorkDayYear:[params[@"year"] intValue]
-                                                      month:[params[@"month"] intValue]];
-        
-        replyHandler(@{@"data":@(workDayCount)});
-        
-        return;
-    }
-}
-
-- (void)sessionDidBecomeInactive:(nonnull WCSession *)session {
-    //
-}
-
-
-- (void)sessionDidDeactivate:(nonnull WCSession *)session {
-    //
 }
 
 - (void)requestReview {
