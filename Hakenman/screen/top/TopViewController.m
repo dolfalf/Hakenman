@@ -15,12 +15,12 @@
 #import "TodayTableViewCell.h"
 #import "MonthTableViewCell.h"
 #import "NSDate+Helper.h"
-#import <DJWActionSheet/DJWActionSheet.h>
 #import "Util+Document.h"
 #import "MonthWorkingTableViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "NSUserDefaults+Setting.h"
 #import "MonthWorkingCalendarViewController.h"
+#import "UILabel+Title.h"
 
 //#define TOPVIEWCONTROLLER_MENU_HIDDEN
 //#define TIMER_ENABLE
@@ -165,6 +165,7 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     //Tutorial Show
     [self performSelector:@selector(showTutorialView) withObject:nil afterDelay:0.3];
     
+    mainTableView.backgroundColor = [UIColor colorNamed:@"KJBackgroundColor"];
 }
 
 
@@ -279,8 +280,9 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
                 forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_settingBarButton];
     
-    //title
-    self.title = LOCALIZE(@"TopViewController_goWork_title");
+    NSString *titleString = LOCALIZE(@"TopViewController_goWork_title");
+    self.navigationItem.titleView = [UILabel createNaviTitleLabel:titleString];
+    self.title = titleString;
     
     //toolbar
     //#issue31対応
@@ -331,85 +333,90 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
 #pragma mark - Custom Actionsheet
 - (IBAction)writeWorkSheetButtonTouched:(id)sender {
     
-    [DJWActionSheet showInView:self.navigationController.view
-                     withTitle:LOCALIZE(@"Common_actionsheet_title")
-             cancelButtonTitle:LOCALIZE(@"Common_actionsheet_cancel")
-        destructiveButtonTitle:nil
-             otherButtonTitles:@[
-                                 LOCALIZE(@"TopViewController_actionsheet_start_work_write"),
-                                 LOCALIZE(@"TopViewController_actionsheet_end_work_write"),
-                                 LOCALIZE(@"TopViewController_actionsheet_send_work_report")]
-     
-                      tapBlock:^(DJWActionSheet *actionSheet, NSInteger tappedButtonIndex) {
-                          if (tappedButtonIndex == actionSheet.cancelButtonIndex) {
-                              DLog(@"User Cancelled");
-                              
-                          } else if (tappedButtonIndex == actionSheet.destructiveButtonIndex) {
-//                              DLog(@"Destructive button tapped");
-                          }else {
-                              DLog(@"The user tapped button at index: %d", (int)tappedButtonIndex);
-                              
-                              if (tappedButtonIndex == actionsheetButtonTypeWriteStartTime) {
-
-                                  [self _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workstart_alertview_message") withTappedButtonIndex:actionsheetButtonTypeWriteStartTime];
-                                  
-                              }else if(tappedButtonIndex == actionsheetButtonTypeWriteEndTime) {
-                                  
-                                  [self _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workend_alertview_message") withTappedButtonIndex:actionsheetButtonTypeWriteEndTime];
-                                  
-                              }else if(tappedButtonIndex == actionsheetButtonTypeSendWorkReport) {
-                                  
-                                  NSMutableString *mailContent = [NSMutableString new];
-                                  
-                                  if ([NSUserDefaults reportMailTempleteTimeAdd] == YES) {
-                                      TimeCardDao *dao = [TimeCardDao new];
-                                      TimeCard *model = [dao fetchModelWorkDate:[NSDate date]];
-//                                      //test
-//                                      TimeCard *model = [dao createModel];
-//                                      model.start_time = @"20140707091234";
-//                                      model.end_time = @"20140707214567";
-                                      NSString *st = [NSUserDefaults workStartTime];
-                                      if (model.start_time != nil && [model.start_time isEqualToString:@""] == NO) {
-                                          //時間きりで補正する
-                                          NSString *corrent_st = [Util correctWorktime:model.start_time];
-                                          st = [NSString stringWithFormat:@"%@:%@"
-                                                ,[corrent_st substringWithRange:NSMakeRange(8, 2)]
-                                                ,[corrent_st substringWithRange:NSMakeRange(10, 2)]];
-                                      }
-                                      NSString *et = [NSUserDefaults workEndTime];
-                                      if (model.end_time != nil && [model.end_time isEqualToString:@""] == NO) {
-                                          //時間きりで補正する
-                                          NSString *corrent_et = [Util correctWorktime:model.end_time];
-                                          et = [NSString stringWithFormat:@"%@:%@"
-                                                ,[corrent_et substringWithRange:NSMakeRange(8, 2)]
-                                                ,[corrent_et substringWithRange:NSMakeRange(10, 2)]];
-                                      }
-                    
-                                      //定型文追加
-                                      NSString *templetFormat = LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete");
-                                      NSString *siteName = [NSUserDefaults workSitename];
-                                      if ([siteName isEqualToString:@""] || siteName == nil) {
-                                          templetFormat = LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete_worksite_nothing");
-                                          [mailContent appendFormat:templetFormat,st, et];
-                                      }else{
-                                          [mailContent appendFormat:templetFormat,st, et, [NSUserDefaults workSitename]];
-                                      }
-                                      
-                                      [mailContent appendString:[NSUserDefaults reportMailContent]];
-                                      
-                                  }
-                                  //report mail send
-                                  [Util sendReportMailWorkSheet:self
-                                                        subject:[NSUserDefaults reportMailTitle]
-                                                    toRecipient:[NSUserDefaults reportToMailaddress]
-                                                    messageBody:mailContent];
-                              }
-                              
-                          }
-                      }];
+    __typeof (self) __weak weakSelf = self;
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:LOCALIZE(@"Common_actionsheet_title")
+                                                                         message:nil
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:LOCALIZE(@"TopViewController_actionsheet_start_work_write")
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workstart_alertview_message")
+                                   withTappedButtonIndex:actionsheetButtonTypeWriteStartTime];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:LOCALIZE(@"TopViewController_actionsheet_end_work_write")
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf _checkInputCurruntTimeAlertWithMessage:LOCALIZE(@"TopViewController_write_workend_alertview_message")
+                                   withTappedButtonIndex:actionsheetButtonTypeWriteEndTime];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:LOCALIZE(@"TopViewController_actionsheet_send_work_report")
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf doReport];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:LOCALIZE(@"Common_actionsheet_cancel")
+                                                   style:UIAlertActionStyleCancel
+                                                 handler:^(UIAlertAction * _Nonnull action) {
+        DLog(@"User Cancelled");
+    }]];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
+    
 }
 
 #pragma mark - private methods
+- (void)doReport {
+    NSMutableString *mailContent = [NSMutableString new];
+                                      
+                                      if ([NSUserDefaults reportMailTempleteTimeAdd] == YES) {
+                                          TimeCardDao *dao = [TimeCardDao new];
+                                          TimeCard *model = [dao fetchModelWorkDate:[NSDate date]];
+    //                                      //test
+    //                                      TimeCard *model = [dao createModel];
+    //                                      model.start_time = @"20140707091234";
+    //                                      model.end_time = @"20140707214567";
+                                          NSString *st = [NSUserDefaults workStartTime];
+                                          if (model.start_time != nil && [model.start_time isEqualToString:@""] == NO) {
+                                              //時間きりで補正する
+                                              NSString *corrent_st = [Util correctWorktime:model.start_time];
+                                              st = [NSString stringWithFormat:@"%@:%@"
+                                                    ,[corrent_st substringWithRange:NSMakeRange(8, 2)]
+                                                    ,[corrent_st substringWithRange:NSMakeRange(10, 2)]];
+                                          }
+                                          NSString *et = [NSUserDefaults workEndTime];
+                                          if (model.end_time != nil && [model.end_time isEqualToString:@""] == NO) {
+                                              //時間きりで補正する
+                                              NSString *corrent_et = [Util correctWorktime:model.end_time];
+                                              et = [NSString stringWithFormat:@"%@:%@"
+                                                    ,[corrent_et substringWithRange:NSMakeRange(8, 2)]
+                                                    ,[corrent_et substringWithRange:NSMakeRange(10, 2)]];
+                                          }
+                        
+                                          //定型文追加
+                                          NSString *templetFormat = LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete");
+                                          NSString *siteName = [NSUserDefaults workSitename];
+                                          if ([siteName isEqualToString:@""] || siteName == nil) {
+                                              templetFormat = LOCALIZE(@"SettingViewController_menulist_work_report_content_worktime_templete_worksite_nothing");
+                                              [mailContent appendFormat:templetFormat,st, et];
+                                          }else{
+                                              [mailContent appendFormat:templetFormat,st, et, [NSUserDefaults workSitename]];
+                                          }
+                                          
+                                          [mailContent appendString:[NSUserDefaults reportMailContent]];
+                                          
+                                      }
+                                      //report mail send
+                                      [Util sendReportMailWorkSheet:self
+                                                            subject:[NSUserDefaults reportMailTitle]
+                                                        toRecipient:[NSUserDefaults reportToMailaddress]
+                                                        messageBody:mailContent];
+}
+
 - (void)showTutorialView {
     
     //最初起動の場合、チュートリアルを表示

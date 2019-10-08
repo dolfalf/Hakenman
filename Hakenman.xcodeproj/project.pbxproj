@@ -97,6 +97,7 @@
 		403235172151215C00AE9A94 /* privarcy_policy_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 403235152151215C00AE9A94 /* privarcy_policy_en.html */; };
 		8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */; };
 		A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02519AC5BA12ADECAA47C7E0 /* Pods_HakenmanTests.framework */; };
+		B8D6FC7F234C8BF70042BA18 /* UILabel+Title.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D6FC7E234C8BF70042BA18 /* UILabel+Title.m */; };
 		BBB382AB1D6AD198007BFE88 /* TimeCard+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB382AA1D6AD198007BFE88 /* TimeCard+NSDictionary.m */; };
 		BBB382AE1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB382AD1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m */; };
 		FCD2AB40E57CCF9632FC9B84 /* Pods_Hakenman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 123978ED3DF052032EF5662F /* Pods_Hakenman.framework */; };
@@ -283,6 +284,8 @@
 		8A80E7E6EAEB6C02E2BCF686 /* Pods-HakenmanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.debug.xcconfig"; sourceTree = "<group>"; };
 		8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		B8D6FC7D234C8BF70042BA18 /* UILabel+Title.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Title.h"; sourceTree = "<group>"; };
+		B8D6FC7E234C8BF70042BA18 /* UILabel+Title.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Title.m"; sourceTree = "<group>"; };
 		BBB382A91D6AD198007BFE88 /* TimeCard+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TimeCard+NSDictionary.h"; sourceTree = "<group>"; };
 		BBB382AA1D6AD198007BFE88 /* TimeCard+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TimeCard+NSDictionary.m"; sourceTree = "<group>"; };
 		BBB382AC1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TimeCardSummary+NSDictionary.h"; sourceTree = "<group>"; };
@@ -445,6 +448,8 @@
 				1CB3063E196F845600D8BF54 /* NSError+Common.m */,
 				1C9643A31A32AC1B005452CB /* UIFont+Helper.h */,
 				1C9643A41A32AC1B005452CB /* UIFont+Helper.m */,
+				B8D6FC7D234C8BF70042BA18 /* UILabel+Title.h */,
+				B8D6FC7E234C8BF70042BA18 /* UILabel+Title.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -819,8 +824,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DJWActionSheet/DJWActionSheet.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JazzHands/JazzHands.framework",
 				"${BUILT_PRODUCTS_DIR}/PBFlatUI/PBFlatUI.framework",
 				"${BUILT_PRODUCTS_DIR}/RDVCalendarView/RDVCalendarView.framework",
@@ -831,7 +835,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJWActionSheet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JazzHands.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBFlatUI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RDVCalendarView.framework",
@@ -842,7 +845,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		96822679B3F82E5230B77C89 /* [CP] Check Pods Manifest.lock */ = {
@@ -871,6 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C8A75A81A9451FC00852CFE /* MonthWorkingCalendarViewController.m in Sources */,
+				B8D6FC7F234C8BF70042BA18 /* UILabel+Title.m in Sources */,
 				1C79E3831BC55D7500B78E45 /* Util+Document.m in Sources */,
 				1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */,
 				1C8A75C01A9452AE00852CFE /* LeftTableViewData.m in Sources */,
@@ -1170,7 +1174,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HakenmanTests/HakenmanTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1196,7 +1200,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kj-code.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HakenmanTests/HakenmanTests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

@@ -142,7 +142,7 @@
         CGPoint linePoint = CGPointMake((i==0)?margin:(x*i), y);
         
         //draw circle
-        [self drawCircle:ctx color:[UIColor blackColor] radius:3 CenterPoint:linePoint];
+        [self drawCircle:ctx color:[UIColor colorNamed:@"normalDayLabelColor"] radius:3 CenterPoint:linePoint];
         
         if (i == 0) {
             _preLinePoint = linePoint;
@@ -156,7 +156,7 @@
         
         //draw line
         [self drawLine:ctx
-                 color:[UIColor blackColor]
+                 color:[UIColor colorNamed:@"normalDayLabelColor"]
                  width:2.0f
             startPoint:_preLinePoint
               endPoint:linePoint];

@@ -71,10 +71,9 @@
 {
     [super viewDidLoad];
     
-    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"F5F5F5" alpha:1.f] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorNamed:@"tutorialBackgroundColor1"] CGColor], (id)[[UIColor colorNamed:@"tutorialBackgroundColor2"] CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
     
     
@@ -331,7 +330,7 @@
               fontSize:TITLE_FONT_SIZE];
     
     self.page01SubtitleLabel = [[UILabel alloc] init];
-    _page01SubtitleLabel.textColor = [UIColor grayColor];
+    _page01SubtitleLabel.textColor = [UIColor colorNamed:@"tutorialGrayColor"];
     [self addPageCenterLabel:_page01SubtitleLabel
                   text:LOCALIZE(@"TutorialViewController_page1_sub_title")
               fontSize:DESC_FONT_SIZE];
@@ -358,7 +357,7 @@
     
     self.page02DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page02DescLabel.numberOfLines = 10;
-    _page02DescLabel.textColor = [UIColor grayColor];
+    _page02DescLabel.textColor = [UIColor colorNamed:@"tutorialGrayColor"];
     
     [self addPageLabel:_page02DescLabel
                   text:LOCALIZE(@"TutorialViewController_page2_desc_label")
@@ -369,7 +368,7 @@
     self.page02ScreenShotImage = [self languageWithImage:@"page02_screenshot"];
     _page02ScreenShotImage.layer.cornerRadius = 5.f;
     _page02ScreenShotImage.clipsToBounds = YES;
-    [_page02ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
+    [_page02ScreenShotImage.layer setBorderColor:[UIColor colorNamed:@"tutorialGrayColor"].CGColor];
     [_page02ScreenShotImage.layer setBorderWidth:1.0];
     [self addPageImage:_page02ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(2), 40)];
     
@@ -389,7 +388,7 @@
     
     self.page03DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page03DescLabel.numberOfLines = 10;
-    _page03DescLabel.textColor = [UIColor grayColor];
+    _page03DescLabel.textColor = [UIColor colorNamed:@"tutorialGrayColor"];
     [self addPageLabel:_page03DescLabel
                   text:LOCALIZE(@"TutorialViewController_page3_desc_label")
               fontSize:DESC_FONT_SIZE
@@ -400,7 +399,7 @@
     self.page03ScreenShotImage = [self languageWithImage:@"page03_screenshot"];
     _page03ScreenShotImage.layer.cornerRadius = 5.f;
     _page03ScreenShotImage.clipsToBounds = YES;
-    [_page03ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
+    [_page03ScreenShotImage.layer setBorderColor:[UIColor colorNamed:@"tutorialGrayColor"].CGColor];
     [_page03ScreenShotImage.layer setBorderWidth:1.0];
     [self addPageImage:_page03ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(3), 40)];
     
@@ -418,7 +417,7 @@
     
     self.page04DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page04DescLabel.numberOfLines = 10;
-    _page04DescLabel.textColor = [UIColor grayColor];
+    _page04DescLabel.textColor = [UIColor colorNamed:@"tutorialGrayColor"];
     [self addPageLabel:_page04DescLabel
                   text:LOCALIZE(@"TutorialViewController_page4_desc_label")
               fontSize:DESC_FONT_SIZE
@@ -429,7 +428,7 @@
     self.page04ScreenShotImage = [self languageWithImage:@"page04_screenshot"];
     _page04ScreenShotImage.layer.cornerRadius = 5.f;
     _page04ScreenShotImage.clipsToBounds = YES;
-    [_page04ScreenShotImage.layer setBorderColor:[UIColor grayColor].CGColor];
+    [_page04ScreenShotImage.layer setBorderColor:[UIColor colorNamed:@"tutorialGrayColor"].CGColor];
     [_page04ScreenShotImage.layer setBorderWidth:1.0];
     [self addPageImage:_page04ScreenShotImage size:CGSizeMake(20, 20) movePoint:CGPointMake(timeForPage(4), 40)];
     
@@ -444,10 +443,9 @@
                                          titleLabelPosY,
                                          _page05TitleLabel.frame.size.width,
                                          _page05TitleLabel.frame.size.height);
-    
     self.page05DescLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
     _page05DescLabel.numberOfLines = 10;
-    _page05DescLabel.textColor = [UIColor grayColor];
+    _page05DescLabel.textColor = [UIColor colorNamed:@"tutorialGrayColor"];
     [self addPageLabel:_page05DescLabel
                   text:LOCALIZE(@"TutorialViewController_page5_desc_label")
               fontSize:DESC_FONT_SIZE
@@ -457,9 +455,9 @@
     const CGSize startButtonSize = CGSizeMake(300.f, 44.f);
     
     self.startButton = [[PBFlatButton alloc] initWithFrame:CGRectMake(0, 0, startButtonSize.width, startButtonSize.height)];
-    _startButton.mainColor = [UIColor HKMBlueColor];
+    _startButton.mainColor = [UIColor colorNamed:@"HKMBlueColor"];
     _startButton.titleLabel.font = [UIFont systemFontOfSize:20.f];
-    [_startButton setBackgroundColor:[UIColor HKMBlueColor]];
+    [_startButton setBackgroundColor:[UIColor colorNamed:@"HKMBlueColor"]];
     [_startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_startButton setTitle:LOCALIZE(@"TutorialViewController_page5_start_button") forState:UIControlStateNormal];
     HKM_INIT_LABLE(_startButton.titleLabel, HKMFontTypeNanum, _startButton.titleLabel.font.pointSize);
