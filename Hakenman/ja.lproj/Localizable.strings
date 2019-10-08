@@ -40,7 +40,7 @@
 "Common_alert_add_sheet_message"    = "シートを作成しますか。";
 
 //TOP
-"TopViewController_goWork_title" = "HakenMan";
+"TopViewController_goWork_title" = "HakenMann";
 "TopViewController_actionsheet_send_work_report" = "日報メールを送信";
 "TopViewController_actionsheet_start_work_write" = "現在時間で出勤";
 "TopViewController_actionsheet_end_work_write" = "現在時間で退勤";
@@ -138,7 +138,7 @@
 "KJStoreProductViewController_title"                = "KJCode アプリ紹介";
 
 //TUTORIAL
-"TutorialViewController_page1_title"                = "HakenMan";
+"TutorialViewController_page1_title"                = "HakenMann";
 "TutorialViewController_page1_sub_title"            = "便利な機能の紹介";
 
 "TutorialViewController_page2_title"                = "勤務管理が簡単になる！";
@@ -151,7 +151,7 @@
 "TutorialViewController_page4_desc_label"          = "報告がエクセル形式なら、この機能を使い\n貼付けるだけで完了！";
 
 "TutorialViewController_page5_title"               = "実際に使ってみましょう！";
-"TutorialViewController_page5_desc_label"          = "HakenManの主な機能をご紹介しました。\nさあ、今日からHakenManと一緒に元気な\n毎日を過ごしましょう！";
+"TutorialViewController_page5_desc_label"          = "HakenMannの主な機能をご紹介しました。\nさあ、今日からHakenMannと一緒に元気な\n毎日を過ごしましょう！";
 "TutorialViewController_page5_start_button"        = "スタート";
 
 //MONTH_WORK_TABLE

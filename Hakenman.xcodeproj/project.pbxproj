@@ -43,7 +43,6 @@
 		1CAAA2201966224300A053C7 /* AppInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA21F1966224300A053C7 /* AppInformationViewController.m */; };
 		1CAAA2231966225900A053C7 /* OpenSourceLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */; };
 		1CAAA2251966252400A053C7 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2241966252400A053C7 /* license.html */; };
-		1CAAA2271966261300A053C7 /* kjcodeInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAA2261966261300A053C7 /* kjcodeInfo.html */; };
 		1CB3063F196F845600D8BF54 /* NSError+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB3063E196F845600D8BF54 /* NSError+Common.m */; };
 		1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B119656935002446CB /* Tutorial.storyboard */; };
 		1CB7F8B519656952002446CB /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7F8B419656952002446CB /* TutorialViewController.m */; };
@@ -52,7 +51,6 @@
 		33F30C24214F465500B7F7AA /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6AFEDD18E6857100501C94 /* Util.m */; };
 		33F30C29214F47E900B7F7AA /* Hakenman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F30C28214F47E900B7F7AA /* Hakenman.swift */; };
 		33F30C2A214F496F00B7F7AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B469FAB18B89D3A0095C418 /* AppDelegate.m */; };
-		38EFD60424EAF685D2D3FACC /* Pods_Hakenman_WatchOS2_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F97553F58128960243FD8B4 /* Pods_Hakenman_WatchOS2_Extension.framework */; };
 		3B23F21418E6C48B00518106 /* LineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B23F21318E6C48B00518106 /* LineGraphView.m */; };
 		3B340F3B18DD99EF008F6E1E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B340F3A18DD99EF008F6E1E /* Menu.storyboard */; };
 		3B340F3E18DD99FE008F6E1E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B340F3D18DD99FE008F6E1E /* MenuViewController.m */; };
@@ -93,34 +91,14 @@
 		3BC0E3E218DD76460062B07A /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC0E3E118DD76460062B07A /* Top.storyboard */; };
 		3DE1E8421BD275ED00FB5AFD /* ModelDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1E8411BD275ED00FB5AFD /* ModelDao.m */; };
 		3DE1E8491BD27A6500FB5AFD /* TimeCardDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEA1F18DD458F000E4FF3 /* TimeCardDao.m */; };
-		401DDE06214E789100FC6A7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401DDE05214E789100FC6A7F /* GoogleService-Info.plist */; };
 		403235112151170400AE9A94 /* privarcy_policy_ja.html in Resources */ = {isa = PBXBuildFile; fileRef = 403235102151170400AE9A94 /* privarcy_policy_ja.html */; };
 		40323513215119E000AE9A94 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40323512215119E000AE9A94 /* PrivacyPolicyViewController.swift */; };
 		403235162151215C00AE9A94 /* privarcy_policy_ko.html in Resources */ = {isa = PBXBuildFile; fileRef = 403235142151215B00AE9A94 /* privarcy_policy_ko.html */; };
 		403235172151215C00AE9A94 /* privarcy_policy_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 403235152151215C00AE9A94 /* privarcy_policy_en.html */; };
 		8CB3BC3C214E7018000488AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */; };
 		A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02519AC5BA12ADECAA47C7E0 /* Pods_HakenmanTests.framework */; };
-		AC506D4CD073C8753145A876 /* Pods_Hakenman_WatchOS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE135A9BF27E2D9F093947B5 /* Pods_Hakenman_WatchOS2.framework */; };
-		BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB32C55F1D6456210032152C /* HKMConnectivityManager.m */; };
-		BB74DB921D65B66C00194D9A /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B659710191759F00075AB24 /* NSDate+Helper.m */; };
-		BB74DB961D65C77C00194D9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B469FA418B89D3A0095C418 /* InfoPlist.strings */; };
-		BB74DB971D65C77F00194D9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B8FA71D18DDF17D00A1182E /* Localizable.strings */; };
-		BB9E96A01D6313C1009E2985 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB9E969E1D6313C1009E2985 /* Interface.storyboard */; };
-		BB9E96A21D6313C1009E2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E96A11D6313C1009E2985 /* Assets.xcassets */; };
-		BB9E96A91D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BB9E96A81D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BB9E96B11D6313C1009E2985 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96B01D6313C1009E2985 /* InterfaceController.m */; };
-		BB9E96B41D6313C1009E2985 /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96B31D6313C1009E2985 /* ExtensionDelegate.m */; };
-		BB9E96B71D6313C1009E2985 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96B61D6313C1009E2985 /* NotificationController.m */; };
-		BB9E96B91D6313C1009E2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB9E96B81D6313C1009E2985 /* Assets.xcassets */; };
-		BB9E96BD1D6313C1009E2985 /* Hakenman WatchOS2.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */; };
-		BB9E96DC1D631507009E2985 /* DailyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96C61D631507009E2985 /* DailyWorkTableRowController.m */; };
-		BB9E96E31D631507009E2985 /* DetailInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D51D631507009E2985 /* DetailInterfaceController.m */; };
-		BB9E96E51D631507009E2985 /* MonthlyWorkTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */; };
-		BB9E96E61D631507009E2985 /* WatchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E96DB1D631507009E2985 /* WatchUtil.m */; };
 		BBB382AB1D6AD198007BFE88 /* TimeCard+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB382AA1D6AD198007BFE88 /* TimeCard+NSDictionary.m */; };
 		BBB382AE1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB382AD1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m */; };
-		BBCCB7311D67202C002CCA42 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B782547195EC69E003D408D /* UIColor+Helper.m */; };
-		BBCCB7321D672059002CCA42 /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FA72218DDF59400A1182E /* NSUserDefaults+Setting.m */; };
 		FCD2AB40E57CCF9632FC9B84 /* Pods_Hakenman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 123978ED3DF052032EF5662F /* Pods_Hakenman.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,20 +110,6 @@
 			remoteGlobalIDString = 3B469F9718B89D3A0095C418;
 			remoteInfo = Hakenman;
 		};
-		BB9E96AA1D6313C1009E2985 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B469F9018B89D3A0095C418 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BB9E96A71D6313C1009E2985;
-			remoteInfo = "Hakenman WatchOS2 Extension";
-		};
-		BB9E96BB1D6313C1009E2985 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B469F9018B89D3A0095C418 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BB9E969B1D6313C1009E2985;
-			remoteInfo = "Hakenman WatchOS2";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -155,20 +119,8 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				BB9E96BD1D6313C1009E2985 /* Hakenman WatchOS2.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB9E96C31D6313C2009E2985 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				BB9E96A91D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -232,7 +184,6 @@
 		1CAAA2211966225900A053C7 /* OpenSourceLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSourceLicenseViewController.h; sourceTree = "<group>"; };
 		1CAAA2221966225900A053C7 /* OpenSourceLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSourceLicenseViewController.m; sourceTree = "<group>"; };
 		1CAAA2241966252400A053C7 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
-		1CAAA2261966261300A053C7 /* kjcodeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = kjcodeInfo.html; sourceTree = "<group>"; };
 		1CB3063D196F845600D8BF54 /* NSError+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Common.h"; sourceTree = "<group>"; };
 		1CB3063E196F845600D8BF54 /* NSError+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Common.m"; sourceTree = "<group>"; };
 		1CB7F8B119656935002446CB /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
@@ -322,44 +273,16 @@
 		3DC90F3D1A87BA5C008A42BF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3DE1E8401BD275ED00FB5AFD /* ModelDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDao.h; sourceTree = "<group>"; };
 		3DE1E8411BD275ED00FB5AFD /* ModelDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDao.m; sourceTree = "<group>"; };
-		401DDE05214E789100FC6A7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		403235102151170400AE9A94 /* privarcy_policy_ja.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privarcy_policy_ja.html; sourceTree = "<group>"; };
 		40323512215119E000AE9A94 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		403235142151215B00AE9A94 /* privarcy_policy_ko.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privarcy_policy_ko.html; sourceTree = "<group>"; };
 		403235152151215C00AE9A94 /* privarcy_policy_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privarcy_policy_en.html; sourceTree = "<group>"; };
-		4032351821512C1600AE9A94 /* Hakenman WatchOS2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hakenman WatchOS2.entitlements"; sourceTree = "<group>"; };
-		4032351921512C1A00AE9A94 /* Hakenman WatchOS2 Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hakenman WatchOS2 Extension.entitlements"; sourceTree = "<group>"; };
 		4204BC92FB21F32EB9F60E6C /* Pods-HakenmanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hakenman.entitlements; sourceTree = "<group>"; };
 		7B24E10E8E5679C929C92664 /* Pods-Hakenman WatchOS2 Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2 Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2 Extension/Pods-Hakenman WatchOS2 Extension.release.xcconfig"; sourceTree = "<group>"; };
 		8764EE0D6C84B7CAEF3A41FC /* Pods-Hakenman WatchOS2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman WatchOS2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman WatchOS2/Pods-Hakenman WatchOS2.debug.xcconfig"; sourceTree = "<group>"; };
 		8A80E7E6EAEB6C02E2BCF686 /* Pods-HakenmanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HakenmanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HakenmanTests/Pods-HakenmanTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B1A812D6CE655A10BFCB9DD /* Pods-Hakenman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hakenman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman.debug.xcconfig"; sourceTree = "<group>"; };
 		8CB3BC3B214E7018000488AF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		BB32C55E1D6456210032152C /* HKMConnectivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKMConnectivityManager.h; sourceTree = "<group>"; };
-		BB32C55F1D6456210032152C /* HKMConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMConnectivityManager.m; sourceTree = "<group>"; };
-		BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hakenman WatchOS2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB9E969F1D6313C1009E2985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		BB9E96A11D6313C1009E2985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BB9E96A31D6313C1009E2985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB9E96A81D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hakenman WatchOS2 Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB9E96AE1D6313C1009E2985 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		BB9E96AF1D6313C1009E2985 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
-		BB9E96B01D6313C1009E2985 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
-		BB9E96B21D6313C1009E2985 /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
-		BB9E96B31D6313C1009E2985 /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
-		BB9E96B51D6313C1009E2985 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
-		BB9E96B61D6313C1009E2985 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
-		BB9E96B81D6313C1009E2985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BB9E96BA1D6313C1009E2985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB9E96C51D631507009E2985 /* DailyWorkTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyWorkTableRowController.h; sourceTree = "<group>"; };
-		BB9E96C61D631507009E2985 /* DailyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyWorkTableRowController.m; sourceTree = "<group>"; };
-		BB9E96D41D631507009E2985 /* DetailInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInterfaceController.h; sourceTree = "<group>"; };
-		BB9E96D51D631507009E2985 /* DetailInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailInterfaceController.m; sourceTree = "<group>"; };
-		BB9E96D81D631507009E2985 /* MonthlyWorkTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyWorkTableRowController.h; sourceTree = "<group>"; };
-		BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyWorkTableRowController.m; sourceTree = "<group>"; };
-		BB9E96DA1D631507009E2985 /* WatchUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchUtil.h; sourceTree = "<group>"; };
-		BB9E96DB1D631507009E2985 /* WatchUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchUtil.m; sourceTree = "<group>"; };
 		BBB382A91D6AD198007BFE88 /* TimeCard+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TimeCard+NSDictionary.h"; sourceTree = "<group>"; };
 		BBB382AA1D6AD198007BFE88 /* TimeCard+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TimeCard+NSDictionary.m"; sourceTree = "<group>"; };
 		BBB382AC1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TimeCardSummary+NSDictionary.h"; sourceTree = "<group>"; };
@@ -402,22 +325,6 @@
 				3B469FBD18B89D3A0095C418 /* UIKit.framework in Frameworks */,
 				3B469FBC18B89D3A0095C418 /* Foundation.framework in Frameworks */,
 				A9F035814AEBB0F964C95242 /* Pods_HakenmanTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB9E96A51D6313C1009E2985 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38EFD60424EAF685D2D3FACC /* Pods_Hakenman_WatchOS2_Extension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BBE2E97F7DE69BAB38ECDFE1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AC506D4CD073C8753145A876 /* Pods_Hakenman_WatchOS2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,7 +407,6 @@
 				403235152151215C00AE9A94 /* privarcy_policy_en.html */,
 				403235142151215B00AE9A94 /* privarcy_policy_ko.html */,
 				403235102151170400AE9A94 /* privarcy_policy_ja.html */,
-				1CAAA2261966261300A053C7 /* kjcodeInfo.html */,
 			);
 			path = information;
 			sourceTree = "<group>";
@@ -559,8 +465,6 @@
 			isa = PBXGroup;
 			children = (
 				3B469FA118B89D3A0095C418 /* Hakenman */,
-				BB9E969D1D6313C1009E2985 /* Hakenman WatchOS2 */,
-				BB9E96AC1D6313C1009E2985 /* Hakenman WatchOS2 Extension */,
 				3B469F9A18B89D3A0095C418 /* Frameworks */,
 				3B469F9918B89D3A0095C418 /* Products */,
 				3B469FC018B89D3A0095C418 /* HakenmanTests */,
@@ -573,8 +477,6 @@
 			children = (
 				3B469F9818B89D3A0095C418 /* Hakenman.app */,
 				3B469FB918B89D3A0095C418 /* HakenmanTests.xctest */,
-				BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */,
-				BB9E96A81D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -615,11 +517,9 @@
 		3B469FA118B89D3A0095C418 /* Hakenman */ = {
 			isa = PBXGroup;
 			children = (
-				5F1BFED01BA7A7FA00C06059 /* Hakenman.entitlements */,
 				3B8FA71618DDEFB900A1182E /* const.h */,
 				3B469FAA18B89D3A0095C418 /* AppDelegate.h */,
 				3B469FAB18B89D3A0095C418 /* AppDelegate.m */,
-				3B6AFEEE18E69DF800501C94 /* dummy */,
 				3B9CEA1A18DD44F9000E4FF3 /* dao */,
 				3B469FD018B8AB3E0095C418 /* model */,
 				3BC0E3B418DD72CE0062B07A /* screen */,
@@ -683,13 +583,6 @@
 				BBB382AD1D6AD342007BFE88 /* TimeCardSummary+NSDictionary.m */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		3B6AFEEE18E69DF800501C94 /* dummy */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = dummy;
 			sourceTree = "<group>";
 		};
 		3B9CEA1A18DD44F9000E4FF3 /* dao */ = {
@@ -778,53 +671,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		BB9E969D1D6313C1009E2985 /* Hakenman WatchOS2 */ = {
-			isa = PBXGroup;
-			children = (
-				4032351821512C1600AE9A94 /* Hakenman WatchOS2.entitlements */,
-				BB9E969E1D6313C1009E2985 /* Interface.storyboard */,
-				BB9E96A11D6313C1009E2985 /* Assets.xcassets */,
-				BB9E96A31D6313C1009E2985 /* Info.plist */,
-				401DDE05214E789100FC6A7F /* GoogleService-Info.plist */,
-			);
-			path = "Hakenman WatchOS2";
-			sourceTree = "<group>";
-		};
-		BB9E96AC1D6313C1009E2985 /* Hakenman WatchOS2 Extension */ = {
-			isa = PBXGroup;
-			children = (
-				4032351921512C1A00AE9A94 /* Hakenman WatchOS2 Extension.entitlements */,
-				BB9E96B21D6313C1009E2985 /* ExtensionDelegate.h */,
-				BB9E96B31D6313C1009E2985 /* ExtensionDelegate.m */,
-				BB9E96AF1D6313C1009E2985 /* InterfaceController.h */,
-				BB9E96B01D6313C1009E2985 /* InterfaceController.m */,
-				BB9E96B51D6313C1009E2985 /* NotificationController.h */,
-				BB9E96B61D6313C1009E2985 /* NotificationController.m */,
-				BB9E96C51D631507009E2985 /* DailyWorkTableRowController.h */,
-				BB9E96C61D631507009E2985 /* DailyWorkTableRowController.m */,
-				BB9E96D41D631507009E2985 /* DetailInterfaceController.h */,
-				BB9E96D51D631507009E2985 /* DetailInterfaceController.m */,
-				BB9E96D81D631507009E2985 /* MonthlyWorkTableRowController.h */,
-				BB9E96D91D631507009E2985 /* MonthlyWorkTableRowController.m */,
-				BB9E96DA1D631507009E2985 /* WatchUtil.h */,
-				BB9E96DB1D631507009E2985 /* WatchUtil.m */,
-				BB32C55E1D6456210032152C /* HKMConnectivityManager.h */,
-				BB32C55F1D6456210032152C /* HKMConnectivityManager.m */,
-				BB9E96B81D6313C1009E2985 /* Assets.xcassets */,
-				BB9E96BA1D6313C1009E2985 /* Info.plist */,
-				BB9E96AD1D6313C1009E2985 /* Supporting Files */,
-			);
-			path = "Hakenman WatchOS2 Extension";
-			sourceTree = "<group>";
-		};
-		BB9E96AD1D6313C1009E2985 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BB9E96AE1D6313C1009E2985 /* PushNotificationPayload.apns */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -842,7 +688,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				BB9E96BC1D6313C1009E2985 /* PBXTargetDependency */,
 			);
 			name = Hakenman;
 			productName = Hakenman;
@@ -868,43 +713,6 @@
 			productReference = 3B469FB918B89D3A0095C418 /* HakenmanTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BB9E969B1D6313C1009E2985 /* Hakenman WatchOS2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BB9E96C41D6313C2009E2985 /* Build configuration list for PBXNativeTarget "Hakenman WatchOS2" */;
-			buildPhases = (
-				6C862028B7D4E5AD63F9D753 /* [CP] Check Pods Manifest.lock */,
-				BB9E969A1D6313C1009E2985 /* Resources */,
-				BB9E96C31D6313C2009E2985 /* Embed App Extensions */,
-				BBE2E97F7DE69BAB38ECDFE1 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BB9E96AB1D6313C1009E2985 /* PBXTargetDependency */,
-			);
-			name = "Hakenman WatchOS2";
-			productName = "Hakenman WatchOS2";
-			productReference = BB9E969C1D6313C1009E2985 /* Hakenman WatchOS2.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		BB9E96A71D6313C1009E2985 /* Hakenman WatchOS2 Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BB9E96C21D6313C2009E2985 /* Build configuration list for PBXNativeTarget "Hakenman WatchOS2 Extension" */;
-			buildPhases = (
-				A10ACC52779424042306FBA5 /* [CP] Check Pods Manifest.lock */,
-				BB9E96A41D6313C1009E2985 /* Sources */,
-				BB9E96A51D6313C1009E2985 /* Frameworks */,
-				BB9E96A61D6313C1009E2985 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Hakenman WatchOS2 Extension";
-			productName = "Hakenman WatchOS2 Extension";
-			productReference = BB9E96A81D6313C1009E2985 /* Hakenman WatchOS2 Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -915,35 +723,17 @@
 				ORGANIZATIONNAME = kjcode;
 				TargetAttributes = {
 					3B469F9718B89D3A0095C418 = {
-						DevelopmentTeam = Y8RKPBJ3Y3;
+						DevelopmentTeam = QN8T3L2FUY;
 						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
 					3B469FB818B89D3A0095C418 = {
 						LastSwiftMigration = 0940;
 						TestTargetID = 3B469F9718B89D3A0095C418;
-					};
-					BB9E969B1D6313C1009E2985 = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Y8RKPBJ3Y3;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
-					};
-					BB9E96A71D6313C1009E2985 = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Y8RKPBJ3Y3;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
 					};
 				};
 			};
@@ -952,6 +742,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ja,
@@ -963,8 +754,6 @@
 			projectRoot = "";
 			targets = (
 				3B469F9718B89D3A0095C418 /* Hakenman */,
-				BB9E969B1D6313C1009E2985 /* Hakenman WatchOS2 */,
-				BB9E96A71D6313C1009E2985 /* Hakenman WatchOS2 Extension */,
 				3B469FB818B89D3A0095C418 /* HakenmanTests */,
 			);
 		};
@@ -975,7 +764,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				401DDE06214E789100FC6A7F /* GoogleService-Info.plist in Resources */,
 				3B469FB418B89D3A0095C418 /* Images.xcassets in Resources */,
 				403235162151215C00AE9A94 /* privarcy_policy_ko.html in Resources */,
 				1CB7F8B219656935002446CB /* Tutorial.storyboard in Resources */,
@@ -990,7 +778,6 @@
 				3B469FA618B89D3A0095C418 /* InfoPlist.strings in Resources */,
 				3B8FA71F18DDF17D00A1182E /* Localizable.strings in Resources */,
 				1CAAA21D1966222C00A053C7 /* AppInfo.storyboard in Resources */,
-				1CAAA2271966261300A053C7 /* kjcodeInfo.html in Resources */,
 				3BC0E3C418DD737C0062B07A /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1002,25 +789,6 @@
 				1C9643A21A32AB6C005452CB /* NanumBarunGothicBold.ttf in Resources */,
 				3B469FC518B89D3A0095C418 /* InfoPlist.strings in Resources */,
 				1C9643A11A32AB6C005452CB /* NanumBarunGothic.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB9E969A1D6313C1009E2985 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BB9E96A21D6313C1009E2985 /* Assets.xcassets in Resources */,
-				BB9E96A01D6313C1009E2985 /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB9E96A61D6313C1009E2985 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BB9E96B91D6313C1009E2985 /* Assets.xcassets in Resources */,
-				BB74DB971D65C77F00194D9A /* Localizable.strings in Resources */,
-				BB74DB961D65C77C00194D9A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,24 +813,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6C862028B7D4E5AD63F9D753 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hakenman WatchOS2-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7F9F96C6BC059AC526B202FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1071,7 +821,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DJWActionSheet/DJWActionSheet.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JazzHands/JazzHands.framework",
 				"${BUILT_PRODUCTS_DIR}/PBFlatUI/PBFlatUI.framework",
 				"${BUILT_PRODUCTS_DIR}/RDVCalendarView/RDVCalendarView.framework",
@@ -1079,12 +828,10 @@
 				"${BUILT_PRODUCTS_DIR}/RETableViewManager/RETableViewManager.framework",
 				"${BUILT_PRODUCTS_DIR}/REValidation/REValidation.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJWActionSheet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JazzHands.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PBFlatUI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RDVCalendarView.framework",
@@ -1092,7 +839,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RETableViewManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/REValidation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1111,24 +857,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Hakenman-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A10ACC52779424042306FBA5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hakenman WatchOS2 Extension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1206,24 +934,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BB9E96A41D6313C1009E2985 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BBCCB7321D672059002CCA42 /* NSUserDefaults+Setting.m in Sources */,
-				BB32C5601D6456210032152C /* HKMConnectivityManager.m in Sources */,
-				BB9E96E51D631507009E2985 /* MonthlyWorkTableRowController.m in Sources */,
-				BB9E96E31D631507009E2985 /* DetailInterfaceController.m in Sources */,
-				BB74DB921D65B66C00194D9A /* NSDate+Helper.m in Sources */,
-				BB9E96B41D6313C1009E2985 /* ExtensionDelegate.m in Sources */,
-				BB9E96E61D631507009E2985 /* WatchUtil.m in Sources */,
-				BBCCB7311D67202C002CCA42 /* UIColor+Helper.m in Sources */,
-				BB9E96B11D6313C1009E2985 /* InterfaceController.m in Sources */,
-				BB9E96DC1D631507009E2985 /* DailyWorkTableRowController.m in Sources */,
-				BB9E96B71D6313C1009E2985 /* NotificationController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1231,16 +941,6 @@
 			isa = PBXTargetDependency;
 			target = 3B469F9718B89D3A0095C418 /* Hakenman */;
 			targetProxy = 3B469FBE18B89D3A0095C418 /* PBXContainerItemProxy */;
-		};
-		BB9E96AB1D6313C1009E2985 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BB9E96A71D6313C1009E2985 /* Hakenman WatchOS2 Extension */;
-			targetProxy = BB9E96AA1D6313C1009E2985 /* PBXContainerItemProxy */;
-		};
-		BB9E96BC1D6313C1009E2985 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BB9E969B1D6313C1009E2985 /* Hakenman WatchOS2 */;
-			targetProxy = BB9E96BB1D6313C1009E2985 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1273,14 +973,6 @@
 				3D2980681987B66900018BAD /* ko */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		BB9E969E1D6313C1009E2985 /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BB9E969F1D6313C1009E2985 /* Base */,
-			);
-			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1392,11 +1084,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
+				DEVELOPMENT_TEAM = QN8T3L2FUY;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1411,13 +1102,12 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.archive-asia.hakenman";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hakenman/swift/Hakenman-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1428,11 +1118,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Hakenman/Hakenman.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
+				DEVELOPMENT_TEAM = QN8T3L2FUY;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1447,12 +1136,11 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.archive-asia.hakenman";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hakenman/swift/Hakenman-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1514,116 +1202,6 @@
 			};
 			name = Release;
 		};
-		BB9E96BE1D6313C2009E2985 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8764EE0D6C84B7CAEF3A41FC /* Pods-Hakenman WatchOS2.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2/Hakenman WatchOS2.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				IBSC_MODULE = Hakenman_WatchOS2_Extension;
-				INFOPLIST_FILE = "Hakenman WatchOS2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
-			};
-			name = Debug;
-		};
-		BB9E96BF1D6313C2009E2985 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C101B73F461ADB482A35E8B /* Pods-Hakenman WatchOS2.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2/Hakenman WatchOS2.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				IBSC_MODULE = Hakenman_WatchOS2_Extension;
-				INFOPLIST_FILE = "Hakenman WatchOS2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
-			};
-			name = Release;
-		};
-		BB9E96C01D6313C2009E2985 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6C2C74BF2BC0DC43AF78676 /* Pods-Hakenman WatchOS2 Extension.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2 Extension/Hakenman WatchOS2 Extension.entitlements";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "Hakenman WatchOS2 Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman.watchkitapp.extension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
-			};
-			name = Debug;
-		};
-		BB9E96C11D6313C2009E2985 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B24E10E8E5679C929C92664 /* Pods-Hakenman WatchOS2 Extension.release.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "Hakenman WatchOS2 Extension/Hakenman WatchOS2 Extension.entitlements";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = Y8RKPBJ3Y3;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "Hakenman WatchOS2 Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kjcode.dolfalf.hakenman.watchkitapp.extension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1650,24 +1228,6 @@
 			buildConfigurations = (
 				3B469FCE18B89D3A0095C418 /* Debug */,
 				3B469FCF18B89D3A0095C418 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BB9E96C21D6313C2009E2985 /* Build configuration list for PBXNativeTarget "Hakenman WatchOS2 Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BB9E96C01D6313C2009E2985 /* Debug */,
-				BB9E96C11D6313C2009E2985 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BB9E96C41D6313C2009E2985 /* Build configuration list for PBXNativeTarget "Hakenman WatchOS2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BB9E96BE1D6313C2009E2985 /* Debug */,
-				BB9E96BF1D6313C2009E2985 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

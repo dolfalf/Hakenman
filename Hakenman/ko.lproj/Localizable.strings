@@ -40,7 +40,7 @@
 "Common_alert_add_sheet_message"    = "시트를 작성하시겠습니까?";
 
 //TOP
-"TopViewController_goWork_title" = "HakenMan";
+"TopViewController_goWork_title" = "HakenMann";
 "TopViewController_actionsheet_send_work_report" = "일일보고서 전송";
 "TopViewController_actionsheet_start_work_write" = "현재 시각으로 출근";
 "TopViewController_actionsheet_end_work_write" = "현재 시각으로 퇴근";
@@ -138,7 +138,7 @@
 "KJStoreProductViewController_title"                = "KJCode 앱 소개";
 
 //TUTORIAL
-"TutorialViewController_page1_title"                = "HakenMan";
+"TutorialViewController_page1_title"                = "HakenMann";
 "TutorialViewController_page1_sub_title"            = "편리한 기능소개";
 
 "TutorialViewController_page2_title"                = "근무관리가 간단합니다!";
@@ -151,7 +151,7 @@
 "TutorialViewController_page4_desc_label"          = "보고양식이 엑셀이라면, 이 기능을 추천합니다!\n복사→붙여넣기 한번으로 보고완료!";
 
 "TutorialViewController_page5_title"               = "직접 사용해 보세요!";
-"TutorialViewController_page5_desc_label"          = "이상이 HakenMan의 주요기능입니다.\n자, HakenMan과 함께 힘찬 하루를 보냅시다!";
+"TutorialViewController_page5_desc_label"          = "이상이 HakenMann의 주요기능입니다.\n자, HakenMann과 함께 힘찬 하루를 보냅시다!";
 "TutorialViewController_page5_start_button"        = "시작";
 
 //MONTH_WORK_TABLE

@@ -41,7 +41,7 @@
 "Common_alert_button_cancel"    = "Cancel";
 
 //TOP
-"TopViewController_goWork_title" = "HakenMan";
+"TopViewController_goWork_title" = "HakenMann";
 "TopViewController_actionsheet_send_work_report" = "Send work report";
 "TopViewController_actionsheet_start_work_write" = "start job at the current time.";
 "TopViewController_actionsheet_end_work_write" = "finish job at the current time.";
@@ -140,7 +140,7 @@
 "KJStoreProductViewController_title"                = "KJCode Apps";
 
 //TUTORIAL
-"TutorialViewController_page1_title"                = "HakenMan";
+"TutorialViewController_page1_title"                = "HakenMann";
 "TutorialViewController_page1_sub_title"            = "Introduction of useful features";
 
 "TutorialViewController_page2_title"                = "Simply Work Management!";
@@ -153,7 +153,7 @@
 "TutorialViewController_page4_desc_label"          = "Completed by kicking stuck in this feature report if Excel!";
 
 "TutorialViewController_page5_title"               = "Let's actually use!";
-"TutorialViewController_page5_desc_label"          = "I introduce the main features of HakenMan. Pity you're not Spend a cheerful every day with HakenMan!";
+"TutorialViewController_page5_desc_label"          = "I introduce the main features of HakenMann. Pity you're not Spend a cheerful every day with HakenMann!";
 "TutorialViewController_page5_start_button"        = "Start";
 
 //MONTH_WORK_TABLE
