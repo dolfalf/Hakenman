@@ -31,6 +31,7 @@
 	// Do any additional setup after loading the view.
     
     [self initControls];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,7 +40,7 @@
     
     //Navigationbar, statusbar initialize
     if([UINavigationBar instancesRespondToSelector:@selector(barTintColor)]){ //iOS7
-        self.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
+        self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"HKMBlueColor"];
         [UINavigationBar appearance].tintColor = [UIColor whiteColor];
         [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     }
@@ -88,7 +89,7 @@
  * ViewDidLoadの時に呼ばれます。
  */
 - (void)initControls {
-    
+    self.view.backgroundColor = [UIColor colorNamed:@"KJBackgroundColor"];
 }
 
 #pragma mark - google Analytics methods

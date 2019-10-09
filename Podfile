@@ -8,10 +8,9 @@ target 'Hakenman' do
   platform :ios, '8.2'
   
   # Pods for Hakenman
-  pod 'RETableViewManager', '~> 1.5'
+  pod 'RETableViewManager'
   pod 'PBFlatUI', '~> 1.1.0'
   pod 'JazzHands'
-  pod 'DJWActionSheet', '~> 1.0'
   pod 'RDVCalendarView'
   pod 'SVProgressHUD'
   

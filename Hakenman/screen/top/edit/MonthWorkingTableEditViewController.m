@@ -15,7 +15,7 @@
 #import "NSUserDefaults+Setting.h"
 #import "LeftTableViewData.h"
 #import <RETableViewManager/RETableViewManager.h>
-
+#import "UILabel+Title.h"
 
 #define TABLE_CELL_COUNT            4
 #define TABLE_CELL_TEXTFIELD_TAG    500
@@ -62,11 +62,16 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 
-    self.title = [NSString stringWithFormat:
+    NSString *titleString = [NSString stringWithFormat:
                   LOCALIZE(@"MonthWorkingTableEditViewController_edit_navi_title"),
                   [_showData.yearData intValue],
                   [_showData.monthData intValue],
                   [_showData.dayData intValue]];
+    
+    self.navigationItem.titleView = [UILabel createNaviTitleLabel:titleString];
+    self.title = titleString;
+    
+    self.editTableView.backgroundColor = [UIColor colorNamed:@"KJBackgroundColor"];
     [super viewWillAppear:animated];
 }
 

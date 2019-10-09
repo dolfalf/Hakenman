@@ -75,9 +75,9 @@
                 worktotalLabel.text = [NSString stringWithFormat:@"%2.2f", model.total_time];
                 //合計12時間以上 / 0時間以下は赤字で表示する
                 if (workTimeFromCore >= 12.00f || workTimeFromCore <= 0) {
-                    workTimeLabel.textColor = [UIColor redColor];
+                    workTimeLabel.textColor = [UIColor colorNamed:@"sundayColor"];
                 }else {
-                    workTimeLabel.textColor = [UIColor blackColor];
+                    workTimeLabel.textColor = [UIColor colorNamed:@"normalDayLabelColor"];
                 }
                 workTimeLabel.text = [NSString stringWithFormat:@"%2.2f",workTimeFromCore];
             }

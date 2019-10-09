@@ -1,5 +1,4 @@
 PODS:
-  - DJWActionSheet (1.0.4)
   - JazzHands (0.2.1)
   - PBFlatUI (1.1.0)
   - RDVCalendarView (1.0.7)
@@ -11,16 +10,14 @@ PODS:
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
-  - DJWActionSheet (~> 1.0)
   - JazzHands
   - PBFlatUI (~> 1.1.0)
   - RDVCalendarView
-  - RETableViewManager (~> 1.5)
+  - RETableViewManager
   - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - DJWActionSheet
     - JazzHands
     - PBFlatUI
     - RDVCalendarView
@@ -30,7 +27,6 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
-  DJWActionSheet: 2fe54b1298a7f0fe44462233752c76a530e0cd80
   JazzHands: d2343c3f2f9d70598d0cad8f521ce3893842a44a
   PBFlatUI: d797c6de1d28245287d695d74178dc75895d0bd9
   RDVCalendarView: f9702024bbbc235709748812cff6f5f48b147fbb
@@ -39,6 +35,6 @@ SPEC CHECKSUMS:
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 73f79cc7fbb17c92283927661224d04b344aa156
+PODFILE CHECKSUM: 82fe44dd4e90c95bc094be64aa9c0cb8fbabbba9
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5

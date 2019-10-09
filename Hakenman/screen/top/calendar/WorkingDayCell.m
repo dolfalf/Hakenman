@@ -46,11 +46,11 @@
         [self.contentView addSubview:_containerView];
         
         self.startLabel = [UILabel new];
-        _startLabel.backgroundColor = [UIColor HKMSkyblueColor:0.1f];
+        _startLabel.backgroundColor = [[UIColor colorNamed:@"HKMSkyblueColor"] colorWithAlphaComponent:0.1f];
         [_containerView addSubview:_startLabel];
         
         self.endLabel = [UILabel new];
-        _endLabel.backgroundColor = [UIColor HKMSkyblueColor:0.5f];
+        _endLabel.backgroundColor = [[UIColor  colorNamed:@"HKMSkyblueColor"] colorWithAlphaComponent:0.5f];
         [_containerView addSubview:_endLabel];
         
         if ([Util is3_5inch] == YES) {
@@ -66,7 +66,7 @@
         
         _startLabel.textColor
         = _endLabel.textColor
-        = [UIColor grayColor];
+        = [UIColor colorNamed:@"calendarWorkLabelColor"];
         
         _startLabel.textAlignment
         = _endLabel.textAlignment

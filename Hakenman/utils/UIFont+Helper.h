@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, HKMFontType) {
                                     else if(ft == HKMFontTypeBoldNanum){l.font=[UIFont boldNanumFontOfSize:sz];}
 
 #define HKM_INIT_NAVI_TITLE(font) [[UINavigationBar appearance] setTitleTextAttributes:\
-                                    [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil]];
+                                    [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
 
 #define HKM_INIT_NAVI_BACK_BUTTON(font) [[UIBarButtonItem appearance] setTitleTextAttributes:\
                                     [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName,nil] forState:UIControlStateNormal];

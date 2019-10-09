@@ -20,6 +20,7 @@
     
     NSDate *date = [self.month.calendar dateFromComponents:self.month];
     self.monthLabel.text = [formatter stringFromDate:date];
+    self.monthLabel.textColor = [UIColor colorNamed:@"calendarLabelColor"];
 }
 
 - (void)updateWeekDayLocalizeLabel {
