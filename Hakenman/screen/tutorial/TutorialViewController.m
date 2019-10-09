@@ -94,12 +94,11 @@
     
     
     // ページコントロールのインスタンス化
-    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame) - 300) / 2,
-                                                                 CGRectGetHeight(self.view.frame) - 50,
+    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame) - 300) / 2, 10,
                                                                  300, 50)];
     
-    pageControl.currentPageIndicatorTintColor = [UIColor HKMDarkblueColor];
-    pageControl.pageIndicatorTintColor = [UIColor HKMSkyblueColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor colorNamed:@"HKMDarkblueColor"];
+    pageControl.pageIndicatorTintColor = [UIColor colorNamed:@"HKMSkyblueColor"];
     
     // ページ数を設定
     pageControl.numberOfPages = NUMBER_OF_PAGES;

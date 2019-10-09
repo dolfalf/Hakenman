@@ -16,7 +16,7 @@
     label.text = str;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldSystemFontOfSize:17.f];
-    
+    label.textColor = [UIColor whiteColor];
     return label;
 }
 @end
