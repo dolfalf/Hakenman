@@ -19,7 +19,7 @@
 //    #import "GAIFields.h"
 #endif
 
-#define KJCODE_ITunesItemIdentifier     @"491883463"
+#define KJCODE_ITunesItemIdentifier     @"1482478062"
 
 //#define GOOGLE_ANALYTICS_ID @"UA-52562316-1"
 

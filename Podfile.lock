@@ -1,5 +1,5 @@
 PODS:
-  - JazzHands (0.2.1)
+  - JazzHands (2.0.8)
   - PBFlatUI (1.1.0)
   - RDVCalendarView (1.0.7)
   - REFormattedNumberField (1.1.6)
@@ -7,7 +7,7 @@ PODS:
     - REFormattedNumberField (~> 1.1.5)
     - REValidation (~> 0.1.4)
   - REValidation (0.1.4)
-  - SVProgressHUD (2.0.3)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - JazzHands
@@ -27,14 +27,14 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
-  JazzHands: d2343c3f2f9d70598d0cad8f521ce3893842a44a
+  JazzHands: 355dc5c2b6fc38ee460d0ed7836c69539263f477
   PBFlatUI: d797c6de1d28245287d695d74178dc75895d0bd9
   RDVCalendarView: f9702024bbbc235709748812cff6f5f48b147fbb
   REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
   RETableViewManager: 0f24d796c42c0890d38c79cc9aeb3871e186726e
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: 82fe44dd4e90c95bc094be64aa9c0cb8fbabbba9
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.5.3
