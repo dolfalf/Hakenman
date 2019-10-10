@@ -22,4 +22,4 @@ HakenManは派遣社員やフリーランスの勤務表管理をサポートす
 
 ## AppStore
 
-https://itunes.apple.com/jp/app/hakenman/id904564831?mt=8
+https://apps.apple.com/jp/app/hakenman/id1482478062
