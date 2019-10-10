@@ -55,7 +55,7 @@
     if ([week intValue] == weekSatDay) {
         weekLabel.textColor = [UIColor colorNamed:@"saturdayColor"];
     }else if ([week intValue] == weekSunday){
-        weekLabel.textColor = [UIColor colorNamed:@"sundayColor"];
+        weekLabel.textColor = [UIColor colorNamed:@"sundayLabelDay"];
     }else{
         weekLabel.textColor = [UIColor colorNamed:@"normalDayLabelColor"];
     }
