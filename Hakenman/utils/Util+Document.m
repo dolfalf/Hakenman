@@ -29,8 +29,8 @@
     
     //navigation textColor
     //色の変更ができなかった。appleの仕様らしい。
-    //controller.navigationController.navigationBar.barTintColor = [UIColor HKMBlueColor];
-    [UINavigationBar appearance].tintColor = [UIColor HKMBlueColor];
+    //controller.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"HKMBlueColor"];
+    [UINavigationBar appearance].tintColor = [UIColor colorNamed:@"HKMBlueColor"];
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
     
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];

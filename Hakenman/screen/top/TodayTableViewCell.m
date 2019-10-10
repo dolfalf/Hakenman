@@ -52,14 +52,16 @@
 {
     [super awakeFromNib];
     // Initialization code
+    self.backgroundColor = [UIColor colorNamed:@"KJBackgroundColor"];
+    
     calContainerView.layer.cornerRadius = 5;
     calContainerView.layer.masksToBounds = YES;
     [calContainerView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [calContainerView.layer setBorderWidth:1.f];
-    
-    yearLabel.backgroundColor = [UIColor HKMOrangeColor];
-    monthLabel.backgroundColor = [UIColor whiteColor];
-    dayLabel.backgroundColor = [UIColor whiteColor];
+    calContainerView.backgroundColor = [UIColor clearColor];
+    yearLabel.backgroundColor = [UIColor colorNamed:@"calendarHeaderColor"];
+    monthLabel.backgroundColor = [UIColor clearColor];
+    dayLabel.backgroundColor = [UIColor clearColor];
     
     monthWorkTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_work_tile");
     monthWorkDayUnitLabel.text = LOCALIZE(@"TopViewController_tablecell_workday_unit");
@@ -100,7 +102,7 @@
             weekLabel.textColor = [UIColor HKMBlueColor];
             break;
         case weekSunday:
-            weekLabel.textColor = [UIColor redColor];
+            weekLabel.textColor = [UIColor colorNamed:@"sundayColor"];
             break;
         default:
             weekLabel.textColor = [UIColor grayColor];

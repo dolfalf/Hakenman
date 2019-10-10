@@ -31,6 +31,7 @@
     [remarkFlagView.layer setBorderColor:[UIColor HKMOrangeColor].CGColor];
     remarkFlagView.backgroundColor = [UIColor HKMOrangeColor];
     [remarkFlagView.layer setBorderWidth:1.f];
+    dayLabel.textColor = [UIColor colorNamed:@"normalDayLabelColor"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -52,11 +53,11 @@
     dayLabel.text = [NSString stringWithFormat:@"%d", [day intValue]];
     weekLabel.text = [Util weekdayString:[week intValue]];
     if ([week intValue] == weekSatDay) {
-        weekLabel.textColor = [UIColor blueColor];
+        weekLabel.textColor = [UIColor colorNamed:@"saturdayColor"];
     }else if ([week intValue] == weekSunday){
-        weekLabel.textColor = [UIColor redColor];
+        weekLabel.textColor = [UIColor colorNamed:@"sundayColor"];
     }else{
-        weekLabel.textColor = [UIColor blackColor];
+        weekLabel.textColor = [UIColor colorNamed:@"normalDayLabelColor"];
     }
     workDayLabel.text = [work boolValue]?@"○":@"×";
 }

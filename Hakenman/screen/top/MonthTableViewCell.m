@@ -48,8 +48,10 @@
     [calContainerView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [calContainerView.layer setBorderWidth:1.f];
     
-    yearLabel.backgroundColor = [UIColor HKMOrangeColor];
-    monthLabel.backgroundColor = [UIColor whiteColor];
+    calContainerView.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor colorNamed:@"calendarBackgroundColor"];
+    yearLabel.backgroundColor = [UIColor colorNamed:@"calendarHeaderColor"];    
+    monthLabel.backgroundColor = [UIColor clearColor];
     
     workTimeTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_total_work_time_title");
     workdayTitleLabel.text = LOCALIZE(@"TopViewController_tablecell_total_work_day_title");

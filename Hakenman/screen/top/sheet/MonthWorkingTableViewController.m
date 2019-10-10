@@ -17,6 +17,7 @@
 #import "RightTableViewData.h"
 #import "TimeCard.h"
 #import "Util+Document.h"
+#import "UILabel+Title.h"
 
 #import <UIKit/UIDocumentInteractionController.h>
 
@@ -99,8 +100,12 @@
     }
 
     self.sheetDate = [NSDate convDate2ShortString:_inputDates];
-    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
-                  [_sheetDate getYear], [_sheetDate getMonth]];
+    
+    NSString *titleString = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
+                       [_sheetDate getYear], [_sheetDate getMonth]];
+    
+    self.navigationItem.titleView = [UILabel createNaviTitleLabel:titleString];
+    self.title = titleString;
 
     dateLabel.font = [UIFont nanumFontOfSize:dateLabel.font.pointSize];
     weekDayLabel.font = [UIFont nanumFontOfSize:weekDayLabel.font.pointSize];
@@ -131,11 +136,11 @@
     //テーブル色指定
     leftHeaderView.backgroundColor = [UIColor lightGrayColor];
     for(UIView *vw in [leftHeaderView subviews]) {
-        vw.backgroundColor = [UIColor HKMDarkblueColor];
+        vw.backgroundColor = [UIColor colorNamed:@"HKMDarkblueColor"];
     }
     rightHeaderView.backgroundColor = [UIColor lightGrayColor];
     for(UIView *vw in [rightHeaderView subviews]) {
-        vw.backgroundColor = [UIColor HKMDarkblueColor];
+        vw.backgroundColor = [UIColor colorNamed:@"HKMDarkblueColor"];
     }
     
     leftTableView.backgroundColor

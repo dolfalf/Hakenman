@@ -17,6 +17,7 @@
 #import "MonthWorkingTableEditViewController.h"
 #import "LeftTableViewData.h"
 #import "UIFont+Helper.h"
+#import "UILabel+Title.h"
 
 @interface MonthWorkingCalendarViewController ()
 
@@ -70,8 +71,8 @@
     
     self.calendarView.separatorStyle = RDVCalendarViewDayCellSeparatorTypeHorizontal;
     self.calendarView.separatorColor = [[UIColor lightGrayColor]  colorWithAlphaComponent:0.7f];
-    self.calendarView.selectedDayColor = [UIColor HKMSkyblueColor:0.7f];
-    self.calendarView.currentDayColor = [[UIColor HKMOrangeColor] colorWithAlphaComponent:0.3f];
+    self.calendarView.selectedDayColor = [[UIColor colorNamed:@"HKMSkyblueColor"] colorWithAlphaComponent:0.7f];
+    self.calendarView.currentDayColor = [[UIColor colorNamed:@"calendarHeaderColor"]  colorWithAlphaComponent:0.4f];
     
     [[self calendarView] registerDayCellClass:[WorkingDayCell class]];
     
@@ -83,12 +84,17 @@
     
     _inputDates = [_inputDates stringByAppendingString:@"01"];
     self.sheetDate = [NSDate convDate2ShortString:_inputDates];
-    self.title = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
+    NSString *titleString = [NSString stringWithFormat:LOCALIZE(@"MonthWorkingTableViewController_navi_title"),
                   [_sheetDate getYear], [_sheetDate getMonth]];
 
+    self.navigationItem.titleView = [UILabel createNaviTitleLabel:titleString];
+    self.title = titleString;
+    
     //Localize Label
     [self.calendarView updateMonthLocalizeLabel];
     [self.calendarView updateWeekDayLocalizeLabel];
+    
+    self.view.backgroundColor = [UIColor colorNamed:@"KJBackgroundColor"];
     
 }
 
@@ -213,6 +219,8 @@
 - (void)calendarView:(RDVCalendarView *)calendarView configureDayCell:(RDVCalendarDayCell *)dayCell
              atIndex:(NSInteger)index {
     WorkingDayCell *workingDayCell = (WorkingDayCell *)dayCell;
+    
+    dayCell.textLabel.textColor = [UIColor colorNamed:@"normalDayLabelColor"];
     
     for (TimeCard *tm in _items) {
         if ((index + 1) == [tm.t_day intValue]) {

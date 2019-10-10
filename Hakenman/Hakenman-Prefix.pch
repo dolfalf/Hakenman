@@ -27,7 +27,7 @@
 
 //#define TEST_FLIGHT_ENABLE
 //８月データのリカバリー用
-#define RECOVERY_CODE_ENABLE
+//#define RECOVERY_CODE_ENABLE
 
 //#define GENERATE_DUMMY_DATA
 
