@@ -20,9 +20,8 @@ class PrivacyPolicyViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.title = NSLocalizedString("PrivarcyPolicyViewController_navi_title", comment: "")
         UIFont.setNaviTitle(UIFont.nanumFont(ofSize: 16.0))
-        let urlfilename = NSLocalizedString("PrivarcyPolicyViewController_url_file", comment: "")
-        let path = Bundle.main.path(forResource: urlfilename, ofType: "html")
-        contentWebView.loadRequest(URLRequest(url: URL.init(fileURLWithPath: path!)))
+        let urlString = NSLocalizedString("PrivarcyPolicyViewController_url_file", comment: "")
+        contentWebView.loadRequest(URLRequest(url: URL(string: urlString)!))
     }
 
     override func didReceiveMemoryWarning() {
