@@ -272,7 +272,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     [_menuBarButton addTarget:self action:@selector(gotoMenuButtonTouched:)
              forControlEvents:UIControlEventTouchUpInside];
     
-    [self.navigationController.navigationBar addSubview:_menuBarButton];
+    //HACK: この機能の動作がおかしいので修正する前までメニューからなくす。　j.lee
+    //[self.navigationController.navigationBar addSubview:_menuBarButton];
     
     _settingBarButton = [[PBBarButtonIconButton alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - 40, 5, 35, 35)
                                                          andWithType:PBFlatIconMore];
