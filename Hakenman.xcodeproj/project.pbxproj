@@ -824,7 +824,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JazzHands/JazzHands.framework",
 				"${BUILT_PRODUCTS_DIR}/PBFlatUI/PBFlatUI.framework",
 				"${BUILT_PRODUCTS_DIR}/RDVCalendarView/RDVCalendarView.framework",
@@ -845,7 +845,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		96822679B3F82E5230B77C89 /* [CP] Check Pods Manifest.lock */ = {
