@@ -70,6 +70,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	// iOS13からfullscreenではないので、途中に下スワイプで閉じられる。（フラグ更新のタイミングをここで行う。）
+	[NSUserDefaults setReadWelcomePage:YES];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
@@ -496,8 +499,8 @@
 }
 
 - (IBAction)startButtonTouched:(id)sender {
-    
-    [NSUserDefaults setReadWelcomePage:YES];
+    // iOS13からmodalがfullscreenではないので、Tutorial画面が開いた際にフラグ更新するようにタイミング変更。
+//    [NSUserDefaults setReadWelcomePage:YES];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
