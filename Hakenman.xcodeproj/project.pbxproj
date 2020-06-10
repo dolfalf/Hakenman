@@ -744,10 +744,9 @@
 			};
 			buildConfigurationList = 3B469F9318B89D3A0095C418 /* Build configuration list for PBXProject "Hakenman" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				ja,
