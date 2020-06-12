@@ -242,7 +242,8 @@ typedef enum {
         restStr = [timeCard.rest_time stringValue];
     }
     
-    self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[restStr] placeholder:nil options:@[@[@"0", @"1", @"1.5", @"2", @"2.5", @"3", @"3.5", @"4", @"4.5", @"5", @"5.5", @"6", @"6.5", @"7", @"7.5", @"8"]]];
+    self.restTimePickerItem = [REPickerItem itemWithTitle:LOCALIZE(@"MonthWorkingTableEditViewController_edit_rest_time_cell") value:@[restStr] placeholder:nil options:@[@[@"0", @"0.05", @"0.1", @"0.15", @"0.2", @"0.25", @"0.3", @"0.35", @"0.4", @"0.45", @"0.5", @"0.55", @"1", @"1.05", @"1.1", @"1.15", @"1.2", @"1.25", @"1.3", @"1.35", @"1.4", @"1.45", @"1.5", @"1.55", @"2", @"2.05", @"2.1", @"2.15", @"2.2", @"2.25", @"2.3", @"2.35", @"2.4", @"2.45", @"2.5", @"2.55", @"3", @"3.05", @"3.1", @"3.15", @"3.2", @"3.25", @"3.3", @"3.35", @"3.4", @"3.45", @"3.5", @"3.55", @"4", @"4.05", @"4.1", @"4.15", @"4.2", @"4.25", @"4.3", @"4.35", @"4.4", @"4.45", @"4.5", @"4.55", @"5", @"5.05", @"5.1", @"5.15", @"5.2", @"5.25", @"5.3", @"5.35", @"5.4", @"5.45", @"5.5", @"5.55", @"6", @"6.05", @"6.1", @"6.15", @"6.2", @"6.25", @"6.3", @"6.35", @"6.4", @"6.45", @"6.5", @"6.55", @"7", @"7.05", @"7.1", @"7.15", @"7.2", @"7.25", @"7.3", @"7.35", @"7.4", @"7.45", @"7.5", @"7.55", @"8"]]];
+    
     _restTimePickerItem.inlinePicker = YES;
     [section addItem:_restTimePickerItem];
     
