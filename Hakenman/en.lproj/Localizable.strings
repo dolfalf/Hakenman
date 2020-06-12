@@ -189,7 +189,7 @@
 "AppInformationViewController_navi_title"       = "About KJCode";
 
 "PrivarcyPolicyViewController_navi_title"       = "Privacy Policy";
-"PrivarcyPolicyViewController_url_file"       = "privarcy_policy_en";
+"PrivarcyPolicyViewController_url_file"         = "https://dolfalf.github.io/Hakenman/PrivacyPolicy/English";
 
 ////////////////////////////////////////////////////////////////////////////////////
 //Watch

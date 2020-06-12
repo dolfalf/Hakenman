@@ -186,8 +186,7 @@
 "OpenSourceLicenseViewController_navi_title"    = "오픈라이센스";
 "AppInformationViewController_navi_title"       = "KJCode는요";
 "PrivarcyPolicyViewController_navi_title"       = "개인정보방침";
-"PrivarcyPolicyViewController_url_file"       = "privarcy_policy_ko
-";
+"PrivarcyPolicyViewController_url_file"         = "https://dolfalf.github.io/Hakenman/PrivacyPolicy/Korean";
 ////////////////////////////////////////////////////////////////////////////////////
 //Watch
 "Common_month_1" = "1월";
