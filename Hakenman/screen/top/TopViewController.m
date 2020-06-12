@@ -305,6 +305,8 @@ static NSString * const kMonthCellIdentifier = @"monthCellIdentifier";
     //push Animation
 
     
+    instantiateInitialViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
     [self presentViewController:instantiateInitialViewController animated:YES completion:^{
         
         ((MenuViewController *)[instantiateInitialViewController.childViewControllers objectAtIndex:0]).completionHandler = ^(id settingController) {
