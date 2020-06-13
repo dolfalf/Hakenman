@@ -823,7 +823,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JazzHands/JazzHands.framework",
 				"${BUILT_PRODUCTS_DIR}/PBFlatUI/PBFlatUI.framework",
 				"${BUILT_PRODUCTS_DIR}/RDVCalendarView/RDVCalendarView.framework",
@@ -844,7 +844,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hakenman/Pods-Hakenman-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		96822679B3F82E5230B77C89 /* [CP] Check Pods Manifest.lock */ = {
@@ -1089,7 +1089,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1002;
+				CURRENT_PROJECT_VERSION = 1003;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = QN8T3L2FUY;
 				ENABLE_BITCODE = YES;
@@ -1104,7 +1104,7 @@
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.4.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.archive-asia.hakenman";
@@ -1125,7 +1125,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1002;
+				CURRENT_PROJECT_VERSION = 1003;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = QN8T3L2FUY;
 				ENABLE_BITCODE = YES;
@@ -1140,7 +1140,7 @@
 				INFOPLIST_FILE = "Hakenman/Hakenman-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.4.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.archive-asia.hakenman";
