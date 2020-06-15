@@ -45,7 +45,7 @@
         self.backgroundColor = [UIColor clearColor];
         self.noDataLabel = [[UILabel alloc] initWithFrame:self.bounds];
         _noDataLabel.text = LOCALIZE(@"LineGraphView_total_work_day_no_data");
-        _noDataLabel.textColor = [UIColor lightGrayColor];
+		_noDataLabel.textColor = [UIColor colorNamed:@"graphTextColor"];
         _noDataLabel.textAlignment = NSTextAlignmentCenter;
         _noDataLabel.font = [UIFont nanumFontOfSize:36.f];
         [self addSubview:_noDataLabel];
@@ -270,7 +270,7 @@
     [[UIColor redColor] setFill]; // This is the default
     
     [t drawAtPoint:CGPointMake(p.x, p.y)
-               withAttributes:@{NSFontAttributeName:[UIFont nanumFontOfSize:5.f]}];
+	withAttributes:@{NSFontAttributeName:[UIFont nanumFontOfSize:9.f], NSForegroundColorAttributeName:[UIColor colorNamed:@"graphTextColor"]}];
     
 }
 
